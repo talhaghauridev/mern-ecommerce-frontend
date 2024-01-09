@@ -7,9 +7,9 @@ import Home from "../pages/home";
 import { Login } from "../pages/authentication";
 
 const AppRoutes = (
-   <Route path="/" element={<Layout />}>
+  <Route path="/" element={<Layout />}>
     <Route path="" element={<Home />} />
-    <Route path="login" element={<Login/>}/>
+    <Route path="login" element={<Login />} />
   </Route>
 );
 
