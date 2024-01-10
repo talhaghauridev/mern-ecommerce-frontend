@@ -1,5 +1,5 @@
 import React from "react";
-import Meta from "../../../components/ui/Meta/Meta";
+import { Meta } from "../../../components";
 
 const Login = () => {
   return (

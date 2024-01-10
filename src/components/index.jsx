@@ -1,4 +1,11 @@
-export { Button } from './ui/Button';
-export { Input } from './ui/Input';
-export { Meta } from './ui/Meta';
-export { Img } from './ui/Img';
+import Button from "./ui/Button";
+import Input from "./ui/Input";
+import Meta from "./ui/Meta";
+import Img from "./ui/Img";
+
+export {
+    Button,
+    Input,
+    Meta,
+    Img
+}
