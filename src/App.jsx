@@ -1,11 +1,10 @@
 // App.jsx
 
 import React from "react";
-import { Route, Routes } from "react-router-dom";
-import AppRoutes from "./routes/routes";
 import Layout from "./layout/layout";
 import Home from "./pages/home";
 import { useState } from "react";
+import Routes from './routes/routes';
 
 export const Loading = () => {
   console.log("Loading....");
@@ -23,9 +22,7 @@ function App() {
   console.log(loading);
   return (
     <main id="App">
-      <React.Suspense fallback={ async ()=><Loading/>}>
-        <Routes>{AppRoutes}</Routes>
-      </React.Suspense>
+      <Routes />
     </main>
   );
 }

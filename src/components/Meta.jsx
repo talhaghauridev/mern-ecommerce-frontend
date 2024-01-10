@@ -7,6 +7,7 @@ const Meta = ({ title }) => {
       <Helmet>
         <head>{title}</head>
       </Helmet>
+   
     </>
   );
 };
