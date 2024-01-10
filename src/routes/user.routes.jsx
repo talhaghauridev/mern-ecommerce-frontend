@@ -7,7 +7,7 @@ const Profile = lazy(() => import("../pages/profile"));
 const AuthRoutes = (
   <Route
     path="/user"
-    element={<Outlet />}
+    element={<ProtectRoute />}
   >
     <Route path="profile" element={<Profile />} />
   </Route>

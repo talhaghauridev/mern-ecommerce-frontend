@@ -1,15 +1,15 @@
 import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom';
 
-const ProtectRoute = ({ children: Children }) => {
+const ProtectRoute = ({ children }) => {
     const auth = true;
 
     if (!auth) {
-        return <Navigate to={"/login"} />
+        return <Navigate replace to={"/login"} />
     }
 
 
-    return <Children /> ? <Children /> : <Outlet />
+    return children ? children : <Outlet />
 }
 
 export default ProtectRoute
