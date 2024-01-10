@@ -10,7 +10,7 @@ const Loading = () => {
   console.log("Loading....");
   return (
     <>
-      <div style={{ height: "100vh ", background: "blue", width: "100vw" }}>
+      <div style={{ height: "100vh ", background: "black", width: "100vw" }}>
         Loading....
       </div>
     </>
