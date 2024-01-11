@@ -1,5 +1,5 @@
 import React from 'react'
-import { Img } from '../../components/ui/Img'
+import { Button, Img } from '../../components'
 
 const Cart = () => {
   return (
@@ -8,12 +8,11 @@ const Cart = () => {
         <div className="bg-white-A700 flex flex-col items-start justify-start px-12 md:px-5 py-[52px] w-[491px] sm:w-full">
           <div className="flex flex-col gap-12 items-start justify-start w-full">
             <div className="flex flex-row items-center justify-between w-full">
-              <Text
+              <div
                 className="text-2xl md:text-[22px] text-bluegray-800 sm:text-xl w-auto"
-                size="txtInterBold24Bluegray800"
               >
                 My Cart
-              </Text>
+              </div>
               <Img
                 className="h-8 w-8"
                 src="images/img_plus_bluegray_900.svg"
@@ -21,7 +20,7 @@ const Cart = () => {
               />
             </div>
             <div className="flex flex-col gap-[33px] items-start justify-start w-full">
-              <List
+              {/* <List
                 className="flex flex-col gap-[33px] items-center w-full"
                 orientation="vertical"
               >
@@ -170,20 +169,20 @@ const Cart = () => {
                     </div>
                   </div>
                 </div>
-              </List>
+              </List> */}
               <div className="flex flex-row items-center justify-between w-full">
-                <Text
+                <div
                   className="text-base text-bluegray-400 text-center w-auto"
-                  size="txtInterRegular16"
+                 
                 >
                   Total
-                </Text>
-                <Text
+                </div>
+                <div
                   className="text-bluegray-800 text-lg text-right w-auto"
-                  size="txtInterBold18Bluegray800"
+                 
                 >
                   $240.0
-                </Text>
+                </div>
               </div>
               <div className="flex sm:flex-col flex-row gap-4 items-start justify-start w-full">
                 <Button className="bg-deep_orange-300 cursor-pointer font-bold min-w-[189px] py-[15px] rounded-[24px] text-center text-sm text-white-A700">
@@ -200,18 +199,18 @@ const Cart = () => {
                   alt="computer"
                 />
                 <div className="flex flex-1 flex-col gap-1 items-start justify-center w-full">
-                  <Text
+                  <div
                     className="text-base text-bluegray-900 w-full"
                     size="txtInterBold16Bluegray900"
                   >
                     Free nationwide shipping
-                  </Text>
-                  <Text
+                  </div>
+                  <div
                     className="text-bluegray-900 text-sm w-full"
                     size="txtInterRegular14Bluegray900"
                   >
                     (For order begin $100.0)
-                  </Text>
+                  </div>
                 </div>
               </div>
             </div>

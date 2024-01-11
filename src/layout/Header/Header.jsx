@@ -1,9 +1,26 @@
-import React from 'react'
+import React from "react";
+import { NAV } from "../../constants";
+import { Link } from "react-router-dom";
+import { Img } from "../../components";
 
 const Header = () => {
   return (
-    <div>Header</div>
-  )
-}
+    <header id="header">
+      <nav>
+        <div></div>
 
-export default Header
+        <ul>
+          {NAV.Links.map((item, i) => (
+            <>
+              <li>
+                <Link to={item.path}>{item.name}</Link>
+              </li>
+            </>
+          ))}
+        </ul>
+      </nav>
+    </header>
+  );
+};
+
+export default Header;

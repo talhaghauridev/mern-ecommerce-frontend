@@ -4,7 +4,8 @@ import React from "react";
 import Layout from "./layout/layout";
 import Home from "./pages/home";
 import { useState } from "react";
-import Routes from './routes/routes';
+import Routes from "./routes/routes";
+import { Suspense } from "react";
 
 export const Loading = () => {
   console.log("Loading....");
@@ -22,7 +23,9 @@ function App() {
   console.log(loading);
   return (
     <main id="App">
-      <Routes />
+      <Suspense fallback={<Loading />}>
+        <Routes />
+      </Suspense>
     </main>
   );
 }
