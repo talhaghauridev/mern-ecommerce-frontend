@@ -4,22 +4,27 @@ import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import Layout from "../layout/layout";
 import AuthRoutes from "./user.routes";
 import lazyLoad from "../utils/lazyLoad";
+import NotFound from "./../layout/NotFound/NotFound";
 const Products = lazyLoad("../pages/products");
 const Home = lazyLoad("../pages/home");
-const Cart = lazyLoad("../pages/cart")
-// const Login = lazy(()=>import("../pages/authentication")).then((module)=>{
-//   {default:module.Login}
-// })
-import { Login } from "../pages/authentication"
-import NotFound from './../layout/NotFound/NotFound';
+const Cart = lazyLoad("../pages/cart");
+const Login = lazyLoad("../pages/authentication", "Login");
+const ForgotPassword = lazyLoad("../pages/authentication", "ForgotPassword");
+const SignUp = lazyLoad("../pages/authentication", "SignUp");
+
 const AppRoutes = () => {
   return (
     <Router>
       <Routes>
+        <Route path="*" element={<NotFound />} />
         <Route element={<Layout />}>
-          <Route path="*" element={<NotFound />} />
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<SignUp />} />
+
           <Route path="/products" element={<Products />} />
           <Route path="/cart" element={<Cart />} />
           {AuthRoutes}

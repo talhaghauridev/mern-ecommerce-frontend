@@ -1,9 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        Poppins: ["Poppins"],
+        PoppinsBold: ["PoppinsBold"],
+        Sans: ["Sans"],
+        SansBold: ["SansBold"],
+      },
+    },
   },
   plugins: [],
-}
-
+};

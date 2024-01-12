@@ -12,8 +12,7 @@ const Input = ({
   error,
   ...props
 }) => {
-
-  const { handleToggle, toggle } = useToggle(false)
+  const { handleToggle, toggle } = useToggle(false);
   return (
     <>
       <div className={`${name}_input`}>
@@ -24,20 +23,20 @@ const Input = ({
               <LIcon />
             </span>
           )}
-          <input type={type === "password" ? toggle ? "text" : "password" : type} name={name} id={name}  {...props} />
+          <input
+            type={type === "password" ? (toggle ? "text" : "password") : type}
+            name={name}
+            id={name}
+            {...props}
+          />
           {RIcon && (
             <span>
               <RIcon />
             </span>
           )}
-          {
-            type === "password" &&
-            <span onClick={handleToggle}>
-              {
-                toggle ? " Show" : "Hide"
-              }
-            </span>
-          }
+          {type === "password" && (
+            <button onClick={handleToggle}>{toggle ? " Show" : "Hide"}</button>
+          )}
         </div>
         {error && <span>{error}</span>}
       </div>
