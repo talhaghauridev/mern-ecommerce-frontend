@@ -1,12 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { userApi } from "./api/user.api";
+import reducers from "./reducers";
 
-export const server = `${import.meta.env.VITE_SERVER_URL}/api/v1`;
+export const server = `${import.meta.env.VITE_SERVER_URL}/api/v1`
 
-const store = configureStore({
-  reducer: {
-    [userApi.reducerPath]: userApi.reducer,
-  },
+export const store = configureStore({
+  reducer: reducers,
+  middleware: (mid) => [...mid(), userApi.middleware],
 });
 
-export default store;
