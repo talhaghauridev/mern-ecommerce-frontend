@@ -1,7 +1,7 @@
 import React from "react";
 import { useLogin, useSignUp } from "../hooks/hook";
 import { inputError } from "../../../utils/inputError";
-import { Meta } from "../../../components";
+import { Input, Meta } from "../../../components";
 
 const SignUp = () => {
   const { formik } = useSignUp();
