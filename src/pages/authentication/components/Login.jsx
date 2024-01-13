@@ -1,28 +1,18 @@
 import React, { useState } from "react";
 import { Input, Meta } from "../../../components";
+import { useLogin } from "../hooks/hook";
+import { inputError } from "../../../utils/inputError";
 
 const Login = () => {
-  const [user, setUser] = useState({ email: "", password: "" });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // useLogin(user);
-  };
+  const { formik } = useLogin();
+  const { handleSubmit, getFieldProps } = formik;
   return (
     <>
       <Meta title={"Login"} />
       <section id="login">
         <div className="container">
-
           <div className="form_heading">
-            <h1>
-              Login
-            </h1>
+            <h1>Login</h1>
           </div>
           <form onSubmit={handleSubmit} className="form">
             {/* Email Input  */}
@@ -31,8 +21,8 @@ const Login = () => {
               type="email"
               placeholder="Enter your email"
               name="email"
-              onChange={handleChange}
-              value={user.email}
+              {...getFieldProps("email")}
+              error={inputError(formik, "email")}
             />
 
             {/* Password Input  */}
@@ -41,12 +31,10 @@ const Login = () => {
               type="password"
               placeholder="Enter your password"
               name="password"
-              onChange={handleChange}
-              value={user.password}
+              {...getFieldProps("password")}
+              error={inputError(formik, "password")}
             />
-            <button type="submit">
-              Submit
-            </button>
+            <button type="submit">Submit</button>
           </form>
         </div>
       </section>

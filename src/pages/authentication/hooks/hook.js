@@ -1,28 +1,27 @@
+import { Form, useFormik } from "formik";
 import { useEffect } from "react";
+import { loginSchema } from "../validation";
 
-const useLogin = (userData) => {
-  console.log(userData);
+const useLogin = () => {
+  //Initial Values
   const initialValues = {
     email: "",
     password: "",
   };
-  const fomik = useFormik({
+
+  const formik = useFormik({
     initialValues: initialValues,
     validationSchema: loginSchema,
     onSubmit: (values) => {
-      //   login(values);
-      console.log("Values Formik", values);
       if (values) {
-        console.log(values.email);
+        console.log(values);
+        console.log(`Form submit successfully`);
       }
     },
   });
 
   return {
-    fomik,
-    message,
-    error,
-    redirect,
+    formik,
   };
 };
 
