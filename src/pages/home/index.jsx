@@ -1,14 +1,14 @@
 import React from "react";
 import { Input } from "../../components";
+import ProductCard from "./components/ProductCard";
 
 const Home = () => {
   return (
-    <div>
-      <Input name={"name"} type={"text"} placeholder={"Please Enter Your Name"} onChange={(e) => console.log(e.target.value)} label={"Name"} />
-      <Input name={"email"} type={"text"} placeholder={"Please Enter Your email"} onChange={(e) => console.log(e.target.value)} label={"Email"} />
-      <Input name={"password"} type={"password"} placeholder={"Please Enter Your password"} onChange={(e) => console.log(e.target.value)} />
-
-    </div>
+    <section id="home">
+      <div className="container">Home
+      <ProductCard/>
+      </div>
+    </section>
   );
 };
 export default Home;

@@ -5,9 +5,8 @@ const Meta = ({ title }) => {
   return (
     <>
       <Helmet>
-        <head>{title}</head>
+        <title>{`${title} -- Ecommerce`}</title>
       </Helmet>
-   
     </>
   );
 };

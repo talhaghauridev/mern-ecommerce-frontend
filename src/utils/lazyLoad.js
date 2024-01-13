@@ -1,8 +1,8 @@
 import { lazy } from "react";
 
 const lazyLoad = (path, pathName) => {
+  const promise = import(path);
   return lazy(() => {
-    const promise = import(path);
     if (pathName == null) {
       return promise;
     }

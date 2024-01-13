@@ -1,25 +1,185 @@
-import React from "react";
+import { Link, useLocation } from "react-router-dom";
+import { IoMdSearch } from "react-icons/io";
+import { useState, useEffect } from "react";
+// import BottomNavigation from "./BottomNavigation";
+import { TbLogout } from "react-icons/tb";
+import { FaArrowLeft } from "react-icons/fa6";
 import { NAV } from "../../constants";
-import { Link } from "react-router-dom";
-import { Img } from "../../components";
-
 const Header = () => {
-  return (
-    <header id="header">
-      <nav>
-        <div></div>
+  const { pathname } = useLocation();
+  // const isAuth: boolean = false;
+  const [isAuth, setIsAuth] = useState(true);
+  const [navScroll, setNavScroll] = useState(false);
+  const [searchModel, setSearchModel] = useState(false);
 
-        <ul>
-          {NAV.Links.map((item, i) => (
-            <>
-              <li>
-                <Link to={item.path}>{item.name}</Link>
-              </li>
-            </>
-          ))}
-        </ul>
-      </nav>
-    </header>
+  let role;
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY >= 300) {
+        setNavScroll(true);
+      } else {
+        setNavScroll(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  return (
+    <>
+      <header
+        id="header"
+        className={`${
+          navScroll ? "header_animation" : ""
+        } w-[100%] border-b border-solid border-[#d1d5db] h-[74px]`}
+      >
+        <div className="container py-[8px]">
+          {/* Logo */}
+
+          <div className="logo">
+            <Link to="/">
+              {/* <img
+                src={Logo}
+                alt="Logo"
+                className="w-[100px] sm:w-[120px] max-w-[400px]   "
+              /> */}
+            </Link>
+          </div>
+
+          <div
+            className={`search_box w-[100%] ${
+              searchModel ? "translate-y-[0] " : "translate-y-[-100vh] "
+            } transition-transform fixed top-0 h-[100vh] z-10 left-0  bg-[white] flex items-center justify-center md:z-0 md:translate-y-[0] md:max-w-[400px] md:h-[100%] md:static md:bg-transparent`}
+          >
+            <div
+              className="absolute top-[20px] flex justify-center items-center border-[1px] border-solid border-[#c5c5c5ed] md:hidden cursor-pointer text-[20px] bg-[#1f293717] p-[10px] rounded-[6px] left-[15px]"
+              onClick={() => {
+                setSearchModel(false);
+                console.log((document.body.style.overflow = "auto"));
+              }}
+            >
+              <FaArrowLeft />
+            </div>
+            <div
+              className={`flex w-[100%] relative overflow-hidden border-solid border-[1px] h-[44px] bg-[#f9fafb] 
+           border-[#d1d5db!important]
+           rounded-[6px] m-[15px] md:m-[0px] `}
+            >
+              <p className="absolute left-[8px] top-0 h-[100%] flex items-center justify-center text-[20px]  text-[#2b3445]">
+                <IoMdSearch />
+              </p>
+              <input
+                type="text"
+                name="search"
+                id="seach"
+                placeholder={"Search Your Product"}
+                className={`w-[100%] h-[100%] outline-none  font-Poppins text-[16px] text-black placeholder:font-Poppins placeholder:text-[15px] placeholder:font-[200] placeholder:text-gray-400 dark:placeholder-gray-400 `}
+                style={{
+                  paddingLeft: "40px",
+                  paddingRight: "20px",
+                }}
+              />
+            </div>
+          </div>
+
+          {/* NavLinks */}
+          <ul className=" gap-[34px] font-PoppinsBold hidden md:flex">
+            {NAV.Links.map((item, index) => (
+              <>
+                <Link
+                  to={item.path}
+                  key={index}
+                  className={`${
+                    pathname === item.path ? "opacity-1" : "opacity-[0.8]"
+                  }`}
+                >
+                  <li>{item.name}</li>
+                </Link>
+              </>
+            ))}
+          </ul>
+
+          {/* NacIcons  */}
+          <div className="icons flex gap-[25px] items-center justify-end ">
+            {NAV.Icons.map((item, index) => (
+              <>
+                <Link
+                  to={item.path}
+                  key={index}
+                  className={`cart_icon text-[21px] md:text-[24px] text-[#2b3445eb] 
+                  ${isAuth && item.path === "/login" ? "hidden" : "flex"}
+                  `}
+                >
+                  {item.icon}
+                </Link>
+              </>
+            ))}
+
+            {/* {isAuth && (
+              <Dropdown
+                label={
+                  <>
+                    <div className="profile_icon text-[24px] md:text-[24px]">
+                      <Image
+                        src={
+                          "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png"
+                        }
+                        alt="Logo"
+                        className="w-[100%] h-[100%] max-w-[34px]  rounded-full "
+                      />
+                    </div>
+                  </>
+                }
+                className="flex flex-col  absolute top-[45px] bg-white right-0 rounded-[6px] "
+                style={{
+                  boxShadow: "rgba(43, 52, 69, 0.1) 0px 4px 16px",
+                }}
+              >
+                {userDropdown && role === "user"
+                  ? userDropdown
+                      .filter((e) => e.name !== "Dashboard")
+                      .map((item, index) => (
+                        <>
+                          <Link
+                            className="dropdown_link "
+                            to={item.path}
+                            key={index}
+                          >
+                            <p className="text-[20px]">{item.icon}</p>
+                            {item.name}
+                          </Link>
+                        </>
+                      ))
+                  : userDropdown.map((item, index) => (
+                      <>
+                        <Link
+                          className={`dropdown_link`}
+                          to={item.path}
+                          key={index}
+                        >
+                          <p className="text-[18px] md:text-[20px]">
+                            {item.icon}
+                          </p>
+                          {item.name}
+                        </Link>
+                      </>
+                    ))}
+
+                <div className="dropdown_link border-[0!important] ">
+                  <p className="text-[18px] md:text-[20px]">
+                    <TbLogout />
+                  </p>
+                  Logout
+                </div>
+              </Dropdown>
+            )} */}
+          </div>
+        </div>
+        {/* <BottomNavigation setSearchModel={setSearchModel} /> */}
+      </header>
+    </>
   );
 };
 

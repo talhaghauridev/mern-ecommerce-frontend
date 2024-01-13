@@ -10,6 +10,7 @@ const Home = lazyLoad("../pages/home");
 const Cart = lazyLoad("../pages/cart");
 const Login = lazyLoad("../pages/authentication", "Login");
 const ForgotPassword = lazyLoad("../pages/authentication", "ForgotPassword");
+const ResetPassword = lazyLoad("../pages/authentication", "ResetPassword");
 const SignUp = lazyLoad("../pages/authentication", "SignUp");
 
 const AppRoutes = () => {
@@ -21,10 +22,8 @@ const AppRoutes = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password" element={<SignUp />} />
-
+          <Route path="/reset-password:token" element={<ResetPassword />} />
           <Route path="/products" element={<Products />} />
           <Route path="/cart" element={<Cart />} />
           {AuthRoutes}
