@@ -1,6 +1,8 @@
 import { Form, useFormik } from "formik";
-import { useEffect } from "react";
-import { loginSchema } from "../validation";
+import { useEffect, useState } from "react";
+import { loginSchema, signUpSchema } from "../validation";
+import { useNavigate } from "react-router-dom";
+import { useLoginMutation } from "../../../redux/api/userApi";
 
 const useLogin = () => {
   //Initial Values
@@ -12,10 +14,10 @@ const useLogin = () => {
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: loginSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       if (values) {
         console.log(values);
-        console.log(`Form submit successfully`);
+        console.log(`Form submit successfully:Login`);
       }
     },
   });
@@ -25,10 +27,46 @@ const useLogin = () => {
   };
 };
 
-const useSignUp = (userData) => {};
+const useSignUp = () => {
+  //Initial Values
+  const initialValues = {
+    name:"",
+    email: "",
+    password: "",
+  };
+
+  const formik = useFormik({
+    initialValues: initialValues,
+    validationSchema: signUpSchema,
+    onSubmit: async (values) => {
+      if (values) {
+        console.log(values);
+        console.log(`Form submit successfully:SignUP`);
+      }
+    },
+  });
+
+  return {
+    formik,
+  };
+};
 
 const useForgotPassword = (userData) => {};
 
 const useResetPassword = (userData) => {};
 
-export { useLogin, useSignUp, useForgotPassword, useResetPassword };
+const useMessage = (message, error, redirect) => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (message) {
+      redirect && navigate(redirect);
+      return message;
+    }
+    if (error) {
+      return error;
+    }
+  }, [message, error, redirect]);
+
+  return { message, error };
+};
+export { useLogin, useSignUp, useForgotPassword, useResetPassword, useMessage };
