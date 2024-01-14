@@ -2,6 +2,7 @@ import React from "react";
 // import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
+import CartCard from "./components/CartCard";
 // import { removeFromCart } from '../slices/cartSlice'
 
 const Cart = () => {
@@ -93,6 +94,9 @@ const Cart = () => {
         ) : (
           <p className="text-gray-400 text-xl">Your Cart is empty.</p>
         )}
+
+
+        <CartCard/>
       </div>
       {cartItems?.length !== 0 && (
         <div className="md:w-1/3 bg-gray-100 p-4">
