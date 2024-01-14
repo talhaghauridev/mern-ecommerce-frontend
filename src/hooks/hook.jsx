@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const useToggle = (value = false) => {
   const [toggle, setToggle] = useState(value);
@@ -65,7 +64,7 @@ const useUpload = (multiple = false) => {
     handleFileChange,
   };
 };
- const useMediaQuery = (query) => {
+const useMediaQuery = (query) => {
   const [matches, setMatches] = useState();
 
   useEffect(() => {
@@ -88,4 +87,31 @@ const useUpload = (multiple = false) => {
   return matches;
 };
 
-export { useToggle, useOnlineStatus, useUpload, useMediaQuery };
+const useInView = (options = {}) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const targetRef = useRef(null);
+  
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        setIsVisible(true);
+        if (targetRef.current) {
+          observer.unobserve(targetRef.current);
+        }
+      }
+    });
+    if (targetRef && targetRef.current) {
+      observer.observe(targetRef.current);
+    }
+    return () => {
+      if (targetRef.current) {
+        observer.unobserve(targetRef.current);
+      }
+    };
+  }, [options]);
+
+  return { ref: targetRef, isVisible };
+};
+
+export { useToggle, useOnlineStatus, useUpload, useMediaQuery, useInView };

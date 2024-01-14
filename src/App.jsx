@@ -16,24 +16,37 @@ import TopNavgationBar from "react-top-loading-bar";
 import lazyLoad from "./utils/lazyLoad";
 import { useEffect } from "react";
 import { server } from "./redux/store";
+import { useInView } from "./hooks/hook";
+import { Image } from "./components";
 
 export const Loading = () => {
   console.log("Loading....");
   return (
     <>
-      <TopNavgationBar background="blue" waitingTime={5} transitionTime={100} onLoaderFinished={console.log("Finsihed")} />
+      <TopNavgationBar
+        background="blue"
+        waitingTime={5}
+        transitionTime={100}
+        onLoaderFinished={console.log("Finsihed")}
+      />
     </>
   );
 };
 function App() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [load, setLoad] = useState(false);
+  const { ref, isVisible } = useInView();
+  console.log(isVisible ? "View" : "Not View");
+  console.log(loading);
 
   return (
     <main id="App">
       <Suspense fallback={<Loading />}>
         <Routes />
       </Suspense>
+
+      <Image src={load? img2:img1} alt={"img"} />
+      <button onClick={() => setLoad((p) => !p)}>Button</button>
     </main>
   );
 }

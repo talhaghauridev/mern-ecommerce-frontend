@@ -1,225 +1,118 @@
-import React from 'react'
-import { Button, Img } from '../../components'
+import React from "react";
+// import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from "react-router-dom";
+import { useInView } from "react-intersection-observer";
+// import { removeFromCart } from '../slices/cartSlice'
 
 const Cart = () => {
-  return (
-    <>
-          <div className="bg-bluegray-900_ad flex flex-col font-inter items-center justify-between mx-auto md:px-10 sm:px-5 px-[497px] py-[382px] w-auto sm:w-full md:w-full">
-        <div className="bg-white-A700 flex flex-col items-start justify-start px-12 md:px-5 py-[52px] w-[491px] sm:w-full">
-          <div className="flex flex-col gap-12 items-start justify-start w-full">
-            <div className="flex flex-row items-center justify-between w-full">
-              <div
-                className="text-2xl md:text-[22px] text-bluegray-800 sm:text-xl w-auto"
-              >
-                My Cart
-              </div>
-              <Img
-                className="h-8 w-8"
-                src="images/img_plus_bluegray_900.svg"
-                alt="plus"
-              />
-            </div>
-            <div className="flex flex-col gap-[33px] items-start justify-start w-full">
-              {/* <List
-                className="flex flex-col gap-[33px] items-center w-full"
-                orientation="vertical"
-              >
-                <div className="flex flex-1 sm:flex-col flex-row gap-6 items-center justify-start w-full">
-                  <Img
-                    className="h-[118px] md:h-auto max-h-[118px] object-cover sm:w-[]"
-                    src="images/img_rectangle_118x110.png"
-                    alt="rectangle"
-                  />
-                  <div className="flex flex-1 flex-col gap-[22px] items-start justify-start w-full">
-                    <div className="flex flex-col gap-6 items-start justify-start w-full">
-                      <div className="flex flex-col gap-2 items-start justify-start w-full">
-                        <div className="flex flex-row items-center justify-between w-full">
-                          <Text
-                            className="text-bluegray-900 text-lg w-auto"
-                            size="txtInterBold18"
-                          >
-                            Polo Shirt
-                          </Text>
-                          <Img
-                            className="h-6 w-6"
-                            src="images/img_pagedisabled.svg"
-                            alt="minus"
-                          />
-                        </div>
-                        <Text
-                          className="text-bluegray-400 text-sm w-full"
-                          size="txtInterRegular14Bluegray400"
-                        >
-                          Color: Grey, S
-                        </Text>
-                      </div>
-                      <div className="flex flex-row gap-3 items-center justify-start w-full">
-                        <div className="border border-indigo-50 border-solid flex flex-col h-8 items-center justify-start p-1 w-8">
-                          <div className="flex flex-col h-6 items-center justify-start p-0.5 w-6">
-                            <Img
-                              className="h-5 w-5"
-                              src="images/img_menu_bluegray_900.svg"
-                              alt="menu"
-                            />
-                          </div>
-                        </div>
-                        <Text
-                          className="text-bluegray-900 text-center text-sm w-[5px]"
-                          size="txtInterMedium14"
-                        >
-                          1
-                        </Text>
-                        <div className="border border-indigo-50 border-solid flex flex-col h-8 items-center justify-start p-1 w-8">
-                          <div className="flex flex-col h-6 items-center justify-start p-0.5 w-6">
-                            <Img
-                              className="h-5 w-5"
-                              src="images/img_plus_bluegray_900.svg"
-                              alt="plus"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex flex-row gap-[93px] items-center justify-start w-full">
-                      <Text
-                        className="flex-1 text-bluegray-400 text-sm w-auto"
-                        size="txtInterRegular14Bluegray400"
-                      >
-                        Price
-                      </Text>
-                      <Text
-                        className="text-bluegray-800 text-right text-sm w-auto"
-                        size="txtInterSemiBold14Bluegray800"
-                      >
-                        $120.0
-                      </Text>
-                    </div>
-                  </div>
-                </div>
-                <Line className="self-center h-px bg-indigo-50 w-full" />
-                <div className="flex flex-1 sm:flex-col flex-row gap-6 items-center justify-start w-full">
-                  <Img
-                    className="h-[118px] md:h-auto max-h-[118px] object-cover sm:w-[]"
-                    src="images/img_rectangle_3.png"
-                    alt="rectangle"
-                  />
-                  <div className="flex flex-1 flex-col gap-[22px] items-start justify-start w-full">
-                    <div className="flex flex-col gap-6 items-start justify-start w-full">
-                      <div className="flex flex-col gap-2 items-start justify-start w-full">
-                        <div className="flex flex-row items-center justify-between w-full">
-                          <Text
-                            className="text-bluegray-900 text-lg w-auto"
-                            size="txtInterBold18"
-                          >
-                            Basic T-shirt
-                          </Text>
-                          <Img
-                            className="h-6 w-6"
-                            src="images/img_pagedisabled.svg"
-                            alt="minus"
-                          />
-                        </div>
-                        <Text
-                          className="text-bluegray-400 text-sm w-full"
-                          size="txtInterRegular14Bluegray400"
-                        >
-                          Color: Grey, S
-                        </Text>
-                      </div>
-                      <div className="flex flex-row gap-3 items-center justify-start w-full">
-                        <div className="border border-indigo-50 border-solid flex flex-col h-8 items-center justify-start p-1 w-8">
-                          <div className="flex flex-col h-6 items-center justify-start p-0.5 w-6">
-                            <Img
-                              className="h-5 w-5"
-                              src="images/img_menu_bluegray_900.svg"
-                              alt="menu"
-                            />
-                          </div>
-                        </div>
-                        <Text
-                          className="text-bluegray-900 text-center text-sm w-[5px]"
-                          size="txtInterMedium14"
-                        >
-                          1
-                        </Text>
-                        <div className="border border-indigo-50 border-solid flex flex-col h-8 items-center justify-start p-1 w-8">
-                          <div className="flex flex-col h-6 items-center justify-start p-0.5 w-6">
-                            <Img
-                              className="h-5 w-5"
-                              src="images/img_plus_bluegray_900.svg"
-                              alt="plus"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex flex-row gap-[93px] items-center justify-start w-full">
-                      <Text
-                        className="flex-1 text-bluegray-400 text-sm w-auto"
-                        size="txtInterRegular14Bluegray400"
-                      >
-                        Price
-                      </Text>
-                      <Text
-                        className="text-bluegray-800 text-right text-sm w-auto"
-                        size="txtInterSemiBold14Bluegray800"
-                      >
-                        $120.0
-                      </Text>
-                    </div>
-                  </div>
-                </div>
-              </List> */}
-              <div className="flex flex-row items-center justify-between w-full">
-                <div
-                  className="text-base text-bluegray-400 text-center w-auto"
-                 
-                >
-                  Total
-                </div>
-                <div
-                  className="text-bluegray-800 text-lg text-right w-auto"
-                 
-                >
-                  $240.0
-                </div>
-              </div>
-              <div className="flex sm:flex-col flex-row gap-4 items-start justify-start w-full">
-                <Button className="bg-deep_orange-300 cursor-pointer font-bold min-w-[189px] py-[15px] rounded-[24px] text-center text-sm text-white-A700">
-                  Purchase now
-                </Button>
-                <Button className="bg-deep_orange-50 cursor-pointer font-bold min-w-[189px] py-[15px] rounded-[24px] text-center text-deep_orange-300 text-sm">
-                  Add to cart
-                </Button>
-              </div>
-              <div className="flex sm:flex-col flex-row gap-6 items-center justify-start w-full">
-                <Img
-                  className="h-6 w-6"
-                  src="images/img_computer_bluegray_900.svg"
-                  alt="computer"
-                />
-                <div className="flex flex-1 flex-col gap-1 items-start justify-center w-full">
-                  <div
-                    className="text-base text-bluegray-900 w-full"
-                    size="txtInterBold16Bluegray900"
-                  >
-                    Free nationwide shipping
-                  </div>
-                  <div
-                    className="text-bluegray-900 text-sm w-full"
-                    size="txtInterRegular14Bluegray900"
-                  >
-                    (For order begin $100.0)
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-    </>
-  )
-}
+  // const { cartItems, taxPrice, shippingPrice, totalPrice, itemsPrice } = useSelector(state => state.cart)
+  const { entry, ref } = useInView();
+  const { cartItems, taxPrice, shippingPrice, totalPrice, itemsPrice } = {
+    cartItems: null,
+    taxPrice: 200,
+    shippingPrice: 300,
+    totalPrice: 2000,
+    itemsPrice: 20,
+  };
 
-export default Cart
+  const navigate = useNavigate();
+  // const dispatch = useDispatch()
+
+  // const totalItems = cartItems.reduce((acc, item) => acc + +item.qty, 0)
+
+  const handleDeleteItem = (id) => {
+    // dispatch(removeFromCart(id))
+  };
+
+  const checkoutHandler = () => {
+    navigate("/login?redirect=/shipping");
+  };
+
+  return (
+    <div className="flex flex-col md:flex-row justify-center items-start">
+      <div className="md:w-2/3 p-4">
+        <h2 className="text-2xl font-semibold mb-4">Shopping Cart</h2>
+        {cartItems?.length !== 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* {cartItems.map((item) => (
+              <div
+                className="border border-gray-300 p-4 flex items-center"
+                key={item._id}
+              >
+                <div>
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-16 h-16 object-contain mr-4"
+                  />
+                  <h3 className="text-lg font-semibold">{item.name}</h3>
+                  <p className="text-gray-600">${item.price.toFixed(2)}</p>
+                  <p className="text-gray-600">Quantity: {item.qty}</p>
+                  <button
+                    className="text-red-500 hover:text-red-700"
+                    onClick={() => handleDeleteItem(item._id)}
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            ))} */}
+          </div>
+        ) : (
+          <p className="text-gray-400 text-xl">Your Cart is empty.</p>
+        )}
+      </div>
+      <div className="md:w-2/3 p-4">
+        <h2 className="text-2xl font-semibold mb-4">Shopping Cart</h2>
+        {cartItems?.length !== 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* {cartItems.map((item) => (
+              <div
+                className="border border-gray-300 p-4 flex items-center"
+                key={item._id}
+              >
+                <div>
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-16 h-16 object-contain mr-4"
+                  />
+                  <h3 className="text-lg font-semibold">{item.name}</h3>
+                  <p className="text-gray-600">${item.price.toFixed(2)}</p>
+                  <p className="text-gray-600">Quantity: {item.qty}</p>
+                  <button
+                    className="text-red-500 hover:text-red-700"
+                    onClick={() => handleDeleteItem(item._id)}
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            ))} */}
+          </div>
+        ) : (
+          <p className="text-gray-400 text-xl">Your Cart is empty.</p>
+        )}
+      </div>
+      {cartItems?.length !== 0 && (
+        <div className="md:w-1/3 bg-gray-100 p-4">
+          <h2 className="text-xl font-semibold">Subtotal</h2>
+          <p className="text-gray-600">Total Items: {20} </p>
+          <p className="text-gray-600">Items Items: {itemsPrice} </p>
+          <p className="text-gray-600">Tax: ${taxPrice} </p>
+          <p className="text-gray-600">ShippingPrice: ${shippingPrice} </p>
+          <p className="text-gray-600">Total Price: ${totalPrice} </p>
+          <button
+            className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4 hover:bg-blue-600"
+            onClick={checkoutHandler}
+            disabled={cartItems?.length === 0}
+          >
+            Proceed to Checkout
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Cart;
