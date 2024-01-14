@@ -1,5 +1,5 @@
 import React from "react";
- class ErrorBoundary extends React.Component {
+class ErrorBoundary extends React.Component {
   state = {
     hasError: false,
     error: undefined,
@@ -20,7 +20,7 @@ import React from "react";
   render() {
     // if an error occurred
     if (this.state.hasError) {
-      return <> {this.props.fallback} </>;
+      return <> {this.props.fallback}</>;
     } else {
       // default behavior
       return this.props.children;

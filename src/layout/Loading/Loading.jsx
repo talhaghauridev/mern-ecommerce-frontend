@@ -4,12 +4,14 @@ const Loading = () => {
 
   return (
     <>
-      <TopNavgationBar
-        background="blue"
-        waitingTime={5}
-        transitionTime={100}
-        onLoaderFinished={console.log("Finsihed")}
-      />
+      <div className="fixed h-full w-full bg-slate-50">
+        <TopNavgationBar
+          background="blue"
+          waitingTime={50}
+          transitionTime={100}
+          onLoaderFinished={console.log("Finsihed")}
+        />
+      </div>
     </>
   );
 };
