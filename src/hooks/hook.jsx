@@ -91,26 +91,31 @@ const useInView = (options = {}) => {
   const targetRef = useRef(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        setIsVisible(true);
-        if (targetRef.current) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [firstEntry] = entries;
+        if (firstEntry.isIntersecting) {
+          setIsVisible(true);
           observer.unobserve(targetRef.current);
         }
-      }
-    }, options);
-    if (targetRef && targetRef.current) {
+      },
+      options
+    );
+
+    if (targetRef.current) {
       observer.observe(targetRef.current);
     }
+
     return () => {
       if (targetRef.current) {
         observer.unobserve(targetRef.current);
       }
     };
-  }, []);
+  }, [options]);
 
   return { ref: targetRef, isVisible };
 };
+
 
 const useInputError = (formik, name) => {
   const inputError = useMemo(() => {

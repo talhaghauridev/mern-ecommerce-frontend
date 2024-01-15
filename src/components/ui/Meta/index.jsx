@@ -3,7 +3,6 @@ import { memo } from "react";
 import { Helmet } from "react-helmet";
 
 const Meta = ({ title }) => {
-  console.log("Meta", title);
   return (
     <>
       <Helmet>

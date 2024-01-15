@@ -11,14 +11,14 @@ const Layout = () => {
   return (
     <div>
       <Header />
-      <AnimationWrapper key={location.pathname}>
+      {/* <AnimationWrapper key={location.pathname}> */}
         <div style={{ display: "flex", gap: "15px" }}>
           <Link to={"/login"}>Login</Link>
           <Link to={"/user/profile"}>Profile</Link>
           <Link to={"/cart"}>Cart</Link>
         </div>
         <Outlet />
-      </AnimationWrapper>
+      {/* </AnimationWrapper> */}
     </div>
   );
 };
