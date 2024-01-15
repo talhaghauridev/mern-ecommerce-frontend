@@ -107,7 +107,7 @@ const useInView = (options = {}) => {
         observer.unobserve(targetRef.current);
       }
     };
-  }, [options]);
+  }, []);
 
   return { ref: targetRef, isVisible };
 };

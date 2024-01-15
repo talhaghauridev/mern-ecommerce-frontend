@@ -16,7 +16,7 @@ const Image = ({ src, alt, style, placeholder = img1, ...props }) => {
         onLoad={() =>
           setTimeout(() => {
             setIsLoading(false);
-          }, 100)
+          }, 10000)
         }
         style={{ display: isLoading ? "none" : "flex", ...style }}
         {...props}

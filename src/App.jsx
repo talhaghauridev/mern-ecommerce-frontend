@@ -21,16 +21,15 @@ import ErrorBoundary from "./ErrorBoundary";
 import Loading from "./layout/Loading/Loading";
 
 function App() {
-  const [load, setLoad] = useState("");
   return (
     <main id="App">
-      <ErrorBoundary fallback="Somthing went wrong">
+      <ErrorBoundary fallback="Something went wrong">
         <Suspense fallback={<Loading />}>
           <Routes />
         </Suspense>
       </ErrorBoundary>
 
-      <Image src={load} alt={"img"} />
+      <Image src={img2} alt={"img"} />
       <Image src={  "https://media.istockphoto.com/id/1419410282/photo/silent-forest-in-spring-with-beautiful-bright-sun-rays.jpg?s=1024x1024&w=is&k=20&c=K8yBJVB-TtpPF1O2zOhVlzXECDxJsadlRrLf4gXXNkk="} alt={"img"} />
 
       <Image src={ "https://media.istockphoto.com/id/827243792/vector/adventure-camping-night-scene.jpg?s=1024x1024&w=is&k=20&c=7n6_YQTgKzku-l2d4QGfUsrS_xv-JbyTYOHQrV-uWw0="} alt={"img"} />
