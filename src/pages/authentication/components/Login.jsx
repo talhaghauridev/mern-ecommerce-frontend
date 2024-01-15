@@ -1,21 +1,29 @@
 import React, { useState } from "react";
 import { Input, Meta } from "../../../components";
 import { useLogin, useMessage } from "../hooks/hook";
-import { inputError } from "../../../utils/inputError";
+import { useCallback } from "react";
+import { useInputError } from "../../../hooks/hook";
 
 const Login = () => {
   const { formik } = useLogin();
   const { handleSubmit, getFieldProps } = formik;
+  const [dum, setDum] = useState(false);
+  // console.log("Login Component");
+  const callBackSum = useCallback(() => setDum((prev) => !prev), []);
 
+  const callBackSubmit = useCallback((e)=>{
+    handleSubmit(e)
+  },[])
   return (
     <>
+      <button onClick={handleSubmit}>{dum ? "Hello" : "Bye"}</button>
       <Meta title={"Login"} />
       <section id="login">
         <div className="container">
           <div className="form_heading">
             <h1>Login</h1>
           </div>
-          <form onSubmit={handleSubmit} className="form">
+          <form onSubmit={callBackSubmit} className="form">
             {/* Email Input  */}
             <Input
               label="Email"
@@ -23,7 +31,7 @@ const Login = () => {
               placeholder="Enter your email"
               name="email"
               {...getFieldProps("email")}
-              error={inputError(formik, "email")}
+              error={useInputError(formik, "email")}
             />
 
             {/* Password Input  */}
@@ -33,7 +41,14 @@ const Login = () => {
               placeholder="Enter your password"
               name="password"
               {...getFieldProps("password")}
-              error={inputError(formik, "password")}
+              error={useInputError(formik, "password")}
+            />
+
+            <Input
+              label="Password"
+              type="name"
+              placeholder="Enter your password"
+              name="password"
             />
             <button type="submit">Submit</button>
           </form>

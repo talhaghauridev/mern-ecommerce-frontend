@@ -2,6 +2,10 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useToggle } from "../../../hooks/hook";
 import { LuEye, LuEyeOff } from "react-icons/lu";
+import { memo } from "react";
+import { useCallback } from "react";
+import { useMemo } from "react";
+import Image from "../Image";
 
 const Input = ({
   name,
@@ -12,11 +16,12 @@ const Input = ({
   error,
   ...props
 }) => {
-  const { handleToggle, toggle: show } = useToggle(false);
+  const { handleToggle, toggle: show } = type==="password" && useToggle(false);
 
-  useEffect(() => {
-    console.log(show);
-  }, [show]);
+  const inputType = useMemo(
+    () => (type === "password" ? (show ? "text" : "password") : type),
+    [type, show]
+  );
 
   return (
     <>
@@ -33,7 +38,7 @@ const Input = ({
             </span>
           )}
           <input
-            type={type === "password" ? (show ? "text" : "password") : type}
+            type={inputType}
             name={name}
             id={name}
             {...props}
@@ -46,7 +51,7 @@ const Input = ({
           )}
           {type === "password" && (
             <button
-            type="button"
+              type="button"
               onClick={handleToggle}
               className="absolute right-[8px] top-0 h-[100%] flex items-center justify-center text-[22px] cursor-pointer selection:not-sr-only transition-all text-[#2b3445]"
             >
@@ -55,9 +60,10 @@ const Input = ({
           )}
         </div>
         {error && <span className="error text-[red]">{error}</span>}
+        <Image src={""}/>
       </div>
     </>
   );
 };
 
-export default Input;
+export default memo(Input);
