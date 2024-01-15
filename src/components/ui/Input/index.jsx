@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useToggle } from "../../../hooks/hook";
 import { LuEye, LuEyeOff } from "react-icons/lu";
 import { memo } from "react";
-import { useCallback } from "react";
 import { useMemo } from "react";
 import Image from "../Image";
 

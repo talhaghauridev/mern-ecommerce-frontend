@@ -114,7 +114,6 @@ const useInView = (options = {}) => {
 
 const useInputError = (formik, name) => {
   const inputError = useMemo(() => {
-    console.log("Error");
     return formik && formik.touched[name] && formik.errors[name]
       ? formik.errors[name]
       : "";

@@ -11,7 +11,7 @@ const Header = () => {
   const [isAuth, setIsAuth] = useState(true);
   const [navScroll, setNavScroll] = useState(false);
   const [searchModel, setSearchModel] = useState(false);
-
+  console.log(isAuth);
   let role;
   useEffect(() => {
     const handleScroll = () => {

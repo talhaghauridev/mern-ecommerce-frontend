@@ -1,6 +1,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import cn from "../../../utils/cn";
+import { memo } from "react";
 
 const AnimationWrapper = ({
   children,
@@ -29,4 +30,4 @@ const AnimationWrapper = ({
   );
 };
 
-export default AnimationWrapper;
+export default memo(AnimationWrapper);
