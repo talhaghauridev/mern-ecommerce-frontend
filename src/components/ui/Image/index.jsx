@@ -1,32 +1,24 @@
 import React, { memo, useEffect, useRef, useState } from "react";
 import img1 from "../../../assets/images/img1.jpg";
+import { useInView } from "../../../hooks/hook";
+import AnimationWarpper from "../AnimationWarpper";
+import { motion } from "framer-motion";
 
-const Image = ({ src, alt, style, placeholder = img1, ...props }) => {
+const Image = ({
+  src,
+  alt,
+  style,
+  placeholder = "https://media.istockphoto.com/id/1419410282/photo/silent-forest-in-spring-with-beautiful-bright-sun-rays.jpg?s=1024x1024&w=is&k=20&c=K8yBJVB-TtpPF1O2zOhVlzXECDxJsadlRrLf4gXXNkk=",
+  ...props
+}) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef();
-
-  const handleIntersection = (entries) => {
-    const [entry] = entries;
-    if (entry.isIntersecting) {
-      setIsVisible(true);
-    }
-  };
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(handleIntersection);
-    observer.observe(ref.current);
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
-  }, []);
+  const { isVisible, ref } = useInView();
 
   return (
     <>
-      {isLoading && <img src={placeholder} alt="Loading" ref={ref} />}
+      {isLoading && (
+        <img src={placeholder} style={style} alt="Loading.." ref={ref} />
+      )}
       <img
         src={isVisible ? src : ""}
         alt={alt}
@@ -42,4 +34,4 @@ const Image = ({ src, alt, style, placeholder = img1, ...props }) => {
   );
 };
 
-export default memo(Image);
+export default Image;

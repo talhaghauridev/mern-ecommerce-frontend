@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Input, Meta } from "../../../components";
+import { Meta, Input } from "../../../components";
 import { useLogin, useMessage } from "../hooks/hook";
 import { useCallback } from "react";
 import { useInputError } from "../../../hooks/hook";
-
 const Login = () => {
   const { formik } = useLogin();
   const { handleSubmit, getFieldProps } = formik;
@@ -11,19 +10,16 @@ const Login = () => {
   // console.log("Login Component");
   const callBackSum = useCallback(() => setDum((prev) => !prev), []);
 
-  const callBackSubmit = useCallback((e)=>{
-    handleSubmit(e)
-  },[])
   return (
     <>
-      <button onClick={handleSubmit}>{dum ? "Hello" : "Bye"}</button>
+      <button onClick={callBackSum}>{dum ? "Hello" : "Bye"}</button>
       <Meta title={"Login"} />
       <section id="login">
         <div className="container">
           <div className="form_heading">
             <h1>Login</h1>
           </div>
-          <form onSubmit={callBackSubmit} className="form">
+          <form onSubmit={handleSubmit} className="form">
             {/* Email Input  */}
             <Input
               label="Email"
@@ -50,7 +46,7 @@ const Login = () => {
               placeholder="Enter your password"
               name="password"
             />
-            <button type="submit">Submit</button>
+            <button>Submit</button>
           </form>
         </div>
       </section>

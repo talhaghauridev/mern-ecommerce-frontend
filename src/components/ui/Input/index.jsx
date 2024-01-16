@@ -15,8 +15,10 @@ const Input = ({
   error,
   ...props
 }) => {
-  const { handleToggle, toggle: show } = type==="password" && useToggle(false);
+  const { handleToggle, toggle: show } =
+    type === "password" && useToggle(false);
 
+  console.log("Input", name);
   const inputType = useMemo(
     () => (type === "password" ? (show ? "text" : "password") : type),
     [type, show]
@@ -59,7 +61,6 @@ const Input = ({
           )}
         </div>
         {error && <span className="error text-[red]">{error}</span>}
-        <Image src={""}/>
       </div>
     </>
   );
