@@ -1,7 +1,7 @@
 import { lazy } from "react";
 
 const lazyLoad = (path, pathName) => {
-  const promise = import(path);
+  const promise = import(path); /* @vite-ignore */
   return lazy(() => {
     if (pathName == null) {
       return promise;
