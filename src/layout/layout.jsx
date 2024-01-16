@@ -11,14 +11,12 @@ const Layout = () => {
   return (
     <div>
       <Header />
-      {/* <AnimationWrapper key={location.pathname}> */}
         <div style={{ display: "flex", gap: "15px" }}>
           <Link to={"/login"}>Login</Link>
           <Link to={"/user/profile"}>Profile</Link>
           <Link to={"/cart"} className={buttonVariants({className:"bg-black"})}>Cart</Link>
         </div>
         <Outlet />
-      {/* </AnimationWrapper> */}
     </div>
   );
 };
