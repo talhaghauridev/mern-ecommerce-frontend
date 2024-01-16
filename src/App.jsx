@@ -24,7 +24,6 @@ import Loading from "./layout/Loading/Loading";
 import ProductCard from "./components/ProductCard";
 import { Button, Image } from "./components";
 
-
 function App() {
   const [data, setData] = useState([]);
   const { ref, isVisible } = useInView();
@@ -53,7 +52,9 @@ function App() {
           <Routes />
         </Suspense>
       </ErrorBoundary>
-           
+      <Button variants="primary" className={"bg-black"}  size={"md"}>
+        Button
+      </Button>
       <Image
         src={img1}
         alt={"img"}
@@ -77,6 +78,7 @@ function App() {
         }}
       />
 
+
       {data &&
         data.map((item) => (
           <React.Fragment key={item.id}>
@@ -85,7 +87,6 @@ function App() {
             </div>
           </React.Fragment>
         ))}
-
     </main>
   );
 }

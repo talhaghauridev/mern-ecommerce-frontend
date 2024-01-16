@@ -4,7 +4,7 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import LoadingBar from "react-top-loading-bar";
 import { Suspense } from "react";
 import { useTransition } from "react";
-import { AnimationWrapper } from "../components";
+import { AnimationWrapper, buttonVariants } from "../components";
 const Layout = () => {
   const location = useLocation();
 
@@ -15,7 +15,7 @@ const Layout = () => {
         <div style={{ display: "flex", gap: "15px" }}>
           <Link to={"/login"}>Login</Link>
           <Link to={"/user/profile"}>Profile</Link>
-          <Link to={"/cart"}>Cart</Link>
+          <Link to={"/cart"} className={buttonVariants({className:"bg-black"})}>Cart</Link>
         </div>
         <Outlet />
       {/* </AnimationWrapper> */}
