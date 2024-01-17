@@ -8,26 +8,36 @@ import {
 } from "../../../redux/api/userApi";
 
 const useLogin = () => {
+  let user = {};
   //Initial Values
   const initialValues = {
     email: "",
     password: "",
   };
-  const [login] = useLoginMutation();
-
+  const [login, { isError, isLoading, isSuccess ,error}] =
+    useLoginMutation();
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: loginSchema,
     onSubmit: async (values) => {
       if (values) {
         console.log(`Form submit successfully:Login ${values}`);
-        login(values);
+        try {
+          const { data } = await login(values);
+          user = data?.user;
+          console.log(
+            user,
+          );
+        } catch (error) {
+          console.log(error);
+        }
       }
     },
   });
-  console.log("");
+  console.log(isLoading,isSuccess,isError,error);
   return {
     formik,
+    isLoading,isSuccess,isError,error
   };
 };
 
@@ -39,16 +49,21 @@ const useSignUp = () => {
     password: "",
     avatar: "",
   };
-  const [signup] = useSignupMutation();
-
+  const [signup, { isLoading, isError, data, error }] = useSignupMutation();
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: signUpSchema,
     onSubmit: async (values) => {
       if (values) {
-        console.log(values);
-        console.log(`Form submit successfully:Signup`);
-        await signup(values);
+        console.log("Form values:", values);
+        console.log("Form submit successfully: Signup");
+
+        try {
+          const response = await signup(values);
+          console.log("Signup response:", response);
+        } catch (error) {
+          console.error("Error during signup:", error?.response?.data?.message);
+        }
       }
     },
   });

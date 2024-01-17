@@ -5,7 +5,7 @@ export const server = `${import.meta.env.VITE_SERVER_URL}/api/v1`;
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_SERVER}/api/v1`,
+    baseUrl: `${import.meta.env.VITE_SERVER_URL}/api/v1`,
   }),
   endpoints: (builder) => ({
     login: builder.mutation({
@@ -17,7 +17,7 @@ export const userApi = createApi({
     }),
     signup: builder.mutation({
       query: (user) => ({
-        url: "/signup",
+        url: "/register",
         method: "POST",
         body: user,
       }),
