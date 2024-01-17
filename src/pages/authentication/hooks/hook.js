@@ -14,8 +14,7 @@ const useLogin = () => {
     email: "",
     password: "",
   };
-  const [login, { isError, isLoading, isSuccess ,error}] =
-    useLoginMutation();
+  const [login, { isError, isLoading, isSuccess, error,data }] = useLoginMutation();
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: loginSchema,
@@ -25,19 +24,19 @@ const useLogin = () => {
         try {
           const { data } = await login(values);
           user = data?.user;
-          console.log(
-            user,
-          );
         } catch (error) {
           console.log(error);
         }
       }
     },
   });
-  console.log(isLoading,isSuccess,isError,error);
+  console.log(data);
   return {
     formik,
-    isLoading,isSuccess,isError,error
+    isLoading,
+    isSuccess,
+    isError,
+    error,
   };
 };
 

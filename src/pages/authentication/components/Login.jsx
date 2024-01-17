@@ -4,16 +4,10 @@ import { useLogin, useMessage } from "../hooks/hook";
 import { useCallback } from "react";
 import { useInputError } from "../../../hooks/hook";
 const Login = () => {
-  const { formik } = useLogin();
+  const { formik, error, isError, isLoading, isSuccess } = useLogin();
   const { handleSubmit, getFieldProps } = formik;
-  const [dum, setDum] = useState(false);
-  // console.log("Login Component");
-  const callBackSum = useCallback(() => setDum((prev) => !prev), []);
-  const callbackSubmit = useCallback(() => {}, []);
-
   return (
     <>
-      <button onClick={callBackSum}>{dum ? "Hello" : "Bye"}</button>
       <Meta title={"Login"} />
       <section id="login">
         <div className="container">
@@ -41,7 +35,6 @@ const Login = () => {
               error={useInputError(formik, "password")}
             />
 
-          
             <Button className={"bg-slate-500"}>Submit</Button>
           </form>
         </div>
