@@ -1,18 +1,26 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useLogin, useSignUp } from "../hooks/hook";
 import { inputError } from "../../../utils/inputError";
-import { Input, Meta } from "../../../components";
+import { Button, Image, Input, InputUpload, Meta } from "../../../components";
+import { useUpload } from "../../../hooks/hook";
+import { useMemo } from "react";
 
 const SignUp = () => {
   const { formik } = useSignUp();
   const { handleSubmit, getFieldProps } = formik;
+  const { handleFileChange, image } = useUpload();
+
   return (
     <>
       <>
         <Meta title={"SignUp"} />
         <section id="signup">
           <div className="container">
-            <form className="form" onSubmit={handleSubmit}>
+            <form
+              className="form"
+              onSubmit={handleSubmit}
+              encType="multipart/form-data"
+            >
               <Input
                 label="Name"
                 type="text"
@@ -37,6 +45,23 @@ const SignUp = () => {
                 {...getFieldProps("password")}
                 error={inputError(formik, "password")}
               />
+              <InputUpload
+                name={"avatar"}
+                label={"Avatar"}
+                onChange={(event) => {
+                  formik.setFieldValue(
+                    "avatar",
+                    URL.createObjectURL(event.target.files[0])
+                  );
+
+                  handleFileChange(event);
+                }}
+              />
+              <Image src={image} alt="avatar" />
+              <div>{inputError(formik, "avatar")}</div>
+              <Button type="submit" className={"bg-slate-600"}>
+                Submit
+              </Button>
             </form>
           </div>
         </section>

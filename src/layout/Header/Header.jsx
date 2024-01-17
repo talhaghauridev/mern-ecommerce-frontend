@@ -86,7 +86,6 @@ const Header = () => {
           {/* NavLinks */}
           <ul className=" gap-[34px] font-PoppinsBold hidden md:flex">
             {NAV.Links.map((item, index) => (
-              <>
                 <Link
                   to={item.path}
                   key={index}
@@ -96,14 +95,12 @@ const Header = () => {
                 >
                   <li>{item.name}</li>
                 </Link>
-              </>
             ))}
           </ul>
 
           {/* NacIcons  */}
           <div className="icons flex gap-[25px] items-center justify-end ">
             {NAV.Icons.map((item, index) => (
-              <>
                 <Link
                   to={item.path}
                   key={index}
@@ -113,7 +110,6 @@ const Header = () => {
                 >
                   {item.icon}
                 </Link>
-              </>
             ))}
 
             {/* {isAuth && (

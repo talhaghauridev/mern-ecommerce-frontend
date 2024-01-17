@@ -5,8 +5,9 @@ import ProductCard from "./components/ProductCard";
 const Home = () => {
   return (
     <section id="home">
-      <div className="container">Home
-      <ProductCard/>
+      <div className="container">
+        Home
+        <ProductCard />
       </div>
     </section>
   );

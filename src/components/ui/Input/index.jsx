@@ -43,6 +43,7 @@ const Input = ({
             name={name}
             id={name}
             {...props}
+           
             className={`w-[100%] h-[100%] outline-none font-Poppins text-[16px] text-black placeholder:font-Poppins placeholder:text-[15px] placeholder:font-[200] placeholder:text-gray-400`}
           />
           {RIcon && (

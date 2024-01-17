@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Meta, Input } from "../../../components";
+import { Meta, Input, Button } from "../../../components";
 import { useLogin, useMessage } from "../hooks/hook";
 import { useCallback } from "react";
 import { useInputError } from "../../../hooks/hook";
@@ -9,6 +9,7 @@ const Login = () => {
   const [dum, setDum] = useState(false);
   // console.log("Login Component");
   const callBackSum = useCallback(() => setDum((prev) => !prev), []);
+  const callbackSubmit = useCallback(() => {}, []);
 
   return (
     <>
@@ -40,13 +41,8 @@ const Login = () => {
               error={useInputError(formik, "password")}
             />
 
-            <Input
-              label="Password"
-              type="name"
-              placeholder="Enter your password"
-              name="password"
-            />
-            <button>Submit</button>
+          
+            <Button className={"bg-slate-500"}>Submit</Button>
           </form>
         </div>
       </section>

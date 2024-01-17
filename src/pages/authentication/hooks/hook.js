@@ -2,7 +2,10 @@ import { Form, useFormik } from "formik";
 import { useEffect, useState } from "react";
 import { loginSchema, signUpSchema } from "../validation";
 import { useNavigate } from "react-router-dom";
-import { useLoginMutation } from "../../../redux/api/userApi";
+import {
+  useLoginMutation,
+  useSignupMutation,
+} from "../../../redux/api/userApi";
 
 const useLogin = () => {
   //Initial Values
@@ -10,18 +13,19 @@ const useLogin = () => {
     email: "",
     password: "",
   };
+  const [login] = useLoginMutation();
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: loginSchema,
     onSubmit: async (values) => {
       if (values) {
-        console.log(values);
-        console.log(`Form submit successfully:Login`);
+        console.log(`Form submit successfully:Login ${values}`);
+        login(values);
       }
     },
   });
-
+  console.log("");
   return {
     formik,
   };
@@ -30,10 +34,12 @@ const useLogin = () => {
 const useSignUp = () => {
   //Initial Values
   const initialValues = {
-    name:"",
+    name: "",
     email: "",
     password: "",
+    avatar: "",
   };
+  const [signup] = useSignupMutation();
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -41,7 +47,8 @@ const useSignUp = () => {
     onSubmit: async (values) => {
       if (values) {
         console.log(values);
-        console.log(`Form submit successfully:SignUP`);
+        console.log(`Form submit successfully:Signup`);
+        await signup(values);
       }
     },
   });

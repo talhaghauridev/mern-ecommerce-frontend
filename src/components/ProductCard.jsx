@@ -2,7 +2,6 @@ import React from "react";
 import Image from "./ui/Image";
 
 const ProductCard = ({ id, title, price, category, description, image }) => {
-  console.log("Product");
   return (
     <>
       <div className="flex flex-col gap-2">
