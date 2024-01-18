@@ -1,14 +1,19 @@
 import React, { useCallback } from "react";
 import { useLogin, useSignUp } from "../hooks/hook";
-import { inputError } from "../../../utils/inputError";
+import inputError from "../../../utils/inputError";
 import { Button, Image, Input, InputUpload, Meta } from "../../../components";
 import { useUpload } from "../../../hooks/hook";
 import { useMemo } from "react";
 
 const SignUp = () => {
-  const { formik } = useSignUp();
+  const { formik, isError, isLoading, data, error, isSuccess } = useSignUp();
   const { handleSubmit, getFieldProps } = formik;
   const { handleFileChange, image } = useUpload();
+  console.log(
+    { formik, error, isError, isLoading, isSuccess, data },
+    error?.data?.message
+  );
+  console.log(image);
 
   return (
     <>
@@ -49,12 +54,22 @@ const SignUp = () => {
                 name={"avatar"}
                 label={"Avatar"}
                 onChange={(event) => {
+                  handleFileChange(event);
                   formik.setFieldValue(
                     "avatar",
-                    URL.createObjectURL(event.target.files[0])
+                    // URL.createObjectURL(event.target.files[0])?.replace(
+                    //   "blob:",
+                    //   ""
+                    // )
+                    image[0]
                   );
-
-                  handleFileChange(event);
+                  // handleFileChange(event);
+                  console.log(
+                    URL.createObjectURL(event.target.files[0]).replace(
+                      "blob:",
+                      ""
+                    )
+                  );
                 }}
               />
               <Image src={image} alt="avatar" />

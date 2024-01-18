@@ -47,12 +47,13 @@ function App() {
 
   return (
     <main id="App">
+
       <ErrorBoundary fallback="Something went wrong">
         <Suspense fallback={<Loading />}>
           <Routes />
         </Suspense>
       </ErrorBoundary>
-      <Button variants="primary" className={"bg-black"}  size={"md"}>
+      <Button variants="primary" className={"bg-black"}  size={"md"} >
         Button
       </Button>
       <Image

@@ -4,4 +4,4 @@ const inputError = (formik, name) => {
     : "";
 };
 
-export { inputError };
+export default inputError ;

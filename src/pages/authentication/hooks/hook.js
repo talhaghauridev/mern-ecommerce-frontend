@@ -1,42 +1,47 @@
 import { Form, useFormik } from "formik";
 import { useEffect, useState } from "react";
-import { loginSchema, signUpSchema } from "../validation";
+import { forgotSchema, loginSchema, signUpSchema } from "../validation";
 import { useNavigate } from "react-router-dom";
 import {
   useLoginMutation,
   useSignupMutation,
 } from "../../../redux/api/userApi";
+import { toast } from "react-toastify";
 
 const useLogin = () => {
-  let user = {};
   //Initial Values
   const initialValues = {
     email: "",
     password: "",
   };
-  const [login, { isError, isLoading, isSuccess, error,data }] = useLoginMutation();
+  const [login, { isError, isLoading, isSuccess, error, data }] =
+    useLoginMutation();
+
+  const handleLogin = async (userData) => {
+    try {
+      await login(userData);
+    } catch (error) {
+      toast.error(error?.response?.data?.message || "Error");
+    }
+  };
+
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: loginSchema,
     onSubmit: async (values) => {
-      if (values) {
-        console.log(`Form submit successfully:Login ${values}`);
-        try {
-          const { data } = await login(values);
-          user = data?.user;
-        } catch (error) {
-          console.log(error);
-        }
-      }
+      await handleLogin(values);
     },
   });
-  console.log(data);
+
+  useMessage(isSuccess && "User login", error?.data?.message, "/");
+
   return {
     formik,
     isLoading,
     isSuccess,
     isError,
     error,
+    data,
   };
 };
 
@@ -48,22 +53,56 @@ const useSignUp = () => {
     password: "",
     avatar: "",
   };
-  const [signup, { isLoading, isError, data, error }] = useSignupMutation();
+  const [signup, { isLoading, isError, isSuccess, data, error }] =
+    useSignupMutation();
+
+  //Handle Submit
+
+  const handleSignUp = async (userData) => {
+    try {
+      await signup(userData);
+    } catch (error) {
+      toast.error(error?.response?.data?.message || error?.message || "Error");
+    }
+  };
+
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: signUpSchema,
     onSubmit: async (values) => {
-      if (values) {
-        console.log("Form values:", values);
-        console.log("Form submit successfully: Signup");
+      console.log(values);
+      await handleSignUp(values);
+    },
+  });
 
-        try {
-          const response = await signup(values);
-          console.log("Signup response:", response);
-        } catch (error) {
-          console.error("Error during signup:", error?.response?.data?.message);
-        }
-      }
+  useMessage(
+    isSuccess && "User register successfully",
+    error?.data?.message,
+    "/cart"
+  );
+
+  return {
+    formik,
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+    data,
+  };
+};
+
+const useForgotPassword = () => {
+  const initialValues = {
+    email: "",
+  };
+
+  const handleForgot = () => {};
+
+  const formik = useFormik({
+    initialValues: initialValues,
+    validationSchema: forgotSchema,
+    onSubmit: async (values) => {
+      console.log(values);
     },
   });
 
@@ -72,22 +111,20 @@ const useSignUp = () => {
   };
 };
 
-const useForgotPassword = (userData) => {};
+const useResetPassword = () => {};
 
-const useResetPassword = (userData) => {};
-
-const useMessage = (message, error, redirect) => {
+//useMessagehook
+const useMessage = (message, error, redirect = "") => {
   const navigate = useNavigate();
   useEffect(() => {
-    if (message) {
-      redirect && navigate(redirect);
-      return message;
-    }
     if (error) {
-      return error;
+      toast.error(error?.data?.message || error);
     }
-  }, [message, error, redirect]);
 
-  return { message, error };
+    if (message) {
+      toast.success(message);
+      redirect && navigate(redirect);
+    }
+  }, [error, message]);
 };
 export { useLogin, useSignUp, useForgotPassword, useResetPassword, useMessage };
