@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Meta, Input, Button } from "../../../components";
+import { Input, Button, MetaData, BackDrop } from "../../../components";
 import { useLogin, useMessage } from "../hooks/hook";
 import inputError from "../../../utils/inputError";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useEffect } from "react";
+import Cookies from "js-cookie";
 const Login = () => {
   const { formik, error, isError, isLoading, isSuccess } = useLogin();
   const { handleSubmit, getFieldProps } = formik;
@@ -14,7 +14,8 @@ const Login = () => {
 
   return (
     <>
-      <Meta title={"Login"} />
+      <BackDrop isOpen={isLoading} />
+      <MetaData title={"Login"} />
       <section id="login">
         <div className="container">
           <div className="form_heading">
@@ -41,7 +42,9 @@ const Login = () => {
               error={inputError(formik, "password")}
             />
 
-            <Button className={"bg-slate-500"}>Submit</Button>
+            <Button className={"bg-slate-500"} type="submit">
+              Submit
+            </Button>
           </form>
         </div>
       </section>

@@ -7,8 +7,10 @@ export const userApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${import.meta.env.VITE_SERVER_URL}/api/v1/`,
     prepareHeaders: (headers, {}) => {
+      console.log(headers);
+      const token = "hello";
       if (token) {
-        headers.set("Authorization", `Bearer ${token || "fr"}`);
+        headers.set("Authorization", `Bearer ${token}`);
       }
 
       // You can also set other headers here
@@ -25,6 +27,7 @@ export const userApi = createApi({
         body: user,
       }),
     }),
+
     signup: builder.mutation({
       query: (user) => ({
         url: "register",
@@ -32,13 +35,7 @@ export const userApi = createApi({
         body: user,
       }),
     }),
-    updatePassword: builder.mutation({
-      query: (passwords) => ({
-        url: "/password/update",
-        method: "PUT",
-        body: passwords,
-      }),
-    }),
+
     forgotPassword: builder.mutation({
       query: (email) => ({
         url: "password/forgot",
@@ -47,10 +44,17 @@ export const userApi = createApi({
       }),
     }),
     resetPassword: builder.mutation({
-      query: () => ({
-        url: "password/reset/:token",
+      query: ({  token,...passwords }) => ({
+        url: `password/reset/${token}`,
         method: "PUT",
-        body: "",
+        body: passwords,
+      }),
+    }),
+    updatePassword: builder.mutation({
+      query: (passwords) => ({
+        url: "/password/update",
+        method: "PUT",
+        body: passwords,
       }),
     }),
 

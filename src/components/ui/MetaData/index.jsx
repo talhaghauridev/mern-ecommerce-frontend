@@ -2,7 +2,7 @@ import React from "react";
 import { memo } from "react";
 import { Helmet } from "react-helmet";
 
-const Meta = ({ title }) => {
+const MetaData = ({ title }) => {
   return (
     <>
       <Helmet>
@@ -12,4 +12,4 @@ const Meta = ({ title }) => {
   );
 };
 
-export default memo(Meta);
+export default memo(MetaData);

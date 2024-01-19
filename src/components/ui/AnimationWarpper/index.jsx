@@ -20,7 +20,7 @@ const AnimationWrapper = ({
           initial={initial}
           animate={animate}
           transition={transition}
-          className={cn(`${className} max-w-fit `)}
+          className={cn(`max-w-fit `,className)}
           style={style}
         >
           {children}

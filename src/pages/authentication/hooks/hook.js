@@ -1,9 +1,16 @@
 import { Form, useFormik } from "formik";
 import { useEffect, useState } from "react";
-import { forgotSchema, loginSchema, signUpSchema } from "../validation";
-import { useNavigate } from "react-router-dom";
 import {
+  forgotSchema,
+  loginSchema,
+  resetSchema,
+  signUpSchema,
+} from "../validation";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  useForgotPasswordMutation,
   useLoginMutation,
+  useResetPasswordMutation,
   useSignupMutation,
 } from "../../../redux/api/userApi";
 import { toast } from "react-toastify";
@@ -20,8 +27,8 @@ const useLogin = () => {
   const handleLogin = async (userData) => {
     try {
       await login(userData);
-    } catch (error) {
-      toast.error(error?.response?.data?.message || "Error");
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -33,7 +40,7 @@ const useLogin = () => {
     },
   });
 
-  useMessage(isSuccess && "User login", error?.data?.message, "/");
+  useMessage(isSuccess && "User login successfully", error, "/");
 
   return {
     formik,
@@ -61,8 +68,8 @@ const useSignUp = () => {
   const handleSignUp = async (userData) => {
     try {
       await signup(userData);
-    } catch (error) {
-      toast.error(error?.response?.data?.message || error?.message || "Error");
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -75,11 +82,7 @@ const useSignUp = () => {
     },
   });
 
-  useMessage(
-    isSuccess && "User register successfully",
-    error?.data?.message,
-    "/cart"
-  );
+  useMessage(isSuccess && "User register successfully", error, "/cart");
 
   return {
     formik,
@@ -96,29 +99,87 @@ const useForgotPassword = () => {
     email: "",
   };
 
-  const handleForgot = () => {};
+  const [
+    forgotPassword,
+    { isLoading, isError, isSuccess, error, data, status },
+  ] = useForgotPasswordMutation();
+
+  const handleForgot = async (values) => {
+    console.log("For");
+    try {
+      await forgotPassword(values);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: forgotSchema,
     onSubmit: async (values) => {
       console.log(values);
+      await handleForgot(values);
     },
   });
 
+  useMessage(data?.message, error, "/");
+
   return {
     formik,
+    isLoading,
+    isError,
+    isSuccess,
+    data,
   };
 };
 
-const useResetPassword = () => {};
+const useResetPassword = () => {
+  const { token } = useParams();
+  const initialValues = {
+    password: "",
+    confirmPassword: "",
+  };
+
+  const [resetPassword, { isLoading, isError, isSuccess, error, data }] =
+    useResetPasswordMutation();
+
+  const handleReset = async (values) => {
+    try {
+      // Pass token and values directly as separate arguments
+      await resetPassword({ token, ...values });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const formik = useFormik({
+    initialValues: initialValues,
+    validationSchema: resetSchema,
+    onSubmit: async (values) => {
+      console.log(values);
+      await handleReset(values);
+    },
+  });
+
+  useMessage(data?.message, error, "/");
+
+  console.log(formik, isLoading, isError, isSuccess, data);
+
+  return {
+    formik,
+    isLoading,
+    isError,
+    isSuccess,
+    data,
+  };
+};
 
 //useMessagehook
 const useMessage = (message, error, redirect = "") => {
   const navigate = useNavigate();
   useEffect(() => {
     if (error) {
-      toast.error(error?.data?.message || error);
+      toast.error(error?.data?.message || error?.error);
     }
 
     if (message) {
