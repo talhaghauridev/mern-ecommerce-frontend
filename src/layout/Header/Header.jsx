@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import { TbLogout } from "react-icons/tb";
 import { FaArrowLeft } from "react-icons/fa6";
 import { NAV } from "../../constants";
+import { Logo } from "../../assets/images";
+import { Image } from "../../components";
 const Header = () => {
   const { pathname } = useLocation();
   // const isAuth: boolean = false;
@@ -34,16 +36,16 @@ const Header = () => {
           navScroll ? "header_animation" : ""
         } w-[100%] border-b border-solid border-[#d1d5db] h-[74px]`}
       >
-        <div className="container py-[8px]">
+        <div className="container py-[8px] flex items-center justify-between ">
           {/* Logo */}
 
           <div className="logo">
             <Link to="/">
-              {/* <img
+              <Image
                 src={Logo}
                 alt="Logo"
                 className="w-[100px] sm:w-[120px] max-w-[400px]   "
-              /> */}
+              />
             </Link>
           </div>
 
@@ -86,30 +88,30 @@ const Header = () => {
           {/* NavLinks */}
           <ul className=" gap-[34px] font-PoppinsBold hidden md:flex">
             {NAV.Links.map((item, index) => (
-                <Link
-                  to={item.path}
-                  key={index}
-                  className={`${
-                    pathname === item.path ? "opacity-1" : "opacity-[0.8]"
-                  }`}
-                >
-                  <li>{item.name}</li>
-                </Link>
+              <Link
+                to={item.path}
+                key={index}
+                className={`${
+                  pathname === item.path ? "opacity-1" : "opacity-[0.8]"
+                }`}
+              >
+                <li>{item.name}</li>
+              </Link>
             ))}
           </ul>
 
           {/* NacIcons  */}
           <div className="icons flex gap-[25px] items-center justify-end ">
             {NAV.Icons.map((item, index) => (
-                <Link
-                  to={item.path}
-                  key={index}
-                  className={`cart_icon text-[21px] md:text-[24px] text-[#2b3445eb] 
+              <Link
+                to={item.path}
+                key={index}
+                className={`cart_icon text-[21px] md:text-[24px] text-[#2b3445eb] 
                   ${isAuth && item.path === "/login" ? "hidden" : "flex"}
                   `}
-                >
-                  {item.icon}
-                </Link>
+              >
+                {item.icon}
+              </Link>
             ))}
 
             {/* {isAuth && (

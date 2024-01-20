@@ -8,10 +8,10 @@ import NotFound from "./../layout/NotFound/NotFound";
 const Products = lazyLoad("../pages/products");
 const Home = lazyLoad("../pages/home");
 const Cart = lazyLoad("../pages/cart");
-const Login = lazyLoad("../pages/authentication", "Login");
-const ForgotPassword = lazyLoad("../pages/authentication", "ForgotPassword");
-const ResetPassword = lazyLoad("../pages/authentication", "ResetPassword");
-const SignUp = lazyLoad("../pages/authentication", "SignUp");
+const Login = lazyLoad("../pages/(authentication)", "Login");
+const ForgotPassword = lazyLoad("../pages/(authentication)", "ForgotPassword");
+const ResetPassword = lazyLoad("../pages/(authentication)", "ResetPassword");
+const SignUp = lazyLoad("../pages/(authentication)", "SignUp");
 
 const AppRoutes = () => {
   return (

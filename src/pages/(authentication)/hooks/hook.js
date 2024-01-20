@@ -14,6 +14,7 @@ import {
   useSignupMutation,
 } from "../../../redux/api/userApi";
 import { toast } from "react-toastify";
+import Cookies from "js-cookie";
 
 const useLogin = () => {
   //Initial Values
@@ -41,6 +42,10 @@ const useLogin = () => {
   });
 
   useMessage(isSuccess && "User login successfully", error, "/");
+
+  if (isSuccess) {
+    Cookies.set("token", data?.token);
+  }
 
   return {
     formik,

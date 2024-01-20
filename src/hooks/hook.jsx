@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const useToggle = (value = false) => {
   const [toggle, setToggle] = useState(value);
@@ -117,6 +119,11 @@ const useInView = (options = {}) => {
 };
 
 
+const useAuth = ()=>{
+  
+}
+
+
 const useInputError = (formik, name) => {
   
   const inputError = useMemo(() => {
@@ -128,6 +135,19 @@ const useInputError = (formik, name) => {
   return inputError;
 };
 
+const useMessage = (message, error, redirect = "") => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (error) {
+      toast.error(error?.data?.message || error?.error);
+    }
+
+    if (message) {
+      toast.success(message);
+      redirect && navigate(redirect);
+    }
+  }, [error, message]);
+};
 export {
   useToggle,
   useOnlineStatus,
@@ -135,4 +155,5 @@ export {
   useMediaQuery,
   useInView,
   useInputError,
+  useMessage
 };

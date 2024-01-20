@@ -1,16 +1,12 @@
 import React, { useMemo, memo } from "react";
 import { useToggle } from "../../../hooks/hook";
 import { LuEye, LuEyeOff } from "react-icons/lu";
+import cn from "../../../utils/cn";
 const Input = React.forwardRef(
-  ({
-    name,
-    type,
-    label,
-    leftIcon: LIcon,
-    rightIcon: RIcon,
-    error,
-    ...props
-  },ref) => {
+  (
+    { name, type, label, leftIcon: LIcon, rightIcon: RIcon, error, ...props },
+    ref
+  ) => {
     const { handleToggle, toggle: show } =
       type === "password" && useToggle(false);
 
@@ -25,9 +21,10 @@ const Input = React.forwardRef(
         <div className={`${name}_input flex flex-col gap-[5px] w-[100%]`}>
           {label && <label>{label}</label>}
           <div
-            className={`flex w-[100%] relative overflow-hidden border-solid border-[1px] h-[45px]   ${
+            className={cn(
+              `flex w-[100%] relative overflow-hidden border-solid border-[1px] h-[45px]  rounded-[4px]`,
               error ? "border-[red!important]" : "border-[#c5c5c5ed!important]"
-            } rounded-[4px]`}
+            )}
           >
             {LIcon && (
               <span className="absolute left-[8px] top-0 h-[100%] flex items-center justify-center text-[22px] text-[#2b3445]">
