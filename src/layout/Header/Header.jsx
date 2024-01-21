@@ -1,12 +1,19 @@
 import { Link, useLocation } from "react-router-dom";
 import { IoMdSearch } from "react-icons/io";
 import { useState, useEffect } from "react";
-// import BottomNavigation from "./BottomNavigation";
-import { TbLogout } from "react-icons/tb";
 import { FaArrowLeft } from "react-icons/fa6";
-import { NAV } from "../../constants";
-import { Logo } from "../../assets/images";
-import { Image } from "../../components";
+import { NAV, USER_DROPDOWN_LINKS } from "../../constants";
+import { Logo, avatar } from "../../assets/images";
+import {
+  Button,
+  Dropdown,
+  DropdownButton,
+  DropdownItem,
+  DropdownList,
+  Image,
+} from "../../components";
+import BottomNavigation from "./BottomNavigation";
+import { TbLogout } from "react-icons/tb";
 const Header = () => {
   const { pathname } = useLocation();
   // const isAuth: boolean = false;
@@ -114,67 +121,29 @@ const Header = () => {
               </Link>
             ))}
 
-            {/* {isAuth && (
-              <Dropdown
-                label={
-                  <>
-                    <div className="profile_icon text-[24px] md:text-[24px]">
-                      <Image
-                        src={
-                          "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png"
-                        }
-                        alt="Logo"
-                        className="w-[100%] h-[100%] max-w-[34px]  rounded-full "
-                      />
-                    </div>
-                  </>
-                }
-                className="flex flex-col  absolute top-[45px] bg-white right-0 rounded-[6px] "
-                style={{
-                  boxShadow: "rgba(43, 52, 69, 0.1) 0px 4px 16px",
-                }}
-              >
-                {userDropdown && role === "user"
-                  ? userDropdown
-                      .filter((e) => e.name !== "Dashboard")
-                      .map((item, index) => (
-                        <>
-                          <Link
-                            className="dropdown_link "
-                            to={item.path}
-                            key={index}
-                          >
-                            <p className="text-[20px]">{item.icon}</p>
-                            {item.name}
-                          </Link>
-                        </>
-                      ))
-                  : userDropdown.map((item, index) => (
-                      <>
-                        <Link
-                          className={`dropdown_link`}
-                          to={item.path}
-                          key={index}
-                        >
-                          <p className="text-[18px] md:text-[20px]">
-                            {item.icon}
-                          </p>
-                          {item.name}
-                        </Link>
-                      </>
-                    ))}
-
-                <div className="dropdown_link border-[0!important] ">
-                  <p className="text-[18px] md:text-[20px]">
-                    <TbLogout />
-                  </p>
+            <Dropdown>
+              <DropdownButton>
+                <Image
+                  src={avatar}
+                  alt="avatar"
+                  className="w-[100%] h-[100%] max-w-[34px]  rounded-full "
+                />
+              </DropdownButton>
+              <DropdownList className="bg-slate-500">
+                {USER_DROPDOWN_LINKS.map((item) => (
+                  <DropdownItem>
+                    {item.icon}
+                    {item.name}
+                  </DropdownItem>
+                ))}
+                <DropdownItem>
+                  <TbLogout />
                   Logout
-                </div>
-              </Dropdown>
-            )} */}
+                </DropdownItem>
+              </DropdownList>
+            </Dropdown>
           </div>
         </div>
-        {/* <BottomNavigation setSearchModel={setSearchModel} /> */}
       </header>
     </>
   );

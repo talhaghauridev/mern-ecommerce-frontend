@@ -19,25 +19,35 @@ export const productApi = createApi({
   }),
   endpoints: (builder) => ({
     getProduct: builder.query({
-        query: ({ keyword = "", page = 1, price = [0, 25000], category, ratings = "" }) => {
-          const params = new URLSearchParams({
-            keyword,
-            page: page.toString(),
-            "price[gte]": price[0].toString(),
-            "price[lte]": price[1].toString(),
-            category,
-            "ratings[gte]": ratings,
-          });
-          console.log(params.toString());
-      
-          return { url: `/products?${params.toString()}` };
-        },
-        providesTags: (result, error, { keyword, page }) => [
-          { type: "product", id: keyword || "all" },
-          { type: "product", id: `${page}` },
-        ],
-      }),
-      
+      query: ({
+        keyword = "",
+        page = 1,
+        price = [0, 25000],
+        category,
+        ratings = "",
+      }) => {
+        let link = `${
+          keyword && `keyword=${keyword}`
+        }&page=${page}&price[gte]=${price[0]}&price[lte]=${price[1]}${
+          ratings && `&ratings[gte]=${ratings}`
+        }`;
+
+        if (category) {
+          link = `${keyword && `keyword=${keyword}`}&page=${page}&price[gte]=${
+            price[0]
+          }&price[lte]=${price[1]}&category=${category}${
+            ratings && `&ratings[gte]=${ratings}`
+          }`;
+        }
+
+        return { url: `/products?${link}` };
+      },
+      providesTags: (result, error, { keyword, page }) => [
+        { type: "product", id: keyword || "all" },
+        { type: "product", id: `${page}` },
+      ],
+    }),
+
     getProductDetails: builder.query({
       query: (id) => `product/${id}`,
       providesTags: (result, error, id) => [{ type: "product", id }],

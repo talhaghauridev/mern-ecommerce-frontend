@@ -4,13 +4,13 @@ import { toast } from "react-toastify";
 
 const useToggle = (value = false) => {
   const [toggle, setToggle] = useState(value);
-  console.log("Toggle");
   const handleToggle = useCallback(() => {
     setToggle((prev) => !prev);
   }, []);
 
   return {
     toggle,
+    setToggle,
     handleToggle,
   };
 };
@@ -93,16 +93,13 @@ const useInView = (options = {}) => {
   const targetRef = useRef(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [firstEntry] = entries;
-        if (firstEntry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(targetRef.current);
-        }
-      },
-      options
-    );
+    const observer = new IntersectionObserver((entries) => {
+      const [firstEntry] = entries;
+      if (firstEntry.isIntersecting) {
+        setIsVisible(true);
+        observer.unobserve(targetRef.current);
+      }
+    }, options);
 
     if (targetRef.current) {
       observer.observe(targetRef.current);
@@ -118,14 +115,9 @@ const useInView = (options = {}) => {
   return { ref: targetRef, isVisible };
 };
 
-
-const useAuth = ()=>{
-  
-}
-
+const useAuth = () => {};
 
 const useInputError = (formik, name) => {
-  
   const inputError = useMemo(() => {
     return formik && formik.touched[name] && formik.errors[name]
       ? formik.errors[name]
@@ -148,6 +140,27 @@ const useMessage = (message, error, redirect = "") => {
     }
   }, [error, message]);
 };
+
+const useClickOutside = (callback) => {
+  const ref = useRef();
+  const handleClick = (event) => {
+    if (ref.current && !ref.current.contains(event.target)) {
+      callback();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClick);
+
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  }, [callback]);
+  return ref;
+};
+
+export default useClickOutside;
+
 export {
   useToggle,
   useOnlineStatus,
@@ -155,5 +168,6 @@ export {
   useMediaQuery,
   useInView,
   useInputError,
-  useMessage
+  useMessage,
+  useClickOutside
 };
