@@ -14,6 +14,7 @@ import {
 } from "../../components";
 import BottomNavigation from "./BottomNavigation";
 import { TbLogout } from "react-icons/tb";
+import LocalStorage from "../../utils/LocalStorage";
 const Header = () => {
   const { pathname } = useLocation();
   // const isAuth: boolean = false;
@@ -91,7 +92,6 @@ const Header = () => {
               />
             </div>
           </div>
-
           {/* NavLinks */}
           <ul className=" gap-[34px] font-PoppinsBold hidden md:flex">
             {NAV.Links.map((item, index) => (
@@ -129,7 +129,7 @@ const Header = () => {
                   className="w-[100%] h-[100%] max-w-[34px]  rounded-full "
                 />
               </DropdownButton>
-              <DropdownList className="bg-slate-500">
+              <DropdownList>
                 {USER_DROPDOWN_LINKS.map((item) => (
                   <DropdownItem>
                     {item.icon}
