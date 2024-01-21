@@ -14,7 +14,7 @@ import {
 } from "../../components";
 import BottomNavigation from "./BottomNavigation";
 import { TbLogout } from "react-icons/tb";
-import LocalStorage from "../../utils/LocalStorage";
+import { useScroll } from "../../hooks/hook";
 const Header = () => {
   const { pathname } = useLocation();
   // const isAuth: boolean = false;
@@ -22,14 +22,17 @@ const Header = () => {
   const [navScroll, setNavScroll] = useState(false);
   const [searchModel, setSearchModel] = useState(false);
   let role;
+  const scroll = useScroll();
+  console.log(scroll);
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY >= 300) {
+      if (scroll.y >= 300) {
         setNavScroll(true);
       } else {
         setNavScroll(false);
       }
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -144,6 +147,7 @@ const Header = () => {
             </Dropdown>
           </div>
         </div>
+        <BottomNavigation setSearchModel={setSearchModel} />
       </header>
     </>
   );

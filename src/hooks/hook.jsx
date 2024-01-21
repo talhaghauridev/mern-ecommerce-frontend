@@ -115,7 +115,6 @@ const useInView = (options = {}) => {
   return { ref: targetRef, isVisible };
 };
 
-const useAuth = () => {};
 
 const useInputError = (formik, name) => {
   const inputError = useMemo(() => {
@@ -159,6 +158,37 @@ const useClickOutside = (callback) => {
   return ref;
 };
 
+const useScroll = () => {
+  const [scrollPosition, setScrollPosition] = useState({
+    x: window.scrollX,
+    y: window.scrollY,
+  });
+
+  const handleScroll = useMemo(() => {
+    return () => {
+      setScrollPosition({
+        x: window.scrollX,
+        y: window.scrollY,
+      });
+    };
+  }, []);
+
+  const handleScrollMemoized = useCallback(handleScroll, []);
+
+  useEffect(() => {
+    // Attach the memoized event listener when the component mounts
+    window.addEventListener('scroll', handleScrollMemoized);
+
+    // Detach the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('scroll', handleScrollMemoized);
+    };
+  }, [handleScrollMemoized]); // Dependency array includes the memoized function
+
+  return scrollPosition;
+};
+
+
 export default useClickOutside;
 
 export {
@@ -169,5 +199,6 @@ export {
   useInView,
   useInputError,
   useMessage,
-  useClickOutside
+  useClickOutside,
+  useScroll
 };
