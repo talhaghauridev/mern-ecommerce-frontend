@@ -18,4 +18,26 @@
   background: rgb(255, 255, 255);
   
 }
+
+
+
+.header_animation {
+  background-color: white;
+  z-index: 1;
+  position: sticky;
+  top: 0px;
+  transition: all 0.4 ease-in-out;
+  box-shadow: rgba(43, 52, 69, 0.1) 0px 4px 16px;
+  border-bottom: none !important;
+  animation: stickyHeader 0.3s ease forwards ;
+}
 /* rgb(255, 255, 255) */
+@keyframes stickyHeader {
+  0%{
+    transform: translateY(-60px);
+  }
+  100%{
+    transform: translateY(0);
+
+  }
+}

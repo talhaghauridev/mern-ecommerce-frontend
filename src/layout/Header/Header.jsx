@@ -15,6 +15,7 @@ import {
 import BottomNavigation from "./BottomNavigation";
 import { TbLogout } from "react-icons/tb";
 import { useScroll } from "../../hooks/hook";
+import cn from "../../utils/cn";
 const Header = () => {
   const { pathname } = useLocation();
   // const isAuth: boolean = false;
@@ -26,7 +27,7 @@ const Header = () => {
   console.log(scroll);
   useEffect(() => {
     const handleScroll = () => {
-      if (scroll.y >= 300) {
+      if (window.scrollY >= 360) {
         setNavScroll(true);
       } else {
         setNavScroll(false);
@@ -38,14 +39,16 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
   return (
     <>
       <header
         id="header"
-        className={`${
-          navScroll ? "header_animation" : ""
-        } w-[100%] border-b border-solid border-[#d1d5db] h-[74px]`}
+        className={cn(
+          `
+         w-[100%] border-b border-solid border-[#d1d5db] h-[74px] ${
+           navScroll ? "header_animation" : ""
+         }`
+        )}
       >
         <div className="container py-[8px] flex items-center justify-between ">
           {/* Logo */}
@@ -147,8 +150,8 @@ const Header = () => {
             </Dropdown>
           </div>
         </div>
-        <BottomNavigation setSearchModel={setSearchModel} />
       </header>
+        <BottomNavigation setSearchModel={setSearchModel} />
     </>
   );
 };
