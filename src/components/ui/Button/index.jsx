@@ -1,7 +1,7 @@
 import { cva } from "class-variance-authority";
 import React from "react";
 import { memo } from "react";
-import cn from "../../../utils/cn";
+import cn from "@utils/cn";
 
 export const buttonVariants = cva(
   "w-[100%] max-w-[100px] flex item-center justify-center relative  ",

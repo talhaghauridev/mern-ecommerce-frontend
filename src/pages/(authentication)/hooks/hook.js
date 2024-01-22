@@ -12,7 +12,7 @@ import {
   useLoginMutation,
   useResetPasswordMutation,
   useSignupMutation,
-} from "../../../redux/api/userApi";
+} from "@redux/api/userApi";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 

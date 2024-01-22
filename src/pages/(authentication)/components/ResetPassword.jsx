@@ -1,7 +1,7 @@
 import React from "react";
-import { BackDrop, Button, Input, MetaData } from "../../../components";
+import { BackDrop, Button, Input, MetaData } from "@components";
 import { useResetPassword } from "../hooks/hook";
-import inputError from "../../../utils/inputError";
+import inputError from "@utils/inputError";
 
 const ResetPassword = () => {
   const { formik, isLoading } = useResetPassword();

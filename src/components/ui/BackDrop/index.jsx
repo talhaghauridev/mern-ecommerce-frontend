@@ -1,7 +1,5 @@
-import React from "react";
-import cn from "../../../utils/cn";
-import { useEffect } from "react";
-import { memo } from "react";
+import React,{memo} from "react";
+import cn from "@utils/cn";
 
 const BackDrop = ({ className = "", isOpen = false, ...props }) => {
   const backdropClasses = cn(

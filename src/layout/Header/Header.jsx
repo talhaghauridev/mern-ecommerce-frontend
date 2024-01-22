@@ -2,13 +2,14 @@ import { Link, useLocation } from "react-router-dom";
 import { IoMdSearch } from "react-icons/io";
 import { useState, useEffect } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
-import { NAV, USER_DROPDOWN_LINKS } from "../../constants";
-import { Logo, avatar } from "../../assets/images";
-import { Dropdown, Image } from "../../components";
-import BottomNavigation from "./BottomNavigation";
+import { NAV, USER_DROPDOWN_LINKS } from "@constants";
+import { Logo, avatar } from "@assets/images";
+import { Dropdown, Image } from "@components/ui";
+// import BottomNavigation from "./BottomNavigation";
+import BottomNavigation from "@layout/Header/BottomNavigation";
 import { TbLogout } from "react-icons/tb";
-import { useScroll } from "../../hooks/hook";
-import cn from "../../utils/cn";
+import { useScroll } from "@hooks/hook";
+import cn from "@utils/cn";
 const Header = () => {
   const { pathname } = useLocation();
   // const isAuth: boolean = false;
@@ -72,7 +73,8 @@ const Header = () => {
             <div
               className={`flex w-[100%] relative overflow-hidden border-solid border-[1px] h-[44px] bg-[#f9fafb] 
            border-[#d1d5db!important]
-           rounded-[6px] m-[15px] md:m-[0px] `}
+           rounded-[6px] m-import Header from './Header';
+[15px] md:m-[0px] `}
             >
               <p className="absolute left-[8px] top-0 h-[100%] flex items-center justify-center text-[20px]  text-[#2b3445]">
                 <IoMdSearch />

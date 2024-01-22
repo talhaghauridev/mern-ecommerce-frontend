@@ -1,8 +1,5 @@
-import React, { memo, useEffect, useRef, useState } from "react";
-import img1 from "../../../assets/images/img1.jpg";
-import { useInView } from "../../../hooks/hook";
-import AnimationWarpper from "../AnimationWarpper";
-import { motion } from "framer-motion";
+import React, { useState,memo } from "react";
+import { useInView } from "@hooks/hook";
 
 const Image = ({
   src,
@@ -34,4 +31,4 @@ const Image = ({
   );
 };
 
-export default Image;
+export default memo(Image);

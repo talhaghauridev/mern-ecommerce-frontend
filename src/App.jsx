@@ -1,13 +1,9 @@
 
 import React, { Suspense, useState } from "react";
-import img1 from "./assets/images/img1.jpg";
-import img2 from "./assets/images/img2.jpg";
-import img3 from "./assets/images/avatar.png";
 import ErrorBoundary from "./ErrorBoundary";
 import Loading from "./layout/Loading/Loading";
-import { Button, Image } from "./components";
 import Routes from "./routes/routes";
-import { useGetProductQuery } from "./redux/api/productApi";
+import { useGetProductQuery } from "@redux/api/productApi";
 import { useSelector } from "react-redux";
 function App() {
   const [page, setPage] = useState(1);

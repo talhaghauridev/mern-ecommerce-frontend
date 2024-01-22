@@ -1,7 +1,7 @@
 import React from "react";
-import { Image } from "../../components";
-import { Logo } from "../../assets/images";
-import { FOOTER } from "../../constants";
+import { Image } from "@components/ui";
+import { Logo } from "@assets/images";
+import { FOOTER } from "@constants";
 
 const FooterList = ({ name, list }) => {
   return (
@@ -53,8 +53,8 @@ const Footer = () => {
 
               <div class="flex gap-4">
                 {FOOTER.Icons.map((Icon, index) => (
-                  <span className="text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600 cursor-pointer">
-                    {<Icon  size={"20px"}/>}
+                  <span key={index} className="text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600 cursor-pointer">
+                    {<Icon size={"20px"} />}
                   </span>
                 ))}
               </div>

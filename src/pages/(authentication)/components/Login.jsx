@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import { Input, Button, MetaData, BackDrop } from "../../../components";
-import { useLogin, useMessage } from "../hooks/hook";
-import inputError from "../../../utils/inputError";
-import { useEffect } from "react";
-import Cookies from "js-cookie";
+import React from "react";
+import { Input, Button, MetaData, BackDrop } from "@components";
+import { useLogin } from "../hooks/hook";
+import inputError from "@utils/inputError";
 const Login = () => {
   const { formik, error, isError, isLoading, isSuccess } = useLogin();
   const { handleSubmit, getFieldProps } = formik;

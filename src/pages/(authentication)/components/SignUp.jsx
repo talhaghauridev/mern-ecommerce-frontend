@@ -1,6 +1,5 @@
-import React, { useCallback } from "react";
-import { useSignUp } from "../hooks/hook";
-import inputError from "../../../utils/inputError";
+import React from "react";
+import inputError from "@utils/inputError";
 import {
   BackDrop,
   Button,
@@ -8,8 +7,9 @@ import {
   Input,
   InputUpload,
   MetaData,
-} from "../../../components";
-import { useUpload } from "../../../hooks/hook";
+} from "@components/ui";
+import { useUpload } from "@hooks/hook";
+import { useSignUp } from "../hooks/hook";
 
 const SignUp = () => {
   const { formik, isError, isLoading, data, error, isSuccess } = useSignUp();

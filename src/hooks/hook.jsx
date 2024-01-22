@@ -189,7 +189,6 @@ const useScroll = () => {
 };
 
 
-export default useClickOutside;
 
 export {
   useToggle,
@@ -200,5 +199,6 @@ export {
   useInputError,
   useMessage,
   useClickOutside,
+
   useScroll
 };

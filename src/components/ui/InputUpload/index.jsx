@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import cn from "../../../utils/cn";
+import cn from "@utils/cn";
 
 const InputUpload = React.forwardRef(({ name, onChange, className="", label,...props },ref) => {
     return (

@@ -1,7 +1,7 @@
 import React, { useMemo, memo } from "react";
-import { useToggle } from "../../../hooks/hook";
+import { useToggle } from "@hooks/hook";
 import { LuEye, LuEyeOff } from "react-icons/lu";
-import cn from "../../../utils/cn";
+import cn from "@utils/cn";
 const Input = React.forwardRef(
   (
     { name, type, label, leftIcon: LIcon, rightIcon: RIcon, error, ...props },
