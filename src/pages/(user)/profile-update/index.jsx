@@ -1,7 +1,9 @@
 import React from "react";
 
 const UpdateProfile = () => {
-  return <div></div>;
+  return <div>
+    UpdateProfile
+  </div>;
 };
 
 export default UpdateProfile;

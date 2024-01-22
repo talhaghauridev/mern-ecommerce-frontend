@@ -1,12 +1,22 @@
 // AuthRoutes.jsx
-import React, { lazy } from "react";
-import { Outlet, Route, Routes } from "react-router-dom";
+import React from "react";
+import { Route } from "react-router-dom";
 import ProtectRoute from "../ProtectRoute";
 import lazyLoad from "../utils/lazyLoad";
-const Profile = lazyLoad("../pages/profile")
+const User = lazyLoad("../pages/(user)/user");
+const Orders = lazyLoad("../pages/(user)/orders");
+const UpdateProfile = lazyLoad("../pages/(user)/profile-update");
+const UpdatePassword = lazyLoad("../pages/(user)/password-update");
+const Profile = lazyLoad("../pages/(user)/profile");
+
 const AuthRoutes = (
-  <Route path="/user" element={<ProtectRoute />}>
-    <Route path="profile" element={<Profile />} />
+  <Route element={<ProtectRoute />}>
+    <Route path="/user/" element={<User />}>
+      <Route path="profile" element={<Profile />} />
+      <Route path="profile-update" element={<UpdateProfile />} />
+      <Route path="password-update" element={<UpdatePassword />} />
+      <Route path="orders" element={<Orders />} />
+    </Route>
   </Route>
 );
 

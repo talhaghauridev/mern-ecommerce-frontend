@@ -4,14 +4,7 @@ import { useState, useEffect } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
 import { NAV, USER_DROPDOWN_LINKS } from "../../constants";
 import { Logo, avatar } from "../../assets/images";
-import {
-  Button,
-  Dropdown,
-  DropdownButton,
-  DropdownItem,
-  DropdownList,
-  Image,
-} from "../../components";
+import { Dropdown, Image } from "../../components";
 import BottomNavigation from "./BottomNavigation";
 import { TbLogout } from "react-icons/tb";
 import { useScroll } from "../../hooks/hook";
@@ -127,25 +120,27 @@ const Header = () => {
             ))}
 
             <Dropdown>
-              <DropdownButton>
+              <Dropdown.Button>
                 <Image
                   src={avatar}
                   alt="avatar"
                   className="w-[100%] h-[100%] max-w-[34px]  rounded-full "
                 />
-              </DropdownButton>
-              <DropdownList>
+              </Dropdown.Button>
+              <Dropdown.List>
                 {USER_DROPDOWN_LINKS.map((item) => (
-                  <DropdownItem>
-                    {item.icon}
-                    {item.name}
-                  </DropdownItem>
+                  <Link to={item.path} key={item.path}>
+                    <Dropdown.Item>
+                      {item.icon}
+                      {item.name}
+                    </Dropdown.Item>
+                  </Link>
                 ))}
-                <DropdownItem>
+                <Dropdown.Item>
                   <TbLogout />
                   Logout
-                </DropdownItem>
-              </DropdownList>
+                </Dropdown.Item>
+              </Dropdown.List>
             </Dropdown>
           </div>
         </div>

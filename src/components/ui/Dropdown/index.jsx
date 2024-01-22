@@ -4,6 +4,16 @@ import cn from "../../../utils/cn";
 
 const DropdownContext = createContext();
 
+const useDropdownContext = () => {
+  const context = useContext(DropdownContext);
+  if (!context) {
+    throw new Error(
+      "useDropdownContext should be used within the scope of a Dropdown"
+    );
+  }
+  return context;
+};
+
 const Dropdown = React.memo(({ children }) => {
   const { toggle, handleToggle, setToggle } = useToggle(false);
   const ref = useClickOutside(() => setToggle(false));
@@ -22,8 +32,8 @@ const Dropdown = React.memo(({ children }) => {
   );
 });
 
-const DropdownButton = React.memo(({ children, className = "", ...props }) => {
-  const { toggleDropdown } = useContext(DropdownContext);
+const Button = React.memo(({ children, className = "", ...props }) => {
+  const { toggleDropdown } = useDropdownContext();
 
   return (
     <div
@@ -37,9 +47,8 @@ const DropdownButton = React.memo(({ children, className = "", ...props }) => {
   );
 });
 
-const DropdownList = React.memo(({ children, className = "", ...props }) => {
-  const { isDropdownOpen, toggleDropdown } = useContext(DropdownContext);
-
+const List = React.memo(({ children, className = "", ...props }) => {
+const {isDropdownOpen} = useDropdownContext()
   return (
     <>
       {isDropdownOpen && (
@@ -60,7 +69,7 @@ const DropdownList = React.memo(({ children, className = "", ...props }) => {
   );
 });
 
-const DropdownItem = React.memo(({ children, className = "", ...props }) => {
+const Item = React.memo(({ children, className = "", ...props }) => {
   return (
     <li
       className={cn(
@@ -74,4 +83,10 @@ const DropdownItem = React.memo(({ children, className = "", ...props }) => {
   );
 });
 
-export { Dropdown, DropdownButton, DropdownList, DropdownItem };
+
+Dropdown.Button = Button
+Dropdown.List = List;
+Dropdown.Item = Item;
+
+
+export default Dropdown;

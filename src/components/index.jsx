@@ -5,12 +5,7 @@ import MetaData from "./ui/MetaData";
 import AnimationWrapper from "./ui/AnimationWarpper";
 import InputUpload from "./ui/InputUpload";
 import BackDrop from "./ui/BackDrop";
-import {
-  Dropdown,
-  DropdownButton,
-  DropdownItem,
-  DropdownList,
-} from "./ui/Dropdown";
+import Dropdown from "./ui/Dropdown";
 
 export {
   AnimationWrapper,
@@ -22,7 +17,4 @@ export {
   BackDrop,
   buttonVariants,
   Dropdown,
-  DropdownButton,
-  DropdownItem,
-  DropdownList,
 };

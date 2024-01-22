@@ -1,44 +1,33 @@
 import React from "react";
-import { Button } from "../../components";
+import { Button, Image } from "../../components";
+import { hero } from "../../assets/images";
 
 export const Hero = () => {
   return (
-    <section id="hero">
-      <div className="bg-gradient1  flex md:flex-col flex-row md:gap-10 items-center justify-between max-w-[1440px] md:px-10 px-40 sm:px-5 w-full">
-        <div className="flex flex-1 flex-col gap-6 items-start justify-start w-full">
-          <div className="flex flex-col gap-6 items-start justify-start w-full">
-            <div
-              className="sm:text-[21px] md:text-[23px] text-[25px] text-white-A700_7e w-full"
-            >
-              Pro.Beyond.
-            </div>
-            <div
-              className="md:text-5xl text-8xl text-white-A700 tracking-[-0.96px] w-full"
-            >
-              <span className="text-white-A700 font-sfprodisplay text-left font-thin">
-                IPhone 14{" "}
-              </span>
-              <span className="text-white-A700 font-sfprodisplay text-left font-semibold">
-                Pro
-              </span>
-            </div>
-          </div>
-          <div
-            className="text-gray-500 text-lg w-full"
-            size="txtSFProDisplayMedium18"
-          >
-            Created to change everything for the better. For everyone
-          </div>
-          <Button
-            className="cursor-pointer font-medium min-w-[184px] text-base text-center"
-        
-            variant="outline"
-          >
+    <section id="hero " className="w-[100%] h-[100%]">
+      <div className="container grid grid-cols-1  md:grid-cols-2 py-[90px] gap-[40px]">
+        {/* Banner Info  */}
+        <div className=" h-[100%] flex items-start justify-center flex-col gap-[10px]">
+          <h1 className=" text-[40px] md:text-[50px] font-PoppinsBold font-bold text-[#222935] leading-[1.2] max-w-[400px]">
+            50% Off For Your First Shopping
+          </h1>
+          <p className="text-[15px] text-[#0F3460] font-Sans mt-[12px]">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit
+            eveniet ullam facere quaerat expedita temporibus illo perferendis
+            magnam iure voluptatem.
+          </p>
+          <Button className="max-h-fit h-fit max-w-[150px] rounded-[4px] bg-[#D23F57!important] text-[15px!important] font-PoppinsBold">
             Shop Now
           </Button>
         </div>
-        <div className="flex md:flex-1 flex-col items-center justify-end pt-[73px] w-[37%] md:w-full">
-         
+
+        {/* Banner Info Image */}
+        <div className="h-[100%] w-[100%] flex items-center justify-center">
+          <Image
+            src={hero}
+            alt="hero"
+            className="w-[100%] max-w-[100%] max-h-[400px] object-cover"
+          />
         </div>
       </div>
     </section>

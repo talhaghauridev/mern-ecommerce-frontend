@@ -5,7 +5,12 @@ import { FiHome } from "react-icons/fi";
 import { MdOutlineDashboard } from "react-icons/md";
 import { TbBorderAll } from "react-icons/tb";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
-
+import {
+  FaGithub,
+  FaInstagram,
+  FaLinkedinIn,
+  FaXTwitter,
+} from "react-icons/fa6";
 const NAV = {
   Links: [
     {
@@ -54,4 +59,33 @@ const USER_DROPDOWN_LINKS = [
   },
 ];
 
-export { NAV, USER_DROPDOWN_LINKS };
+const FOOTER = {
+  Links: [
+    {
+      name: "Products",
+      list: ["Overview", "Solutions", " Pricing", "Customers"],
+    },
+    {
+      name: "Category",
+      list: ["About", "Investor Relations", " Jobs", "Press", "Blog"],
+    },
+
+    {
+      name: "Support",
+      list: ["Contact", "Documentation", " Chat", "FAQ"],
+    },
+    {
+      name: "Legal",
+      list: [
+        "Terms of Service",
+        "               Privacy Policy",
+        "Cookie settings ",
+      ],
+    
+    },
+  ],
+
+  Icons: [FaInstagram, FaGithub, FaXTwitter, FaLinkedinIn],
+};
+
+export { NAV, USER_DROPDOWN_LINKS, FOOTER };
