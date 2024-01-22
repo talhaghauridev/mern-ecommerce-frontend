@@ -1,29 +1,29 @@
+import React, { createContext, useContext, useMemo } from "react";
 import useClickOutside, { useToggle } from "../../../hooks/hook";
-import { createContext, useContext } from "react";
 import cn from "../../../utils/cn";
 
-const DropdownProvider = createContext({
-  isDropdownOpen: false,
-  toggleDropdown: () => {},
-});
+const DropdownContext = createContext();
 
-export function Dropdown(props) {
+const Dropdown = React.memo(({ children }) => {
   const { toggle, handleToggle, setToggle } = useToggle(false);
   const ref = useClickOutside(() => setToggle(false));
 
+  const contextValue = useMemo(
+    () => ({ toggleDropdown: handleToggle, isDropdownOpen: toggle }),
+    [handleToggle, toggle]
+  );
+
   return (
-    <div className="relative inline-block text-left " ref={ref}>
-      <DropdownProvider.Provider
-        value={{ toggleDropdown: handleToggle, isDropdownOpen: toggle }}
-      >
-        {props.children}
-      </DropdownProvider.Provider>
+    <div className="relative inline-block text-left" ref={ref}>
+      <DropdownContext.Provider value={contextValue}>
+        {children}
+      </DropdownContext.Provider>
     </div>
   );
-}
+});
 
-export function DropdownButton({ children, className = "", ...props }) {
-  const { toggleDropdown } = useContext(DropdownProvider);
+const DropdownButton = React.memo(({ children, className = "", ...props }) => {
+  const { toggleDropdown } = useContext(DropdownContext);
 
   return (
     <div
@@ -35,16 +35,17 @@ export function DropdownButton({ children, className = "", ...props }) {
       {children}
     </div>
   );
-}
+});
 
-export function DropdownList({ children, className = "", ...props }) {
-  const { isDropdownOpen } = useContext(DropdownProvider);
+const DropdownList = React.memo(({ children, className = "", ...props }) => {
+  const { isDropdownOpen, toggleDropdown } = useContext(DropdownContext);
+
   return (
     <>
       {isDropdownOpen && (
         <ul
           className={cn(
-            "flex flex-col  absolute top-[45px] bg-white right-0 rounded-[6px] z-[2]",
+            "flex flex-col absolute top-[45px] bg-white right-0 rounded-[6px] z-[2]",
             className
           )}
           style={{
@@ -57,13 +58,13 @@ export function DropdownList({ children, className = "", ...props }) {
       )}
     </>
   );
-}
+});
 
-export function DropdownItem({ children, className = "", ...props }) {
+const DropdownItem = React.memo(({ children, className = "", ...props }) => {
   return (
     <li
       className={cn(
-        "cursor-pointer sm:text-[15px] text-[14px]  text-[#2b3445] font-Sans w-[170px] sm:w-[180px] md:w-[194px] py-[12px] px-[16px] border-solid border-b border-[#e5e7eb] flex items-center justify-start gap-[5px] transition-all hover:bg-[#2b34450f]",
+        "cursor-pointer sm:text-[15px] text-[14px] text-[#2b3445] font-Sans w-[170px] sm:w-[180px] md:w-[194px] py-[12px] px-[16px] border-solid border-b border-[#e5e7eb] flex items-center justify-start gap-[5px] transition-all hover:bg-[#2b34450f]",
         className
       )}
       {...props}
@@ -71,4 +72,6 @@ export function DropdownItem({ children, className = "", ...props }) {
       {children}
     </li>
   );
-}
+});
+
+export { Dropdown, DropdownButton, DropdownList, DropdownItem };

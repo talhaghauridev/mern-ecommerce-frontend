@@ -45,9 +45,8 @@ const Header = () => {
         id="header"
         className={cn(
           `
-         w-[100%] border-b border-solid border-[#d1d5db] h-[74px] ${
-           navScroll ? "header_animation" : ""
-         }`
+         w-[100%] border-b border-solid border-[#d1d5db] h-[74px]`,
+          navScroll ? "header_animation" : ""
         )}
       >
         <div className="container py-[8px] flex items-center justify-between ">
@@ -151,7 +150,7 @@ const Header = () => {
           </div>
         </div>
       </header>
-        <BottomNavigation setSearchModel={setSearchModel} />
+      <BottomNavigation setSearchModel={setSearchModel} />
     </>
   );
 };
