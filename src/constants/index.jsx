@@ -81,11 +81,15 @@ const FOOTER = {
         "               Privacy Policy",
         "Cookie settings ",
       ],
-    
     },
   ],
 
   Icons: [FaInstagram, FaGithub, FaXTwitter, FaLinkedinIn],
 };
 
-export { NAV, USER_DROPDOWN_LINKS, FOOTER };
+const FILTERS = {
+  Categories: ["Mobile", "Laptop", "Car", "Bag", "Clothes", "Machines"],
+  Ratings: [4, 3, 2, 1],
+};
+
+export { NAV, USER_DROPDOWN_LINKS, FOOTER, FILTERS };
