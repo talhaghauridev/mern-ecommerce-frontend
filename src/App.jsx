@@ -1,7 +1,7 @@
 
 import React, { Suspense, useState } from "react";
 import ErrorBoundary from "./ErrorBoundary";
-import Loading from "./layout/Loading/Loading";
+import Loading from "@layout/Loading/Loading";
 import Routes from "./routes/routes";
 import { useGetProductQuery } from "@redux/api/productApi";
 import { useSelector } from "react-redux";
@@ -15,6 +15,7 @@ function App() {
     data,
     startedTimeStamp,
     requestId,
+    error
   } = useGetProductQuery({
     keyword: "",
     page,
@@ -24,9 +25,10 @@ function App() {
     isFetching,
     isLoading,
     isSuccess,
-    data,
+    data,error,
     startedTimeStamp,
     requestId,
+
   });
   const product = useSelector(state=>state.productApi)
 

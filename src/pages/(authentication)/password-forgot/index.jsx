@@ -1,7 +1,7 @@
 import React from "react";
-import { useForgotPassword } from "../hooks/hook";
 import inputError from "@utils/inputError";
 import { BackDrop, Button, Input, MetaData } from "@components/ui";
+import useForgotPassword from "../hooks/useForgotPassword";
 
 const ForgotPassword = () => {
   const { formik, isLoading, isError, isSuccess, data } = useForgotPassword();

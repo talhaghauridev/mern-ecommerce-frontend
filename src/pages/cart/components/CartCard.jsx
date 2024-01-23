@@ -1,4 +1,4 @@
-import { Image } from "../../../components";
+import { Button, Image } from "@components/ui";
 
 const CartCard = (props) => {
   return (
@@ -16,12 +16,11 @@ const CartCard = (props) => {
             <div className="leading-[24.00px] max-w-[193px] md:max-w-full text-base text-black-900">
               {props?.producttitle}
             </div>
-            <dev
+            <div
               className="text-black-900 text-sm w-full"
-              size="txtSFProDisplayRegular14"
             >
               {props?.productcode}
-            </dev>
+            </div>
           </div>
           <div className="flex flex-row gap-6 items-center justify-end w-auto">
             <div className="flex flex-row gap-2 items-center justify-start w-auto">
@@ -30,15 +29,13 @@ const CartCard = (props) => {
                 src="images/img_arrowdown_black_900_24x24.svg"
                 alt="arrowdown"
               />
-              {/* <Button
+              <Button
+              
                 className="!text-black-900 cursor-pointer font-medium font-sfprodisplay min-w-[40px] rounded text-base text-center"
-                shape="round"
-                color="blue_gray_100_04"
-                size="sm"
                 variant="outline"
               >
                 {props?.buttonlabel}
-              </Button> */}
+              </Button>
               <Image className="h-6 w-6" src="images/img_plus.svg" alt="plus" />
             </div>
             <div

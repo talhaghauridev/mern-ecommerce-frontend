@@ -1,7 +1,7 @@
 import React from "react";
-import { Input, Button, MetaData, BackDrop } from "@components";
-import { useLogin } from "../hooks/hook";
+import { Input, Button, MetaData, BackDrop } from "@components/ui";
 import inputError from "@utils/inputError";
+import useLogin from "../hooks/useLogin";
 const Login = () => {
   const { formik, error, isError, isLoading, isSuccess } = useLogin();
   const { handleSubmit, getFieldProps } = formik;

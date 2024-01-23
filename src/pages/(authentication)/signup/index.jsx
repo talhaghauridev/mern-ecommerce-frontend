@@ -9,10 +9,10 @@ import {
   MetaData,
 } from "@components/ui";
 import { useUpload } from "@hooks/hook";
-import { useSignUp } from "../hooks/hook";
+import useSignup from "../hooks/useSignup";
 
 const SignUp = () => {
-  const { formik, isError, isLoading, data, error, isSuccess } = useSignUp();
+  const { formik, isError, isLoading, data, error, isSuccess } = useSignup();
   const { handleSubmit, getFieldProps } = formik;
   const { handleFileChange, image } = useUpload();
   console.log(
