@@ -25,7 +25,7 @@ const AppRoutes = () => {
           <Route path="/password/reset/:token" element={<ResetPassword />} />
           <Route path="/products" element={<Products />} />
           <Route path="/cart" element={<Cart />} />
-          {AuthRoutes}
+          <Route path="/*" element={<AuthRoutes />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -2,9 +2,11 @@
 import React, { Suspense, useState } from "react";
 import ErrorBoundary from "./ErrorBoundary";
 import Loading from "@layout/Loading/Loading";
-import Routes from "./routes/routes";
+import Routes from "@routes/routes";
 import { useGetProductQuery } from "@redux/api/productApi";
 import { useSelector } from "react-redux";
+
+
 function App() {
   const [page, setPage] = useState(1);
   const {

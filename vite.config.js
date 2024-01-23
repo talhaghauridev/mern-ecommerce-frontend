@@ -14,6 +14,7 @@ export default defineConfig({
       "@constants": "/src/constants",
       "@assets": "/src/assets",
       "@redux": "/src/redux",
+      "@routes":"/src/routes"
     },
   },
   build: {
