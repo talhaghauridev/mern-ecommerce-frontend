@@ -97,17 +97,17 @@ const useInView = (options = {}) => {
       const [firstEntry] = entries;
       if (firstEntry.isIntersecting) {
         setIsVisible(true);
-        observer.unobserve(targetRef.current);
+        observer.unobserve(targetRef?.current);
       }
     }, options);
 
-    if (targetRef.current) {
-      observer.observe(targetRef.current);
+    if (targetRef?.current) {
+      observer.observe(targetRef?.current);
     }
 
     return () => {
-      if (targetRef.current) {
-        observer.unobserve(targetRef.current);
+      if (targetRef?.current) {
+        observer.unobserve(targetRef?.current);
       }
     };
   }, [options]);
@@ -143,6 +143,7 @@ const useMessage = (message, error, redirect = "") => {
 const useClickOutside = (callback) => {
   const ref = useRef();
   const handleClick = (event) => {
+    console.log("handleClick");
     if (ref.current && !ref.current.contains(event.target)) {
       callback();
     }
@@ -199,6 +200,5 @@ export {
   useInputError,
   useMessage,
   useClickOutside,
-
   useScroll
 };

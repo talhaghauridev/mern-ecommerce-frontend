@@ -17,7 +17,7 @@ const signUpSchema = Yup.object({
     .min(8, "Password must be at least 8 characters")
     .max(25, "Password must not exceed 25 characters")
     .required("Password is Required"),
-  avatar: Yup.mixed().required("Avatar is required"),
+  avatar: Yup.string().required("Avatar is required"),
 });
 
 const loginSchema = Yup.object({

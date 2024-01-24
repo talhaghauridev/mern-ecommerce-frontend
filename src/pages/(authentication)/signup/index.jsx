@@ -12,15 +12,12 @@ import { useUpload } from "@hooks/hook";
 import useSignup from "../hooks/useSignup";
 
 const SignUp = () => {
-  const { formik, isError, isLoading, data, error, isSuccess } = useSignup();
+  const { formik, isLoading,originalArgs } = useSignup();
   const { handleSubmit, getFieldProps } = formik;
   const { handleFileChange, image } = useUpload();
-  console.log(
-    { formik, error, isError, isLoading, isSuccess, data },
-    error?.data?.message
-  );
-  console.log(image[0]);
-
+  console.log(formik);
+console.log(originalArgs);
+console.log(formik?.values?.avatar);
   return (
     <>
       <BackDrop isOpen={isLoading} />
@@ -67,12 +64,9 @@ const SignUp = () => {
             <InputUpload
               name={"avatar"}
               label={"Avatar"}
-              onChange={(event) => {
-                handleFileChange(event);
-                formik.setFieldValue("avatar", image[0]);
-              }}
+              {...getFieldProps("avatar")}
             />
-            <Image src={image} alt="avatar" />
+            <Image src={URL.createObjectURL(formik?.values?.avatar)} alt="avatar" />
             <div>{inputError(formik, "avatar")}</div>
 
             <Button type="submit" className={"bg-slate-600"}>

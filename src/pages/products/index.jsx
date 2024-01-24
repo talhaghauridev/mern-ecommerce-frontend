@@ -5,7 +5,13 @@ import FilterSiderbar from "./components/FilterSiderbar";
 
 const Products = () => {
   return (
-    <Suspense fallback={console.log("Loading product")}>
+    <Suspense
+      fallback={
+        <>
+          <div className="h-[100vh] bg-black">Loading....</div>
+        </>
+      }
+    >
       <FilterSiderbar />
       <div>
         <ProductCard />

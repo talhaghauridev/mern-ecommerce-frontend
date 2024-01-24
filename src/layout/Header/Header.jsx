@@ -11,7 +11,7 @@ import cn from "@utils/cn";
 import UserDropDown from "./UserDropDown";
 const Header = () => {
   const { pathname } = useLocation();
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(true);
   const [navScroll, setNavScroll] = useState(false);
   const [searchModel, setSearchModel] = useState(false);
   const scroll = useScroll();

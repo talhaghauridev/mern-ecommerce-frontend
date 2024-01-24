@@ -4,9 +4,8 @@ import { BackDrop, Button, Input, MetaData } from "@components/ui";
 import useForgotPassword from "../hooks/useForgotPassword";
 
 const ForgotPassword = () => {
-  const { formik, isLoading, isError, isSuccess, data } = useForgotPassword();
+  const { formik, isLoading } = useForgotPassword();
   const { getFieldProps, handleSubmit } = formik;
-  console.log({ isLoading, isError, isSuccess, data });
   return (
     <>
       <BackDrop isOpen={isLoading} />

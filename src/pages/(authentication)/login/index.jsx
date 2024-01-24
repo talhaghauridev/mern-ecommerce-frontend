@@ -5,12 +5,9 @@ import useLogin from "../hooks/useLogin";
 import { Link } from "react-router-dom";
 import cn from "@utils/cn";
 const Login = () => {
-  const { formik, error, isError, isLoading, isSuccess } = useLogin();
+  const { formik, isLoading } = useLogin();
   const { handleSubmit, getFieldProps } = formik;
-  console.log(
-    { formik, error, isError, isLoading, isSuccess },
-    error?.data?.message
-  );
+  
 
   return (
     <>
