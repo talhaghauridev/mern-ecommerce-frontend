@@ -1,7 +1,9 @@
 import React from "react";
-import { Input, Button, MetaData, BackDrop } from "@components/ui";
+import { Input, Button, MetaData, BackDrop, buttonVariants } from "@components/ui";
 import inputError from "@utils/inputError";
 import useLogin from "../hooks/useLogin";
+import { Link } from "react-router-dom";
+import cn from "@utils/cn";
 const Login = () => {
   const { formik, error, isError, isLoading, isSuccess } = useLogin();
   const { handleSubmit, getFieldProps } = formik;
@@ -43,6 +45,10 @@ const Login = () => {
             <Button className={"bg-slate-500"} type="submit">
               Submit
             </Button>
+            
+            <Link to={"/password/reset"} className={cn(buttonVariants({variants:"outline"}))}>
+              Reset
+            </Link>
           </form>
         </div>
       </section>

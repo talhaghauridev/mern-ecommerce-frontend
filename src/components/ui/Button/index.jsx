@@ -10,7 +10,8 @@ export const buttonVariants = cva(
       variants: {
         primary: "bg-primary-blue text-white rounded-full mt-10",
         outline:
-          "text-primary-blue rounded-full bg-white min-w-[130px] border-solid border-[#c7c6c6ed] border-[1px]",
+          "bg-[#f3f5f9] rounded-[4px] min-w-[130px] border-solid border-[#dcdcdc94] text-[15px] text-[#2b3445] border-[1px]",
+        danger: "bg-[] text-white rounded-full mt-10 ",
       },
       size: {
         lg: "text-[22px] py-[10px] px-[8px] max-w-[200px]",
@@ -26,7 +27,7 @@ export const buttonVariants = cva(
 );
 
 const Button = React.forwardRef(
-  ({ size, variants, className, ...props },ref) => {
+  ({ size, variants, className, ...props }, ref) => {
     console.log("Button");
     return (
       <button

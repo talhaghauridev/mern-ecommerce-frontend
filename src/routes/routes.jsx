@@ -1,7 +1,7 @@
 // routes.jsx
 import React from "react";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
-import AuthRoutes from "./user.routes";
+import AuthRoutes from "@routes/user.routes";
 import lazyLoad from "@utils/lazyLoad";
 import NotFound from "@layout/NotFound/NotFound";
 import Layout from "@layout/layout";

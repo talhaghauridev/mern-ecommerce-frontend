@@ -5,7 +5,7 @@ import { hero } from "@assets/images";
 export const Hero = () => {
   return (
     <section id="hero " className="w-[100%] h-[100%]">
-      <div className="container grid grid-cols-1  md:grid-cols-2 py-[90px] gap-[40px]">
+      <div className="container grid grid-cols-1  md:grid-cols-2 py-[75px] sm:py-[90px] gap-[40px]">
         {/* Banner Info  */}
         <div className=" h-[100%] flex items-start justify-center flex-col gap-[10px]">
           <h1 className=" text-[40px] md:text-[50px] font-PoppinsBold font-bold text-[#222935] leading-[1.2] max-w-[400px]">

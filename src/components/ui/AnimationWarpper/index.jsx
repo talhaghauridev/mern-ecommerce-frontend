@@ -9,7 +9,7 @@ const AnimationWrapper = ({
   animate = { opacity: 1 },
   transition = { duration: 1 },
   className = "",
-  key = null,
+  key = "",
   style = {},
 }) => {
   return (

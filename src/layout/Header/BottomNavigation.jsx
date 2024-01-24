@@ -13,7 +13,7 @@ const BottomNavigation = ({ setSearchModel }) => {
         className="bg-white  flex md:hidden fixed bottom-0 w-full z-[1] "
         style={{ boxShadow: "rgba(0, 0, 0, 0.1) 0px 1px 4px 3px" }}
       >
-        <ul className="flex gap-[34px] font-PoppinsBold items-center justify-evenly py-[8px] px-[15px] w-[100%]">
+        <ul className="flex gap-[34px] font-PoppinsBold items-center justify-evenly py-[6px] sm:py-[8px] px-[15px] w-[100%]">
           {NAV.Links.map((item, index) => (
             
               <Link to={item.path} key={index}>

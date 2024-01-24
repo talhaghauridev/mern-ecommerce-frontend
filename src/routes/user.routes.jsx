@@ -2,7 +2,7 @@
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import ProtectRoute from "../ProtectRoute";
-import lazyLoad from "../utils/lazyLoad";
+import lazyLoad from "@utils/lazyLoad";
 const User = lazyLoad("../pages/(user)/user");
 const Orders = lazyLoad("../pages/(user)/orders");
 const UpdateProfile = lazyLoad("../pages/(user)/profile-update");

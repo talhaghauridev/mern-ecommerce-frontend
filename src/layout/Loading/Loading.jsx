@@ -1,17 +1,23 @@
+import { Logo } from "@assets/images";
+import AnimationWarpper from "@components/ui/AnimationWarpper";
+import { useLocation } from "react-router-dom";
 import TopNavgationBar from "react-top-loading-bar";
+import { motion } from "framer-motion";
 const Loading = () => {
   console.log("Loading....");
-
   return (
     <>
-      <div className="fixed h-full w-full bg-slate-50">
-        <TopNavgationBar
-          background="blue"
-          waitingTime={50}
-          transitionTime={100}
-          onLoaderFinished={console.log("Finsihed")}
-        />
-      </div>
+      <TopNavgationBar
+        background="blue"
+        waitingTime={50}
+        transitionTime={1000}
+        onLoaderFinished={console.log("Finsihed")}
+      />
+      <AnimationWarpper key={window.location.hostname}>
+        <div className="fixed  w-full bg-white h-[100vh]">
+
+        </div>
+      </AnimationWarpper>
     </>
   );
 };
