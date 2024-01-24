@@ -5,6 +5,7 @@ import Loading from "@layout/Loading/Loading";
 import Routes from "@routes/routes";
 import { useGetProductQuery } from "@redux/api/productApi";
 import { useSelector } from "react-redux";
+import Error from "@layout/Error/Error";
 
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
   console.log("App", product);
   return (
     <main id="App">
-      <ErrorBoundary fallback="Something went wrong">
+      <ErrorBoundary fallback={<Error/>}>
         <Suspense fallback={<Loading />}>
           <Routes />
         </Suspense>
