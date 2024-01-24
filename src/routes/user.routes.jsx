@@ -13,7 +13,7 @@ const AuthRoutes = () => {
   return (
     <Routes>
       <Route element={<ProtectRoute />}>
-        <Route path="user/" element={<User />}>
+        <Route element={<User />}>
           <Route path="" element={<Navigate to={"profile"} replace />} />
           <Route path="profile" element={<Profile />} />
           <Route path="profile/update" element={<UpdateProfile />} />
