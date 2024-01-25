@@ -6,7 +6,6 @@ import AnimationWrapper from "./AnimationWarpper";
 import InputUpload from "./InputUpload";
 import BackDrop from "./BackDrop";
 import Dropdown from "./Dropdown";
-
 export {
   AnimationWrapper,
   Input,

@@ -1,30 +1,47 @@
-import { Link, useLocation } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import { IoMdSearch } from "react-icons/io";
-import { useState, useEffect } from "react";
-import { FaArrowLeft } from "react-icons/fa6";
+import { useState, useEffect, useCallback } from "react";
 import { NAV } from "@constants";
 import { Logo } from "@assets/images";
 import { Image } from "@components/ui";
 import BottomNavigation from "@layout/Header/BottomNavigation";
-import { useScroll } from "@hooks/hook";
+import { useScroll, useToggle } from "@hooks/hook";
 import cn from "@utils/cn";
 import UserDropDown from "./UserDropDown";
+import SearchBox from "./SearchBox";
 const Header = () => {
+  const [search, setSearch] = useState("");
   const { pathname } = useLocation();
   const [isAuth, setIsAuth] = useState(true);
   const [navScroll, setNavScroll] = useState(false);
   const [searchModel, setSearchModel] = useState(false);
-  const scroll = useScroll();
-  console.log(scroll);
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY >= 360) {
-        setNavScroll(true);
-      } else {
-        setNavScroll(false);
-      }
-    };
+  const navigate = useNavigate();
 
+  //Handle Search
+  const handleSearch = useCallback(() => {
+    console.log("handleSearch");
+    if (search.trim()) {
+      navigate(`/products/${search}`);
+    } else {
+      navigate(`/products`);
+    }
+  }, [search, navigate]);
+
+  // Handle Scroll Animation
+  const handleScroll = useCallback(() => {
+    if (window.scrollY >= 360) {
+      setNavScroll(true);
+    } else {
+      setNavScroll(false);
+    }
+  });
+
+  useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -35,14 +52,12 @@ const Header = () => {
       <header
         id="header"
         className={cn(
-          `
-         w-[100%] border-b border-solid border-[#d1d5db] h-[70px] md:h-[74px]`,
+          `w-[100%] border-b border-solid border-[#d1d5db] h-[70px] md:h-[74px]`,
           navScroll ? "header_animation" : ""
         )}
       >
         <div className="container py-[8px] flex items-center justify-between ">
           {/* Logo */}
-
           <div className="logo">
             <Link to="/">
               <Image
@@ -53,44 +68,12 @@ const Header = () => {
             </Link>
           </div>
 
-          <div
-            className={cn(
-              `search_box w-[100%] 
-            transition-transform fixed top-0 h-[100vh] z-10 left-0  bg-[white] flex items-center justify-center md:z-0 md:translate-y-[0] md:max-w-[400px] md:h-[100%] md:static md:bg-transparent`,
-              searchModel ? "translate-y-[0] " : "translate-y-[-100vh] "
-            )}
-          >
-            <div
-              className="absolute top-[20px] flex justify-center items-center border-[1px] border-solid border-[#c5c5c5ed] md:hidden cursor-pointer text-[20px] bg-[#1f293717] p-[10px] rounded-[6px] left-[15px]"
-              onClick={() => {
-                setSearchModel(false);
-                console.log((document.body.style.overflow = "auto"));
-              }}
-            >
-              <FaArrowLeft />
-            </div>
-            <div
-              className={`flex w-[100%] relative overflow-hidden border-solid border-[1px] h-[44px] bg-[#f9fafb] 
-           border-[#d1d5db!important]
-           rounded-[6px] 
-                [15px] md:m-[0px] `}
-            >
-              <p className="absolute left-[8px] top-0 h-[100%] flex items-center justify-center text-[20px]  text-[#2b3445]">
-                <IoMdSearch />
-              </p>
-              <input
-                type="text"
-                name="search"
-                id="seach"
-                placeholder={"Search Your Product"}
-                className={`w-[100%] h-[100%] outline-none  font-Poppins text-[16px] text-black placeholder:font-Poppins placeholder:text-[15px] placeholder:font-[200] placeholder:text-gray-400 dark:placeholder-gray-400 `}
-                style={{
-                  paddingLeft: "40px",
-                  paddingRight: "20px",
-                }}
-              />
-            </div>
-          </div>
+          <SearchBox
+            setSearch={setSearch}
+            searchModel={searchModel}
+            setSearchModel={setSearchModel}
+            onKeyPress={(e) => e.key === "Enter" && handleSearch()}
+          />
           {/* NavLinks */}
           <ul className=" gap-[34px] font-PoppinsBold hidden md:flex">
             {NAV.Links.map((item, index) => (

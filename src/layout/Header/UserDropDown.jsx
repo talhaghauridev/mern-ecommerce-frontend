@@ -6,7 +6,6 @@ import { TbLogout } from "react-icons/tb";
 import { Link } from "react-router-dom";
 
 const UserDropDown = () => {
-    console.log("UserDropDown");
   return (
     <Dropdown>
       <Dropdown.Button>
