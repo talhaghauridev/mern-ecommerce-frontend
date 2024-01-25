@@ -22,7 +22,7 @@ const ProductList = () => {
         <ProductCard product={product} />
         <ProductCard product={product} />
 
-        {/* <ProductLoading /> */}
+        <ProductLoading />
       </div>
     </section>
   );
