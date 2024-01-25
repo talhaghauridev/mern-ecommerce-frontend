@@ -55,7 +55,7 @@ const FilterSidebar = () => {
         boxShadow: "0px 0px 6px -4px",
       }}
     >
-      <div className="sidebar w-full h-full ">
+      <div className="sidebar w-full h-full py-[10px] ">
         <div className="sidebar_heading border-b border-solid border-[#d7d6d6b5] py-[10px] px-[15px] flex items-center justify-between">
           <h1 className="text-[#2b3445] font-semibold text-[22px]">Filter</h1>
           <span
