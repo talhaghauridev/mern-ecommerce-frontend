@@ -1,11 +1,10 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
+import React from "react";
+import useProductDetial from "./hooks/useProductDetial";
 
 const ProductDetails = () => {
-    const {productId} = useParams();
-  return (
-    <div>ProductDetails{productId}</div>
-  )
-}
+  const { data } = useProductDetial();
+  console.log(data);
+  return <div>ProductDetails{productId}</div>;
+};
 
-export default ProductDetails
+export default ProductDetails;

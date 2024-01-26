@@ -37,7 +37,10 @@ const Header = () => {
     if (window.scrollY >= 360) {
       setNavScroll(true);
     } else {
-      setNavScroll(false);
+      if (window.scrollY <= 80) {
+        setNavScroll(false);
+      }
+      console.log(window.screenTop);
     }
   });
 

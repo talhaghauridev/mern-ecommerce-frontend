@@ -4,7 +4,10 @@ import { hero } from "@assets/images";
 
 export const Hero = () => {
   return (
-    <section id="hero " className="w-[100%] h-[100%]">
+    <section
+      id="hero "
+      className="w-[100%] h-[100%] bg-white border-b border-solid border-[#ededed]  "
+    >
       <div className="container grid grid-cols-1  md:grid-cols-2 py-[75px] sm:py-[90px] gap-[40px]">
         {/* Banner Info  */}
         <div className=" h-[100%] flex items-start justify-center flex-col gap-[10px]">

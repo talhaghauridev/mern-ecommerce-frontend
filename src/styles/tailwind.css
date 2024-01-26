@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .container {
+    @apply max-w-[1250px] m-auto w-[100%] h-[100%] px-[15px];
+  }
+  .form {
+    @apply w-full bg-[white] max-w-[470px] m-auto py-[30px] sm:py-[35px] sm:px-[40px] px-[25px] flex items-center justify-center flex-col  gap-y-[20px] relative;
+  }
+  .form_heading {
+    @apply font-PoppinsBold text-[35px] font-[900] text-[#2b3445] text-center;
+  }
+}

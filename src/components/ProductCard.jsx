@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Image } from "@components/ui";
 import { hero } from "@assets/images";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ( product ) => {
   const { _id, name, images, price, ratings, numOfReviews } = product;
 
   return (
@@ -13,20 +13,20 @@ const ProductCard = ({ product }) => {
       to={`/product/${_id}`}
       className="flex items-center justify-center flex-col relative overflow-hidden gap-[6px] bg-white rounded-md shadow-md pb-[5px] cursor-pointer max-w-[300px] h-[350px]"
       style={{
-        boxShadow: "0px 0px 3px rgb(3 0 71 / 18%)",
+        boxShadow: "rgba(3, 0, 71, 0.18) 0px 0px 6px",
       }}
     >
       <div className="relative overflow-hidden h-full w-full">
         <Image
-          src={hero}
+          src={images}
           alt={name}
           draggable="false"
-          className="transition-all duration-200 ease-in w-full h-full object-contain max-w-300"
+          className="transition-all duration-200 ease-in w-full h-full max-w-[300px] object-cover"
         />
       </div>
       <div className="flex flex-col gap-[8px] items-start justify-center w-[100%] px-[15px] py-[5px]">
         <h1 className="text-gray-800 font-semibold text-[18px] text-center mb-0 mt-0 whitespace-normal">
-          {capitalize(name)}
+          {name}
         </h1>
 
         <div className="flex items-center justify-between gap-[4px]">

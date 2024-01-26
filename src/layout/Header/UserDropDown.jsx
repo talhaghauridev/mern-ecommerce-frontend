@@ -5,7 +5,16 @@ import { Dropdown, Image } from "@components/ui";
 import { TbLogout } from "react-icons/tb";
 import { Link } from "react-router-dom";
 
+const DropdownUserItem = memo((item) => (
+  <Link to={item.path} key={item.path}>
+    <Dropdown.Item>
+      <span className="text-[15px] md:text-[18px]">{item.icon}</span>
+      {item.name}
+    </Dropdown.Item>
+  </Link>
+));
 const UserDropDown = () => {
+  const role = "user";
   return (
     <Dropdown>
       <Dropdown.Button>
@@ -16,16 +25,16 @@ const UserDropDown = () => {
         />
       </Dropdown.Button>
       <Dropdown.List>
-        {USER_DROPDOWN_LINKS.map((item) => (
-          <Link to={item.path} key={item.path}>
-            <Dropdown.Item>
-              {item.icon}
-              {item.name}
-            </Dropdown.Item>
-          </Link>
-        ))}
+        {role !== "admin"
+          ? USER_DROPDOWN_LINKS.filter((item) => item.name !== "Dashboard").map(
+              (item) => <DropdownUserItem {...item} key={item.path} />
+            )
+          : USER_DROPDOWN_LINKS.map((item) => (
+              <DropdownUserItem {...item} key={item.path} />
+            ))}
+
         <Dropdown.Item>
-          <TbLogout />
+          <TbLogout className="text-[15px] md:text-[18px]" />
           Logout
         </Dropdown.Item>
       </Dropdown.List>

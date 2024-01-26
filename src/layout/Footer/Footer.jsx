@@ -65,7 +65,7 @@ const Footer = () => {
             ))}
           </div>
 
-          <div class="border-t py-8 text-center text-sm text-gray-400">
+          <div class="border-t py-[22px] text-center text-sm text-gray-400">
             © 2024 - Present cyber. All rights reserved.
           </div>
         </div>
