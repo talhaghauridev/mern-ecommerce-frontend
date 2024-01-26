@@ -8,7 +8,7 @@ const Error = ({ message = "Application Error" }) => {
         <Image
           src={ErrorImage}
           alt={"Error"}
-          className={"w-[100%] object-contain max-w-[15px]"}
+          className={"w-[100%] object-contain max-w-[150px] md:max-w-[160px]"}
         />
         <p>{message}</p>
       </div>

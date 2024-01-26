@@ -1,31 +1,27 @@
 import { useGetProductDetailsQuery } from "@redux/api/productApi";
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const useProductDetial = () => {
+const useProductDetail = () => {
   const { productId } = useParams();
 
-  const handleFetch = useCallback(() => {
-    return useGetProductDetailsQuery(productId);
-  }, [productId]);
-  const { isError, isLoading, data, error } = useCallback(
-    () => handleFetch(),
-    [productId]
-  );
+  const { isError, isLoading, data, error } =
+    useGetProductDetailsQuery(productId);
+
   useEffect(() => {
     if (isError) {
-        console.log(error?.data?.message);
-      return toast.error(error?.data?.message);
+      console.log(error?.data?.message);
+      toast.error(error?.data?.message);
     }
-    handleFetch();
-  }, [productId]);
+  }, [isError, error]);
+
   return {
-    data,
+    product:data?.product,
     error,
     isLoading,
     isError,
   };
 };
 
-export default useProductDetial;
+export default useProductDetail;
