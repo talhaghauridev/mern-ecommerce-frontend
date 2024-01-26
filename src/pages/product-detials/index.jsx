@@ -1,14 +1,15 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import useProductDetial from "./hooks/useProductDetial";
-import Detials from "./components/Detials";
 import ProductDetialSkelton from "./components/ProductDetialSkelton";
-
+const Detials = lazy(() => import("./components/Detials"));
 const ProductDetails = () => {
   const { product, isLoading } = useProductDetial();
   return (
     <>
-      {isLoading && <ProductDetialSkelton />}
-      {product && !isLoading && <Detials product={product} />}
+      <Suspense fallback={<ProductDetialSkelton />}>
+        {isLoading && <ProductDetialSkelton />}
+        {product && !isLoading && <Detials product={product} />}
+      </Suspense>
     </>
   );
 };
