@@ -7,7 +7,7 @@ const ProductList = lazy(() => import("./components/ProductList"));
 const Products = () => {
   return (
     <main id="products" className="relative">
-      <div className="container py-[90px] md:grid-cols-[1fr!important]">
+      <div className="container py-[90px]">
         <Suspense fallback={<SidebarLoading />}>
           <FilterSidebar />
         </Suspense>

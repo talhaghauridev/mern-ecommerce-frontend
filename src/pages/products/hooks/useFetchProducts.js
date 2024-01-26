@@ -1,7 +1,20 @@
 import React, { useEffect } from "react";
 import { useGetProductQuery } from "@redux/api/productApi";
 import { toast } from "react-toastify";
-const useFetchProducts = () => {
+const useFetchProducts = ({
+  keyword = "",
+  page = 1,
+  price = [0, 25000],
+  category="",
+  ratings = "",
+}) => {
+  console.log(
+    (keyword = ""),
+    (page = 1),
+    (price = [0, 25000]),
+    category,
+    (ratings = "")
+  );
   const { data, isLoading, error, isError } = useGetProductQuery({});
 
   useEffect(() => {

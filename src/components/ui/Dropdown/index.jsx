@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useMemo } from "react";
-import {useClickOutside , useToggle } from "@hooks/hook";
+import { useClickOutside, useToggle } from "@hooks/hook";
 import cn from "@utils/cn";
 
 const DropdownContext = createContext();
@@ -48,7 +48,7 @@ const Button = React.memo(({ children, className = "", ...props }) => {
 });
 
 const List = React.memo(({ children, className = "", ...props }) => {
-const {isDropdownOpen} = useDropdownContext()
+  const { isDropdownOpen } = useDropdownContext();
   return (
     <>
       {isDropdownOpen && (
@@ -83,10 +83,8 @@ const Item = React.memo(({ children, className = "", ...props }) => {
   );
 });
 
-
-Dropdown.Button = Button
+Dropdown.Button = Button;
 Dropdown.List = List;
 Dropdown.Item = Item;
-
 
 export default Dropdown;
