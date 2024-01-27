@@ -1,6 +1,7 @@
 import { useMessage } from "@hooks/hook";
 import { useForgotPasswordMutation } from "@redux/api/userApi";
 import { useFormik } from "formik";
+import { forgotSchema } from "../validation";
 
 const useForgotPassword = () => {
   const initialValues = {
@@ -13,7 +14,6 @@ const useForgotPassword = () => {
   ] = useForgotPasswordMutation();
 
   const handleForgot = async (values) => {
-    console.log("For");
     try {
       await forgotPassword(values);
     } catch (err) {

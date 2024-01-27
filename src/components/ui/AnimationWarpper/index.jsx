@@ -1,7 +1,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import cn from "../../../utils/cn";
 import { memo } from "react";
+import cn from "@utils/cn";
 
 const AnimationWrapper = ({
   children,
@@ -9,7 +9,7 @@ const AnimationWrapper = ({
   animate = { opacity: 1 },
   transition = { duration: 1 },
   className = "",
-  key = "",
+  key = 1,
   style = {},
 }) => {
   return (
@@ -20,7 +20,7 @@ const AnimationWrapper = ({
           initial={initial}
           animate={animate}
           transition={transition}
-          className={cn(`max-w-fit `,className)}
+          className={cn(`max-w-fit `, className)}
           style={style}
         >
           {children}

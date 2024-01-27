@@ -9,11 +9,11 @@ const ResetPassword = () => {
 
   return (
     <>
+      {isLoading && <BackDrop isOpen={isLoading} />}
       <MetaData title={"Confirm Password"} />
-      <BackDrop isOpen={isLoading} />
       <section id="forgotPassword">
-        <div className="container">
-          <form onSubmit={handleSubmit}>
+        <div className="form_container">
+          <form onSubmit={handleSubmit} className="form">
             {/* Input Password */}
             <Input
               label="Password"
@@ -32,11 +32,7 @@ const ResetPassword = () => {
               error={inputError(formik, "confirmPassword")}
               {...getFieldProps("confirmPassword")}
             />
-            <Button
-              type="submit"
-              onSubmit={handleSubmit}
-              className={"bg-slate-600"}
-            >
+            <Button type="submit" className="max-w-full mt-2">
               Submit
             </Button>
           </form>

@@ -77,12 +77,12 @@ const FilterSidebar = () => {
       <aside
         id="productSidebar"
         className={cn(
-          "md:h-min bg-white w-full max-w-[240px] flex flex-col items-center justify-start md:static fixed top-[0px] left-0 h-[100vh] md:overflow-hidden overflow-y-auto overflow-x-hidden z-10 md:z-[0] transition-all",
+          "md:h-min bg-white w-full max-w-[240px] md:flex flex-col items-center justify-start md:static fixed top-[0px] left-0 h-[100vh] md:overflow-hidden overflow-y-auto overflow-x-hidden z-10 md:z-[0] transition-all",
           isMobile
             ? toggle
               ? "translate-x-[0px]"
               : "translate-x-[-240px]"
-            : "transform-none"
+            : "transform-none hidden "
         )}
       >
         <div className="sidebar w-full h-full py-[10px] ">

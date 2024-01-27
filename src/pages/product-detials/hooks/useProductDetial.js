@@ -6,12 +6,12 @@ import { toast } from "react-toastify";
 const useProductDetail = () => {
   const { productId } = useParams();
 
-  const { isError, isLoading, data, error } =
+  const { isError, isLoading, data, error,status } =
     useGetProductDetailsQuery(productId);
 
   useEffect(() => {
     if (isError) {
-      console.log(error?.data?.message);
+      console.log(error?.data?.message,status);
       toast.error(error?.data?.message);
     }
   }, [isError, error]);

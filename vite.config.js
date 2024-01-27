@@ -8,18 +8,18 @@ const alias = {
   "@pages": "/src/pages", // Updated alias for @pages
   "@utils": "/src/utils",
   "@layout": "/src/layout",
+  "@lib": "/src/lib",
   "@constants": "/src/constants",
   "@assets": "/src/assets",
   "@redux": "/src/redux",
   "@routes": "/src/routes",
-
-}
+};
 
 export default defineConfig({
   base: "/",
   plugins: [react()],
   resolve: {
-    alias
+    alias,
   },
   build: {
     outDir: "dist",

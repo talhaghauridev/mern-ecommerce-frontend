@@ -8,19 +8,21 @@ import { IoMdSearch } from "react-icons/io";
 import { useState, useEffect, useCallback } from "react";
 import { NAV } from "@constants";
 import { Logo } from "@assets/images";
-import { Image } from "@components/ui";
+import { Image, Select } from "@components/ui";
 import BottomNavigation from "@layout/Header/BottomNavigation";
 import { useScroll, useToggle } from "@hooks/hook";
 import cn from "@utils/cn";
 import UserDropDown from "./UserDropDown";
 import SearchBox from "./SearchBox";
+import { useSelector } from "react-redux";
 const Header = () => {
   const [search, setSearch] = useState("");
   const { pathname } = useLocation();
-  const [isAuth, setIsAuth] = useState(true);
   const [navScroll, setNavScroll] = useState(false);
   const [searchModel, setSearchModel] = useState(false);
+  const { userInfo } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  console.log(userInfo);
 
   //Handle Search
   const handleSearch = useCallback(() => {
@@ -50,6 +52,7 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  console.log(userInfo ? "h" : "b");
   return (
     <>
       <header
@@ -100,16 +103,18 @@ const Header = () => {
                 key={index}
                 className={cn(
                   "cart_icon text-[21px] md:text-[24px] text-[#2b3445eb] ",
-                  isAuth && item.path === "/login" ? "hidden" : "flex"
+                  userInfo && item.path === "/login" ? "hidden" : "flex"
                 )}
               >
                 {item.icon}
               </Link>
             ))}
-            {isAuth && <UserDropDown />}
+
+            {userInfo && <UserDropDown />}
           </div>
         </div>
       </header>
+
       <BottomNavigation setSearchModel={setSearchModel} />
     </>
   );

@@ -7,8 +7,8 @@ const ProductLoading = ({ length = 2 }) => {
   const MemoizedProductSkeleton = useCallback(() => <ProductSkeleton />, []);
   return (
     <>
-      {loadingArr?.map((item) => (
-        <MemoizedProductSkeleton key={item} />
+      {loadingArr?.map((item, index) => (
+        <MemoizedProductSkeleton key={index} />
       ))}
     </>
   );

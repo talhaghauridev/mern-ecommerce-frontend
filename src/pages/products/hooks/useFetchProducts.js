@@ -5,7 +5,7 @@ const useFetchProducts = ({
   keyword = "",
   page = 1,
   price = [0, 25000],
-  category="",
+  category = "",
   ratings = "",
 }) => {
   console.log(
@@ -20,12 +20,12 @@ const useFetchProducts = ({
   useEffect(() => {
     if (isError) {
       console.log(error?.data?.message);
-      return toast.error(error?.data?.message);
+      toast.error(error?.data?.message);
     }
   }, [isError, error]);
 
   return {
-    products: data?.products,
+    products: data && data?.products,
     isLoading,
     error,
     isError,

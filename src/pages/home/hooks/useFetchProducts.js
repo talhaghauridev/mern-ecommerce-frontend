@@ -6,12 +6,12 @@ const useFetchProducts = () => {
 
   useEffect(() => {
     if (isError) {
-      return toast.error(error?.data?.message);
+       toast.error(error?.data?.message);
     }
   }, [isError, error]);
 
   return {
-    products: data?.products,
+    products: data && data?.products,
     isLoading,
     error,
     isError,

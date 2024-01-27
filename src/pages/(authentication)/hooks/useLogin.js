@@ -1,25 +1,34 @@
-
-import { useLoginMutation }  from "@redux/api/userApi";
+import { useLoginMutation } from "@redux/api/userApi";
 import { useFormik } from "formik";
 import { loginSchema } from "../validation";
 import { useMessage } from "@hooks/hook";
+import { useCallback, useEffect, useMemo } from "react";
+import { setCredentials } from "@redux/reducers/userReducer";
+import { useDispatch } from "react-redux";
 
 const useLogin = () => {
   //Initial Values
-  const initialValues = {
-    email: "",
-    password: "",
-  };
+  const initialValues = useMemo(
+    () => ({
+      email: "",
+      password: "",
+    }),
+    []
+  );
+  console.log("useLogin");
   const [login, { isError, isLoading, isSuccess, error, data }] =
     useLoginMutation();
-
-  const handleLogin = async (userData) => {
-    try {
-      await login(userData);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const dispatch = useDispatch();
+  const handleLogin = useCallback(
+    async (userData) => {
+      try {
+        await login(userData);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    [login]
+  );
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -29,11 +38,16 @@ const useLogin = () => {
     },
   });
 
-  useMessage(isSuccess && "User login successfully", error, "/");
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(setCredentials(data));
+      console.log(data);
+    }
+  console.log("useLogin useEffect");
 
-  if (isSuccess) {
-    Cookies.set("token", data?.token);
-  }
+  }, [isSuccess, data, dispatch]);
+
+  useMessage(isSuccess && "User login successfully", error, "/");
 
   return {
     formik,

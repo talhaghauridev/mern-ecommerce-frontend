@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useMemo } from "react";
+import React, { createContext, memo, useContext, useMemo } from "react";
 import { useClickOutside, useToggle } from "@hooks/hook";
 import cn from "@utils/cn";
 
@@ -14,7 +14,7 @@ const useDropdownContext = () => {
   return context;
 };
 
-const Dropdown = React.memo(({ children }) => {
+const Dropdown = memo(({ children }) => {
   const { toggle, handleToggle, setToggle } = useToggle(false);
   const ref = useClickOutside(() => setToggle(false));
 
@@ -32,7 +32,7 @@ const Dropdown = React.memo(({ children }) => {
   );
 });
 
-const Button = React.memo(({ children, className = "", ...props }) => {
+const Button = memo(({ children, className = "", ...props }) => {
   const { toggleDropdown } = useDropdownContext();
 
   return (
@@ -47,7 +47,7 @@ const Button = React.memo(({ children, className = "", ...props }) => {
   );
 });
 
-const List = React.memo(({ children, className = "", ...props }) => {
+const List = memo(({ children, className = "", ...props }) => {
   const { isDropdownOpen } = useDropdownContext();
   return (
     <>
@@ -69,7 +69,7 @@ const List = React.memo(({ children, className = "", ...props }) => {
   );
 });
 
-const Item = React.memo(({ children, className = "", ...props }) => {
+const Item = memo(({ children, className = "", ...props }) => {
   return (
     <li
       className={cn(

@@ -6,25 +6,20 @@ const initialState = {
     : null,
 };
 
-const userSlice = createSlice({
+export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
     setCredentials: (state, action) => {
+      console.log(action);
       state.userInfo = action.payload;
       localStorage.setItem("userInfo", JSON.stringify(action.payload));
-
-      const expirationTime = Date.now() + 30 * 24 * 60 * 60 * 1000;
-      localStorage.setItem("expirationTime", expirationTime);
     },
     logout: (state) => {
       state.userInfo = null;
       localStorage.removeItem("userInfo");
-      localStorage.removeItem("expirationTime");
     },
   },
 });
 
 export const { setCredentials, logout } = userSlice.actions;
-
-export default userSlice.reducer;

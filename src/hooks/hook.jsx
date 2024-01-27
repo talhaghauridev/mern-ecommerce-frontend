@@ -95,26 +95,25 @@ const useInView = (options = {}) => {
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       const [firstEntry] = entries;
-      if (firstEntry.isIntersecting) {
+      if (firstEntry?.isIntersecting) {
         setIsVisible(true);
-        observer.unobserve(targetRef?.current);
+        observer?.unobserve(targetRef?.current);
       }
     }, options);
 
     if (targetRef?.current) {
-      observer.observe(targetRef?.current);
+      observer?.observe(targetRef?.current);
     }
 
     return () => {
       if (targetRef?.current) {
-        observer.unobserve(targetRef?.current);
+        observer?.unobserve(targetRef?.current);
       }
     };
   }, [options]);
 
   return { ref: targetRef, isVisible };
 };
-
 
 const useInputError = (formik, name) => {
   const inputError = useMemo(() => {
@@ -128,16 +127,19 @@ const useInputError = (formik, name) => {
 
 const useMessage = (message, error, redirect = "") => {
   const navigate = useNavigate();
+
   useEffect(() => {
-    if (error) {
-      toast.error(error?.data?.message || error?.error);
+    if (error && error.data && error?.data?.message) {
+      toast.error(error?.data?.message);
+    } else if (error && error?.error) {
+      toast.error(error?.error);
     }
 
     if (message) {
       toast.success(message);
       redirect && navigate(redirect);
     }
-  }, [error, message]);
+  }, [error, message, navigate, redirect]);
 };
 
 const useClickOutside = (callback) => {
@@ -178,18 +180,16 @@ const useScroll = () => {
 
   useEffect(() => {
     // Attach the memoized event listener when the component mounts
-    window.addEventListener('scroll', handleScrollMemoized);
+    window.addEventListener("scroll", handleScrollMemoized);
 
     // Detach the event listener when the component unmounts
     return () => {
-      window.removeEventListener('scroll', handleScrollMemoized);
+      window.removeEventListener("scroll", handleScrollMemoized);
     };
   }, [handleScrollMemoized]); // Dependency array includes the memoized function
 
   return scrollPosition;
 };
-
-
 
 export {
   useToggle,
@@ -200,5 +200,5 @@ export {
   useInputError,
   useMessage,
   useClickOutside,
-  useScroll
+  useScroll,
 };

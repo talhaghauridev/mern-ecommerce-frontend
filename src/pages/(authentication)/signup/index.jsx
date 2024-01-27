@@ -10,25 +10,30 @@ import {
 } from "@components/ui";
 import { useUpload } from "@hooks/hook";
 import useSignup from "../hooks/useSignup";
-
+import { avatar } from "@assets/images";
+import { Link } from "react-router-dom";
+import { MdAlternateEmail } from "react-icons/md";
+import { RiLockPasswordLine } from "react-icons/ri";
 const SignUp = () => {
   const { formik, isLoading } = useSignup();
   const { handleSubmit, getFieldProps } = formik;
   const { handleFileChange, image } = useUpload();
-  console.log(formik);
-
+  console.log(formik, image);
   return (
     <>
-      <BackDrop isOpen={isLoading} />
+      {isLoading && <BackDrop isOpen={isLoading} />}
 
       <MetaData title={"SignUp"} />
       <section id="signup">
-        <div className="container">
+        <div className="form_container">
           <form
             className="form"
             onSubmit={handleSubmit}
             encType="multipart/form-data"
           >
+            <div className="form_heading">
+              <h1>SignUp</h1>
+            </div>
             {/* Name Input  */}
             <Input
               label="Name"
@@ -45,6 +50,7 @@ const SignUp = () => {
               type="email"
               placeholder="Enter your email"
               name="email"
+              leftIcon={MdAlternateEmail}
               {...getFieldProps("email")}
               error={inputError(formik, "email")}
             />
@@ -55,24 +61,37 @@ const SignUp = () => {
               type="password"
               placeholder="Enter your password"
               name="password"
+              leftIcon={RiLockPasswordLine}
               {...getFieldProps("password")}
               error={inputError(formik, "password")}
             />
 
             {/* Input InputUpload */}
-            <InputUpload
-              name={"avatar"}
-              label={"Avatar"}
-              onChange={(event) => {
-                handleFileChange(event);
-               image && formik.setFieldValue("avatar", image && image[0]);
-              }}
-            />
-            <Image src={image} alt="avatar" />
-            <div>{inputError(formik, "avatar")}</div>
+            <div className="upload_input">
+              <Image className="upload_avatar" src={avatar} alt="avatar" />
+              <InputUpload
+                name={"avatar"}
+                label={"Upload Avatar"}
+                onChange={(event) => {
+                  handleFileChange(event);
+                  image && formik.setFieldValue("avatar", image && image[0]);
+                }}
+              />
 
-            <Button type="submit" className={"bg-slate-600"}>
+              <div>{inputError(formik, "avatar")}</div>
+            </div>
+            <Button type="submit" className="max-w-full mt-2">
               Submit
+            </Button>
+
+            <Button
+              className="max-w-full font-Sans gap-1 mt-1 border-0"
+              variants={"outline"}
+            >
+              Already have an account?
+              <Link to="/login" className="underline">
+                Login
+              </Link>
             </Button>
           </form>
         </div>

@@ -37,6 +37,22 @@
 #productSidebar {
   box-shadow: 0px 0px 6px -4px;
 }
+
+.upload_input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 100%;
+}
+
+.upload_avatar {
+  border-radius: 50%;
+  max-width: 100%;
+  height: 50px;
+  width: 50px;
+  margin-right: 15px;
+}
 #home .home_heading {
   position: relative;
   overflow: hidden;

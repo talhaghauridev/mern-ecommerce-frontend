@@ -1,22 +1,23 @@
+import React,{memo} from "react";
 import { cva } from "class-variance-authority";
-import React from "react";
-import { memo } from "react";
 import cn from "@utils/cn";
 
 export const buttonVariants = cva(
-  "w-[100%] max-w-[100px] flex item-center justify-center relative  ",
+  "w-[100%] flex item-center justify-center relative font-Sans rounded-[4px] font-[600]",
   {
     variants: {
       variants: {
-        primary: "bg-primary-blue text-white rounded-full mt-10",
+        primary: "bg-[#D23F57!important] text-white",
         outline:
-          "bg-[#f3f5f9] rounded-[4px] min-w-[130px] border-solid border-[#dcdcdc94] text-[15px] text-[#2b3445] border-[1px]",
-        danger: "bg-[] text-white rounded-full mt-10 ",
+          "bg-transparent border-solid border-[#dcdcdc94]  text-[#2b3445] border-[1px]",
+        danger:
+          "bg-[#f3f5f9] border-solid border-[#dcdcdc94]  text-[#2b3445] border-[1px] text-[#2b3445] ",
+        dark: "",
       },
       size: {
-        lg: "text-[22px] py-[10px] px-[8px] max-w-[200px]",
-        md: "text-[18px] py-[8px] px-[6px] max-w-[150px]",
-        sm: "text-[16px] py-[6px] px-[4px] max-w-[90px]",
+        lg: "text-[18px] py-[12px] px-[8px] max-w-[200px]",
+        md: "text-[14px] sm:text-[16px] py-[10px] px-[6px] max-h-fit h-fit max-w-[150px]",
+        sm: "text-[14px] py-[8px] px-[4px] max-w-[90px]",
       },
     },
     defaultVariants: {
@@ -28,7 +29,6 @@ export const buttonVariants = cva(
 
 const Button = React.forwardRef(
   ({ size, variants, className, ...props }, ref) => {
-    console.log("Button");
     return (
       <button
         {...props}

@@ -6,10 +6,13 @@
   .container {
     @apply max-w-[1250px] m-auto w-[100%] h-[100%] px-[15px];
   }
+  .form_container {
+    @apply max-w-[1250px] mx-auto w-full h-full py-[50px] sm:py-[80px] px-[15px] sm:px-[25px] md:px-[35px];
+  }
   .form {
-    @apply w-full bg-[white] max-w-[470px] m-auto py-[30px] sm:py-[35px] sm:px-[40px] px-[25px] flex items-center justify-center flex-col  gap-y-[20px] relative;
+    @apply w-full bg-[white] max-w-[470px] m-auto py-[30px] sm:py-[35px] px-[15px] sm:px-[40px] md:px-[25px] flex items-center justify-center flex-col  gap-y-[20px] relative;
   }
   .form_heading {
-    @apply font-PoppinsBold text-[35px] font-[900] text-[#2b3445] text-center;
+    @apply font-Sans mb-1 text-[30px] sm:text-[35px] font-[900] text-[#2b3445] text-center;
   }
 }

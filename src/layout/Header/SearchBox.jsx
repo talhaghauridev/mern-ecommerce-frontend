@@ -13,7 +13,7 @@ const SearchBox = ({ setSearch, searchModel, setSearchModel, ...props }) => {
   return (
     <div
       className={cn(
-        `search_box w-[100%] 
+        `search_box px-[15px] sm:px-[0] w-[100%] 
             transition-transform fixed top-0 h-[100vh] z-10 left-0  bg-[white] flex items-center justify-center md:z-0 md:translate-y-[0] md:max-w-[400px] md:h-[100%] md:static md:bg-transparent`,
         searchModel ? "translate-y-[0] " : "translate-y-[-100vh] "
       )}

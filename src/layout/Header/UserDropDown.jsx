@@ -1,9 +1,11 @@
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import { USER_DROPDOWN_LINKS } from "@constants/index";
 import { avatar } from "@assets/images";
 import { Dropdown, Image } from "@components/ui";
 import { TbLogout } from "react-icons/tb";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import useLogout from "@hooks/useLogout";
 
 const DropdownUserItem = memo((item) => (
   <Link to={item.path} key={item.path}>
@@ -13,8 +15,16 @@ const DropdownUserItem = memo((item) => (
     </Dropdown.Item>
   </Link>
 ));
+
 const UserDropDown = () => {
-  const role = "user";
+  const { userInfo } = useSelector((state) => state.user);
+  const { isLoading, handleLogout } = useLogout();
+  const filteredLinks = useMemo(() => {
+    return userInfo?.role !== "admin"
+      ? USER_DROPDOWN_LINKS.filter((item) => item.name !== "Dashboard")
+      : USER_DROPDOWN_LINKS;
+  }, [userInfo?.user?.role]);
+
   return (
     <Dropdown>
       <Dropdown.Button>
@@ -25,15 +35,10 @@ const UserDropDown = () => {
         />
       </Dropdown.Button>
       <Dropdown.List>
-        {role !== "admin"
-          ? USER_DROPDOWN_LINKS.filter((item) => item.name !== "Dashboard").map(
-              (item) => <DropdownUserItem {...item} key={item.path} />
-            )
-          : USER_DROPDOWN_LINKS.map((item) => (
-              <DropdownUserItem {...item} key={item.path} />
-            ))}
-
-        <Dropdown.Item>
+        {filteredLinks?.map((item) => (
+          <DropdownUserItem {...item} key={item.path} />
+        ))}
+        <Dropdown.Item onClick={handleLogout}>
           <TbLogout className="text-[15px] md:text-[18px]" />
           Logout
         </Dropdown.Item>
