@@ -6,6 +6,8 @@ import { TbLogout } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useLogout from "@hooks/useLogout";
+import { useLogoutQuery } from "@redux/api/userApi";
+import { useMessage } from "@hooks/hook";
 
 const DropdownUserItem = memo((item) => (
   <Link to={item.path} key={item.path}>
@@ -18,7 +20,11 @@ const DropdownUserItem = memo((item) => (
 
 const UserDropDown = () => {
   const { userInfo } = useSelector((state) => state.user);
-  const { isLoading, handleLogout } = useLogout();
+  const { handleLogout } = useLogout();
+
+  const { isLoading, error, data } = useLogoutQuery();
+  useMessage(data?.message, error);
+
   const filteredLinks = useMemo(() => {
     return userInfo?.role !== "admin"
       ? USER_DROPDOWN_LINKS.filter((item) => item.name !== "Dashboard")
