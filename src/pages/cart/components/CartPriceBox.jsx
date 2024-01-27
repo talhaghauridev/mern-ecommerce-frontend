@@ -5,12 +5,12 @@ const CartPriceBox = () => {
   const cartItems = [{}];
   return (
     <div
-      className="bg-white rounded-[8px] relative"
+      className="bg-white rounded-[8px] relative max-w-[200px]"
       style={{
         boxShadow: "rgba(3, 0, 71, 0.09) 0px 1px 3px",
       }}
     >
-      <div className="py-[50] px-[30] flex flex-col gap-y-[30px]">
+      <div className="py-[50px] px-[30px] flex flex-col gap-y-[30px]">
         <ul className="flex flex-col gap-y-[14px]">
           <li className="flex items-center justify-between">
             <h2 className="text-[15px] font-Poppins ">Total Products:</h2>

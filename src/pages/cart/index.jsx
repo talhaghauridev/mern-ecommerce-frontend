@@ -29,7 +29,7 @@ const Cart = () => {
   return (
     <>
       <MetaData title="Cart" />
-      <EmptyCart />
+      {/* <EmptyCart /> */}
       <CartPriceBox />
       <section id="cart" className="">
         <div className="container grid"></div>
