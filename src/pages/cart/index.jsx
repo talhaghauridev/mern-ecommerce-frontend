@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import EmptyCart from "./components/EmptyCart";
 import { MetaData } from "@components/ui";
+import CartPriceBox from "./components/CartPriceBox";
 
 const Cart = () => {
   const { cartItems, taxPrice, shippingPrice, totalPrice, itemsPrice } = {
@@ -29,7 +30,8 @@ const Cart = () => {
     <>
       <MetaData title="Cart" />
       <EmptyCart />
-      <section id="cart" className="bg-[#f4f7fa]">
+      <CartPriceBox />
+      <section id="cart" className="">
         <div className="container grid"></div>
       </section>
     </>
