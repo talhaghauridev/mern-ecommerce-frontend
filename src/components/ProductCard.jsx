@@ -11,7 +11,7 @@ const ProductCard = ( product ) => {
   return (
     <Link
       to={`/product/${_id}`}
-      className="flex items-center justify-center flex-col relative overflow-hidden gap-[6px] bg-white rounded-md shadow-md pb-[5px] cursor-pointer max-w-[300px] h-[350px]"
+      className="flex items-center justify-center flex-col relative overflow-hidden gap-[6px] bg-white rounded-md shadow-md pb-[5px] cursor-pointer max-w-[300px] h-[350px] m-auto"
       style={{
         boxShadow: "rgba(3, 0, 71, 0.18) 0px 0px 6px",
       }}

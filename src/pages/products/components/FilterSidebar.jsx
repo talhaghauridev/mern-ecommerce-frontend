@@ -13,7 +13,7 @@ const FilterSidebar = () => {
   const [showValue, setShowValue] = useState({ category: true, ratings: true });
   const { filters, setFilters } = useProductContext();
   const { handleToggle, setToggle, toggle } = useToggle(false);
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isMobile = useMediaQuery("(max-width: 766px)");
 
   //Handle Filters Change
   const handleFiltersChange = useCallback(

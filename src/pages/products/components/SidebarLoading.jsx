@@ -1,11 +1,17 @@
-import { CircularProgress } from "@mui/material";
 import React from "react";
+import { useMediaQuery } from "@hooks/hook";
+import { CircularProgress } from "@mui/material";
+import cn from "@utils/cn";
 
 const SidebarLoading = () => {
+  const isMobile = useMediaQuery("(max-width: 768px)");
   return (
     <aside
       id="productSidebar"
-      className="h-[100vh] w-full max-w-[240px] flex flex-col items-center justify-center  "
+      className={cn(
+        "h-[100vh] w-full max-w-[240px] flex flex-col items-center justify-center",
+        isMobile && "hidden"
+      )}
       style={{
         boxShadow: "0px 0px 6px -4px",
       }}

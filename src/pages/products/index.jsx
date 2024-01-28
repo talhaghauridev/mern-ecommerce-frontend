@@ -11,12 +11,15 @@ const Products = () => {
     <>
       <MetaData title={"Products"} />
       <ProductProvider>
+        
         <Suspense fallback={<SidebarLoading />}>
           <FilterSidebar />
         </Suspense>
+
         <Suspense fallback={<ProductLoading length={8} />}>
           <ProductList />
         </Suspense>
+
       </ProductProvider>
     </>
   );

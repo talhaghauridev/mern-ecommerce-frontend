@@ -5,8 +5,7 @@ import { useProductContext } from "../context/ProductContext";
 const ProductList = () => {
   const { products, isLoading } = useProductContext();
   const isProducts = !products && !isLoading ? false : true;
-  console.log(products);
-  console.log(isLoading);
+
   return (
     <section id="productList">
       <div className={isProducts ? `product_grid` : "product_not_found"}>
