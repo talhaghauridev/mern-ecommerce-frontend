@@ -1,4 +1,4 @@
-import { FILTERS } from "@constants/index";
+import { FILTERS, FILTER_PRICE } from "@constants/index";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import { AiFillStar } from "react-icons/ai";
 import React, { useState, useMemo, useCallback, memo } from "react";
@@ -7,51 +7,54 @@ import { BackDrop, Button } from "@components/ui";
 import { useMediaQuery, useToggle } from "@hooks/hook";
 import { FaFilter } from "react-icons/fa";
 import cn from "@utils/cn";
+import { useProductContext } from "../context/ProductContext";
 
 const FilterSidebar = () => {
-  const [cateValue, setCateValue] = useState(true);
-  const [ratValue, setRatValue] = useState(true);
-  const [price, setPrice] = useState([0, 25000]);
-  const [category, setCategory] = useState(null);
-  const [ratings, setRatings] = useState(null);
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const [showValue, setShowValue] = useState({ category: true, ratings: true });
+  const { filters, setFilters } = useProductContext();
   const { handleToggle, setToggle, toggle } = useToggle(false);
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
-  const handlePriceChange = useCallback((event, newValue) => {
-    setPrice(newValue);
-  }, []);
+  //Handle Filters Change
+  const handleFiltersChange = useCallback(
+    (e, value) => {
+      const { name } = e.target;
+      setFilters({
+        ...filters,
+        [name]: typeof value === "string" ? value.toLowerCase() : value,
+      });
+      if (name === "category" || name === "ratings") {
+        setShowValue((prev) => ({ ...prev, [name]: true }));
+      }
+    },
+    [filters]
+  );
 
-  const handleCategoryChange = useCallback((cate) => {
-    setCategory(cate.toLowerCase());
-    setCateValue(true);
-  }, []);
+  console.log(filters);
 
-  const handleRatingChange = useCallback((rating) => {
-    setRatings(rating);
-    setRatValue(true);
-  }, []);
+  //Handle Filters Reset
+  const handleFiltersReset = useCallback(() => {
+    setFilters({
+      category: "",
+      ratings: null,
+      price: FILTER_PRICE,
+    });
+    setShowValue({ category: false, ratings: false });
+  }, [setFilters]);
 
-  const clearAllHandler = useCallback(() => {
-    console.log("VCCCD");
-    setPrice([0, 25000]);
-    setCategory(null);
-    setRatings(null);
-    setRatValue(false);
-    setCateValue(false);
-  }, []);
-
-  const priceSlider = useMemo(
+  const PriceSlider = useCallback(
     () => (
       <Slider
-        value={price}
-        onChange={handlePriceChange}
+        value={filters.price}
+        onChange={handleFiltersChange}
         valueLabelDisplay="auto"
         getAriaLabel={() => "Price range slider"}
+        name="price"
         min={0}
         max={25000}
       />
     ),
-    [price, handlePriceChange]
+    [filters.price, handleFiltersChange]
   );
 
   const MobileSidebar = useCallback(
@@ -71,6 +74,16 @@ const FilterSidebar = () => {
     [toggle, isMobile]
   );
 
+  const mobileToggle = useMemo(
+    () =>
+      isMobile
+        ? toggle
+          ? "translate-x-[0px]"
+          : "translate-x-[-240px]"
+        : "transform-none hidden ",
+    [isMobile, toggle]
+  );
+
   return (
     <>
       <MobileSidebar />
@@ -78,11 +91,7 @@ const FilterSidebar = () => {
         id="productSidebar"
         className={cn(
           "md:h-min bg-white w-full max-w-[240px] md:flex flex-col items-center justify-start md:static fixed top-[0px] left-0 h-[100vh] md:overflow-hidden overflow-y-auto overflow-x-hidden z-10 md:z-[0] transition-all",
-          isMobile
-            ? toggle
-              ? "translate-x-[0px]"
-              : "translate-x-[-240px]"
-            : "transform-none hidden "
+          mobileToggle
         )}
       >
         <div className="sidebar w-full h-full py-[10px] ">
@@ -90,7 +99,7 @@ const FilterSidebar = () => {
             <h1 className="text-[#2b3445] font-semibold text-[22px]">Filter</h1>
             <span
               className="text-[#2b3445] font-semibold text-[14px] cursor-pointer"
-              onClick={clearAllHandler}
+              onClick={handleFiltersReset}
             >
               Clear All
             </span>
@@ -98,13 +107,13 @@ const FilterSidebar = () => {
 
           <div className="sidebar_slider border-b border-solid border-[#d7d6d6b5] p-[15px]">
             <h1 className="text-[20px]">Price</h1>
-            {priceSlider}
+            <PriceSlider />
             <div className="slider_value_box flex items-center justify-between gap-[15px] text-[15px] mt-[10px] mb-[5px] ">
               <span className="max-w-[75px] py-[6px] px-[5px] w-full text-center bg-[#f9fafb] border border-solid border-[#d7d6d6b5]">
-                {price[0]}
+                {filters.price[0]}
               </span>
               <span className="max-w-[75px] py-[6px] px-[5px] w-full text-center bg-[#f9fafb] border border-solid border-[#d7d6d6b5]">
-                {price[1]}
+                {filters.price[1]}
               </span>
             </div>
           </div>
@@ -116,11 +125,12 @@ const FilterSidebar = () => {
                 {FILTERS.Categories?.map((cate) => (
                   <FormControlLabel
                     label={<span className="text-[15px]">{cate}</span>}
-                    value={cateValue ? cate : null}
+                    value={showValue.category ? cate : null}
                     control={<Radio size="small" />}
                     key={cate}
-                    onChange={() => handleCategoryChange(cate)}
+                    onChange={(e) => handleFiltersChange(e, cate)}
                     size="20px"
+                    name="category"
                   />
                 ))}
               </RadioGroup>
@@ -134,15 +144,15 @@ const FilterSidebar = () => {
                 {FILTERS.Ratings?.map((rat) => (
                   <FormControlLabel
                     key={rat}
-                    value={ratValue ? rat : null}
-                    name="rating"
+                    value={showValue.ratings ? rat : null}
+                    name="ratings"
                     label={
                       <span className="text-[15px] flex items-center">
                         {rat} <AiFillStar /> & above
                       </span>
                     }
                     control={<Radio size="small" />}
-                    onChange={() => handleRatingChange(rat)}
+                    onClick={(e) => handleFiltersChange(e, rat)}
                   />
                 ))}
               </RadioGroup>

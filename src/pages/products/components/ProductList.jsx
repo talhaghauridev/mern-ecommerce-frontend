@@ -1,11 +1,12 @@
 import ProductCard from "@components/ProductCard";
-import { useFetchProducts } from "../hooks/useFetchProducts";
 import ProductLoading from "@components/ProductLoading";
+import { useProductContext } from "../context/ProductContext";
 
 const ProductList = () => {
-  const { products, isLoading } = useFetchProducts({});
+  const { products, isLoading } = useProductContext();
   const isProducts = !products && !isLoading ? false : true;
-
+  console.log(products);
+  console.log(isLoading);
   return (
     <section id="productList">
       <div className={isProducts ? `product_grid` : "product_not_found"}>

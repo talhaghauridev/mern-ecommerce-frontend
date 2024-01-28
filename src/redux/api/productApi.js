@@ -1,3 +1,4 @@
+import { FILTER_PRICE } from "@constants/index";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const productApi = createApi({
@@ -22,25 +23,20 @@ export const productApi = createApi({
       query: ({
         keyword = "",
         page = 1,
-        price = [0, 25000],
+        price = FILTER_PRICE,
         category,
-        ratings = "",
+        ratings = null,
       }) => {
-        let link = `${
-          keyword && `keyword=${keyword}`
-        }&page=${page}&price[gte]=${price[0]}&price[lte]=${price[1]}${
-          ratings && `&ratings[gte]=${ratings}`
-        }`;
+        const params = new URLSearchParams({
+          ...(keyword && { keyword }),
+          page: page.toString(),
+          "price[gte]": price[0].toString(),
+          "price[lte]": price[1].toString(),
+          ...(category && { category }),
+          ...(ratings && { "ratings[gte]": ratings.toString() }),
+        });
 
-        if (category) {
-          link = `${keyword && `keyword=${keyword}`}&page=${page}&price[gte]=${
-            price[0]
-          }&price[lte]=${price[1]}&category=${category}${
-            ratings && `&ratings[gte]=${ratings}`
-          }`;
-        }
-
-        return { url: `/products?${link}` };
+        return { url: `/products?${params.toString()}` };
       },
       providesTags: (result, error, { keyword, page }) => [
         { type: "product", id: keyword || "all" },

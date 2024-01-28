@@ -97,4 +97,6 @@ const FILTERS = {
   Ratings: [4, 3, 2, 1],
 };
 
-export { NAV, USER_DROPDOWN_LINKS, FOOTER, FILTERS };
+const FILTER_PRICE = [0, 25000]
+
+export { NAV, USER_DROPDOWN_LINKS, FOOTER, FILTERS,FILTER_PRICE };
