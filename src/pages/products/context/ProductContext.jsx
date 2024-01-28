@@ -4,12 +4,39 @@ import { useFetchProducts } from "../hooks/useFetchProducts";
 const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
-  const { products, isLoading, page, setPage, filters, setFilters } =
-    useFetchProducts();
+  const {
+    products,
+    isLoading,
+    page,
+    setPage,
+    filters,
+    setFilters,
+    filteredProductCount,
+    productCount,
+    resultPerPage,
+  } = useFetchProducts();
 
   const contextValue = useMemo(
-    () => ({ page, setPage, filters, setFilters, isLoading, products }),
-    [page, filters]
+    () => ({
+      page,
+      setPage,
+      filters,
+      setFilters,
+      isLoading,
+      products,
+      filteredProductCount,
+      productCount,
+      resultPerPage,
+    }),
+    [
+      page,
+      filters,
+      products,
+      isLoading,
+      filteredProductCount,
+      productCount,
+      resultPerPage,
+    ]
   );
 
   return (

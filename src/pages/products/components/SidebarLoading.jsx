@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { useMediaQuery } from "@hooks/hook";
 import { CircularProgress } from "@mui/material";
 import cn from "@utils/cn";
@@ -21,4 +21,4 @@ const SidebarLoading = () => {
   );
 };
 
-export default SidebarLoading;
+export default memo(SidebarLoading);

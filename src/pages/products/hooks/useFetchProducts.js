@@ -27,9 +27,12 @@ const useFetchProducts = () => {
     }
   }, [isError, error]);
 
-  console.log(data?.products);
+  console.log(data);
   return {
     products: data && data?.products,
+    productCount: data && data?.productCount,
+    resultPerPage: data && data?.resultPerPage,
+    filteredProductCount: data && data?.filteredProductCount,
     isLoading,
     filters,
     setFilters,

@@ -1,11 +1,12 @@
+import { memo } from "react";
 import ProductCard from "@components/ProductCard";
 import ProductLoading from "@components/ProductLoading";
 import { useProductContext } from "../context/ProductContext";
 
 const ProductList = () => {
   const { products, isLoading } = useProductContext();
-  const isProducts = !products && !isLoading ? false : true;
-
+  const isProducts =
+    !products || (products.length === 0 && !isLoading) ? false : true;
   return (
     <section id="productList">
       <div className={isProducts ? `product_grid` : "product_not_found"}>
@@ -21,4 +22,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default memo(ProductList);

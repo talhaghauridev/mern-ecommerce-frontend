@@ -10,8 +10,8 @@ import cn from "@utils/cn";
 import { useMediaQuery } from "@hooks/hook";
 import { useSelector } from "react-redux";
 const Header = () => {
-  const [search, setSearch] = useState("");
   const { pathname } = useLocation();
+  const [search, setSearch] = useState("");
   const [navScroll, setNavScroll] = useState(false);
   const [searchModel, setSearchModel] = useState(false);
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -70,7 +70,7 @@ const Header = () => {
             setSearch={setSearch}
             searchModel={searchModel}
             setSearchModel={setSearchModel}
-            onKeyPress={(e) => e.key === "Enter" && handleSearch()}
+            onKeyPress={(e) => e.key === "Enter"&& search.trim() && handleSearch()}
           />
           {/* NavLinks */}
           <ul className=" gap-[34px] font-PoppinsBold hidden md:flex">
