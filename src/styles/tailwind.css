@@ -15,4 +15,7 @@
   .form_heading {
     @apply font-Sans mb-1 text-[30px] sm:text-[35px] font-[900] text-[#2b3445] text-center;
   }
+  .product_not_found {
+    @apply flex items-center justify-center h-[100%] max-h-[60vh] bg-white;
+  }
 }

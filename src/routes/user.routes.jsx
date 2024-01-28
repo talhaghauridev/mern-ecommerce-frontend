@@ -1,13 +1,11 @@
-// AuthRoutes.jsx
-import React from "react";
+import React, { lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import ProtectRoute from "../lib/ProtectRoute";
-import lazyLoad from "@utils/lazyLoad";
-const User = lazyLoad("../pages/(user)/user");
-const Orders = lazyLoad("../pages/(user)/orders");
-const UpdateProfile = lazyLoad("../pages/(user)/profile-update");
-const UpdatePassword = lazyLoad("../pages/(user)/password-update");
-const Profile = lazyLoad("../pages/(user)/profile");
+import ProtectRoute from "@lib/ProtectRoute";
+const User = lazy(() => import("@pages/(user)/user"));
+const Orders = lazy(() => import("@pages/(user)/orders"));
+const UpdateProfile = lazy(() => import("@pages/(user)/profile-update"));
+const UpdatePassword = lazy(() => import("@pages/(user)/password-update"));
+const Profile = lazy(() => import("@pages/(user)/profile"));
 
 const AuthRoutes = () => {
   return (

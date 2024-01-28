@@ -1,18 +1,27 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { useMessage } from "./hook";
-import { useLogoutQuery } from "@redux/api/userApi";
 import { logout } from "@redux/reducers/userReducer";
+import { toast } from "react-toastify";
 
 const useLogout = () => {
   const dispatch = useDispatch();
 
-  const fetchData = async () => {
-    dispatch(logout());
-  };
+  const handleLogout = useCallback(async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_URL}/api/v1/logout`
+      );
+      const data = await response.json();
+      dispatch(logout());
+      toast.success(data?.message);
+      console.log(data);
+    } catch (error) {
+      console.error("Unexpected error:", error);
+    }
+  }, [dispatch]);
 
   return {
-    handleLogout: fetchData,
+    handleLogout,
   };
 };
 

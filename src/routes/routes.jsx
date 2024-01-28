@@ -1,17 +1,10 @@
 // routes.jsx
 import React, { lazy } from "react";
-import {
-  Routes,
-  Route,
-  BrowserRouter as Router,
-  Navigate,
-} from "react-router-dom";
-
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import AuthRoutes from "@routes/user.routes";
-import lazyLoad from "@utils/lazyLoad";
-import NotFound from "@layout/NotFound/NotFound";
 import Layout from "@layout/layout";
-const Products = lazyLoad("./../pages/products");
+const NotFound = lazy(() => import("@layout/NotFound/NotFound"));
+const Products = lazy(() => import("@pages/products"));
 const ProductDetails = lazy(() => import("@pages/product-detials"));
 const Home = lazy(() => import("@pages/home"));
 const Cart = lazy(() => import("@pages/cart"));

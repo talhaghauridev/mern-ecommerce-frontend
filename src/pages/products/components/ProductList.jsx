@@ -1,26 +1,21 @@
 import ProductCard from "@components/ProductCard";
 import { useFetchProducts } from "../hooks/useFetchProducts";
 import ProductLoading from "@components/ProductLoading";
-import { useParams } from "react-router-dom";
 
 const ProductList = () => {
-  const { search } = useParams();
   const { products, isLoading } = useFetchProducts({});
-  console.log(products);
+  const isProducts = !products && !isLoading ? false : true;
+
   return (
     <section id="productList">
-      <div className="product_grid">
+      <div className={isProducts ? `product_grid` : "product_not_found"}>
         {isLoading && <ProductLoading length={8} />}
 
         {products &&
           products?.map((product) => (
             <ProductCard {...product} key={product?._id} />
           ))}
-        {!products && !isLoading && (
-          <div className="h-[100vh] w-[100%] items-center justify-start">
-            Product not Found
-          </div>
-        )}
+        {!isProducts && <h1>Product not Found</h1>}
       </div>
     </section>
   );

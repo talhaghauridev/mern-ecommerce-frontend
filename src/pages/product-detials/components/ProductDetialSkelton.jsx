@@ -1,6 +1,5 @@
-import { Button } from "@components/ui";
+import React, { memo } from "react";
 import { Skeleton } from "@mui/material";
-import React from "react";
 
 const ProductDetialSkelton = () => {
   return (
@@ -35,14 +34,14 @@ const ProductDetialSkelton = () => {
           <Skeleton
             variant="rectangular"
             className="mb-0.5 inline-block w-[100%] h-[100px!important] max-w-[260px] text-gray-500"
-          />{" "}
+          />
         </div>
 
         <div className="flex gap-2.5">
           <Skeleton
             variant="rectangular"
             className="rounded-lg w-[100%] h-[60px!important] max-w-[150px] mt-[10px] text-gray-500"
-          />{" "}
+          />
         </div>
       </div>
       {/* <Reviews /> */}
@@ -50,4 +49,4 @@ const ProductDetialSkelton = () => {
   );
 };
 
-export default ProductDetialSkelton;
+export default memo(ProductDetialSkelton);

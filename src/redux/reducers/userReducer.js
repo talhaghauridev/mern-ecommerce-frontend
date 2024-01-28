@@ -6,7 +6,7 @@ const initialState = {
     : null,
 };
 
-export const userSlice = createSlice({
+export const userReducer = createSlice({
   name: "user",
   initialState,
   reducers: {
@@ -23,4 +23,4 @@ export const userSlice = createSlice({
   },
 });
 
-export const { setCredentials, logout } = userSlice.actions;
+export const { setCredentials, logout } = userReducer.actions;

@@ -7,6 +7,7 @@ import cn from "@utils/cn";
 
 const BottomNavigation = ({ setSearchModel }) => {
   const { pathname } = useLocation();
+  console.log("BottomNavigation Sr");
   return (
     <>
       <div

@@ -1,11 +1,11 @@
 import React, { Suspense, lazy } from "react";
-import useProductDetial from "./hooks/useProductDetial";
 import ProductDetialSkelton from "./components/ProductDetialSkelton";
 import { MetaData } from "@components/ui";
 import { capitalize } from "@mui/material";
+import { useProductDetail } from "./hooks/useProductDetial";
 const Detials = lazy(() => import("./components/Detials"));
 const ProductDetails = () => {
-  const { product, isLoading } = useProductDetial();
+  const { product, isLoading } = useProductDetail();
   return (
     <>
       <MetaData title={capitalize(String(product?.name || "Product Detial"))} />

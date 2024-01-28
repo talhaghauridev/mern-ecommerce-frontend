@@ -1,29 +1,22 @@
-import {
-  Link,
-  useLocation,
-  useNavigate,
-  useSearchParams,
-} from "react-router-dom";
-import { IoMdSearch } from "react-icons/io";
-import { useState, useEffect, useCallback } from "react";
-import { NAV } from "@constants";
+import { useState, useEffect, useCallback, lazy, Suspense } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+const BottomNavigation = lazy(() => import("@layout/Header/BottomNavigation"));
+const UserDropDown = lazy(() => import("@layout/Header/UserDropDown"));
 import { Logo } from "@assets/images";
-import { Image, Select } from "@components/ui";
-import BottomNavigation from "@layout/Header/BottomNavigation";
-import { useScroll, useToggle } from "@hooks/hook";
-import cn from "@utils/cn";
-import UserDropDown from "./UserDropDown";
+import { Image } from "@components/ui";
+import { NAV } from "@constants";
 import SearchBox from "./SearchBox";
+import cn from "@utils/cn";
+import { useMediaQuery } from "@hooks/hook";
 import { useSelector } from "react-redux";
 const Header = () => {
   const [search, setSearch] = useState("");
   const { pathname } = useLocation();
   const [navScroll, setNavScroll] = useState(false);
   const [searchModel, setSearchModel] = useState(false);
-  const { userInfo } = useSelector((state) => state.user);
+  const isMobile = useMediaQuery("(max-width: 768px)");
   const navigate = useNavigate();
-  console.log(userInfo);
-
+  const { userInfo } = useSelector((state) => state.user);
   //Handle Search
   const handleSearch = useCallback(() => {
     console.log("handleSearch");
@@ -44,7 +37,7 @@ const Header = () => {
       }
       console.log(window.screenTop);
     }
-  });
+  }, []);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -52,7 +45,6 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  console.log(userInfo ? "h" : "b");
   return (
     <>
       <header
@@ -109,13 +101,15 @@ const Header = () => {
                 {item.icon}
               </Link>
             ))}
-
             {userInfo && <UserDropDown />}
           </div>
         </div>
       </header>
-
-      <BottomNavigation setSearchModel={setSearchModel} />
+      {isMobile && (
+        <Suspense fallback={<h1>Loading...</h1>}>
+          <BottomNavigation setSearchModel={setSearchModel} />
+        </Suspense>
+      )}
     </>
   );
 };
