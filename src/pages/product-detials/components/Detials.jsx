@@ -1,9 +1,9 @@
-import React, { memo } from "react";
+import React, { lazy, memo } from "react";
 import { hero } from "@assets/images";
 import { Button, Image } from "@components/ui";
 import { Rating, capitalize } from "@mui/material";
 import { useAddToCart } from "../hooks/useProductDetial";
-import Reviews from "./Reviews/Reviews";
+const Reviews = lazy(() => import("./Reviews/Reviews"));
 const Details = ({ product }) => {
   const {
     name,

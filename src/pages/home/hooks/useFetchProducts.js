@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useGetProductQuery } from "@redux/api/productApi";
 import { toast } from "react-toastify";
 const useFetchProducts = () => {

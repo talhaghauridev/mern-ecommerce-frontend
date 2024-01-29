@@ -8,29 +8,31 @@ import { useMediaQuery, useToggle } from "@hooks/hook";
 import { FaFilter } from "react-icons/fa";
 import cn from "@utils/cn";
 import { useProductContext } from "../context/ProductContext";
+import { useNavigate } from "react-router-dom";
 
 const FilterSidebar = () => {
   const [showValue, setShowValue] = useState({ category: true, ratings: true });
   const { filters, setFilters } = useProductContext();
   const { handleToggle, setToggle, toggle } = useToggle(false);
   const isMobile = useMediaQuery("(max-width: 766px)");
+  const navigate = useNavigate();
 
   //Handle Filters Change
   const handleFiltersChange = useCallback(
     (e, value) => {
       const { name } = e.target;
-      setFilters({
-        ...filters,
-        [name]: typeof value === "string" ? value.toLowerCase() : value,
-      });
+      const newValue = typeof value === "string" ? value.toLowerCase() : value;
+      setFilters((prev) => ({
+        ...prev,
+        [name]: newValue,
+      }));
+
       if (name === "category" || name === "ratings") {
         setShowValue((prev) => ({ ...prev, [name]: true }));
       }
     },
     [filters]
   );
-
-  console.log(filters);
 
   //Handle Filters Reset
   const handleFiltersReset = useCallback(() => {

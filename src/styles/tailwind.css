@@ -18,4 +18,10 @@
   .product_not_found {
     @apply flex items-center justify-center h-[100%] max-h-[60vh] bg-white;
   }
+  .header_icon{
+  @apply  text-[21px] md:text-[24px] text-[#2b3445eb] 
+}
+.cart_price {
+  @apply text-[16px] md:text-[19px] font-PoppinsBold text-[#2b3445] w-full flex items-center justify-between
+}
 }

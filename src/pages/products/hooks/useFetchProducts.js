@@ -4,17 +4,17 @@ import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import { FILTER_PRICE } from "@constants/index";
 const useFetchProducts = () => {
-  const { search } = useParams();
+  const {search} = useParams();
   const [page, setPage] = useState(1);
   const [filters, setFilters] = useState({
     price: FILTER_PRICE,
     category: "",
-    ratings: null,
+    ratings: null,    
   });
   const { category, price, ratings } = filters;
 
   const { data, isLoading, error, isError } = useGetProductQuery({
-    keyword: search || "",
+    keyword: search ||"",
     category,
     price,
     ratings,

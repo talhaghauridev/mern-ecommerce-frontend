@@ -1,57 +1,32 @@
-import { useState, useEffect, useCallback, lazy, Suspense } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useState, lazy, Suspense, memo } from "react";
+import { Link, useLocation } from "react-router-dom";
 const BottomNavigation = lazy(() => import("@layout/Header/BottomNavigation"));
 const UserDropDown = lazy(() => import("@layout/Header/UserDropDown"));
 import { Logo } from "@assets/images";
 import { Image } from "@components/ui";
 import { NAV } from "@constants";
 import SearchBox from "./SearchBox";
-import cn from "@utils/cn";
 import { useMediaQuery } from "@hooks/hook";
 import { useSelector } from "react-redux";
+import { Badge } from "@mui/material";
+import cn from "@utils/cn";
+import { useHeaderScroll, useHeaderSearch } from "@hooks/header.hooks";
 const Header = () => {
   const { pathname } = useLocation();
-  const [search, setSearch] = useState("");
-  const [navScroll, setNavScroll] = useState(false);
-  const [searchModel, setSearchModel] = useState(false);
   const isMobile = useMediaQuery("(max-width: 768px)");
-  const navigate = useNavigate();
+  const [searchModel, setSearchModel] = useState(false);
   const { userInfo } = useSelector((state) => state.user);
-  //Handle Search
-  const handleSearch = useCallback(() => {
-    console.log("handleSearch");
-    if (search.trim()) {
-      navigate(`/products/${search}`);
-    } else {
-      navigate(`/products`);
-    }
-  }, [search, navigate]);
+  const { cartItems } = useSelector((state) => state.cart);
+  const { setSearch, handelSearch } = useHeaderSearch();
+  const { headerScroll } = useHeaderScroll();
 
-  // Handle Scroll Animation
-  const handleScroll = useCallback(() => {
-    if (window.scrollY >= 360) {
-      setNavScroll(true);
-    } else {
-      if (window.scrollY <= 80) {
-        setNavScroll(false);
-      }
-      console.log(window.screenTop);
-    }
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
   return (
     <>
       <header
         id="header"
         className={cn(
           `w-[100%] border-b border-solid border-[#d1d5db] h-[70px] md:h-[74px]`,
-          navScroll ? "header_animation" : ""
+          headerScroll ? "header_animation" : ""
         )}
       >
         <div className="container py-[8px] flex items-center justify-between ">
@@ -70,36 +45,39 @@ const Header = () => {
             setSearch={setSearch}
             searchModel={searchModel}
             setSearchModel={setSearchModel}
-            onKeyPress={(e) => e.key === "Enter"&& search.trim() && handleSearch()}
+            onKeyPress={handelSearch}
           />
           {/* NavLinks */}
           <ul className=" gap-[34px] font-PoppinsBold hidden md:flex">
             {NAV.Links.map((item, index) => (
-              <Link
-                to={item.path}
+              <Item
+                name={item.name}
+                path={item.path}
                 key={index}
-                className={cn(
+                className={
                   pathname === item.path ? "opacity-1" : "opacity-[0.8]"
-                )}
-              >
-                <li>{item.name}</li>
-              </Link>
+                }
+              />
             ))}
           </ul>
 
           {/* NavIcons  */}
           <div className="icons flex gap-[25px] items-center justify-end ">
             {NAV.Icons.map((item, index) => (
-              <Link
-                to={item.path}
-                key={index}
-                className={cn(
-                  "cart_icon text-[21px] md:text-[24px] text-[#2b3445eb] ",
-                  userInfo && item.path === "/login" ? "hidden" : "flex"
-                )}
+              <Badge
+                // variant="dot"
+                badgeContent={item.path === "/cart" && cartItems?.length}
+                color="primary"
               >
-                {item.icon}
-              </Link>
+                <Item
+                  {...item}
+                  key={index}
+                  className={cn(
+                    "header_icon",
+                    userInfo && item.path === "/login" ? "hidden" : "flex"
+                  )}
+                />
+              </Badge>
             ))}
             {userInfo && <UserDropDown />}
           </div>
@@ -115,3 +93,12 @@ const Header = () => {
 };
 
 export default Header;
+
+const Item = memo(({ className = "", path, icon, name }) => {
+  return (
+    <Link to={path} className={cn(className)}>
+      {icon && icon}
+      {name && name}
+    </Link>
+  );
+});

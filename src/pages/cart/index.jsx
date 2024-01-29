@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import EmptyCart from "./components/EmptyCart";
 import { MetaData } from "@components/ui";
 import CartPriceBox from "./components/CartPriceBox";
+import CartList from "./components/CartList";
 
 const Cart = () => {
   const { cartItems, taxPrice, shippingPrice, totalPrice, itemsPrice } = {
@@ -29,10 +30,11 @@ const Cart = () => {
   return (
     <>
       <MetaData title="Cart" />
-      {/* <EmptyCart /> */}
-      <CartPriceBox />
       <section id="cart" className="">
-        <div className="container grid"></div>
+        <div className="container py-[90px]">
+          <CartList />
+          <CartPriceBox />
+        </div>
       </section>
     </>
   );

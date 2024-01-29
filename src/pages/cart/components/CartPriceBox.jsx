@@ -1,33 +1,32 @@
 import { Button } from "@components/ui";
 import React from "react";
+import { useSelector } from "react-redux";
 
 const CartPriceBox = () => {
-  const cartItems = [{}];
+  const { cartItems } = useSelector((state) => state.cart);
   return (
     <div
-      className="bg-white rounded-[8px] relative max-w-[200px]"
+      className="bg-white rounded-[8px] relative md:max-w-[350px] overflow-hidden h-fit max-w-full "
       style={{
-        boxShadow: "rgba(3, 0, 71, 0.09) 0px 1px 3px",
+        boxShadow: "#03004717 0px 0px 4px 2px",
       }}
     >
-      <div className="py-[50px] px-[30px] flex flex-col gap-y-[30px]">
-        <ul className="flex flex-col gap-y-[14px]">
-          <li className="flex items-center justify-between">
-            <h2 className="text-[15px] font-Poppins ">Total Products:</h2>
-            <span> {cartItems?.length}</span>
-          </li>
-          <li>
-            <h2 className="flex items-center justify-between">Total Price:</h2>
-            <span>
-              $
-              {cartItems?.reduce(
-                (acc, item) => acc + item.quanity * item.price,
-                0
-              )}
-            </span>
-          </li>
-        </ul>
-        <Button>Check Out</Button>
+      <div className="py-[50px] px-[30px] flex flex-col  gap-y-[25px] md:gap-y-[40px]">
+        <div className="flex flex-col gap-y-[14px]">
+          <ul className="flex items-center flex-col gap-y-[18px] md:gap-y-[20px]">
+            <li className=" cart_price">
+              Total Products:
+              <span> {cartItems?.length}</span>
+            </li>
+            <li className=" cart_price">
+              Total Price:
+              <span>
+                ${cartItems?.reduce((acc, item) => acc + 3 * item.price, 0)}
+              </span>
+            </li>
+          </ul>
+        </div>
+        <Button className={"max-w-full"}>Check Out</Button>
       </div>
     </div>
   );

@@ -1,11 +1,9 @@
-// ProductCard.jsx
+import React, { memo } from "react";
 import { Rating, capitalize } from "@mui/material";
-import React from "react";
 import { Link } from "react-router-dom";
 import { Image } from "@components/ui";
-import { hero } from "@assets/images";
 
-const ProductCard = ( product ) => {
+const ProductCard = (product) => {
   const { _id, name, images, price, ratings, numOfReviews } = product;
 
   return (
@@ -26,7 +24,7 @@ const ProductCard = ( product ) => {
       </div>
       <div className="flex flex-col gap-[8px] items-start justify-center w-[100%] px-[15px] py-[5px]">
         <h1 className="text-gray-800 font-semibold text-[18px] text-center mb-0 mt-0 whitespace-normal">
-          {name}
+          {capitalize(String(capitalize))}
         </h1>
 
         <div className="flex items-center justify-between gap-[4px]">
@@ -46,4 +44,4 @@ const ProductCard = ( product ) => {
   );
 };
 
-export default ProductCard;
+export default memo(ProductCard);

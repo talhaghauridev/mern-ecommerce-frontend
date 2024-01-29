@@ -1,16 +1,22 @@
+import { useMemo } from "react";
 import ProductCard from "@components/ProductCard";
 import { useFetchProducts } from "../hooks/useFetchProducts";
 import ProductLoading from "@components/ProductLoading";
-import { useMemo } from "react";
 
 const ProductList = () => {
   const { products, isLoading } = useFetchProducts();
-  const isProducts = !products && !isLoading ? false : true;
+  const isProducts = useMemo(
+    () => (!products || (products.length === 0 && !isLoading) ? false : true),
+    [isLoading, products]
+  );
 
-  console.log(isProducts);
   return (
     <section id="productList">
-      <div className={isProducts ? `home_product_grid` : "product_not_found"}>
+      <div
+        className={
+          isProducts || isLoading ? `home_product_grid` : "product_not_found"
+        }
+      >
         {isLoading && <ProductLoading length={8} />}
 
         {products &&

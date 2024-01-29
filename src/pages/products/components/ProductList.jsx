@@ -1,17 +1,23 @@
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import ProductCard from "@components/ProductCard";
 import ProductLoading from "@components/ProductLoading";
 import { useProductContext } from "../context/ProductContext";
 
 const ProductList = () => {
   const { products, isLoading } = useProductContext();
-  const isProducts =
-    !products || (products.length === 0 && !isLoading) ? false : true;
+  const isProducts = useMemo(
+    () => (!products || (products.length === 0 && !isLoading) ? false : true),
+    [isLoading, products]
+  );
+
   return (
     <section id="productList">
-      <div className={isProducts ? `product_grid` : "product_not_found"}>
+      <div
+        className={
+          isProducts || isLoading ? `product_grid` : "product_not_found"
+        }
+      >
         {isLoading && <ProductLoading length={8} />}
-
         {products &&
           products?.map((product) => (
             <ProductCard {...product} key={product?._id} />
