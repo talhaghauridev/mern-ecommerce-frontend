@@ -24,7 +24,7 @@ const ProductCard = (product) => {
       </div>
       <div className="flex flex-col gap-[8px] items-start justify-center w-[100%] px-[15px] py-[5px]">
         <h1 className="text-gray-800 font-semibold text-[18px] text-center mb-0 mt-0 whitespace-normal">
-          {capitalize(String(capitalize))}
+          {capitalize(String(name))}
         </h1>
 
         <div className="flex items-center justify-between gap-[4px]">

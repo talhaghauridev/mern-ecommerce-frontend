@@ -6,10 +6,10 @@ import { useProductContext } from "../context/ProductContext";
 const ProductList = () => {
   const { products, isLoading } = useProductContext();
   const isProducts = useMemo(
-    () => (!products || (products.length === 0 && !isLoading) ? false : true),
+    () => (products?.length > 0 || !isLoading ? true : false),
     [isLoading, products]
   );
-
+  console.log(isProducts);
   return (
     <section id="productList">
       <div
