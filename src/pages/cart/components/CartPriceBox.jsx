@@ -1,5 +1,5 @@
+import React, { memo } from "react";
 import { Button } from "@components/ui";
-import React from "react";
 import { useSelector } from "react-redux";
 
 const CartPriceBox = () => {
@@ -32,4 +32,4 @@ const CartPriceBox = () => {
   );
 };
 
-export default CartPriceBox;
+export default memo(CartPriceBox);

@@ -1,12 +1,11 @@
+import { lazy, memo } from "react";
 import { hero } from "@assets/images";
 import { Button, Image } from "@components/ui";
-import { lazy } from "react";
 import { Link } from "react-router-dom";
-const QuanityInput = lazy(() => import("@components/QuanityInput"));
 import { capitalize } from "@mui/material";
-import { CgCross } from "react-icons/cg";
+import { RxCross2 } from "react-icons/rx";
 import useRemoveFromCart from "../hooks/useRemoveFromCart";
-
+const QuanityInput = lazy(() => import("@components/QuanityInput"));
 const CartCard = ({ name, category, price, _id, images }) => {
   const { handleRemoveItem } = useRemoveFromCart();
   return (
@@ -37,9 +36,12 @@ const CartCard = ({ name, category, price, _id, images }) => {
 
         <QuanityInput value={1} decrement={() => {}} increment={() => {}} />
       </div>
-      <CgCross onClick={() => handleRemoveItem(_id)} />
+      <RxCross2
+        className="text-[28px] absolute top-[10px] right-[16px] text-[#2b3445] cursor-pointer"
+        onClick={() => handleRemoveItem(_id)}
+      />
     </div>
   );
 };
 
-export default CartCard;
+export default memo(CartCard);

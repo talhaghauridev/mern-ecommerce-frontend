@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { useSelector } from "react-redux";
 import CartCard from "./CartCard";
 
@@ -14,4 +14,4 @@ const CartList = () => {
   );
 };
 
-export default CartList;
+export default memo(CartList);
