@@ -1,13 +1,36 @@
 import { lazy, memo } from "react";
 import { hero } from "@assets/images";
-import { Button, Image } from "@components/ui";
+import { Image } from "@components/ui";
 import { Link } from "react-router-dom";
 import { capitalize } from "@mui/material";
 import { RxCross2 } from "react-icons/rx";
 import useRemoveFromCart from "../hooks/useRemoveFromCart";
-const QuanityInput = lazy(() => import("@components/QuanityInput"));
-const CartCard = ({ name, category, price, _id, images }) => {
-  const { handleRemoveItem } = useRemoveFromCart();
+import { useCounter } from "@hooks/hook";
+import {
+  localStorageItem,
+  useUpdateQuantity,
+} from "../hooks/useUpdateQuantity";
+const QuantityInput = lazy(() => import("@components/QuantityInput"));
+const CartCard = ({ name, category, price, _id, images, stock }) => {
+  const { handleRemoveItem } = useRemoveFromCart(_id);
+  const { handleUpdateQuantity } = useUpdateQuantity();
+  const { count, decrement, increment } = useCounter(
+    localStorageItem(_id)?.quantity || 1,
+    1,
+    stock
+  );
+
+  //Handle Quantity Change
+  const handleQuantityChange = (operation) => {
+    if (operation === "increment") {
+      increment();
+      handleUpdateQuantity(_id, count + 1);
+    } else if (operation === "decrement") {
+      decrement();
+      handleUpdateQuantity(_id, count - 1);
+    }
+  };
+
   return (
     <div
       className="w-full max-w-full rounded-[10px] relative overflow-hidden flex  sm:flex-row flex-col"
@@ -34,7 +57,15 @@ const CartCard = ({ name, category, price, _id, images }) => {
           ${price}
         </span>
 
-        <QuanityInput value={1} decrement={() => {}} increment={() => {}} />
+        <QuantityInput
+          value={count}
+          decrement={() => {
+            handleQuantityChange("decrement");
+          }}
+          increment={() => {
+            handleQuantityChange("increment");
+          }}
+        />
       </div>
       <RxCross2
         className="text-[28px] absolute top-[10px] right-[16px] text-[#2b3445] cursor-pointer"

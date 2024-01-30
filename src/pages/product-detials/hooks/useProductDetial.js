@@ -1,7 +1,5 @@
 import { useGetProductDetailsQuery } from "@redux/api/productApi";
-import { addToCart } from "@redux/reducers/cartReducer";
-import { useCallback, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import {  useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -26,22 +24,4 @@ const useProductDetail = () => {
   };
 };
 
-const useAddToCart = () => {
-  const dispatch = useDispatch();
-  const handleAddToCart = useCallback(
-    (product) => {
-      const { name, descripton, price, images, category, _id, stock } = product;
-      dispatch(
-        addToCart({ name, descripton, price, images, category, _id, stock })
-      );
-      toast.success("Item add to cart");
-    },
-    [dispatch]
-  );
-
-  return {
-    handleAddToCart,
-  };
-};
-
-export { useProductDetail, useAddToCart };
+export { useProductDetail };

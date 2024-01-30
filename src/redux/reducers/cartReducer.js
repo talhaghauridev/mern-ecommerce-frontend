@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import LocalStorage from "@utils/LocalStorage";
+import { toast } from "react-toastify";
 
 const initialState = {
   cartItems: LocalStorage.get("cart") || [],
@@ -14,13 +15,13 @@ export const cartReducer = createSlice({
       const existingItem = state.cartItems?.find(
         (i) => i?._id === newItem?._id
       );
-      console.log(existingItem);
       if (existingItem) {
         state.cartItems = state.cartItems?.map((i) =>
           i?._id === existingItem?._id ? newItem : i
         );
       } else {
         state.cartItems = [...state.cartItems, newItem];
+        toast.success("Item added to cart");
       }
       LocalStorage.set("cart", state.cartItems);
     },

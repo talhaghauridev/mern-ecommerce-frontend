@@ -8,6 +8,7 @@ const Products = lazy(() => import("@pages/products"));
 const ProductDetails = lazy(() => import("@pages/product-detials"));
 const Home = lazy(() => import("@pages/home"));
 const Cart = lazy(() => import("@pages/cart"));
+const Shipping = lazy(() => import("@pages/shipping"));
 const Login = lazy(() => import("@pages/(authentication)/login"));
 const ForgotPassword = lazy(() =>
   import("@pages/(authentication)/password-forgot")
@@ -31,6 +32,7 @@ const AppRoutes = () => {
           <Route path="/products" element={<Products />} />
           <Route path="/product/:productId" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/shipping" element={<Shipping />} />
           <Route path="/user/*" element={<AuthRoutes />} />
         </Route>
         <Route path="*" element={<NotFound />} />

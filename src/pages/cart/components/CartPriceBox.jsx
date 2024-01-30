@@ -1,6 +1,8 @@
 import React, { memo } from "react";
-import { Button } from "@components/ui";
+import { buttonVariants } from "@components/ui";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import cn from "@utils/cn";
 
 const CartPriceBox = () => {
   const { cartItems } = useSelector((state) => state.cart);
@@ -26,7 +28,12 @@ const CartPriceBox = () => {
             </li>
           </ul>
         </div>
-        <Button className={"max-w-full"}>Check Out</Button>
+        <Link
+          to="/shipping"
+          className={cn(buttonVariants({ className: "max-w-full" }))}
+        >
+          Check Out
+        </Link>
       </div>
     </div>
   );

@@ -191,6 +191,48 @@ const useScroll = () => {
   return scrollPosition;
 };
 
+const useCounter = (initialValue = 0, minValue = 0, maxValue = undefined) => {
+  const [count, setCount] = useState(initialValue);
+
+  const increment = useCallback(() => {
+    if (maxValue === undefined || count < maxValue) {
+      setCount((prevCount) => prevCount + 1);
+    }
+  }, [count, maxValue]);
+
+  const decrement = useCallback(() => {
+    if (count > minValue) {
+      setCount((prevCount) => prevCount - 1);
+    }
+  }, [count, minValue]);
+
+  // const setQuantity = useCallback(
+  //   (quantity) => {
+  //     if (minValue !== undefined && quantity < minValue) {
+  //       setCount(minValue);
+  //     } else if (maxValue === undefined || quantity <= maxValue) {
+  //       setCount(quantity);
+  //     }
+  //   },
+  //   [minValue, maxValue]
+  // );
+
+  const counterMethods = useMemo(
+    () => ({
+      count,
+      increment,
+      decrement,
+    }),
+    [count, increment, decrement]
+  );
+
+  return {
+    count,
+    increment,
+    decrement,
+  };
+};
+
 export {
   useToggle,
   useOnlineStatus,
@@ -201,4 +243,5 @@ export {
   useMessage,
   useClickOutside,
   useScroll,
+  useCounter,
 };

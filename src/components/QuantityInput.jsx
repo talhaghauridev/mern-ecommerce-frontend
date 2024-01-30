@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import cn from "@utils/cn";
 
-const QuanityInput = ({ className = "", value = 1, increment, decrement }) => {
+const QuantityInput = ({ className = "", value = 0, increment, decrement }) => {
   return (
     <div
       className={cn(
@@ -9,18 +9,18 @@ const QuanityInput = ({ className = "", value = 1, increment, decrement }) => {
         className
       )}
     >
-      <QuanityButton onClick={increment} sign={"+"} />
+      <QuantityButton onClick={increment} sign={"+"} />
 
-      <span className="px-[13px] h-full font-PoppinsBold text-[20px]">
+      <span className="px-[13px] h-full font-PoppinsBold text-[20px] flex items-center justify-center">
         {value}
       </span>
 
-      <QuanityButton onClick={decrement} sign={"-"} />
+      <QuantityButton onClick={decrement} sign={"-"} />
     </div>
   );
 };
 
-const QuanityButton = memo(({ onClick, sign }) => {
+const QuantityButton = ({ onClick, sign }) => {
   return (
     <button
       onClick={onClick}
@@ -29,6 +29,6 @@ const QuanityButton = memo(({ onClick, sign }) => {
       {sign}
     </button>
   );
-});
+};
 
-export default memo(QuanityInput);
+export default QuantityInput;

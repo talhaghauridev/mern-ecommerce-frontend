@@ -1,8 +1,10 @@
-import React, { lazy, memo } from "react";
+import React, { lazy, memo, useEffect } from "react";
 import { hero } from "@assets/images";
 import { Button, Image } from "@components/ui";
 import { Rating, capitalize } from "@mui/material";
-import { useAddToCart } from "../hooks/useProductDetial";
+import QuantityInput from "@components/QuantityInput";
+import { localStorageItem, useAddToCart } from "../hooks/useAddToCart";
+import { useCounter } from "@hooks/hook";
 const Reviews = lazy(() => import("./Reviews/Reviews"));
 const Details = ({ product }) => {
   const {
@@ -15,9 +17,27 @@ const Details = ({ product }) => {
     images,
     reviews,
     category,
+    _id,
   } = product;
 
-  const { handleAddToCart } = useAddToCart();
+  const { handleAddToCart, isAddCart } = useAddToCart();
+  const { count, decrement, increment } = useCounter(
+    localStorageItem(_id)?.quantity || 1,
+    1,
+    stock
+  );
+
+  //Handle Quantity Change
+  const handleQuantityChange = (operation) => {
+    if (operation === "increment") {
+      increment();
+      handleAddToCart(product, count + 1);
+    } else if (operation === "decrement") {
+      decrement();
+      handleAddToCart(product, count - 1);
+    }
+  };
+
   return (
     <>
       <div className="container py-[50px] grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-[20px]">
@@ -69,12 +89,21 @@ const Details = ({ product }) => {
           </div>
 
           <div className="flex gap-2.5">
-            <Button onClick={() => handleAddToCart(product)}>
-              Add to cart
-            </Button>
+            {isAddCart ? (
+              <QuantityInput
+                decrement={() => handleQuantityChange("decrement")}
+                increment={() => handleQuantityChange("increment")}
+                value={count}
+              />
+            ) : (
+              <Button onClick={() => handleQuantityChange("decrement")}>
+                Add to cart
+              </Button>
+            )}
           </div>
         </div>
       </div>
+
       {reviews ? <Reviews reviews={reviews} /> : <h1>Not Raings</h1>}
     </>
   );
