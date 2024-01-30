@@ -65,9 +65,9 @@ const Header = () => {
           <div className="icons flex gap-[25px] items-center justify-end ">
             {NAV.Icons.map((item, index) => (
               <Badge
-                // variant="dot"
                 badgeContent={item.path === "/cart" && cartItems?.length}
-                color="primary"
+                color={item.path === "/cart" ? "primary":"default"}
+
               >
                 <Item
                   {...item}

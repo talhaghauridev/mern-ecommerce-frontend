@@ -44,7 +44,7 @@ const CartCard = ({ name, category, price, _id, images, stock }) => {
         <Image
           src={hero}
           alt={"hero"}
-          className={"w-full max-w-[180px] sm:max-w-[200px]"}
+          className={"w-full max-w-[150px] sm:max-w-[160px]"}
         />
       </div>
       {/* Cart Item Detials */}
@@ -70,7 +70,7 @@ const CartCard = ({ name, category, price, _id, images, stock }) => {
         />
       </div>
       <RxCross2
-        className="text-[28px] absolute top-[10px] right-[16px] text-[#2b3445] cursor-pointer"
+        className="text-[26px] absolute top-[10px] right-[16px] text-[#2b3445] cursor-pointer"
         onClick={() => handleRemoveItem(_id)}
       />
     </div>
