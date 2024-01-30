@@ -5,6 +5,7 @@ import { Rating, capitalize } from "@mui/material";
 import QuantityInput from "@components/QuantityInput";
 import { localStorageItem, useAddToCart } from "../hooks/useAddToCart";
 import { useCounter } from "@hooks/hook";
+import cn from "@utils/cn";
 const Reviews = lazy(() => import("./Reviews/Reviews"));
 const Details = ({ product }) => {
   const {
@@ -50,12 +51,9 @@ const Details = ({ product }) => {
             className={"w-full max-w-[300px] md:max-w-[500px]"}
           />
         </div>
-        <div className=" flex flex-col gap-[10px] mt-[20px] ">
-          <div className="mb-2 md:mb-3">
-            <span className="mb-0.5 inline-block text-gray-500">
-              {capitalize(String(category))}
-            </span>
-            <h2 className="text-2xl font-bold text-gray-800 lg:text-3xl">
+        <div className=" flex flex-col gap-[10px] md:gap-[15px] mt-[20px] ">
+          <div className=" ">
+            <h2 className="text-[30px] font-bold font-PoppinsBold text-[#2B3445]">
               {capitalize(String(name))}
             </h2>
           </div>
@@ -68,34 +66,44 @@ const Details = ({ product }) => {
               size="medium"
               readOnly
             />
-            <span className="text-gray-800 text-[14px] font-[500] text-sm">{`(${numOfReviews} Reviews)`}</span>
+            <span className="text-gray-800 text-[14px] font-[500] text-sm font-SansBold">{`(${numOfReviews} Reviews)`}</span>
           </div>
 
-          <div>
-            <div className="mb-3 text-lg font-semibold text-gray-800">
-              Description
-            </div>
-
-            <p className="text-gray-500">{descripton}</p>
+          {/* Category */}
+          <div className="flex items-center justify-start gap-[5px] font-Sans text-[16px]">
+            Category:{" "}
+            <span className="font-SansBold">
+              {capitalize(String(category))}
+            </span>
+          </div>
+          <div className="flex items-center justify-start">
+            <span className="text-[#D23F57] font-SansBold text-[25px]">
+              ${price}{" "}
+            </span>
           </div>
 
-          <div className="mb-4">
-            <div className="flex items-end gap-2">
-              <span className="text-xl font-bold text-gray-800 md:text-2xl">
-                {price}
-              </span>
-              <span className="mb-0.5 text-red-500 line-through">
-                ${price + 500}
-              </span>
-            </div>
+          {/* Stock  */}
+
+          <div className="flex items-center justify-start gap-[6px] text-[17px] font-PoppinsBold ">
+            Stock:
+            <span className={cn(stock < 1 ? "text-[#D23F57]" : "text-[green]")}>
+              {stock < 1 ? "OutOfStock" : "InStock"}
+            </span>
           </div>
 
-          <div className="flex gap-2.5">
+          {/* Description */}
+          <div className="flex items-center justify-start gap-[6px] text-[17px] font-PoppinsBold ">
+            <div className="">Description</div>
+
+            <p className="text-gray-500 font-Sans text-[15px]">{descripton}</p>
+          </div>
+          <div className="flex gap-2.5 items-center justify-start mt-2">
             {isAddCart ? (
               <QuantityInput
                 decrement={() => handleQuantityChange("decrement")}
                 increment={() => handleQuantityChange("increment")}
                 value={count}
+                className="justify-between"
               />
             ) : (
               <Button onClick={() => handleQuantityChange("increment")}>

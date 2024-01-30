@@ -7,16 +7,16 @@ const FooterList = ({ name, list }) => {
   return (
     <>
       <div>
-        <div class="mb-4 font-bold uppercase tracking-widest text-gray-800">
+        <div class="mb-4 font-bold uppercase tracking-widest text-gray-800 font-PoppinsBold">
           {name}
         </div>
 
-        <ul class="flex flex-col gap-4">
+        <ul class="flex flex-col gap-4 font-Sans">
           {list.map((item, index) => (
             <div key={index}>
               <a
                 href="#"
-                class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600"
+                class="text-gray-500 transition duration-100 text-[15px]"
               >
                 {item}
               </a>
@@ -46,14 +46,17 @@ const Footer = () => {
                 />
               </div>
 
-              <p class="mb-6 text-gray-500 sm:pr-8">
+              <p class="mb-6 text-gray-500 sm:pr-8 font-Sans ">
                 Filler text is dummy text which has no meaning however looks
                 very similar to real text
               </p>
 
               <div class="flex gap-4">
                 {FOOTER.Icons.map((Icon, index) => (
-                  <span key={index} className="text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600 cursor-pointer">
+                  <span
+                    key={index}
+                    className="text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600 cursor-pointer"
+                  >
                     {<Icon size={"20px"} />}
                   </span>
                 ))}
@@ -65,7 +68,7 @@ const Footer = () => {
             ))}
           </div>
 
-          <div class="border-t py-[22px] text-center text-sm text-gray-400">
+          <div class="border-t py-[22px] text-center text-sm text-gray-400 font-Poppins">
             © 2024 - Present cyber. All rights reserved.
           </div>
         </div>

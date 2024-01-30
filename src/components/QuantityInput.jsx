@@ -25,9 +25,9 @@ const QuantityButton = ({ onClick, icon: Icon }) => {
   return (
     <button
       onClick={onClick}
-      className="px-[12px] flex items-center justify-center text-[25px] text-[#d23f57] border-solid border-[1px] border-[#d23f57] rounded cursor-pointer max-w-fit h-[35px] w-[48px] md:w-[45px] pb-[5px]"
+      className="p-[10px] flex items-center justify-center text-[20px] text-[#d23f57] border-solid border-[1px] border-[#d23f57] rounded cursor-pointer max-w-fit w-[50px] md:w-[45px]" 
     >
-      <Icon />
+      <Icon className={"text-[14px]"} />
     </button>
   );
 };
