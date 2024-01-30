@@ -206,17 +206,6 @@ const useCounter = (initialValue = 0, minValue = 0, maxValue = undefined) => {
     }
   }, [count, minValue]);
 
-  // const setQuantity = useCallback(
-  //   (quantity) => {
-  //     if (minValue !== undefined && quantity < minValue) {
-  //       setCount(minValue);
-  //     } else if (maxValue === undefined || quantity <= maxValue) {
-  //       setCount(quantity);
-  //     }
-  //   },
-  //   [minValue, maxValue]
-  // );
-
   const counterMethods = useMemo(
     () => ({
       count,

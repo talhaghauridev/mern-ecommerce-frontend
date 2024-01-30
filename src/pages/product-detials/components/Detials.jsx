@@ -22,7 +22,7 @@ const Details = ({ product }) => {
 
   const { handleAddToCart, isAddCart } = useAddToCart();
   const { count, decrement, increment } = useCounter(
-    localStorageItem(_id)?.quantity || 1,
+    localStorageItem(_id)?.quantity || 0,
     1,
     stock
   );
@@ -30,14 +30,16 @@ const Details = ({ product }) => {
   //Handle Quantity Change
   const handleQuantityChange = (operation) => {
     if (operation === "increment") {
+      if (count >= stock) return;
       increment();
       handleAddToCart(product, count + 1);
     } else if (operation === "decrement") {
+      if (count <= 1) return;
       decrement();
       handleAddToCart(product, count - 1);
     }
   };
-
+  console.log(isAddCart);
   return (
     <>
       <div className="container py-[50px] grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-[20px]">
@@ -96,7 +98,7 @@ const Details = ({ product }) => {
                 value={count}
               />
             ) : (
-              <Button onClick={() => handleQuantityChange("decrement")}>
+              <Button onClick={() => handleQuantityChange("increment")}>
                 Add to cart
               </Button>
             )}

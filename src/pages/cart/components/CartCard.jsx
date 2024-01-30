@@ -23,9 +23,11 @@ const CartCard = ({ name, category, price, _id, images, stock }) => {
   //Handle Quantity Change
   const handleQuantityChange = (operation) => {
     if (operation === "increment") {
+      if (count >= stock) return;
       increment();
       handleUpdateQuantity(_id, count + 1);
     } else if (operation === "decrement") {
+      if (count <= 1) return;
       decrement();
       handleUpdateQuantity(_id, count - 1);
     }
