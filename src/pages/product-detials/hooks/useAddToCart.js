@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import LocalStorage from "@utils/LocalStorage";
 import { addToCart } from "@redux/reducers/cartReducer";
-import { toast } from "react-toastify";
 
 const localStorageItem = (productId) => {
   const cartItems = LocalStorage.get("cart") || [];

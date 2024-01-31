@@ -21,7 +21,9 @@ const ProductList = () => {
         {!isProducts && <h1>Sorry, Product not Found</h1>}
       </div>
 
-      {isProducts && productCount > resultPerPage && <ProductPagination />}
+      {isProducts && productCount?.length > resultPerPage && (
+        <ProductPagination />
+      )}
     </section>
   );
 };

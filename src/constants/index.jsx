@@ -97,6 +97,17 @@ const FILTERS = {
   Ratings: [4, 3, 2, 1],
 };
 
-const FILTER_PRICE = [0, 25000]
+const FILTER_PRICE = [0, 25000];
 
-export { NAV, USER_DROPDOWN_LINKS, FOOTER, FILTERS,FILTER_PRICE };
+const SHIPPING_INFO = "shipping_info";
+const CART_ITEMS = "cart_items";
+
+export {
+  NAV,
+  USER_DROPDOWN_LINKS,
+  FOOTER,
+  FILTERS,
+  FILTER_PRICE,
+  SHIPPING_INFO,
+  CART_ITEMS,
+};

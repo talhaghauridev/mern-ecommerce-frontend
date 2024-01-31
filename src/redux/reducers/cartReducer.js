@@ -1,9 +1,11 @@
+import { CART_ITEMS, SHIPPING_INFO } from "@constants/index";
 import { createSlice } from "@reduxjs/toolkit";
 import LocalStorage from "@utils/LocalStorage";
 import { toast } from "react-toastify";
 
 const initialState = {
-  cartItems: LocalStorage.get("cart") || [],
+  cartItems: LocalStorage.get(CART_ITEMS) || [],
+  shippingInfo: LocalStorage.get(SHIPPING_INFO) || {},
 };
 
 export const cartReducer = createSlice({
@@ -23,15 +25,24 @@ export const cartReducer = createSlice({
         state.cartItems = [...state.cartItems, newItem];
         toast.success("Item added to cart");
       }
-      LocalStorage.set("cart", state.cartItems);
+      LocalStorage.set(CART_ITEMS, state.cartItems);
     },
 
     removeFromCart: (state, action) => {
       const id = action.payload;
       state.cartItems = state.cartItems?.filter((item) => item?._id !== id);
-      LocalStorage.set("cart", state.cartItems);
+      LocalStorage.set(CART_ITEMS, state.cartItems);
+    },
+
+    saveShippingInfo: (state, action) => {
+      const shippingInfo = action.payload;
+      state.shippingInfo = shippingInfo;
+      if (shippingInfo) {
+        LocalStorage.set(SHIPPING_INFO, shippingInfo);
+      }
     },
   },
 });
 
-export const { addToCart, removeFromCart } = cartReducer.actions;
+export const { addToCart, removeFromCart, saveShippingInfo } =
+  cartReducer.actions;
