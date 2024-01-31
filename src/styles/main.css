@@ -74,9 +74,6 @@
   gap: 14px;
 }
 
-.MuiBadge-standard{
-  /* background-color: black; */
-}
 @media (max-width: 950px) {
   .home_product_grid {
     grid-template-columns: 1fr 1fr 1fr !important;

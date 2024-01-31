@@ -5,10 +5,17 @@ import ProductLoading from "@components/ProductLoading";
 
 const ProductList = () => {
   const { products, isLoading } = useFetchProducts();
-  const isProducts = useMemo(
-    () => (!products || (products.length === 0 && !isLoading) ? false : true),
-    [isLoading, products]
-  );
+  const isProducts = useMemo(() => {
+    if (
+      (!isLoading && !products?.length) ||
+      products?.length === 0 ||
+      null ||
+      undefined
+    ) {
+      return false;
+    }
+    return true;
+  }, [isLoading, products]);
 
   return (
     <section id="productList">

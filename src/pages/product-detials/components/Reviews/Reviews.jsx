@@ -5,7 +5,7 @@ const Reviews = ({ reviews }) => {
   return (
     <section id="reviews">
       <div className="container">
-        <h1 className="form_heading">Reviews</h1>
+        <h1 className="form_heading">Customer Reviews</h1>
         <div className="grid grid-cols-2">
           {reviews &&
             reviews?.map((review, index) => (

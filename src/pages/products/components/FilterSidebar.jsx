@@ -1,14 +1,14 @@
-import { FILTERS, FILTER_PRICE } from "@constants/index";
-import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
-import { AiFillStar } from "react-icons/ai";
 import React, { useState, useMemo, useCallback, memo } from "react";
+import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import Slider from "@mui/material/Slider";
+import { FILTERS, FILTER_PRICE } from "@constants/index";
+import { AiFillStar } from "react-icons/ai";
+import { IoFilter } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 import { BackDrop, Button } from "@components/ui";
 import { useMediaQuery, useToggle } from "@hooks/hook";
-import { FaFilter } from "react-icons/fa";
-import cn from "@utils/cn";
 import { useProductContext } from "../context/ProductContext";
-import { useNavigate } from "react-router-dom";
+import cn from "@utils/cn";
 
 const FilterSidebar = () => {
   const [showValue, setShowValue] = useState({ category: true, ratings: true });
@@ -22,6 +22,7 @@ const FilterSidebar = () => {
     (e, value) => {
       const { name } = e.target;
       const newValue = typeof value === "string" ? value.toLowerCase() : value;
+
       setFilters((prev) => ({
         ...prev,
         [name]: newValue,
@@ -67,8 +68,13 @@ const FilterSidebar = () => {
           onClick={() => setToggle(false)}
         />
         {isMobile && (
-          <Button className={"bg-slate-700"} onClick={handleToggle}>
-            <FaFilter />
+          <Button
+            onClick={handleToggle}
+            variants={"outline"}
+            className={"items-center justify-center max-w-[100px] my-[10px] py-[7px] gap-[6px]"}
+          >
+            <span className="font-SansBold text-[19px]">Fiters</span>
+            <IoFilter className="text-[19px]"/>
           </Button>
         )}
       </>

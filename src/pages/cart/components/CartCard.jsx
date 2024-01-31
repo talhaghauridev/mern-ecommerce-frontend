@@ -35,7 +35,7 @@ const CartCard = ({ name, category, price, _id, images, stock }) => {
 
   return (
     <div
-      className="w-full max-w-full rounded-[10px] relative overflow-hidden flex  sm:flex-row flex-col"
+      className="w-full rounded-[10px] relative overflow-hidden flex  sm:flex-row flex-col max-w-[270px] sm:max-w-full"
       style={{
         boxShadow: "#2b34451a 0px 4px 16px",
       }}

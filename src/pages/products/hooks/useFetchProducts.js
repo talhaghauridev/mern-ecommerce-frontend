@@ -1,25 +1,37 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useGetProductQuery } from "@redux/api/productApi";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import { FILTER_PRICE } from "@constants/index";
 const useFetchProducts = () => {
-  const {search} = useParams();
+  const { search } = useParams();
   const [page, setPage] = useState(1);
   const [filters, setFilters] = useState({
     price: FILTER_PRICE,
     category: "",
-    ratings: null,    
+    ratings: null,
   });
   const { category, price, ratings } = filters;
 
   const { data, isLoading, error, isError } = useGetProductQuery({
-    keyword: search ||"",
+    keyword: search || "",
     category,
     price,
     ratings,
     page,
   });
+
+  const isProducts = useMemo(() => {
+    if (
+      (!isLoading && !data?.products?.length) ||
+      data?.products?.length === 0 ||
+      null ||
+      undefined
+    ) {
+      return false;
+    }
+    return true;
+  }, [isLoading, data?.products]);
 
   useEffect(() => {
     if (isError) {
@@ -27,7 +39,6 @@ const useFetchProducts = () => {
     }
   }, [isError, error]);
 
-  console.log(data);
   return {
     products: data && data?.products,
     productCount: data && data?.productCount,
@@ -38,6 +49,7 @@ const useFetchProducts = () => {
     setFilters,
     page,
     setPage,
+    isProducts,
   };
 };
 

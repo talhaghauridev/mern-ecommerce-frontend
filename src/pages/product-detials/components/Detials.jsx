@@ -57,7 +57,7 @@ const Details = ({ product }) => {
               {capitalize(String(name))}
             </h2>
           </div>
-
+          {/* Ratings */}
           <div className="flex items-center justify-start gap-[4px]">
             <Rating
               name="ratings"
@@ -97,6 +97,8 @@ const Details = ({ product }) => {
 
             <p className="text-gray-500 font-Sans text-[15px]">{descripton}</p>
           </div>
+
+          {/* Cart Button */}
           <div className="flex gap-2.5 items-center justify-start mt-2">
             {isAddCart ? (
               <QuantityInput

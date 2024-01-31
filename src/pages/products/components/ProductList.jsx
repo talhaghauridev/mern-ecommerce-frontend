@@ -1,33 +1,27 @@
-import { memo, useMemo } from "react";
+import { memo } from "react";
 import ProductCard from "@components/ProductCard";
 import ProductLoading from "@components/ProductLoading";
 import { useProductContext } from "../context/ProductContext";
-import { Pagination } from "@mui/material";
 import ProductPagination from "./ProductPagination";
 
 const ProductList = () => {
-  const { products, isLoading } = useProductContext();
-
-  const isProducts = useMemo(
-    () => products?.length > 0 || !isLoading,
-    [isLoading, products]
-  );
-
+  const { products, isLoading, resultPerPage, isProducts, productCount } =
+    useProductContext();
   return (
     <section id="productList">
       <div
-        className={`product_grid ${
-          isProducts || isLoading ? "" : "product_not_found"
-        }`}
+        className={
+          isProducts || isLoading ? "product_grid" : "product_not_found"
+        }
       >
         {isLoading && <ProductLoading length={8} />}
         {products?.map((product) => (
           <ProductCard {...product} key={product?._id} />
         ))}
-        {!isProducts && <h1>Product not Found</h1>}
+        {!isProducts && <h1>Sorry, Product not Found</h1>}
       </div>
 
-      {isProducts && <ProductPagination />}
+      {isProducts && productCount > resultPerPage && <ProductPagination />}
     </section>
   );
 };

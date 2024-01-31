@@ -1,6 +1,7 @@
 import React, { Suspense, lazy, useMemo } from "react";
 import { MetaData } from "@components/ui";
 import { useSelector } from "react-redux";
+import CartLoading from "@components/CartLoading";
 const EmptyCart = lazy(() => import("./components/EmptyCart"));
 const CartList = lazy(() => import("./components/CartList"));
 const CartPriceBox = lazy(() => import("./components/CartPriceBox"));
@@ -24,10 +25,9 @@ const Cart = () => {
         {!isCartItems && <EmptyCart />}
         {isCartItems && (
           <div className="container py-[90px]">
-            <Suspense fallback={<>Cart Loading....</>}>
+            <Suspense fallback={isCartItems && <CartLoading />}>
               <CartList />
             </Suspense>
-
             <CartPriceBox />
           </div>
         )}

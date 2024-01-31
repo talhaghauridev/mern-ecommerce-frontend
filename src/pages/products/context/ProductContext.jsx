@@ -14,6 +14,7 @@ export const ProductProvider = ({ children }) => {
     filteredProductCount,
     productCount,
     resultPerPage,
+    isProducts,
   } = useFetchProducts();
 
   const contextValue = useMemo(
@@ -27,6 +28,7 @@ export const ProductProvider = ({ children }) => {
       filteredProductCount,
       productCount,
       resultPerPage,
+      isProducts,
     }),
     [
       page,
@@ -36,9 +38,9 @@ export const ProductProvider = ({ children }) => {
       filteredProductCount,
       productCount,
       resultPerPage,
+      isProducts,
     ]
   );
-
   return (
     <main id="products" className="relative">
       <div className="container py-[90px]">
