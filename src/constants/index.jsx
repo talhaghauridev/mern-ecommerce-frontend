@@ -11,6 +11,9 @@ import {
   FaLinkedinIn,
   FaXTwitter,
 } from "react-icons/fa6";
+import { LiaShippingFastSolid } from "react-icons/lia";
+import { MdOutlineLibraryAddCheck } from "react-icons/md";
+import { RiBankFill } from "react-icons/ri";
 const NAV = {
   Links: [
     {
@@ -102,6 +105,20 @@ const FILTER_PRICE = [0, 25000];
 const SHIPPING_INFO = "shipping_info";
 const CART_ITEMS = "cart_items";
 
+const STEPPER_STEPS = [
+  {
+    label: "Shipping Detial",
+    icon: LiaShippingFastSolid,
+  },
+  {
+    label: "Confirm Order",
+    icon: MdOutlineLibraryAddCheck,
+  },
+  {
+    label: "Payment",
+    icon: RiBankFill,
+  },
+];
 export {
   NAV,
   USER_DROPDOWN_LINKS,
@@ -110,4 +127,5 @@ export {
   FILTER_PRICE,
   SHIPPING_INFO,
   CART_ITEMS,
+  STEPPER_STEPS
 };

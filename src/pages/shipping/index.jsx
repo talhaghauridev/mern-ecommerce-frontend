@@ -9,6 +9,7 @@ import { MdPinDrop } from "react-icons/md";
 import { FaPhone } from "react-icons/fa6";
 import { BiWorld } from "react-icons/bi";
 import { TbBuildingEstate } from "react-icons/tb";
+import Stepper from "@components/Stepper";
 const Shipping = () => {
   const { formik } = useShipping();
   const { handleSubmit, getFieldProps } = formik;
@@ -16,6 +17,7 @@ const Shipping = () => {
   return (
     <>
       <MetaData title={"Shipping"} />
+      <Stepper/>
       <section id="shipping">
         <div className="form_container">
           <form onSubmit={handleSubmit} className="form gap-y-[12px!important]">

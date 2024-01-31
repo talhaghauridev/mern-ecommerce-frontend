@@ -1,12 +1,24 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useGetProductQuery } from "@redux/api/productApi";
 import { toast } from "react-toastify";
 const useFetchProducts = () => {
   const { data, isLoading, error, isError } = useGetProductQuery({});
 
+  const isProducts = useMemo(() => {
+    if (
+      (!isLoading && !data?.products?.length) ||
+      data?.products?.length === 0 ||
+      null ||
+      undefined
+    ) {
+      return false;
+    }
+    return true;
+  }, [isLoading, data?.products]);
+
   useEffect(() => {
     if (isError) {
-       toast.error(error?.data?.message);
+      toast.error(error?.data?.message);
     }
   }, [isError, error]);
 
@@ -15,6 +27,7 @@ const useFetchProducts = () => {
     isLoading,
     error,
     isError,
+    isProducts,
   };
 };
 

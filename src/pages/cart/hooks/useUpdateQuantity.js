@@ -1,12 +1,11 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import LocalStorage from "@utils/LocalStorage";
 import { addToCart } from "@redux/reducers/cartReducer";
-import { toast } from "react-toastify";
+import { CART_ITEMS } from "@constants/index";
 
 const localStorageItem = (productId) => {
-  const cartItems = LocalStorage.get("cart") || [];
+  const cartItems = LocalStorage.get(CART_ITEMS) || [];
   return cartItems
     ?.filter((item) => item?._id === productId)
     .reduce((acc, cur) => {

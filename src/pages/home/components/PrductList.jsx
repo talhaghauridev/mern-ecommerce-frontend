@@ -1,21 +1,10 @@
-import { useMemo } from "react";
 import ProductCard from "@components/ProductCard";
 import { useFetchProducts } from "../hooks/useFetchProducts";
 import ProductLoading from "@components/ProductLoading";
+import ProductsNotFound from "@components/ProductsNotFound";
 
 const ProductList = () => {
-  const { products, isLoading } = useFetchProducts();
-  const isProducts = useMemo(() => {
-    if (
-      (!isLoading && !products?.length) ||
-      products?.length === 0 ||
-      null ||
-      undefined
-    ) {
-      return false;
-    }
-    return true;
-  }, [isLoading, products]);
+  const { products, isLoading, isProducts } = useFetchProducts();
 
   return (
     <section id="productList">
@@ -30,7 +19,7 @@ const ProductList = () => {
           products?.map((product) => (
             <ProductCard {...product} key={product?._id} />
           ))}
-        {!isProducts && <h1>Product not Found</h1>}
+        {!isProducts && <ProductsNotFound />}
       </div>
     </section>
   );

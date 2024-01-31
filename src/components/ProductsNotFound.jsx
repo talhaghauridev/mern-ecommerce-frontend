@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { memo } from "react";
 
-const ProductsNotFound = () => {
+const ProductNotFound = () => {
   return (
-    <div>ProductsNotFound</div>
-  )
-}
+    <div>
+      <h1 className="font-SansBold text-[28px]">Sorry, Product not Found</h1>
+    </div>
+  );
+};
 
-export default ProductsNotFound
+export default memo(ProductNotFound);

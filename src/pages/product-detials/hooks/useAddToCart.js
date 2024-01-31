@@ -3,9 +3,10 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import LocalStorage from "@utils/LocalStorage";
 import { addToCart } from "@redux/reducers/cartReducer";
+import { CART_ITEMS } from "@constants/index";
 
 const localStorageItem = (productId) => {
-  const cartItems = LocalStorage.get("cart") || [];
+  const cartItems = LocalStorage.get(CART_ITEMS) || [];
 
   return cartItems
     ?.filter((item) => item?._id === productId)
@@ -40,7 +41,7 @@ const useAddToCart = () => {
 
   useEffect(() => {
     const cartItems = localStorageItem(productId);
-    cartItems?._id  ? setIsAddCart(true) : setIsAddCart(false);
+    cartItems?._id ? setIsAddCart(true) : setIsAddCart(false);
     console.log(cartItems === null, isAddCart, cartItems?._id);
   }, [localStorageItem, productId]);
 

@@ -3,10 +3,12 @@ import ProductCard from "@components/ProductCard";
 import ProductLoading from "@components/ProductLoading";
 import { useProductContext } from "../context/ProductContext";
 import ProductPagination from "./ProductPagination";
+import ProductsNotFound from "@components/ProductsNotFound";
 
 const ProductList = () => {
   const { products, isLoading, resultPerPage, isProducts, productCount } =
     useProductContext();
+  console.log(resultPerPage, productCount, products);
   return (
     <section id="productList">
       <div
@@ -18,12 +20,10 @@ const ProductList = () => {
         {products?.map((product) => (
           <ProductCard {...product} key={product?._id} />
         ))}
-        {!isProducts && <h1>Sorry, Product not Found</h1>}
+        {!isProducts && <ProductsNotFound />}
       </div>
 
-      {isProducts && productCount?.length > resultPerPage && (
-        <ProductPagination />
-      )}
+      {isProducts && productCount >= resultPerPage && <ProductPagination />}
     </section>
   );
 };
