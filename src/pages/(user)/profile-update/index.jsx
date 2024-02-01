@@ -23,7 +23,7 @@ const UpdateProfile = () => {
 
       <MetaData title={"UpdateProfile"} />
       <section id="updateProfile">
-        <div className="form_container pt-0">
+        <div className="form_container pt-0 px-[0px]">
           <form
             className="form"
             onSubmit={handleSubmit}
