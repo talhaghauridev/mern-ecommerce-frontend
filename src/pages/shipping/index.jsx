@@ -17,7 +17,7 @@ const Shipping = () => {
   return (
     <>
       <MetaData title={"Shipping"} />
-      <Stepper activeStep={1}/>
+      <Stepper activeStep={0}/>
       <section id="shipping">
         <div className="form_container">
           <form onSubmit={handleSubmit} className="form gap-y-[12px!important]">

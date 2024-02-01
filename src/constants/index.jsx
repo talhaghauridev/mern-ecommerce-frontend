@@ -104,7 +104,7 @@ const FILTER_PRICE = [0, 25000];
 
 const SHIPPING_INFO = "shipping_info";
 const CART_ITEMS = "cart_items";
-
+const USER_INFO = "userInfo"
 const STEPPER_STEPS = [
   {
     label: "Shipping Detial",
@@ -127,5 +127,6 @@ export {
   FILTER_PRICE,
   SHIPPING_INFO,
   CART_ITEMS,
-  STEPPER_STEPS
+  STEPPER_STEPS,
+  USER_INFO
 };

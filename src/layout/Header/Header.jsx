@@ -63,12 +63,12 @@ const Header = () => {
 
           {/* NavIcons  */}
           <div className="icons flex gap-[25px] items-center justify-end ">
-            {NAV.Icons.map((item, index) => (
-              <Badge
-                badgeContent={item.path === "/cart" && cartItems?.length}
-                color={item.path === "/cart" ? "primary":"default"}
-
-              >
+            {NAV.Icons.map((item, index) =>
+              item.path === "/cart" ? (
+                <Badge badgeContent={cartItems?.length} color={"primary"}>
+                  <Item {...item} key={index} className={"header_icon"} />
+                </Badge>
+              ) : (
                 <Item
                   {...item}
                   key={index}
@@ -77,8 +77,8 @@ const Header = () => {
                     userInfo && item.path === "/login" ? "hidden" : "flex"
                   )}
                 />
-              </Badge>
-            ))}
+              )
+            )}
             {userInfo && <UserDropDown />}
           </div>
         </div>

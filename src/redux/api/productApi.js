@@ -1,5 +1,6 @@
-import { FILTER_PRICE } from "@constants/index";
+import { FILTER_PRICE, USER_INFO } from "@constants/index";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import LocalStorage from "@utils/LocalStorage";
 
 export const productApi = createApi({
   reducerPath: "productApi",
@@ -7,7 +8,7 @@ export const productApi = createApi({
     baseUrl: `${import.meta.env.VITE_SERVER_URL}/api/v1/`,
     prepareHeaders: (headers, {}) => {
       console.log(headers);
-      const token = "hello";
+      const token = LocalStorage.get(USER_INFO)?.token;
       if (token) {
         headers.set("Authorization", `Bearer ${token}`);
       }

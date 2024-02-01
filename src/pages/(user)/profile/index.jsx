@@ -1,11 +1,18 @@
-import React from 'react'
+import React from "react";
+import useProfile from "../hooks/useProfile";
 
 const Profile = () => {
+  const { userInfo } = useProfile();
   return (
-    <div>
-Profile
-    </div>
-  )
-}
+    <section id="profile">
+      <div className="container">
+        <h1>{userInfo?.name}</h1>
 
-export default Profile
+        <h1>{userInfo?.email}</h1>
+        <div>{JSON.stringify(userInfo)}</div>
+      </div>
+    </section>
+  );
+};
+
+export default Profile;

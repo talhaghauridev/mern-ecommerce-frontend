@@ -1,4 +1,6 @@
+import { USER_INFO } from "@constants/index";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import LocalStorage from "@utils/LocalStorage";
 
 export const server = `${import.meta.env.VITE_SERVER_URL}/api/v1`;
 
@@ -8,7 +10,7 @@ export const userApi = createApi({
     baseUrl: `${import.meta.env.VITE_SERVER_URL}/api/v1/`,
     prepareHeaders: (headers, {}) => {
       console.log(headers);
-      const token = "hello";
+      const token = LocalStorage.get(USER_INFO)?.token;
       if (token) {
         headers.set("Authorization", `Bearer ${token}`);
       }
@@ -57,7 +59,7 @@ export const userApi = createApi({
     }),
     updatePassword: builder.mutation({
       query: (passwords) => ({
-        url: "/password/update",
+        url: "password/update",
         method: "PUT",
         body: passwords,
       }),
@@ -71,7 +73,9 @@ export const userApi = createApi({
       }),
     }),
     me: builder.query({
-      query: () => {},
+      query: () => ({
+        url: "me",
+      }),
     }),
   }),
 });
