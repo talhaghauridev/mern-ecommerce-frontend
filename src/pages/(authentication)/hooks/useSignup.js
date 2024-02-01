@@ -2,6 +2,8 @@ import { useMessage } from "@hooks/hook";
 import { useSignupMutation } from "@redux/api/userApi";
 import { useFormik } from "formik";
 import { signUpSchema } from "../validation";
+import { useDispatch } from "react-redux";
+import { useCallback } from "react";
 
 const useSignup = () => {
   //Initial Values
@@ -11,18 +13,22 @@ const useSignup = () => {
     password: "",
     avatar: "",
   };
-  const [signup, { isLoading, isError, isSuccess, data, error ,originalArgs}] =
+  const [signup, { isLoading, isError, isSuccess, data, error, originalArgs }] =
     useSignupMutation();
+  const dispatch = useDispatch();
 
   //Handle Submit
 
-  const handleSignUp = async (userData) => {
-    try {
-      await signup(userData);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const handleSignUp = useCallback(
+    async (userData) => {
+      try {
+        await signup(userData);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    [signup]
+  );
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -33,6 +39,14 @@ const useSignup = () => {
     },
   });
 
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(setCredentials(data));
+      console.log(data);
+    }
+    console.log("useSignup useEffect");
+  }, [isSuccess, data, dispatch]);
+
   useMessage(isSuccess && "User register successfully", error, "/user/profile");
 
   return {
@@ -42,7 +56,7 @@ const useSignup = () => {
     isError,
     error,
     data,
-    originalArgs
+    originalArgs,
   };
 };
 

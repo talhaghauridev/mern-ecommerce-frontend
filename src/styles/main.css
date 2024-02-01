@@ -74,6 +74,13 @@
   gap: 14px;
 }
 
+#user .container {
+  display: grid;
+  grid-template-columns: 0.3fr 1fr;
+  justify-content: center;
+  grid-column-gap: 20px;
+}
+
 @media (max-width: 950px) {
   .home_product_grid {
     grid-template-columns: 1fr 1fr 1fr !important;
@@ -95,6 +102,12 @@
     grid-template-columns: 1fr 1fr !important;
   }
   #products .container {
+    display: flex !important;
+    flex-direction: column;
+    row-gap: 15px;
+  }
+
+  #user .container {
     display: flex !important;
     flex-direction: column;
     row-gap: 15px;

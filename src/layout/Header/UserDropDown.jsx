@@ -1,6 +1,5 @@
 import React, { memo, useMemo } from "react";
 import { USER_DROPDOWN_LINKS } from "@constants/index";
-import { avatar } from "@assets/images";
 import { Dropdown, Image } from "@components/ui";
 import { TbLogout } from "react-icons/tb";
 import { Link } from "react-router-dom";
@@ -21,17 +20,17 @@ const UserDropDown = () => {
   const { handleLogout } = useLogout();
 
   const filteredLinks = useMemo(() => {
-    return userInfo?.user?.role !== "admin"
+    return userInfo?.role !== "admin"
       ? USER_DROPDOWN_LINKS.filter((item) => item.name !== "Dashboard")
       : USER_DROPDOWN_LINKS;
-  }, [userInfo?.user?.role]);
+  }, [userInfo?.role]);
 
   return (
     <Dropdown>
       <Dropdown.Button>
         <Image
-          src={avatar}
-          alt="avatar"
+          src={userInfo?.avatar?.url}
+          alt={userInfo?.name || "avatar"}
           className="w-[100%] h-[100%] max-w-[34px]  rounded-full "
         />
       </Dropdown.Button>

@@ -18,7 +18,7 @@ const useLogout = () => {
     } catch (error) {
       console.error("Unexpected error:", error);
     }
-  }, [dispatch]);
+  }, []);
 
   return {
     handleLogout,
