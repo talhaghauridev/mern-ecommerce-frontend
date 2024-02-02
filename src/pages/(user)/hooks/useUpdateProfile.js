@@ -2,14 +2,14 @@ import { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import { useFormik } from "formik";
 import { useUpdateMeMutation } from "@redux/api/userApi";
-import { USER_INFO } from "@constants/index";
+import { USER_INFO_KEY } from "@constants/index";
 import useAuth from "@hooks/useAuth";
 import { useMessage } from "@hooks/hook";
 import LocalStorage from "@utils/LocalStorage";
 import { updateProfileSchema } from "../validation";
 
 export const getProfileData = () => {
-  const { name, email, avatar } = LocalStorage.get(USER_INFO);
+  const { name, email, avatar } = LocalStorage.get(USER_INFO_KEY);
 
   return {
     name,
@@ -76,7 +76,7 @@ const useUpdateProfile = () => {
     formik,
     image,
     handleFileChange,
-    isLoading: online ? (isLoading || isSuccess ? authLoading : false) : false,
+    isLoading: online ? isLoading || authLoading : false,
     isError,
     data,
   };

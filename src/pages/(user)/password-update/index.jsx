@@ -1,5 +1,6 @@
 import React from "react";
 import { BackDrop, Button, Input, MetaData } from "@components/ui";
+import { RiBankFill, RiLockPasswordLine } from "react-icons/ri";
 import useUpdatePassword from "../hooks/useUpdatePassword";
 import inputError from "@utils/inputError";
 const updatePassword = () => {
@@ -21,6 +22,7 @@ const updatePassword = () => {
               type="password"
               placeholder="Enter your old password"
               name="email"
+              leftIcon={RiLockPasswordLine}
               error={inputError(formik, "oldPassword")}
               {...getFieldProps("oldPassword")}
             />
@@ -31,6 +33,7 @@ const updatePassword = () => {
               type="password"
               placeholder="Enter your old new password"
               name="email"
+              leftIcon={RiLockPasswordLine}
               error={inputError(formik, "newPassword")}
               {...getFieldProps("newPassword")}
             />
@@ -41,6 +44,7 @@ const updatePassword = () => {
               type="password"
               placeholder="Enter your confirmPassword"
               name="email"
+              leftIcon={RiLockPasswordLine}
               error={inputError(formik, "confirmPassword")}
               {...getFieldProps("confirmPassword")}
             />

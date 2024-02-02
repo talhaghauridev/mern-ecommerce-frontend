@@ -4,6 +4,7 @@ import { saveShippingInfo } from "@redux/reducers/cartReducer";
 import { SHIPPING_INFO } from "@constants/index";
 import LocalStorage from "@utils/LocalStorage";
 import { shippingSchema } from "../validation";
+import { useCallback } from "react";
 
 const getShippingInfo = () => {
   const info = LocalStorage.get(SHIPPING_INFO);
@@ -23,9 +24,12 @@ const useShipping = () => {
   };
   const dispatch = useDispatch();
 
-  const handleSaveShippingInfo = (values) => {
-    dispatch(saveShippingInfo(values));
-  };
+  const handleSaveShippingInfo = useCallback(
+    (values) => {
+      dispatch(saveShippingInfo(values));
+    },
+    [dispatch]
+  );
 
   const formik = useFormik({
     initialValues: getShippingInfo() ? getShippingInfo() : initialValues,

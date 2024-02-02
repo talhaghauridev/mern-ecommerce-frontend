@@ -1,9 +1,9 @@
-import { USER_INFO,TOKEN } from "@constants/index";
+import { USER_INFO_KEY,TOKEN } from "@constants/index";
 import { createSlice } from "@reduxjs/toolkit";
 import LocalStorage from "@utils/LocalStorage";
 
 const initialState = {
-  userInfo: LocalStorage.get(USER_INFO) || null,
+  userInfo: LocalStorage.get(USER_INFO_KEY) || null,
 };
 
 export const userReducer = createSlice({
@@ -12,12 +12,12 @@ export const userReducer = createSlice({
   reducers: {
     setCredentials: (state, action) => {
       state.userInfo = action.payload?.user;
-      LocalStorage.set(USER_INFO, action.payload?.user);
+      LocalStorage.set(USER_INFO_KEY, action.payload?.user);
       LocalStorage.set(TOKEN, action.payload?.token);
     },
     logout: (state) => {
       state.userInfo = null;
-      LocalStorage.remove(USER_INFO);
+      LocalStorage.remove(USER_INFO_KEY);
       LocalStorage.remove(TOKEN);
 
     },

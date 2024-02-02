@@ -13,7 +13,10 @@ import {
 } from "react-icons/fa6";
 import { LiaShippingFastSolid } from "react-icons/lia";
 import { MdOutlineLibraryAddCheck } from "react-icons/md";
-import { RiBankFill, RiLockPasswordLine } from "react-icons/ri";
+import { RiBankFill } from "react-icons/ri";
+import { RiProfileLine } from "react-icons/ri";
+import { RxUpdate } from "react-icons/rx";
+import { TbPasswordUser } from "react-icons/tb";
 
 const NAV = {
   Links: [
@@ -100,7 +103,7 @@ const FILTER_PRICE = [0, 25000];
 
 const SHIPPING_INFO = "shipping_info";
 const CART_ITEMS = "cart_items";
-const USER_INFO = "userInfo";
+const USER_INFO_KEY = "userInfo";
 
 const TOKEN = "user_token";
 const STEPPER_STEPS = [
@@ -122,7 +125,7 @@ const USER_PROFILE_LINK = [
   {
     name: "Profile",
     path: "/user/profile",
-    icon: CgProfile,
+    icon: RiProfileLine,
   },
   {
     name: "Orders",
@@ -132,12 +135,12 @@ const USER_PROFILE_LINK = [
   {
     name: "Update Profile",
     path: "/user/profile/update",
-    icon: RiLockPasswordLine,
+    icon: RxUpdate,
   },
   {
     name: "Update Password",
     path: "/user/password/update",
-    icon: RiLockPasswordLine,
+    icon: TbPasswordUser,
   },
 ];
 export {
@@ -149,7 +152,7 @@ export {
   SHIPPING_INFO,
   CART_ITEMS,
   STEPPER_STEPS,
-  USER_INFO,
+  USER_INFO_KEY,
   TOKEN,
   USER_PROFILE_LINK,
 };

@@ -8,6 +8,7 @@ import {
   MetaData,
 } from "@components/ui";
 import { MdAlternateEmail } from "react-icons/md";
+import { RxAvatar } from "react-icons/rx";
 import inputError from "@utils/inputError";
 import useUpdateProfile from "../hooks/useUpdateProfile";
 const UpdateProfile = () => {
@@ -36,6 +37,7 @@ const UpdateProfile = () => {
               type="text"
               placeholder="Enter your name"
               name="name"
+              leftIcon={RxAvatar}
               {...getFieldProps("name")}
               error={inputError(formik, "name")}
             />

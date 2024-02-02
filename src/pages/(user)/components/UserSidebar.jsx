@@ -90,6 +90,7 @@ const UserSidebar = () => {
                 to={path}
                 className="items-center justify-start flex gap-[6px]"
                 onClick={() => isMobile && setToggle(false)}
+                key={name}
               >
                 <li
                   className={cn(
@@ -103,7 +104,7 @@ const UserSidebar = () => {
                 </li>
               </Link>
             ))}
-            <div className="cursor-pointer sm:text-[15px] text-[14px] text-[#2b3445] font-Sans w-[170px] sm:w-[100%] md:w-[100%] py-[12px] px-[16px] border-solid border-b border-[#e5e7eb] flex items-center justify-start gap-[5px] transition-all hover:bg-[#2b34450f]  ">
+            <div className="cursor-pointer sm:text-[15px] text-[14px] text-[#2b3445] font-Sans sm:w-[100%] md:w-[100%] py-[12px] px-[16px] border-solid border-b border-[#e5e7eb] flex items-center justify-start gap-[5px] transition-all hover:bg-[#2b34450f] w-full ">
               <TbLogout className="text-[15px] md:text-[18px]" />
               <h1 className="text-[15px]">Logout</h1>
             </div>

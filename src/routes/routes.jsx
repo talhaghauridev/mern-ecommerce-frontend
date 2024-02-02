@@ -3,6 +3,7 @@ import React, { lazy } from "react";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import AuthRoutes from "@routes/user.routes";
 import Layout from "@layout/layout";
+import ProtectRoute from "@lib/ProtectRoute";
 const NotFound = lazy(() => import("@layout/NotFound/NotFound"));
 const Products = lazy(() => import("@pages/products"));
 const ProductDetails = lazy(() => import("@pages/product-detials"));
@@ -17,7 +18,7 @@ const ResetPassword = lazy(() =>
   import("@pages/(authentication)/password-reset")
 );
 const SignUp = lazy(() => import("@pages/(authentication)/signup"));
-
+const ConfirmOrder = lazy(() => import("@pages/confirm-order"));
 const AppRoutes = () => {
   return (
     <Router>
@@ -34,6 +35,9 @@ const AppRoutes = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/shipping" element={<Shipping />} />
           <Route path="/user/*" element={<AuthRoutes />} />
+          <Route element={<ProtectRoute />}>
+            <Route path="/order/confirm" element={<ConfirmOrder />} />
+          </Route>
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

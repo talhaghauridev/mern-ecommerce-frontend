@@ -1,11 +1,12 @@
 import React, { memo } from "react";
 import { buttonVariants } from "@components/ui";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import cn from "@utils/cn";
+import useCartPrice from "../hooks/useCartPrice";
 
 const CartPriceBox = () => {
-  const { cartItems } = useSelector((state) => state.cart);
+const {totalProducts,totalPrice,checkoutHandler} = useCartPrice()
+
   return (
     <div
       className="bg-white rounded-[8px] relative md:max-w-[350px] overflow-hidden h-fit max-w-full "
@@ -18,19 +19,17 @@ const CartPriceBox = () => {
           <ul className="flex items-center flex-col gap-y-[18px] md:gap-y-[20px]">
             <li className=" cart_price">
               Total Products:
-              <span> {cartItems?.length}</span>
+              <span> {totalProducts}</span>
             </li>
             <li className=" cart_price">
               Total Price:
-              <span>
-                ${cartItems?.reduce((acc, item) => acc + 3 * item.price, 0)}
-              </span>
+              <span>${totalPrice}</span>
             </li>
           </ul>
         </div>
         <Link
-          to="/shipping"
           className={cn(buttonVariants({ className: "max-w-full" }))}
+          to={checkoutHandler}
         >
           Check Out
         </Link>

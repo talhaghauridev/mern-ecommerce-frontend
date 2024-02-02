@@ -1,16 +1,16 @@
 import { useState, lazy, Suspense, memo } from "react";
 import { Link, useLocation } from "react-router-dom";
-const BottomNavigation = lazy(() => import("@layout/Header/BottomNavigation"));
-const UserDropDown = lazy(() => import("@layout/Header/UserDropDown"));
-import { Logo } from "@assets/images";
+import { useSelector } from "react-redux";
+import { Badge } from "@mui/material";
 import { Image } from "@components/ui";
+import { Logo } from "@assets/images";
 import { NAV } from "@constants";
 import SearchBox from "./SearchBox";
 import { useMediaQuery } from "@hooks/hook";
-import { useSelector } from "react-redux";
-import { Badge } from "@mui/material";
 import cn from "@utils/cn";
 import { useHeaderScroll, useHeaderSearch } from "@hooks/header.hooks";
+const BottomNavigation = lazy(() => import("@layout/Header/BottomNavigation"));
+const UserDropDown = lazy(() => import("@layout/Header/UserDropDown"));
 const Header = () => {
   const { pathname } = useLocation();
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -65,8 +65,12 @@ const Header = () => {
           <div className="icons flex gap-[25px] items-center justify-end ">
             {NAV.Icons.map((item, index) =>
               item.path === "/cart" ? (
-                <Badge badgeContent={cartItems?.length} color={"primary"}>
-                  <Item {...item} key={index} className={"header_icon"} />
+                <Badge
+                  badgeContent={cartItems?.length}
+                  color={"primary"}
+                  key={index}
+                >
+                  <Item {...item} className={"header_icon"} />
                 </Badge>
               ) : (
                 <Item
@@ -79,7 +83,11 @@ const Header = () => {
                 />
               )
             )}
-            {userInfo && <UserDropDown />}
+            {userInfo && (
+              <Suspense fallback={"Loading..."}>
+                <UserDropDown />
+              </Suspense>
+            )}
           </div>
         </div>
       </header>

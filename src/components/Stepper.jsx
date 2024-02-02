@@ -15,7 +15,7 @@ const Stepper = ({ activeStep }) => {
               <div
                 className={cn(
                   " step w-full max-w-fit flex items-center justify-center gap-[6px]",
-                  activeStep === index && "text-[#D23F57!important]"
+                  activeStep >= index && "text-[#D23F57!important]"
                 )}
                 key={index}
               >
@@ -27,21 +27,17 @@ const Stepper = ({ activeStep }) => {
                   )}
                 >
                   {step.label}
-                  {/* {activeStep >= index && (
-                    <p className="text-center md:text-xs md:max-w-min-content">
-                    </p>
-                  )} */}
                 </h1>
               </div>
               <div
                 className={cn(
-                  "w-full flex items-center justify-center ",
+                  "w-full flex items-center justify-center rounded-[20px]",
                   activeStep === index ? "bg-[#d23f57]" : ""
                 )}
                 style={{ display: index === 2 ? "none" : "" }}
               >
                 <span
-                  className="h-[1.5px] w-full bg-gray-400 rounded-[5px]"
+                  className="h-[3px] w-full  bg-gray-400 rounded-[20px]"
                   style={{
                     backgroundColor: activeStep >= index ? "#d23f57" : "",
                   }}
