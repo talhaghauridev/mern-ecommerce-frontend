@@ -1,11 +1,57 @@
-import React from 'react'
-
-const UpdatePassword = () => {
+import React from "react";
+import { BackDrop, Button, Input, MetaData } from "@components/ui";
+import useUpdatePassword from "../hooks/useUpdatePassword";
+import inputError from "@utils/inputError";
+const updatePassword = () => {
+  const { formik, isLoading } = useUpdatePassword();
+  const { handleSubmit, getFieldProps } = formik;
   return (
-    <div>
-UpdatePassword
-    </div>
-  )
-}
+    <>
+      {isLoading && <BackDrop isOpen={isLoading} />}
+      <MetaData title={"Update Password"} />
+      <section id="Update Password">
+        <div className="form_container pt-0 px-[0px]">
+          <form className="form" onSubmit={handleSubmit}>
+            <div className="form_heading">
+              <h1>Update Password</h1>
+            </div>
+            {/* Old Password Input  */}
+            <Input
+              label="Old Password"
+              type="password"
+              placeholder="Enter your old password"
+              name="email"
+              error={inputError(formik, "oldPassword")}
+              {...getFieldProps("oldPassword")}
+            />
 
-export default UpdatePassword
+            {/* New Password Input  */}
+            <Input
+              label="New Password"
+              type="password"
+              placeholder="Enter your old new password"
+              name="email"
+              error={inputError(formik, "newPassword")}
+              {...getFieldProps("newPassword")}
+            />
+
+            {/* Input Confirm Password */}
+            <Input
+              label="Confirm Password"
+              type="password"
+              placeholder="Enter your confirmPassword"
+              name="email"
+              error={inputError(formik, "confirmPassword")}
+              {...getFieldProps("confirmPassword")}
+            />
+            <Button type="submit" className="max-w-full mt-2">
+              Submit
+            </Button>
+          </form>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default updatePassword;

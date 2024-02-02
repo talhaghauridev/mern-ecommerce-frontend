@@ -1,24 +1,9 @@
-import { FILTER_PRICE, TOKEN, USER_INFO } from "@constants/index";
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import LocalStorage from "@utils/LocalStorage";
-
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { FILTER_PRICE } from "@constants/index";
+import { baseQuery } from "@utils/ApiUrl";
 export const productApi = createApi({
   reducerPath: "productApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_SERVER_URL}/api/v1/`,
-    prepareHeaders: (headers, {}) => {
-      console.log(headers);
-      const token = LocalStorage.get(TOKEN);
-      if (token) {
-        headers.set("Authorization", `Bearer ${token}`);
-      }
-
-      // You can also set other headers here
-      headers.set("Content-Type", "application/json");
-
-      return headers;
-    },
-  }),
+  baseQuery: baseQuery,
   endpoints: (builder) => ({
     getProduct: builder.query({
       query: ({
@@ -81,4 +66,5 @@ export const {
   useCreateProductMutation,
   useUpdateProductMutation,
   useDeleteProductMutation,
+  
 } = productApi;

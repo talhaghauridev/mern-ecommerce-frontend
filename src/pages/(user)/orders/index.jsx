@@ -1,10 +1,12 @@
 import React from 'react'
+import {MetaData } from "@components/ui";
 
 const Orders = () => {
   return (
-    <div>
+    <>
+     <MetaData title={"Orders"}/>
       Orders
-    </div>
+    </>
   )
 }
 

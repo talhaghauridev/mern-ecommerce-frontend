@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
-import { useGetProductQuery } from "@redux/api/productApi";
-import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useGetProductQuery } from "@redux/api/productApi";
 import { FILTER_PRICE } from "@constants/index";
 const useFetchProducts = () => {
   const { search } = useParams();

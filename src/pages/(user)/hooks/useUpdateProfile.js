@@ -1,14 +1,16 @@
+import { useCallback, useState } from "react";
+import { useSelector } from "react-redux";
 import { useFormik } from "formik";
-import React from "react";
-import { updateProfileSchema } from "../validation";
 import { useUpdateMeMutation } from "@redux/api/userApi";
-import { useMessage } from "@hooks/hook";
-import useAuth from "@hooks/useAuth";
-import LocalStorage from "@utils/LocalStorage";
 import { USER_INFO } from "@constants/index";
+import useAuth from "@hooks/useAuth";
+import { useMessage } from "@hooks/hook";
+import LocalStorage from "@utils/LocalStorage";
+import { updateProfileSchema } from "../validation";
 
 export const getProfileData = () => {
   const { name, email, avatar } = LocalStorage.get(USER_INFO);
+
   return {
     name,
     email,
@@ -16,6 +18,9 @@ export const getProfileData = () => {
   };
 };
 const useUpdateProfile = () => {
+  const [image, setImage] = useState("");
+  const { online } = useSelector((state) => state.onlineStatus);
+
   const initialValues = {
     name: "",
     email: "",
@@ -25,29 +30,53 @@ const useUpdateProfile = () => {
   const [updateProfile, { isError, isLoading, isSuccess, data, error }] =
     useUpdateMeMutation();
 
-  const handleUpdateProfile = async (values) => {
-    try {
-      await updateProfile(values);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const handleUpdateProfile = useCallback(
+    async (values) => {
+      try {
+        await updateProfile(values);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    [updateProfile]
+  );
 
+  //Handle onSubmit
+  const onSubmit = useCallback(
+    async (values) => {
+      await handleUpdateProfile(values);
+    },
+    [handleUpdateProfile]
+  );
+
+  //Handle File Change
+  const handleFileChange = useCallback(
+    (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setImage(reader.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    },
+    [image]
+  );
 
   const formik = useFormik({
     initialValues: getProfileData() ? getProfileData() : initialValues,
     validationSchema: updateProfileSchema,
-    onSubmit: async (values) => {
-      console.log(values);
-      await handleUpdateProfile(values);
-    },
+    onSubmit: onSubmit,
   });
 
   const { isLoading: authLoading } = useAuth();
-  useMessage(data?.message, error?.data?.message, "/user/profile");
+  useMessage(data?.message, error, "/user/profile");
   return {
     formik,
-    isLoading: authLoading || isLoading,
+    image,
+    handleFileChange,
+    isLoading: online ? (isLoading || isSuccess ? authLoading : false) : false,
     isError,
     data,
   };

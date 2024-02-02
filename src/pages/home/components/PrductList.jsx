@@ -1,7 +1,7 @@
 import ProductCard from "@components/ProductCard";
-import { useFetchProducts } from "../hooks/useFetchProducts";
 import ProductLoading from "@components/ProductLoading";
 import ProductsNotFound from "@components/ProductsNotFound";
+import { useFetchProducts } from "../hooks/useFetchProducts";
 
 const ProductList = () => {
   const { products, isLoading, isProducts } = useFetchProducts();

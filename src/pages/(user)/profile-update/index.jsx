@@ -1,5 +1,4 @@
 import React from "react";
-import inputError from "@utils/inputError";
 import {
   BackDrop,
   Button,
@@ -8,20 +7,19 @@ import {
   InputUpload,
   MetaData,
 } from "@components/ui";
-import { useUpload } from "@hooks/hook";
-import { avatar } from "@assets/images";
 import { MdAlternateEmail } from "react-icons/md";
+import inputError from "@utils/inputError";
 import useUpdateProfile from "../hooks/useUpdateProfile";
 const UpdateProfile = () => {
-  const { formik, isLoading } = useUpdateProfile();
+  const { formik, isLoading, handleFileChange, image } = useUpdateProfile();
   const { handleSubmit, getFieldProps } = formik;
-  const { handleFileChange, image } = useUpload();
+
   console.log(formik, image);
   return (
     <>
       {isLoading && <BackDrop isOpen={isLoading} />}
 
-      <MetaData title={"UpdateProfile"} />
+      <MetaData title={"Update Profile"} />
       <section id="updateProfile">
         <div className="form_container pt-0 px-[0px]">
           <form
@@ -55,13 +53,17 @@ const UpdateProfile = () => {
 
             {/* Input InputUpload */}
             <div className="upload_input">
-              <Image className="upload_avatar" src={avatar} alt="avatar" />
+              <Image
+                className="upload_avatar"
+                src={formik?.values?.avatar || image}
+                alt="avatar"
+              />
               <InputUpload
                 name={"avatar"}
                 label={"Upload Avatar"}
                 onChange={(event) => {
                   handleFileChange(event);
-                  image && formik.setFieldValue("avatar", image && image[0]);
+                  formik.setFieldValue("avatar", image && image);
                 }}
               />
 

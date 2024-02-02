@@ -1,18 +1,25 @@
-import React, { useCallback, useMemo } from "react";
-import cn from "@utils/cn";
-import { USER_PROFILE_LINK } from "@constants/index";
-import { useSelector } from "react-redux";
+import React, { memo, useCallback, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { BackDrop, Button, Image } from "@components/ui";
 import { TbLogout } from "react-icons/tb";
-import { useMediaQuery, useToggle } from "@hooks/hook";
 import { FaBarsStaggered } from "react-icons/fa6";
+import { useMediaQuery, useToggle } from "@hooks/hook";
+import { USER_PROFILE_LINK } from "@constants/index";
+import cn from "@utils/cn";
+
+const shortValue = (value, length) => {
+  const newValue =
+    value?.trim()?.length > length ? value.slice(0, length) + "...." : value;
+  return newValue;
+};
 
 const UserSidebar = () => {
   const { userInfo } = useSelector((state) => state.user);
   const { pathname } = useLocation();
   const isMobile = useMediaQuery("(max-width:768px)");
   const { handleToggle, setToggle, toggle } = useToggle(false);
+
   const MobileSidebar = useCallback(
     () => (
       <>
@@ -28,7 +35,6 @@ const UserSidebar = () => {
               "items-center justify-center max-w-[60px] my-[10px] py-[7px] gap-[6px]"
             }
           >
-            {/* <span className="font-SansBold text-[19px]">Fiters</span> */}
             <FaBarsStaggered className="text-[19px]" />
           </Button>
         )}
@@ -54,7 +60,7 @@ const UserSidebar = () => {
       <aside
         id="profileSidebar"
         className={cn(
-          "md:h-min bg-white w-full max-w-[240px] md:flex flex-col items-center justify-start md:static fixed top-[0px] left-0 h-[100vh] md:overflow-hidden overflow-y-auto overflow-x-hidden z-10 md:z-[0] transition-all",
+          "md:h-min bg-white w-full max-w-[240px] md:flex flex-col items-center justify-start md:static fixed top-[0px] left-0 h-[100vh] md:overflow-hidden overflow-y-auto overflow-x-hidden z-10 md:z-[0] transition-all md:w-[300px]",
           mobileToggle
         )}
         style={{
@@ -62,19 +68,19 @@ const UserSidebar = () => {
         }}
       >
         <div className="sidebar w-full h-full py-[10px] border-t border-solid border-[#d7d6d6b5] ">
-          <div className="sidebar_heading border-b border-solid border-[#d7d6d6b5] py-[10px] px-[15px] flex items-center justify-between gap-[6px]">
+          <div className="sidebar_heading border-b border-solid border-[#d7d6d6b5] py-[10px] px-[15px] flex items-center justify-between gap-[10px]">
             <Image
               src={userInfo?.avatar?.url}
               alt={userInfo?.name}
-              className="w-[100%] h-[100%] max-w-[36px]  rounded-full "
+              className="w-[100%] h-[100%] max-w-[45px]  rounded-full  "
             />
-            <div>
-              <h1 className="text-[#2b3445] font-semibold font-Poppins text-[18px] mb-[-6px]">
-                {userInfo?.name}
+            <div className="w-full">
+              <h1 className="text-[#2b3445] font-semibold font-Poppins text-[17px] mb-[-6px]">
+                {shortValue(userInfo?.name, 12)}
               </h1>
-              <span className="text-[14px] font-Sans font-[400]">
-                {userInfo?.email}
-              </span>
+              <p className="text-[14px] font-Sans font-[400]">
+                {shortValue(userInfo?.email, 14)}
+              </p>
             </div>
           </div>
 
@@ -83,7 +89,7 @@ const UserSidebar = () => {
               <Link
                 to={path}
                 className="items-center justify-start flex gap-[6px]"
-                onClick={()=>isMobile && setToggle(false)}
+                onClick={() => isMobile && setToggle(false)}
               >
                 <li
                   className={cn(
@@ -108,4 +114,4 @@ const UserSidebar = () => {
   );
 };
 
-export default UserSidebar;
+export default memo(UserSidebar);

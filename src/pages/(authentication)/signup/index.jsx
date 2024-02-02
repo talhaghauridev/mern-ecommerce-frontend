@@ -1,5 +1,5 @@
 import React from "react";
-import inputError from "@utils/inputError";
+import { Link } from "react-router-dom";
 import {
   BackDrop,
   Button,
@@ -8,17 +8,16 @@ import {
   InputUpload,
   MetaData,
 } from "@components/ui";
-import { useUpload } from "@hooks/hook";
-import useSignup from "../hooks/useSignup";
-import { avatar } from "@assets/images";
-import { Link } from "react-router-dom";
 import { MdAlternateEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { avatar } from "@assets/images";
+import { useUpload } from "@hooks/hook";
+import useSignup from "../hooks/useSignup";
+import inputError from "@utils/inputError";
 const SignUp = () => {
   const { formik, isLoading } = useSignup();
   const { handleSubmit, getFieldProps } = formik;
   const { handleFileChange, image } = useUpload();
-  console.log(formik, image);
   return (
     <>
       {isLoading && <BackDrop isOpen={isLoading} />}

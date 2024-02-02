@@ -1,6 +1,6 @@
 import React, { memo } from "react";
-import { useMediaQuery } from "@hooks/hook";
 import { CircularProgress } from "@mui/material";
+import { useMediaQuery } from "@hooks/hook";
 import cn from "@utils/cn";
 
 const SidebarLoading = () => {

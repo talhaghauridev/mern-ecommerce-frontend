@@ -1,0 +1,54 @@
+import { useCallback } from "react";
+import { useSelector } from "react-redux";
+import { useFormik } from "formik";
+import { useMessage } from "@hooks/hook";
+import { useUpdatePasswordMutation } from "@redux/api/userApi";
+import { updatePasswordSchema } from "../validation";
+
+const useUpdatePassword = () => {
+  const { online } = useSelector((state) => state.onlineStatus);
+  const initialValues = {
+    oldPassword: "",
+    newPassword: "",
+    confirmPassword: "",
+  };
+
+  const [updatePassword, { isError, isLoading, data, error }] =
+    useUpdatePasswordMutation();
+
+  const handleUpdatePassword = useCallback(
+    async (values) => {
+      try {
+        await updatePassword(values);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    [updatePassword]
+  );
+
+  //Handle onSubmit
+  const onSubmit = useCallback(
+    async (values) => {
+      await handleUpdatePassword(values);
+    },
+    [handleUpdatePassword]
+  );
+
+  const formik = useFormik({
+    initialValues: initialValues,
+    validationSchema: updatePasswordSchema,
+    onSubmit: onSubmit,
+  });
+
+  useMessage(data?.message, error, "/user/profile");
+
+  return {
+    formik,
+    isLoading: online ? isLoading : false,
+    isError,
+    data,
+  };
+};
+
+export default useUpdatePassword;

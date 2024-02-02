@@ -40,7 +40,6 @@ const Details = ({ product }) => {
       handleAddToCart(product, count - 1);
     }
   };
-  console.log(isAddCart);
   return (
     <>
       <div className="container py-[50px] grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-[20px]">

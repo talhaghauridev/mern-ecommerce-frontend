@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import LocalStorage from "@utils/LocalStorage";
-import { addToCart } from "@redux/reducers/cartReducer";
 import { CART_ITEMS } from "@constants/index";
+import { addToCart } from "@redux/reducers/cartReducer";
 
 const localStorageItem = (productId) => {
   const cartItems = LocalStorage.get(CART_ITEMS) || [];

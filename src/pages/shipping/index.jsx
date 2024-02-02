@@ -1,23 +1,23 @@
 import React from "react";
 import { Input, Button, MetaData, Select } from "@components/ui";
-import inputError from "@utils/inputError";
-import { useShipping } from "./hooks/useShipping";
-import { Country, State } from "country-state-city";
-import { HiOutlineHome } from "react-icons/hi";
-import { MdOutlineLocationCity } from "react-icons/md";
 import { MdPinDrop } from "react-icons/md";
 import { FaPhone } from "react-icons/fa6";
 import { BiWorld } from "react-icons/bi";
+import { HiOutlineHome } from "react-icons/hi";
 import { TbBuildingEstate } from "react-icons/tb";
+import { MdOutlineLocationCity } from "react-icons/md";
+import { Country, State } from "country-state-city";
+import { useShipping } from "./hooks/useShipping";
 import Stepper from "@components/Stepper";
+import inputError from "@utils/inputError";
+
 const Shipping = () => {
   const { formik } = useShipping();
   const { handleSubmit, getFieldProps } = formik;
-  console.log(formik.values);
   return (
     <>
       <MetaData title={"Shipping"} />
-      <Stepper activeStep={0}/>
+      <Stepper activeStep={0} />
       <section id="shipping">
         <div className="form_container">
           <form onSubmit={handleSubmit} className="form gap-y-[12px!important]">

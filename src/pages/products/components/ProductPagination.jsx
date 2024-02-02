@@ -1,6 +1,6 @@
 import React, { memo } from "react";
-import { useProductContext } from "../context/ProductContext";
 import { Pagination } from "@mui/material";
+import { useProductContext } from "../context/ProductContext";
 
 const ProductPagination = () => {
   const { filteredProductCount, page, setPage, resultPerPage } =

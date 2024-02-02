@@ -1,8 +1,7 @@
-import React, { lazy } from "react";
-import { Suspense } from "react";
+import React, { lazy ,Suspense} from "react";
+import { MetaData } from "@components/ui";
 import SidebarLoading from "./components/SidebarLoading";
 import ProductLoading from "@components/ProductLoading";
-import { MetaData } from "@components/ui";
 import { ProductProvider } from "./context/ProductContext";
 const FilterSidebar = lazy(() => import("./components/FilterSidebar"));
 const ProductList = lazy(() => import("./components/ProductList"));

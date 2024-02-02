@@ -1,5 +1,5 @@
+import React, { memo } from "react";
 import { CircularProgress } from "@mui/material";
-import React from "react";
 
 const ProfileLoading = () => {
   return (
@@ -12,4 +12,4 @@ const ProfileLoading = () => {
   );
 };
 
-export default ProfileLoading;
+export default memo(ProfileLoading);

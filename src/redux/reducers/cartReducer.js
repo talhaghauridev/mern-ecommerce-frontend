@@ -1,7 +1,7 @@
-import { CART_ITEMS, SHIPPING_INFO } from "@constants/index";
 import { createSlice } from "@reduxjs/toolkit";
-import LocalStorage from "@utils/LocalStorage";
 import { toast } from "react-toastify";
+import { CART_ITEMS, SHIPPING_INFO } from "@constants/index";
+import LocalStorage from "@utils/LocalStorage";
 
 const initialState = {
   cartItems: LocalStorage.get(CART_ITEMS) || [],

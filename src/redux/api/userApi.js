@@ -1,26 +1,9 @@
-import { TOKEN, USER_INFO } from "@constants/index";
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import LocalStorage from "@utils/LocalStorage";
-
-export const server = `${import.meta.env.VITE_SERVER_URL}/api/v1`;
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { baseQuery } from "@utils/ApiUrl";
 
 export const userApi = createApi({
   reducerPath: "userApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_SERVER_URL}/api/v1/`,
-    prepareHeaders: (headers, {}) => {
-      console.log(headers);
-      const token = LocalStorage.get(TOKEN);
-      if (token) {
-        headers.set("Authorization", `Bearer ${token}`);
-      }
-
-      // You can also set other headers here
-      headers.set("Content-Type", "application/json");
-
-      return headers;
-    },
-  }),
+  baseQuery: baseQuery,
   endpoints: (builder) => ({
     login: builder.mutation({
       query: (user) => ({

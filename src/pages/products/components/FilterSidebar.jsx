@@ -1,11 +1,10 @@
 import React, { useState, useMemo, useCallback, memo } from "react";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import Slider from "@mui/material/Slider";
-import { FILTERS, FILTER_PRICE } from "@constants/index";
-import { AiFillStar } from "react-icons/ai";
-import { IoFilter } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
 import { BackDrop, Button } from "@components/ui";
+import { IoFilter } from "react-icons/io5";
+import { AiFillStar } from "react-icons/ai";
+import { FILTERS, FILTER_PRICE } from "@constants/index";
 import { useMediaQuery, useToggle } from "@hooks/hook";
 import { useProductContext } from "../context/ProductContext";
 import cn from "@utils/cn";
@@ -15,7 +14,6 @@ const FilterSidebar = () => {
   const { filters, setFilters } = useProductContext();
   const { handleToggle, setToggle, toggle } = useToggle(false);
   const isMobile = useMediaQuery("(max-width: 766px)");
-  const navigate = useNavigate();
 
   //Handle Filters Change
   const handleFiltersChange = useCallback(

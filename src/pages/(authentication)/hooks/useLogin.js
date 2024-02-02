@@ -1,24 +1,24 @@
-import { useLoginMutation } from "@redux/api/userApi";
-import { useFormik } from "formik";
-import { loginSchema } from "../validation";
-import { useMessage } from "@hooks/hook";
 import { useCallback, useEffect, useMemo } from "react";
-import { setCredentials } from "@redux/reducers/userReducer";
 import { useDispatch } from "react-redux";
+import { useFormik } from "formik";
+import { useLoginMutation } from "@redux/api/userApi";
+import { setCredentials } from "@redux/reducers/userReducer";
+import { useMessage } from "@hooks/hook";
+import { loginSchema } from "../validation";
 
 const useLogin = () => {
   //Initial Values
-  const initialValues = useMemo(
-    () => ({
-      email: "",
-      password: "",
-    }),
-    []
-  );
-  console.log("useLogin");
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+
   const [login, { isError, isLoading, isSuccess, error, data }] =
     useLoginMutation();
   const dispatch = useDispatch();
+
+  //Handle Login
+
   const handleLogin = useCallback(
     async (userData) => {
       try {
@@ -30,24 +30,26 @@ const useLogin = () => {
     [login]
   );
 
+  //Handle onSubmit
+  const onSubmit = useCallback(
+    async (values) => {
+      await handleLogin(values);
+    },
+    [handleLogin]
+  );
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: loginSchema,
-    onSubmit: async (values) => {
-      await handleLogin(values);
-    },
+    onSubmit: onSubmit,
   });
 
   useEffect(() => {
     if (isSuccess) {
       dispatch(setCredentials(data));
-      console.log(data);
     }
-  console.log("useLogin useEffect");
-
   }, [isSuccess, data, dispatch]);
 
-  useMessage(isSuccess && "User login successfully", error, "/");
+  useMessage(isSuccess && "User login successfully", error, "/user/profile");
 
   return {
     formik,

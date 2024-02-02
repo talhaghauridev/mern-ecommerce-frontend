@@ -8,7 +8,6 @@ import ProductsNotFound from "@components/ProductsNotFound";
 const ProductList = () => {
   const { products, isLoading, resultPerPage, isProducts, productCount } =
     useProductContext();
-  console.log(resultPerPage, productCount, products);
   return (
     <section id="productList">
       <div

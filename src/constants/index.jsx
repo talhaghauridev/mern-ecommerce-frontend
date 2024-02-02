@@ -60,12 +60,7 @@ const USER_DROPDOWN_LINKS = [
     name: "Dashboard",
     path: "/dashboard",
     icon: <MdOutlineDashboardCustomize />,
-  },
-  {
-    name: "Settings",
-    path: "/user",
-    icon: <MdOutlineDashboardCustomize />,
-  },
+  }
 ];
 
 const FOOTER = {

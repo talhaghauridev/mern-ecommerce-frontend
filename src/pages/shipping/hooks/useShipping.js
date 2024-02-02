@@ -1,9 +1,9 @@
-import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
+import { useFormik } from "formik";
 import { saveShippingInfo } from "@redux/reducers/cartReducer";
-import { shippingSchema } from "../validation";
 import { SHIPPING_INFO } from "@constants/index";
 import LocalStorage from "@utils/LocalStorage";
+import { shippingSchema } from "../validation";
 
 const getShippingInfo = () => {
   const info = LocalStorage.get(SHIPPING_INFO);
