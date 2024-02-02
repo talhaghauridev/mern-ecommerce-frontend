@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import useConfirmPrice from "../hooks/useConfirmPrice";
 import cn from "@utils/cn";
 import { buttonVariants } from "@components/ui";
@@ -74,4 +74,4 @@ const ConfirmOrderBox = () => {
   );
 };
 
-export default ConfirmOrderBox;
+export default memo(ConfirmOrderBox);

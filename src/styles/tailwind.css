@@ -18,10 +18,19 @@
   .product_not_found {
     @apply flex items-center justify-center h-[100%] max-h-[60vh] bg-white;
   }
-  .header_icon{
-  @apply  text-[21px] md:text-[24px] text-[#2b3445eb] 
-}
-.cart_price {
-  @apply text-[16px] md:text-[19px] font-PoppinsBold text-[#2b3445] w-full flex items-center justify-between
-}
+  .header_icon {
+    @apply text-[21px] md:text-[24px] text-[#2b3445eb];
+  }
+  .cart_price {
+    @apply text-[16px] md:text-[19px] font-PoppinsBold text-[#2b3445] w-full flex items-center justify-between;
+  }
+  .confirm_heading {
+    @apply font-bold text-[28px] md:text-[28px] text-gray-800 relative font-Sans text-center flex ;
+  }
+  .confirm_li{
+    @apply text-[16px] md:text-[19px] font-PoppinsBold text-[#2b3445] w-full flex items-center gap-[6px]
+  }
+  .confirm_li span {
+    @apply font-Sans
+  }
 }

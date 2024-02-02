@@ -4,7 +4,7 @@ import { capitalize } from "@mui/material";
 import { Image } from "@components/ui";
 import { hero } from "@assets/images";
 
-const CartCard = ({ name, price, _id, images, stock }) => {
+const CartCard = ({ name, price, _id, images, stock, quantity }) => {
   return (
     <div
       className="w-full rounded-[10px] relative overflow-hidden flex  sm:flex-row flex-col max-w-[270px] sm:max-w-full"
@@ -27,9 +27,12 @@ const CartCard = ({ name, price, _id, images, stock }) => {
         >
           <h1>{capitalize(String(name))}</h1>
         </Link>
-        <span className="text-[#d23f57] text-[18px] md:text-[20px] font-PoppinsBold">
-          ${"price"}
-        </span>
+        <div>
+          <span className="text-[#d23f57] text-[15px] md:text-[18px] font-Sans  ">
+            {quantity} X ${price} ={" "}
+            <b className="font-Poppins">${price * quantity}</b>
+          </span>
+        </div>
       </div>
     </div>
   );

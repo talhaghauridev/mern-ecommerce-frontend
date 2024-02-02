@@ -45,6 +45,8 @@ const useUpdateProfile = () => {
   const onSubmit = useCallback(
     async (values) => {
       await handleUpdateProfile(values);
+      const user= useAuth();
+      console.log(user);
     },
     [handleUpdateProfile]
   );
@@ -70,13 +72,12 @@ const useUpdateProfile = () => {
     onSubmit: onSubmit,
   });
 
-  const { isLoading: authLoading } = useAuth();
   useMessage(data?.message, error, "/user/profile");
   return {
     formik,
     image,
     handleFileChange,
-    isLoading: online ? isLoading || authLoading : false,
+    isLoading: online ? isLoading : false,
     isError,
     data,
   };
