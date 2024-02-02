@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Input, Button, MetaData, Select } from "@components/ui";
 import { MdPinDrop } from "react-icons/md";
 import { FaPhone } from "react-icons/fa6";
@@ -12,12 +13,13 @@ import Stepper from "@components/Stepper";
 import inputError from "@utils/inputError";
 
 const Shipping = () => {
+  const navigate = useNavigate();
   const { formik } = useShipping();
   const { handleSubmit, getFieldProps } = formik;
   return (
     <>
       <MetaData title={"Shipping"} />
-      <Stepper activeStep={1} />
+      <Stepper activeStep={0} />
       <section id="shipping">
         <div className="form_container">
           <form onSubmit={handleSubmit} className="form gap-y-[12px!important]">
@@ -101,7 +103,11 @@ const Shipping = () => {
               )}
             </Select>
 
-            <Button type="submit" className="max-w-full mt-[18px]">
+            <Button
+              type="submit"
+              className="max-w-full mt-[18px]"
+              onClick={() => navigate("/order/confirm")}
+            >
               Continue
             </Button>
           </form>
