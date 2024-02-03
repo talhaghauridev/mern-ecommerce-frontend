@@ -2,15 +2,19 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQuery } from "@utils/ApiUrl";
 
 export const reviewApi = createApi({
-  reducerPath: "review",
+  reducerPath: "reviewApi",
   baseQuery: baseQuery,
   endpoints: (builder) => ({
     createReview: builder.mutation({
-      query: (review) => ({
-        url: "review",
-        body: review,
-        method: "PUT",
-      }),
+      query: (review) => (
+        console.log(review),
+        {
+          url: "review",
+          body: review,
+          method: "PUT",
+        }
+      ),
+      invalidatesTags: (result, error, {productId}) => [{ type: "product", id:productId }],
     }),
     getReviews: builder.query({
       query: () => ({

@@ -1,20 +1,23 @@
 import { useGetProductDetailsQuery } from "@redux/api/productApi";
-import {  useEffect } from "react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const useProductDetail = () => {
   const { productId } = useParams();
-
-  const { isError, isLoading, data, error, status } =
+  const review = useSelector((state) => state.reviewApi);
+  const { isError, isLoading, data, error, status, refetch } =
     useGetProductDetailsQuery(productId);
 
+  console.log(review);
   useEffect(() => {
     if (isError) {
       console.log(error?.data?.message, status);
       toast.error(error?.data?.message);
+      refetch();
     }
-  }, [isError, error]);
+  }, [isError, error, review]);
 
   return {
     product: data?.product,

@@ -1,8 +1,12 @@
 import React, { memo, useCallback } from "react";
 import { BackDrop, Button } from "@components/ui";
 import { Rating } from "@mui/material";
+import useCreateReview from "./../../hooks/useCreateReview";
 
 const ReviewModal = ({ openModal = false, setOpenModal }) => {
+  const { handelChange, review,handleSubmitReview } = useCreateReview();
+
+  console.log(review);
   const handleClose = useCallback(() => {
     setOpenModal(false);
   }, [setOpenModal]);
@@ -29,16 +33,24 @@ const ReviewModal = ({ openModal = false, setOpenModal }) => {
             </div>
 
             <div className="w-full flex items-center justify-start">
-              <Rating readOnly={false} precision={0.5} />
+              <Rating
+                readOnly={false}
+                precision={0.5}
+                onChange={handelChange}
+                value={review.rating}
+                name="rating"
+              />
             </div>
             <textarea
-              name=""
-              id=""
+              id="rating"
               cols="5"
               rows="4"
               className="w-full h-full border border-solid bottom-[1px] border-[#d3d3d3] rounded-[4px] outline-none py-[10px] px-[15px]"
               placeholder="Enter Your Comment"
-            ></textarea>
+              onChange={handelChange}
+              value={review.comment}
+              name="comment"
+            />
             <div className="flex items-center justify-end gap-[20px] mt-[15px]">
               <Button
                 variants={"outline"}
@@ -48,7 +60,7 @@ const ReviewModal = ({ openModal = false, setOpenModal }) => {
               >
                 Cancel
               </Button>
-              <Button size="sm">Submit</Button>
+              <Button size="sm" onClick={handleSubmitReview}>Submit</Button>
             </div>
           </div>
         </section>
