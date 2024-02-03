@@ -104,6 +104,7 @@ const FILTER_PRICE = [0, 25000];
 const SHIPPING_INFO = "shipping_info";
 const CART_ITEMS = "cart_items";
 const USER_INFO_KEY = "userInfo";
+const ORDER_INFO_KEY = "order_info"
 
 const TOKEN = "user_token";
 const STEPPER_STEPS = [
@@ -153,6 +154,7 @@ export {
   CART_ITEMS,
   STEPPER_STEPS,
   USER_INFO_KEY,
+  ORDER_INFO_KEY,
   TOKEN,
   USER_PROFILE_LINK,
 };

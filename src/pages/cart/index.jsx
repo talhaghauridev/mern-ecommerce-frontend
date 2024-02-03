@@ -9,10 +9,6 @@ const CartPriceBox = lazy(() => import("./components/CartPriceBox"));
 const Cart = () => {
   const { cartItems } = useSelector((state) => state.cart);
 
-  const checkoutHandler = () => {
-    navigate("/login?redirect=/shipping");
-  };
-
   const isCartItems = useMemo(
     () => (cartItems?.length > 0 ? true : false),
     [cartItems]

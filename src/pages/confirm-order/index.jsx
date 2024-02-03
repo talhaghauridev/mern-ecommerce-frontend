@@ -17,7 +17,7 @@ const ConfirmOrder = () => {
           <Stepper activeStep={1} />
         <div className="container">
           {cartItems && (
-            <div className="confirm_container py-[90px]">
+            <div className="confirm_container py-[80px]">
               <div className="flex flex-col gap-[15px]">
               <ShippingDetial/>
               <Suspense fallback={<CartLoading />}>
@@ -34,3 +34,6 @@ const ConfirmOrder = () => {
 };
 
 export default ConfirmOrder;
+
+// initial={{opacity: 0, x: "-100vw"}}
+// animate={{opacity: 1, x: 0}}

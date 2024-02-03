@@ -4,6 +4,7 @@ import { userApi } from "../api/userApi";
 import { cartReducer } from "./cartReducer";
 import { userReducer } from "./userReducer";
 import { createSlice } from "@reduxjs/toolkit";
+import { paymentApi } from "@redux/api/paymentApi";
 
 const onlineStatus = createSlice({
   name: "onlineStatus",
@@ -13,10 +14,12 @@ const onlineStatus = createSlice({
   },
 });
 
+
 const reducers = {
   [userApi.reducerPath]: userApi.reducer,
   [productApi.reducerPath]: productApi.reducer,
   [reviewApi.reducerPath]: reviewApi.reducer,
+  [paymentApi.reducerPath]:paymentApi.reducer,
   [userReducer.name]: userReducer.reducer,
   [cartReducer.name]: cartReducer.reducer,
   [onlineStatus.name]: onlineStatus.reducer,

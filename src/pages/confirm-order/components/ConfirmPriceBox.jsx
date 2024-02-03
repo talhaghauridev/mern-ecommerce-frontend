@@ -1,12 +1,16 @@
 import React, { memo } from "react";
-import useConfirmPrice from "../hooks/useConfirmPrice";
-import cn from "@utils/cn";
-import { buttonVariants } from "@components/ui";
-import { Link } from "react-router-dom";
+import useSendPayment from "../hooks/useSendPayment";
+import { Button } from "@components/ui";
 
 const ConfirmOrderBox = () => {
-  const { totalProducts, totalPrice, shippingCharges, address, subTotal, tax } =
-    useConfirmPrice();
+  const {
+    handleSendPayment,
+    isLoading,
+    shippingCharges,
+    subTotal,
+    tax,
+    totalPrice,
+  } = useSendPayment();
   return (
     <div
       className="bg-white rounded-[8px] relative md:max-w-[350px] overflow-hidden h-fit max-w-full "
@@ -38,39 +42,17 @@ const ConfirmOrderBox = () => {
             </li>
           </ul>
         </div>
-        <Link
-          className={cn(buttonVariants({ className: "max-w-full" }))}
-          to={"/"}
+        <Button
+          onClick={handleSendPayment}
+          disabled={isLoading}
+          className={`max-w-full flex items-center justify-center ${
+            isLoading && "opacity-[0.7]"
+          } `}
         >
-          Check Out
-        </Link>
+          {isLoading ? "Processing..." : "Proceed to Payment"}
+        </Button>
       </div>
     </div>
-
-    // <div className="confirrmOrder_Summary">
-    //             <div className="summary_box flex flex-col items-center justify-center gap-20 p-40">
-    //               <h1 className="font-bold text-2xl text-gray-800 relative">Order Summary</h1>
-    //               <ul className="flex flex-col items-center justify-center gap-20 w-full border-t border-b border-gray-300 p-20">
-    //                 <li className="flex items-center justify-between text-gray-800 font-bold text-lg w-full">
-    //                   Subtotal
-    //                   <span>${subtotal}</span>
-    //                 </li>
-    //                 <li className="flex items-center justify-between text-gray-800 font-bold text-lg w-full">
-    //                   Shipping Charges
-    //                   <span>${shippingCharges}</span>{" "}
-    //                 </li>
-    //                 <li className="flex items-center justify-between text-gray-800 font-bold text-lg w-full">
-    //                   GST
-    //                   <span>${tax}</span>{" "}
-    //                 </li>
-    //               </ul>
-    //               <div className="total_price flex w-full items-center justify-between">
-    //                 <b className="text-gray-800 font-bold text-lg">Total</b>
-    //                 <span className="text-gray-800 font-bold text-lg">${totalPrice}</span>
-    //               </div>
-    //               <SubmitInput value="Proceed to Payment" formSubmit={() => {}} />
-    //             </div>
-    //           </div>
   );
 };
 

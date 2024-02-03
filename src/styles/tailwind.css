@@ -25,7 +25,7 @@
     @apply text-[16px] md:text-[19px] font-PoppinsBold text-[#2b3445] w-full flex items-center justify-between;
   }
   .confirm_heading {
-    @apply font-bold text-[28px] md:text-[28px] text-gray-800 relative font-Sans text-center flex ;
+    @apply font-bold text-[28px] md:text-[28px] text-gray-800 relative font-Sans text-center flex w-full ;
   }
   .confirm_li{
     @apply text-[16px] md:text-[19px] font-PoppinsBold text-[#2b3445] w-full flex items-center gap-[6px]

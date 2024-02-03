@@ -1,7 +1,11 @@
-import React, { memo } from "react";
+import React, { lazy, memo } from "react";
 import ReviewCard from "./ReviewCard";
+import { useToggle } from "@hooks/hook";
+import { Button } from "@components/ui";
+const ReviewModal = lazy(() => import("./ReviewModal"));
 
 const Reviews = ({ reviews }) => {
+  const { setToggle, handleToggle, toggle } = useToggle(false);
   return (
     <section id="reviews">
       <div className="container">
@@ -76,12 +80,9 @@ const Reviews = ({ reviews }) => {
               </span>
             </div>
 
-            <a
-              href="#"
-              class="inline-block rounded-lg border bg-white px-4 py-2 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-100 focus-visible:ring active:bg-gray-200 md:px-8 md:py-3 md:text-base"
-            >
+            <Button variants={"outline"} onClick={handleToggle}>
               Write a review
-            </a>
+            </Button>
           </div>
 
           <div class="divide-y">
@@ -148,6 +149,7 @@ const Reviews = ({ reviews }) => {
           </div>
         </div>
       </div>
+      {toggle && <ReviewModal openModal={toggle} setOpenModal={setToggle} />}
     </section>
   );
 };

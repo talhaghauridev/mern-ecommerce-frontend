@@ -4,9 +4,12 @@ import { useFormik } from "formik";
 import { useMessage } from "@hooks/hook";
 import { useUpdatePasswordMutation } from "@redux/api/userApi";
 import { updatePasswordSchema } from "../validation";
+import { toast } from "react-toastify";
 
 const useUpdatePassword = () => {
-  const { online } = useSelector((state) => state.onlineStatus);
+  const { online, error: onlineError } = useSelector(
+    (state) => state.onlineStatus
+  );
   const initialValues = {
     oldPassword: "",
     newPassword: "",
@@ -30,9 +33,13 @@ const useUpdatePassword = () => {
   //Handle onSubmit
   const onSubmit = useCallback(
     async (values) => {
-      await handleUpdatePassword(values);
+      if (online) {
+        await handleUpdatePassword(values);
+      } else {
+        toast.error(onlineError);
+      }
     },
-    [handleUpdatePassword]
+    [handleUpdatePassword,online]
   );
 
   const formik = useFormik({

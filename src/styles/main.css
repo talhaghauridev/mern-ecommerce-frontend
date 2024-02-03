@@ -125,6 +125,11 @@
     flex-direction: column;
     gap: 30px;
   }
+  #confirmOrder .confirm_container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
 }
 
 @media (max-width: 560px) {

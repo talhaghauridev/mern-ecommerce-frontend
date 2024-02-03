@@ -7,12 +7,12 @@ const ShippingDetial = () => {
 
   const address = useMemo(
     () =>
-      `${shippingInfo?.address}, ${shippingInfo?.city}, ${shippingInfo?.state}, ${shippingInfo?.phoneNo}, ${shippingInfo?.pinCode}`,
+      `${shippingInfo?.address}, ${shippingInfo?.city}, ${shippingInfo?.state}, ${shippingInfo?.phoneNumber}, ${shippingInfo?.pinCode}`,
     [shippingInfo]
   );
-  console.log(userInfo);
+  
   return (
-    <div className="flex flex-col gap-[20px] pt-[30px] pb-[50px]">
+    <div className="flex flex-col gap-[20px] pt-[50px] pb-[40px] md:pb-[80px]">
       <div className="confirm_heading">
         <h1>Shipping Info</h1>
       </div>

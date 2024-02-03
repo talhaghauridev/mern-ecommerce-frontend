@@ -19,6 +19,7 @@ const ResetPassword = lazy(() =>
 );
 const SignUp = lazy(() => import("@pages/(authentication)/signup"));
 const ConfirmOrder = lazy(() => import("@pages/confirm-order"));
+const SuccessOrder = lazy(() => import("@pages/success-order"));
 const AppRoutes = () => {
   return (
     <Router>
@@ -37,6 +38,7 @@ const AppRoutes = () => {
           <Route path="/user/*" element={<AuthRoutes />} />
           <Route element={<ProtectRoute />}>
             <Route path="/order/confirm" element={<ConfirmOrder />} />
+            <Route path="/order/success" element={<SuccessOrder />} />
           </Route>
         </Route>
         <Route path="*" element={<NotFound />} />

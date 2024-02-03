@@ -7,6 +7,7 @@ import useAuth from "@hooks/useAuth";
 import { useMessage } from "@hooks/hook";
 import LocalStorage from "@utils/LocalStorage";
 import { updateProfileSchema } from "../validation";
+import { toast } from "react-toastify";
 
 export const getProfileData = () => {
   const { name, email, avatar } = LocalStorage.get(USER_INFO_KEY);
@@ -19,8 +20,9 @@ export const getProfileData = () => {
 };
 const useUpdateProfile = () => {
   const [image, setImage] = useState("");
-  const { online } = useSelector((state) => state.onlineStatus);
-
+  const { online, error: onlineError } = useSelector(
+    (state) => state.onlineStatus
+  );
   const initialValues = {
     name: "",
     email: "",
@@ -44,11 +46,15 @@ const useUpdateProfile = () => {
   //Handle onSubmit
   const onSubmit = useCallback(
     async (values) => {
-      await handleUpdateProfile(values);
-      const user= useAuth();
-      console.log(user);
+      if (online) {
+        await handleUpdateProfile(values);
+        const user = useAuth();
+        console.log(user);
+      } else {
+        toast.error(onlineError);
+      }
     },
-    [handleUpdateProfile]
+    [handleUpdateProfile, online]
   );
 
   //Handle File Change

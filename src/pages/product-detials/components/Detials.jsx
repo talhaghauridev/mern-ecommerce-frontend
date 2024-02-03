@@ -7,6 +7,7 @@ import { localStorageItem, useAddToCart } from "../hooks/useAddToCart";
 import { useCounter } from "@hooks/hook";
 import cn from "@utils/cn";
 const Reviews = lazy(() => import("./Reviews/Reviews"));
+
 const Details = ({ product }) => {
   const {
     name,

@@ -46,7 +46,6 @@ export const userApi = createApi({
         method: "PUT",
         body: passwords,
       }),
-      invalidatesTags: ["user"],
     }),
 
     updateMe: builder.mutation({
@@ -74,6 +73,5 @@ export const {
   useMeQuery,
   useUpdateMeMutation,
   useUpdatePasswordMutation,
-
   useLogoutQuery,
 } = userApi;

@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useSelector } from "react-redux";
 
 const useConfirmPrice = () => {
@@ -24,9 +24,10 @@ const useConfirmPrice = () => {
 
   const address = useMemo(
     () =>
-      `${shippingInfo?.address}, ${shippingInfo?.city}, ${shippingInfo?.state}, ${shippingInfo?.phoneNo}, ${shippingInfo?.pinCode}`,
+      `${shippingInfo?.address}, ${shippingInfo?.city}, ${shippingInfo?.state}, ${shippingInfo?.phoneNumber}, ${shippingInfo?.pinCode}`,
     [shippingInfo]
   );
+
 
   return {
     subTotal,
