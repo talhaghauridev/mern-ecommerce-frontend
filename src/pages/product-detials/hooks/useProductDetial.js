@@ -15,7 +15,6 @@ const useProductDetail = () => {
     if (isError) {
       console.log(error?.data?.message, status);
       toast.error(error?.data?.message);
-      refetch();
     }
   }, [isError, error, review]);
 
@@ -24,6 +23,7 @@ const useProductDetail = () => {
     error,
     isLoading,
     isError,
+    refetch,
   };
 };
 

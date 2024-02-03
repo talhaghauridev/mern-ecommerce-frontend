@@ -1,3 +1,4 @@
+import { useGetProductDetailsQuery } from "@redux/api/productApi";
 import { useCreateReviewMutation } from "@redux/api/reviewApi";
 import React, { useCallback, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -8,6 +9,8 @@ const useCreateReview = () => {
     rating: null,
     comment: "",
   });
+
+  const { refetch: refetchProductDetails } = useGetProductDetailsQuery(productId);
 
   const [createReview, { data }] = useCreateReviewMutation();
 
@@ -23,13 +26,14 @@ const useCreateReview = () => {
 
   const handleSubmitReview = useCallback(async () => {
     try {
-      console.log(review);
-      if (!review.rating || !review.comment) return;
+        console.log(review);
+        if(!review.rating || !review.comment) return;
       await createReview({ productId, ...review });
+     await refetchProductDetails()
     } catch (err) {
       console.log(err);
     }
-  }, [createReview, review, productId]);
+  }, [createReview,review,productId]);
 
   return {
     handelChange,

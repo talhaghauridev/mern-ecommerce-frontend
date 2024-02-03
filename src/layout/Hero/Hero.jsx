@@ -1,8 +1,10 @@
 import React from "react";
 import { Button, Image } from "@components/ui";
 import { hero } from "@assets/images";
+import { useNavigate } from "react-router-dom";
 
 export const Hero = () => {
+  const navigate = useNavigate();
   return (
     <section
       id="hero "
@@ -15,11 +17,10 @@ export const Hero = () => {
             50% Off For Your First Shopping
           </h1>
           <p className="text-[15px] text-[#0F3460] font-Sans mt-[12px]">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit
-            eveniet ullam facere quaerat expedita temporibus illo perferendis
-            magnam iure voluptatem.
+            Explore innovation at your fingertips. Find cutting-edge tech
+            gadgets that blend seamlessly into your lifestyle.
           </p>
-          <Button className="max-h-fit h-fit max-w-[150px] rounded-[4px] bg-[#D23F57!important] text-[15px!important] font-PoppinsBold">
+          <Button className="mt-[10px]" onClick={() => navigate("/products")}>
             Shop Now
           </Button>
         </div>

@@ -8,6 +8,7 @@ import { FILTERS, FILTER_PRICE } from "@constants/index";
 import { useMediaQuery, useToggle } from "@hooks/hook";
 import { useProductContext } from "../context/ProductContext";
 import cn from "@utils/cn";
+import { Filter } from "@assets/images";
 
 const FilterSidebar = () => {
   const [showValue, setShowValue] = useState({ category: true, ratings: true });
@@ -69,10 +70,13 @@ const FilterSidebar = () => {
           <Button
             onClick={handleToggle}
             variants={"outline"}
-            className={"items-center justify-center max-w-[100px] my-[10px] py-[7px] gap-[6px]"}
+            className={
+              "items-center justify-center max-w-[105px] my-[10px] py-[6px] sm:py-[7px] gap-[6px]"
+            }
           >
-            <span className="font-SansBold text-[19px]">Fiters</span>
-            <IoFilter className="text-[19px]"/>
+            <img src={Filter} alt="Filter_Image" className="w-[24px]" />
+            <span className="font-SansBold text-[20px]">Fiters</span>
+            {/* <IoFilter className="text-[19px]"/> */}
           </Button>
         )}
       </>
