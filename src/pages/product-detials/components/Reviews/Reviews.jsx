@@ -1,11 +1,13 @@
-import React, { lazy, memo } from "react";
+import React, { lazy, memo, useState } from "react";
 import ReviewCard from "./ReviewCard";
 import { useToggle } from "@hooks/hook";
 import { Button } from "@components/ui";
-const ReviewModal = lazy(() => import("./ReviewModal"));
+import ReviewModal from "./ReviewModal";
+// const ReviewModal = lazy(() => import("./ReviewModal"));
 
 const Reviews = ({ reviews }) => {
-  const { setToggle, handleToggle, toggle } = useToggle(false);
+  const [openModal, setOpenModal] = useState(false);
+  console.log("openModal", openModal);
   return (
     <section id="reviews">
       <div className="container">
@@ -80,7 +82,7 @@ const Reviews = ({ reviews }) => {
               </span>
             </div>
 
-            <Button variants={"outline"} onClick={handleToggle}>
+            <Button variants={"outline"} onClick={() => setOpenModal(true)}>
               Write a review
             </Button>
           </div>
@@ -149,7 +151,9 @@ const Reviews = ({ reviews }) => {
           </div>
         </div>
       </div>
-      {toggle && <ReviewModal openModal={toggle} setOpenModal={setToggle} />}
+      {openModal && (
+        <ReviewModal openModal={openModal} setOpenModal={setOpenModal} />
+      )}
     </section>
   );
 };
