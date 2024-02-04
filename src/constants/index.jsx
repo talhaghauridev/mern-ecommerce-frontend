@@ -96,7 +96,7 @@ const FOOTER = {
 
 const FILTERS = {
   Categories: ["Mobile", "Laptop", "Car", "Bag", "Clothes", "Machines"],
-  Ratings: [4, 3, 2, 1],
+  Ratings: [5,4, 3, 2, 1],
 };
 
 const FILTER_PRICE = [0, 25000];

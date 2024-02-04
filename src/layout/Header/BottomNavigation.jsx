@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { BsCart3 } from "react-icons/bs";
 import { IoMdSearch } from "react-icons/io";
 import { NAV } from "@constants";
@@ -17,7 +17,7 @@ const BottomNavigation = ({ setSearchModel }) => {
             <LinkItem {...item} key={index} />
           ))}
           <Link to="/cart" className="hidden sm:flex">
-            <li className=" flex-col gap-[5px] items-center justify-center text-[#2b3445] text-[13px] sm:text-[14px] cursor-pointer hover:text-[#d23f57] transition-colors">
+            <li className="flex flex-col gap-[5px] items-center justify-center text-[#2b3445] text-[13px] sm:text-[14px] cursor-pointer hover:text-[#d23f57] transition-colors">
               <p className="text-[22px] md:text-[22px]">
                 <BsCart3 />
               </p>
@@ -44,12 +44,14 @@ const BottomNavigation = ({ setSearchModel }) => {
 };
 
 const LinkItem = memo((item) => {
+  const { pathname } = useLocation();
+
   return (
     <Link to={item.path}>
       <li
         className={cn(
           `flex flex-col gap-[2px] items-center justify-center  text-[13px] sm:text-[14px] hover:text-[#d23f57] transition-colors `,
-          location.pathname === item.path ? "text-[#d23f57]" : "text-[#2b3445]"
+          pathname === item.path ? "text-[#d23f57]" : "text-[#2b3445]"
         )}
       >
         <p className="text-[21px] md:text-[22px]">{item.icon}</p>

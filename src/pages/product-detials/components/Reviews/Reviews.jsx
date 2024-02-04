@@ -1,16 +1,16 @@
-import React, { lazy, memo, useMemo, useState } from "react";
+import React, { Suspense, lazy, memo, useMemo, useState } from "react";
 import ReviewCard from "./ReviewCard";
 import { Button } from "@components/ui";
-import ReviewModal from "./ReviewModal";
 import { FaRegCommentDots } from "react-icons/fa6";
 import { useMediaQuery } from "@hooks/hook";
 import { Tooltip } from "@mui/material";
-import LocalStorage from "@utils/LocalStorage";
-import { USER_INFO_KEY } from "@constants/index";
+import { useSelector } from "react-redux";
+const ReviewModal = lazy(() => import("./ReviewModal"));
+
 const Reviews = ({ reviews }) => {
   const [openModal, setOpenModal] = useState(false);
   const isMobile = useMediaQuery("(max-width:640px)");
-  const user = LocalStorage.get(USER_INFO_KEY);
+  const user = useSelector((state) => state.user);
   const responsiveButtonText = useMemo(
     () =>
       isMobile ? (
@@ -23,8 +23,8 @@ const Reviews = ({ reviews }) => {
   return (
     <section id="reviews">
       <div className="container max-w-[1000px] pb-[80px]">
-        <div className="flex items-center justify-between w-full">
-          <h1 className="form_heading text-[20px] md:text-[34px] py-[20px]">
+        <div className="flex items-center justify-between w-full border-b-[#eddeded] border-b-[1px]">
+          <h1 className="form_heading text-[25px] md:text-[34px] py-[20px]">
             Customer Reviews
           </h1>
           {user && (
@@ -48,7 +48,9 @@ const Reviews = ({ reviews }) => {
       </div>
 
       {user && openModal && (
-        <ReviewModal openModal={openModal} setOpenModal={setOpenModal} />
+        <Suspense fallback="Loading...">
+          <ReviewModal openModal={openModal} setOpenModal={setOpenModal} />
+        </Suspense>
       )}
     </section>
   );

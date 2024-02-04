@@ -4,7 +4,7 @@ import formatDate from "@utils/formatDate";
 
 const ReviewCard = ({ name, comment, rating, createdAt }) => {
   return (
-    <div className="flex flex-col gap-[5px] py-[20px] md:py-[30px]  border-solid max-w-[1000px] border-y-[#eddeded] border-y-[1px] w-full ">
+    <div className="flex flex-col gap-[5px] py-[20px] md:py-[30px]  border-solid max-w-[1000px] border-b-[#eddeded] border-b-[1px] w-full ">
       <div className="flex flex-col gap-[2px]">
         <span className="block font-bold font-Poppins text-[16px] md:text-[18px]">{name}</span>
         <span className="block text-gray-500 text-[14px]">

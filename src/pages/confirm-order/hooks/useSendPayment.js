@@ -5,15 +5,19 @@ import { toast } from "react-toastify";
 import SessionStorage from "@utils/SessionStorage";
 import { ORDER_INFO_KEY } from "@constants/index";
 import useConfirmPrice from "./useConfirmPrice";
+import LocalStorage from "@utils/LocalStorage";
 
 const useSendPayment = () => {
   const { cartItems } = useSelector((state) => state.cart);
   const { online, error } = useSelector((state) => state.onlineStatus);
-  const { address, shippingCharges, subTotal, tax, totalPrice,totalProducts } =
+  const { address, shippingCharges, subTotal, tax, totalPrice, totalProducts } =
     useConfirmPrice();
   const [sendPayment, { data, status, isLoading }] = useSendPaymentMutation();
   console.log(data, status, isLoading);
 
+  if (data) {
+    LocalStorage.set("Payment", { data, status });
+  }
   const orderInfo = {
     subTotal,
     shippingCharges,
@@ -40,11 +44,16 @@ const useSendPayment = () => {
   useEffect(() => {
     handleRedirect();
   }, [handleRedirect]);
-  
+
   return {
     handleSendPayment,
     isLoading,
-    address, shippingCharges, subTotal, tax, totalPrice,totalProducts
+    address,
+    shippingCharges,
+    subTotal,
+    tax,
+    totalPrice,
+    totalProducts,
   };
 };
 

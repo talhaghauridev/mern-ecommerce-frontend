@@ -1,4 +1,4 @@
-import React, { lazy ,Suspense} from "react";
+import React, { lazy, Suspense } from "react";
 import { MetaData } from "@components/ui";
 import SidebarLoading from "./components/SidebarLoading";
 import ProductLoading from "@components/ProductLoading";
