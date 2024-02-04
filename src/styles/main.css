@@ -96,7 +96,7 @@
 .MuiDataGrid-columnHeadersInner .css-yrdy0g-MuiDataGrid-columnHeaderRow {
   width: 100% !important;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
 .MuiDataGrid-columnHeader
@@ -107,9 +107,9 @@
 }
 
 .MuiDataGrid-columnHeader {
-  min-height: 56px;
-  max-height: 56px;
+max-width: 100% !important;
   line-height: 56px;
+  width: 100% !important;
   /* background: #d23f57c9; */
   /* color: white; */
   font-family: 'PoppinsBold';
@@ -137,17 +137,28 @@
 .MuiDataGrid-virtualScroller .MuiDataGrid-row {
   width: 100% !important;
   display: grid !important;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
 .MuiDataGrid-virtualScroller .MuiDataGrid-virtualScrollerRenderZone {
   width: 100% !important;
+  font-family: "Poppins" !important;
 }
 .MuiDataGrid-virtualScroller .MuiDataGrid-cell {
   width: 100% !important;
   justify-content: center !important;
   max-width: 100% !important;
   border: 0px;
+}
+
+.MuiDataGrid-cell--textRight{
+  border-radius: 2px !important;
+}
+
+
+.css-levciy-MuiTablePagination-displayedRows{
+  font-family: 'PoppinsBold' !important;
+  font-size: 15px !important;
 }
 
 @media (max-width: 950px) {

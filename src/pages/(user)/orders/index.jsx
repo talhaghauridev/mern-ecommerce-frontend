@@ -2,32 +2,43 @@ import React, { useState } from "react";
 import { MetaData } from "@components/ui";
 import { DataGrid } from "@mui/x-data-grid";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { Fa42Group } from "react-icons/fa6";
 
 const MyOrder = () => {
-  const [edit, setEdit] = useState(false);
-  const [text, setText] = useState("Text");
-  const {userInfo} = useSelector(state=>state.user)
+  const { userInfo } = useSelector((state) => state.user);
   const columns = [
     { field: "id", headerName: "Order Id", maxWidth: 100 },
     {
       field: "ItemsQty",
       headerName: "Items Qty",
       type: "number",
-      minWidth: 200,
-      editable: true,
     },
     {
       field: "status",
       headerName: "Status",
-      minWidth: 200,
-      editable: true,
+      type: "number",
     },
     {
       field: "amount",
       headerName: "Amount",
       type: "number",
-      minWidth: 200,
-      editable: true,
+    },
+    {
+      field: "action",
+      headerName: "Action",
+      type: "number",
+      disableRowSelectionOnClick: true,
+      disableReorder: true,
+      disableColumnMenu: true,
+      sortable: false,
+      renderCell: (params) => {
+        return (
+          <Link to={`/order/${params?.getValue(params?.id, "id")}`}>
+            <Fa42Group />
+          </Link>
+        );
+      },
     },
   ];
 
@@ -57,8 +68,6 @@ const MyOrder = () => {
       amount: "totalPrice",
     },
   ];
-
-  const user = [];
 
   return (
     <>
