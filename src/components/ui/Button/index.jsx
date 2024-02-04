@@ -17,7 +17,7 @@ export const buttonVariants = cva(
       size: {
         lg: "text-[18px] py-[12px] px-[8px] max-w-[200px]",
         md: "text-[14px] sm:text-[16px] py-[10px] px-[6px] max-h-fit h-fit max-w-[150px]",
-        sm: "text-[14px] py-[8px] px-[4px] max-w-[90px]",
+        sm: "text-[13px] py-[8px] px-[4px] max-w-[90px]",
       },
     },
     defaultVariants: {

@@ -72,7 +72,7 @@ const UserSidebar = () => {
             <Image
               src={userInfo?.avatar?.url}
               alt={userInfo?.name}
-              className="w-[100%] h-[100%] max-w-[45px]  rounded-full  "
+              className="w-[100%] h-[100%] max-w-[45px]  rounded-full  border-solid border border-[#e5e7eb] "
             />
             <div className="w-full">
               <h1 className="text-[#2b3445] font-semibold font-Poppins text-[17px] mb-[-6px]">

@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import { useResetPasswordMutation } from "@redux/api/userApi";
 import { useMessage } from "@hooks/hook";
 import { resetSchema } from "../validation";
+import { useCallback } from "react";
 
 const useResetPassword = () => {
   const { token } = useParams();
@@ -13,20 +14,23 @@ const useResetPassword = () => {
 
   const [resetPassword, { isLoading, isError, isSuccess, error, data }] =
     useResetPasswordMutation();
-
+  console.log(token);
   // Handle Reset
-  const handleReset = async (values) => {
-    try {
-      await resetPassword({ token, ...values });
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  const handleReset = useCallback(
+    async (values) => {
+      try {
+        await resetPassword({ token, ...values });
+      } catch (err) {
+        console.error(err);
+      }
+    },
+    [resetPassword, token]
+  );
 
   //Handle onSubmit
   const onSubmit = useCallback(
     async (values) => {
-      await resetPassword(values);
+      await handleReset(values);
     },
     [handleReset]
   );
@@ -36,7 +40,7 @@ const useResetPassword = () => {
     onSubmit: onSubmit,
   });
 
-  useMessage(data?.message, error, "/");
+  useMessage(data?.message, error, "/login");
 
   return {
     formik,

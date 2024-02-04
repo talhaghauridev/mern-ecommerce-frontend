@@ -1,20 +1,32 @@
+import { USER_INFO_KEY } from "@constants/index";
 import { useGetProductDetailsQuery } from "@redux/api/productApi";
 import { useCreateReviewMutation } from "@redux/api/reviewApi";
-import React, { useCallback, useState } from "react";
+import LocalStorage from "@utils/LocalStorage";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+
+const checkReview = (product) => {
+  const user = LocalStorage.get(USER_INFO_KEY);
+  const userReview = product?.reviews?.find((r) => r?.user === user?._id);
+  return userReview;
+};
 
 const useCreateReview = () => {
   const { productId } = useParams();
+
   const [review, setReview] = useState({
     rating: null,
     comment: "",
   });
 
-  const { refetch: refetchProductDetails } = useGetProductDetailsQuery(productId);
+  const { refetch: refetchProductDetails, data: productDetailData } =
+    useGetProductDetailsQuery(productId);
 
-  const [createReview, { data }] = useCreateReviewMutation();
+  const [createReview, { isLoading, isError, error, isSuccess, data }] =
+    useCreateReviewMutation();
 
-  //Handle Change
+  // Memoized functions
   const handelChange = useCallback(
     (e) => {
       const { name, value } = e.target;
@@ -26,19 +38,37 @@ const useCreateReview = () => {
 
   const handleSubmitReview = useCallback(async () => {
     try {
-        console.log(review);
-        if(!review.rating || !review.comment) return;
+      if (!review.rating || !review.comment) return;
       await createReview({ productId, ...review });
-     await refetchProductDetails()
+      await refetchProductDetails();
     } catch (err) {
       console.log(err);
     }
-  }, [createReview,review,productId]);
+  }, [createReview, review, productId, refetchProductDetails]);
+
+  useEffect(() => {
+    const userReview = checkReview(productDetailData?.product);
+    if (userReview) {
+      const { rating, comment } = userReview;
+      setReview({ rating, comment });
+    } else {
+      setReview({ rating: null, comment: "" });
+    }
+  }, [productDetailData?.product]);
+
+  useEffect(() => {
+    if (!isLoading && isError && error) {
+      toast.error(error?.data?.message);
+    }
+  }, [isError, error, isLoading]);
 
   return {
     handelChange,
     review,
     handleSubmitReview,
+    isLoading,
+    isSuccess,
+    data,
   };
 };
 
