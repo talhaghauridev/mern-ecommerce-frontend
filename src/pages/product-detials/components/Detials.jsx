@@ -1,4 +1,4 @@
-import React, { lazy, memo, useEffect } from "react";
+import React, { Suspense, lazy, memo, useEffect } from "react";
 import { hero } from "@assets/images";
 import { Button, Image } from "@components/ui";
 import { Rating, capitalize } from "@mui/material";
@@ -41,6 +41,8 @@ const Details = ({ product }) => {
       handleAddToCart(product, count - 1);
     }
   };
+
+  console.log(reviews);
   return (
     <>
       <div className="container py-[50px] grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-[20px]">
@@ -95,7 +97,17 @@ const Details = ({ product }) => {
           <div className="flex items-center justify-start gap-[6px] text-[17px] font-PoppinsBold ">
             <div className="">Description</div>
 
-            <p className="text-gray-500 font-Sans text-[15px]">{descripton}</p>
+            <p
+              className="text-gray-500 font-Sans text-[15px]"
+              style={{
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: "vertical",
+                overflow: "hidden",
+                display: "-webkit-box",
+              }}
+            >
+              {descripton}
+            </p>
           </div>
 
           {/* Cart Button */}
@@ -116,7 +128,13 @@ const Details = ({ product }) => {
         </div>
       </div>
 
-      {reviews ? <Reviews reviews={reviews} /> : <h1>Not Raings</h1>}
+      {reviews ? (
+        <Suspense fallback={"Loading...."}>
+          <Reviews reviews={reviews} />
+        </Suspense>
+      ) : (
+        <h1>Not Raings</h1>
+      )}
     </>
   );
 };

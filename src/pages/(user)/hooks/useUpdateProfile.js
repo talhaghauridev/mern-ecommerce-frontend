@@ -33,7 +33,7 @@ const useUpdateProfile = () => {
 
   const displayAvatar = useMemo(() => {
     return avatar == false ? getProfileData()?.avatar : avatar;
-  }, [avatar, getProfileData]);
+  }, [avatar]);
 
   const handleUpdateProfile = useCallback(
     async (values) => {
@@ -48,20 +48,23 @@ const useUpdateProfile = () => {
 
   //Handle onSubmit
   const onSubmit = useCallback(
-    async (values) => {
+    async ({ name, email }) => {
       if (online) {
-        await handleUpdateProfile({ displayAvatar, ...values });
+        await handleUpdateProfile({
+          avatar: displayAvatar,
+          ...{ name, email },
+        });
         const user = useAuth();
         console.log(user);
       } else {
         toast.error(onlineError);
       }
     },
-    [handleUpdateProfile, online]
+    [handleUpdateProfile, online, displayAvatar, avatar, onlineError]
   );
 
   const formik = useFormik({
-    initialValues: getProfileData() ? getProfileData() : initialValues,
+    initialValues: useMemo(() => getProfileData() || initialValues, []),
     validationSchema: updateProfileSchema,
     onSubmit: onSubmit,
   });

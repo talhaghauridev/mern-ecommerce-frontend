@@ -37,10 +37,11 @@ export const userApi = createApi({
       query: ({ token, ...passwords }) => (
         console.log(token),
         {
-        url: `password/reset/${token}`,
-        method: "PUT",
-        body: passwords,
-      }),
+          url: `password/reset/${token}`,
+          method: "PUT",
+          body: passwords,
+        }
+      ),
     }),
     updatePassword: builder.mutation({
       query: (passwords) => ({
@@ -51,11 +52,14 @@ export const userApi = createApi({
     }),
 
     updateMe: builder.mutation({
-      query: (userDta) => ({
-        url: "me/update",
-        method: "PUT",
-        body: userDta,
-      }),
+      query: (userData) => (
+        console.log(userData),
+        {
+          url: "me/update",
+          method: "PUT",
+          body: userData,
+        }
+      ),
       invalidatesTags: ["user"],
     }),
     me: builder.query({

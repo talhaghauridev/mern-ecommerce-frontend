@@ -66,7 +66,7 @@ const AdminSidebar = () => {
 
           <ul className="py-[40px] flex flex-col">
             {ADMIN_LINKS.map((item) => (
-              <AdminSidebarItem key={item.name} {...item} />
+              <AdminSidebarItem key={item.name} {...item} onClick={()=>setToggle(false)} />
             ))}
           </ul>
         </div>

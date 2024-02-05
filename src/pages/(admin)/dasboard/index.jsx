@@ -1,11 +1,13 @@
-import React from 'react'
+import { MetaData } from "@components/ui";
+import React from "react";
 
 const Dashboard = () => {
   return (
-    <div>
+    <>
+      <MetaData title={"Dashboard"} />
       Dashboard
-    </div>
-  )
-}
+    </>
+  );
+};
 
-export default Dashboard
+export default Dashboard;
