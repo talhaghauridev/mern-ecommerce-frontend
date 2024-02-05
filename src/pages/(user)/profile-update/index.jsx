@@ -15,7 +15,6 @@ const UpdateProfile = () => {
   const { formik, isLoading, handleFileChange, avatar } = useUpdateProfile();
   const { handleSubmit, getFieldProps } = formik;
 
-  console.log(avatar);
   return (
     <>
       {isLoading && <BackDrop isOpen={isLoading} />}

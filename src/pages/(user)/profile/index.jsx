@@ -14,7 +14,7 @@ const Profile = () => {
             <Image
               src={userInfo?.avatar?.url}
               alt={userInfo?.name || "avatar"}
-              className="max-w-[100%] max-h-[100%] h-[200px] w-[200px] object-contain rounded-full border-solid border border-[#e5e7eb]"
+              className="max-w-[100%] max-h-[100%] h-[200px] w-[200px] rounded-full border-solid border border-[#e5e7eb]"
             />
           </div>
           <div className="flex flex-col gap-[10px] items-center justify-center">
