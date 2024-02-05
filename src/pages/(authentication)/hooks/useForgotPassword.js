@@ -45,9 +45,7 @@ const useForgotPassword = () => {
   return {
     formik,
     isLoading,
-    isError,
     isSuccess,
-    data,
   };
 };
 

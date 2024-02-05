@@ -12,7 +12,6 @@ const updateProfileSchema = Yup.object({
     .email("Invalid email format")
     .required("Email is Required"),
 
-  avatar: Yup.string().required("Avatar is required"),
 });
 
 const updatePasswordSchema = Yup.object({

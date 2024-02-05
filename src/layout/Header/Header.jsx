@@ -36,7 +36,7 @@ const Header = () => {
               <Image
                 src={Logo}
                 alt="Logo"
-                className="w-[100px] sm:w-[120px] max-w-[400px]   "
+                className="w-[100px] h-[35px] max-w-[100%] max-h-[100%] sm:h-[40px] sm:w-[120px]  "
               />
             </Link>
           </div>

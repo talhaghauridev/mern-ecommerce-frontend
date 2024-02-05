@@ -87,6 +87,13 @@
   grid-column-gap: 20px;
 }
 
+
+#admin .container{
+  display: grid;
+  grid-template-columns: 0.3fr 1fr;
+  justify-content: center;
+  grid-column-gap: 20px;
+}
 /* Mui Edits  */
 
 .MuiDataGrid-columnHeadersInner {
@@ -107,21 +114,18 @@
 }
 
 .MuiDataGrid-columnHeader {
-max-width: 100% !important;
+  max-width: 100% !important;
   line-height: 56px;
   width: 100% !important;
   /* background: #d23f57c9; */
   /* color: white; */
-  font-family: 'PoppinsBold';
+  font-family: "PoppinsBold";
 }
 
-
-.MuiDataGrid-columnHeadersInner
-.MuiDataGrid-columnHeader--sortable
-{
- width: 100% !important;
- max-width: 100% !important;
- min-width: 100 !important; 
+.MuiDataGrid-columnHeadersInner .MuiDataGrid-columnHeader--sortable {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 100 !important;
 }
 .MuiDataGrid-columnHeader
   .MuiDataGrid-columnHeadersInner
@@ -137,7 +141,7 @@ max-width: 100% !important;
 .MuiDataGrid-virtualScroller .MuiDataGrid-row {
   width: 100% !important;
   display: grid !important;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1.1fr 0.9fr;
 }
 
 .MuiDataGrid-virtualScroller .MuiDataGrid-virtualScrollerRenderZone {
@@ -151,14 +155,32 @@ max-width: 100% !important;
   border: 0px;
 }
 
-.MuiDataGrid-cell--textRight{
+.MuiDataGrid-cell--textRight {
   border-radius: 2px !important;
 }
 
-
-.css-levciy-MuiTablePagination-displayedRows{
-  font-family: 'PoppinsBold' !important;
+.css-levciy-MuiTablePagination-displayedRows {
+  font-family: "PoppinsBold" !important;
   font-size: 15px !important;
+}
+
+.order_status_pending .MuiDataGrid-cellContent {
+  color: rgb(78, 151, 253);
+  font-size: 12px;
+  font-weight: 600;
+  background-color: rgb(219, 240, 254);
+  border-radius: 8px;
+  padding: 3px 12px;
+  display: inline-flex;
+}
+.order_status_delivered .MuiDataGrid-cellContent {
+  color: rgb(51, 208, 103);
+  font-size: 12px;
+  font-weight: 600;
+  background-color: rgb(231, 249, 237);
+  border-radius: 8px;
+  padding: 3px 12px;
+  display: inline-flex;
 }
 
 @media (max-width: 950px) {
@@ -192,7 +214,11 @@ max-width: 100% !important;
     flex-direction: column;
     row-gap: 15px;
   }
-
+  #admin .container {
+    display: flex !important;
+    flex-direction: column;
+    row-gap: 15px;
+  }
   #cart .container {
     display: flex;
     flex-direction: column;

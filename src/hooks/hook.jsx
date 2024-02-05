@@ -35,35 +35,36 @@ const useOnlineStatus = () => {
 };
 
 const useUpload = (multiple = false) => {
-  const [image, setImage] = useState([]);
+  const [images, setImages] = useState([]);
 
   const handleFileChange = useCallback(
     (e) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          if (multiple) {
-            setImage((prevImages) => [...prevImages, reader.result]);
-          } else {
-            setImage([reader.result]);
+      if (multiple) {
+        const files = Array.from(e.target.files);
+        files.forEach((image) => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            if (reader.readyState === 2) {
+              setImages((prev) => [...prev, reader.result]);
+            }
+          };
+          reader.readAsDataURL(image);
+        });
+      } else {
+        const files = e.target.files[0]
+        const reader = new FileReader();
+        reader.onload = () => {
+          if (reader.readyState === 2) {
+            setImages(reader.result);
           }
-        }
-      };
-
-      const files = e.target.files;
-
-      if (files && files.length > 0) {
-        if (multiple) {
-          Array.from(files).forEach((file) => reader.readAsDataURL(file));
-        } else {
-          reader.readAsDataURL(files[0]);
-        }
+        };
+        reader.readAsDataURL(files);
       }
     },
-    [multiple]
+    [multiple, images]
   );
   return {
-    image,
+    images,
     handleFileChange,
   };
 };

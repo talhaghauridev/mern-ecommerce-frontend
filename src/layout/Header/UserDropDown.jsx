@@ -31,7 +31,7 @@ const UserDropDown = () => {
         <Image
           src={userInfo?.avatar?.url}
           alt={userInfo?.name || "avatar"}
-          className="w-[100%] h-[100%] max-w-[34px] md:max-w-[37px]  rounded-full border-solid border border-[#e5e7eb] "
+          className="w-[36px] h-[36px] sm:w-[38px] sm:h-[38px] max-h-[100%]  max-w-[100%] rounded-full border-solid border border-[#e5e7eb] "
         />
       </Dropdown.Button>
       <Dropdown.List>

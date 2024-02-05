@@ -17,6 +17,10 @@ import { RiBankFill } from "react-icons/ri";
 import { RiProfileLine } from "react-icons/ri";
 import { RxUpdate } from "react-icons/rx";
 import { TbPasswordUser } from "react-icons/tb";
+import { LuLayoutDashboard } from "react-icons/lu";
+import { MdOutlineReviews } from "react-icons/md";
+import { FaUsers } from "react-icons/fa";
+import { FaRegListAlt } from "react-icons/fa";
 
 const NAV = {
   Links: [
@@ -27,7 +31,7 @@ const NAV = {
     },
     {
       name: "Products",
-      icon: <MdOutlineDashboard />,
+      icon: <LuLayoutDashboard />,
       path: "/products",
     },
   ],
@@ -61,9 +65,9 @@ const USER_DROPDOWN_LINKS = [
   },
   {
     name: "Dashboard",
-    path: "/dashboard",
+    path: "/admin/dashboard",
     icon: <MdOutlineDashboardCustomize />,
-  }
+  },
 ];
 
 const FOOTER = {
@@ -96,7 +100,7 @@ const FOOTER = {
 
 const FILTERS = {
   Categories: ["Mobile", "Laptop", "Car", "Bag", "Clothes", "Machines"],
-  Ratings: [5,4, 3, 2, 1],
+  Ratings: [5, 4, 3, 2, 1],
 };
 
 const FILTER_PRICE = [0, 25000];
@@ -104,7 +108,7 @@ const FILTER_PRICE = [0, 25000];
 const SHIPPING_INFO = "shipping_info";
 const CART_ITEMS = "cart_items";
 const USER_INFO_KEY = "userInfo";
-const ORDER_INFO_KEY = "order_info"
+const ORDER_INFO_KEY = "order_info";
 
 const TOKEN = "user_token";
 const STEPPER_STEPS = [
@@ -144,6 +148,44 @@ const USER_PROFILE_LINK = [
     icon: TbPasswordUser,
   },
 ];
+
+const ADMIN_LINKS = [
+  {
+    name: "Dashboard",
+    path: "/admin/dashboard",
+    icon: LuLayoutDashboard,
+  },
+  {
+    name: "Products",
+    icon: LuLayoutDashboard,
+    links: [
+      {
+        name: "Create Product",
+        path: "/admin/product/create",
+      },
+      {
+        name: "Product List",
+        path: "/admin/products",
+      },
+    ],
+  },
+  {
+    name: "Users",
+    icon: FaUsers,
+    path: "/admin/users",
+  },
+
+  {
+    name: "Reviews",
+    icon: MdOutlineReviews,
+    path: "/admin/reviews",
+  },
+  {
+    name: "Orders",
+    path: "/admin/dashboard",
+    icon: FaRegListAlt,
+  },
+];
 export {
   NAV,
   USER_DROPDOWN_LINKS,
@@ -157,4 +199,5 @@ export {
   ORDER_INFO_KEY,
   TOKEN,
   USER_PROFILE_LINK,
+  ADMIN_LINKS,
 };

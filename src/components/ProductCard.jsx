@@ -16,9 +16,8 @@ const ProductCard = (product) => {
     >
       <div className="relative overflow-hidden h-full w-full">
         <Image
-          src={images}
+          src={images[0]}
           alt={name}
-          draggable="false"
           className="transition-all duration-200 ease-in w-full h-full max-w-[300px] object-cover"
         />
       </div>

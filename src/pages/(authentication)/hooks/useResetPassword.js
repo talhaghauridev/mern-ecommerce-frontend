@@ -45,9 +45,7 @@ const useResetPassword = () => {
   return {
     formik,
     isLoading,
-    isError,
     isSuccess,
-    data,
   };
 };
 

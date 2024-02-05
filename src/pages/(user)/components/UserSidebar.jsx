@@ -7,6 +7,7 @@ import { FaBarsStaggered } from "react-icons/fa6";
 import { useMediaQuery, useToggle } from "@hooks/hook";
 import { USER_PROFILE_LINK } from "@constants/index";
 import cn from "@utils/cn";
+import { avatar } from "@assets/images";
 
 const shortValue = (value, length) => {
   const newValue =
@@ -72,7 +73,7 @@ const UserSidebar = () => {
             <Image
               src={userInfo?.avatar?.url}
               alt={userInfo?.name}
-              className="w-[100%] h-[100%] max-w-[45px]  rounded-full  border-solid border border-[#e5e7eb] "
+              className="w-[40px] h-[40px]  max-w-[45px] rounded-full  border-solid border border-[#e5e7eb] "
             />
             <div className="w-full">
               <h1 className="text-[#2b3445] font-semibold font-Poppins text-[17px] mb-[-6px]">

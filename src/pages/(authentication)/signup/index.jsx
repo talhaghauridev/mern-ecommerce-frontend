@@ -10,14 +10,11 @@ import {
 } from "@components/ui";
 import { MdAlternateEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { avatar } from "@assets/images";
-import { useUpload } from "@hooks/hook";
 import useSignup from "../hooks/useSignup";
 import inputError from "@utils/inputError";
 const SignUp = () => {
-  const { formik, isLoading } = useSignup();
+  const { formik, isLoading, handleFileChange, avatar } = useSignup();
   const { handleSubmit, getFieldProps } = formik;
-  const { handleFileChange, image } = useUpload();
   return (
     <>
       {isLoading && <BackDrop isOpen={isLoading} />}
@@ -71,13 +68,8 @@ const SignUp = () => {
               <InputUpload
                 name={"avatar"}
                 label={"Upload Avatar"}
-                onChange={(event) => {
-                  handleFileChange(event);
-                  image && formik.setFieldValue("avatar", image && image[0]);
-                }}
+                onChange={handleFileChange}
               />
-
-              <div>{inputError(formik, "avatar")}</div>
             </div>
             <Button type="submit" className="max-w-full mt-2">
               Submit

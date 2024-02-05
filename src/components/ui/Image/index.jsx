@@ -1,12 +1,14 @@
 import React, { useState, memo } from "react";
 import { useInView } from "@hooks/hook";
 import { DefaultSkeleton } from "@assets/images";
+import cn from "@utils/cn";
 
 const Image = ({
   src,
   alt,
   style,
   placeholder = DefaultSkeleton,
+  className,
   ...props
 }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -19,6 +21,7 @@ const Image = ({
           src={placeholder}
           style={style}
           alt="Loading.."
+          className={cn(`rounded-[3px] ${className}`)}
           ref={ref}
           {...props}
         />
@@ -29,6 +32,7 @@ const Image = ({
         onLoad={() => {
           setIsLoading(false);
         }}
+        className={className}
         style={{ display: isLoading ? "none" : "flex", ...style }}
         {...props}
       />

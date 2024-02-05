@@ -30,7 +30,7 @@ export const Hero = () => {
           <Image
             src={hero}
             alt="hero"
-            className="w-[100%] max-w-[100%] max-h-[400px] object-cover"
+            className="h-[350px] w-[100%] sm:h-[550px] sm:w-[550px] max-w-[100%] max-h-[400px] object-cover"
           />
         </div>
       </div>

@@ -2,16 +2,16 @@ import { useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import { useSignupMutation } from "@redux/api/userApi";
-import { useMessage } from "@hooks/hook";
+import { useMessage, useUpload } from "@hooks/hook";
 import { signUpSchema } from "../validation";
 
 const useSignup = () => {
+  const { handleFileChange, images: avatar } = useUpload();
   //Initial Values
   const initialValues = {
     name: "",
     email: "",
     password: "",
-    avatar: "",
   };
   const [signup, { isLoading, isError, isSuccess, data, error, originalArgs }] =
     useSignupMutation();
@@ -32,7 +32,8 @@ const useSignup = () => {
   //Handle onSubmit
   const onSubmit = useCallback(
     async (values) => {
-      await handleSignUp(values);
+      if (!avatar) return;
+      await handleSignUp({ avatar, ...values });
     },
     [handleSignUp]
   );
@@ -43,22 +44,25 @@ const useSignup = () => {
     onSubmit: onSubmit,
   });
 
-  useEffect(() => {
+  //Handle Set Credentials
+  const handleSetCredentials = useCallback(() => {
     if (isSuccess) {
       dispatch(setCredentials(data));
     }
-  }, [isSuccess, data, dispatch]);
+  }, [dispatch, isSuccess, data]);
 
-  useMessage(isSuccess && "User register successfully", error, "/user/profile");
+  useEffect(() => {
+    handleSetCredentials();
+  }, [handleSetCredentials]);
+
+  useMessage(isSuccess && "Register successfully", error, "/user/profile");
 
   return {
     formik,
     isLoading,
     isSuccess,
-    isError,
-    error,
-    data,
-    originalArgs,
+    handleFileChange,
+    avatar,
   };
 };
 

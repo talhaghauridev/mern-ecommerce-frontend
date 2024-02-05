@@ -8,7 +8,7 @@ import { Fa42Group } from "react-icons/fa6";
 const MyOrder = () => {
   const { userInfo } = useSelector((state) => state.user);
   const columns = [
-    { field: "id", headerName: "Order Id", maxWidth: 100 },
+    { field: "id", headerName: "Order Id", type: "number" },
     {
       field: "ItemsQty",
       headerName: "Items Qty",
@@ -18,6 +18,12 @@ const MyOrder = () => {
       field: "status",
       headerName: "Status",
       type: "number",
+      cellClassName: (params) => {
+        console.log(params);
+        return params.id === 3
+          ? "order_status_pending"
+          : "order_status_delivered";
+      },
     },
     {
       field: "amount",
@@ -33,8 +39,9 @@ const MyOrder = () => {
       disableColumnMenu: true,
       sortable: false,
       renderCell: (params) => {
+        console.log(params);
         return (
-          <Link to={`/order/${params?.getValue(params?.id, "id")}`}>
+          <Link to={`/order/${params?.id}`}>
             <Fa42Group />
           </Link>
         );

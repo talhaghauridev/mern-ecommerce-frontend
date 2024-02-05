@@ -12,10 +12,10 @@ import { RxAvatar } from "react-icons/rx";
 import inputError from "@utils/inputError";
 import useUpdateProfile from "../hooks/useUpdateProfile";
 const UpdateProfile = () => {
-  const { formik, isLoading, handleFileChange, image } = useUpdateProfile();
+  const { formik, isLoading, handleFileChange, avatar } = useUpdateProfile();
   const { handleSubmit, getFieldProps } = formik;
 
-  console.log(formik, image);
+  console.log(avatar);
   return (
     <>
       {isLoading && <BackDrop isOpen={isLoading} />}
@@ -55,11 +55,7 @@ const UpdateProfile = () => {
 
             {/* Input InputUpload */}
             <div className="upload_input">
-              <Image
-                className="upload_avatar"
-                src={formik?.values?.avatar || image}
-                alt="avatar"
-              />
+              <Image className="upload_avatar" src={avatar} alt="avatar" />
               <InputUpload
                 name={"avatar"}
                 label={"Upload Avatar"}

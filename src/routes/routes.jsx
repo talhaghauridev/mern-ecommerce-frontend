@@ -4,6 +4,7 @@ import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import AuthRoutes from "@routes/user.routes";
 import Layout from "@layout/layout";
 import ProtectRoute from "@lib/ProtectRoute";
+import AdminRoutes from "./admin.routes";
 const NotFound = lazy(() => import("@layout/NotFound/NotFound"));
 const Products = lazy(() => import("@pages/products"));
 const ProductDetails = lazy(() => import("@pages/product-detials"));
@@ -35,10 +36,14 @@ const AppRoutes = () => {
           <Route path="/product/:productId" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/shipping" element={<Shipping />} />
-          <Route path="/user/*" element={<AuthRoutes />} />
           <Route element={<ProtectRoute />}>
+            <Route path="/user/*" element={<AuthRoutes />} />
             <Route path="/order/confirm" element={<ConfirmOrder />} />
             <Route path="/order/success" element={<SuccessOrder />} />
+          </Route>
+
+          <Route element={<ProtectRoute isAdmin={true} />}>
+            <Route path="/admin/*" element={<AdminRoutes />} />
           </Route>
         </Route>
         <Route path="*" element={<NotFound />} />

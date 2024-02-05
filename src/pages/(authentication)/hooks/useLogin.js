@@ -43,11 +43,16 @@ const useLogin = () => {
     onSubmit: onSubmit,
   });
 
-  useEffect(() => {
+  //Handle Set Credentials
+  const handleSetCredentials = useCallback(() => {
     if (isSuccess) {
       dispatch(setCredentials(data));
     }
-  }, [isSuccess, data, dispatch]);
+  }, [dispatch, isSuccess, data]);
+  
+  useEffect(() => {
+    handleSetCredentials();
+  }, [handleSetCredentials]);
 
   useMessage(isSuccess && "User login successfully", error, "/user/profile");
 
