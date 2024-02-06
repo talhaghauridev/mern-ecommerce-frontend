@@ -183,6 +183,12 @@
   display: inline-flex;
 }
 
+.shadow_black {
+  box-shadow: rgba(43, 52, 69, 0.1) 0px 4px 16px;
+}
+
+
+
 @media (max-width: 950px) {
   .home_product_grid {
     grid-template-columns: 1fr 1fr 1fr !important;
@@ -207,6 +213,11 @@
     display: flex !important;
     flex-direction: column;
     row-gap: 15px;
+  }
+  #dashboard .dashboard_container{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  
   }
 
   #user .container {
@@ -237,6 +248,11 @@
     display: flex !important;
     flex-direction: column;
   }
+  #dashboard .dashboard_container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+    }
 }
 .header_animation {
   background-color: white;

@@ -9,6 +9,12 @@ export default {
         Sans: ["Sans"],
         SansBold: ["SansBold"],
       },
+      colors:{
+        Read:"#edededed"
+      },
+      boxShadow:{
+        primary:"rgba(43, 52, 69, 0.1) 0px 4px 16px"
+      }
     },
   },
   plugins: [],
