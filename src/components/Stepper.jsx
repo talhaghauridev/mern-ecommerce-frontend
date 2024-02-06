@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { STEPPER_STEPS } from "@constants/index";
 import cn from "@utils/cn";
 
@@ -8,8 +8,6 @@ const Stepper = ({ activeStep }) => {
       <div className="stepper_container container font-SansBold items-center justify-center max-w-[785px] mx-auto flex gap-[10px] md:gap-[15px] md:p-[15px] text-[#2b3445]">
         {STEPPER_STEPS?.map((step, index) => {
           const { icon: Icon, label } = step;
-          console.log(activeStep === index);
-          console.log(activeStep, index);
           return (
             <>
               <div
@@ -26,7 +24,7 @@ const Stepper = ({ activeStep }) => {
                     activeStep >= index && "text-[#D23F57]"
                   )}
                 >
-                  {step.label}
+                  {label}
                 </h1>
               </div>
               <div
@@ -51,4 +49,4 @@ const Stepper = ({ activeStep }) => {
   );
 };
 
-export default Stepper;
+export default memo(Stepper);

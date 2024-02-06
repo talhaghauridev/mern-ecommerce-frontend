@@ -21,6 +21,7 @@ export const reviewApi = createApi({
         url: "review",
         method: "GET",
       }),
+      providesTags:["Reviews"]
     }),
 
     deleteReview: builder.mutation({
@@ -28,6 +29,7 @@ export const reviewApi = createApi({
         url: "review",
         method: "PATCH",
       }),
+      invalidatesTags: (result, error, { reviewId }) => [{ type: "Reviews", id: reviewId }],
     }),
   }),
 });

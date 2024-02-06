@@ -30,11 +30,12 @@ const useCreateProduct = () => {
     [createProduct]
   );
 
+  console.log(images==false,images);
   //Handle onSubmit
   const onSubmit = useCallback(
     async (values) => {
       console.log(values);
-      if (!images) return;
+      if (images==false) return;
       await handleCreateProduct({ images, ...values });
     },
     [handleCreateProduct]
@@ -45,7 +46,7 @@ const useCreateProduct = () => {
     validationSchema: createProductSchema,
     onSubmit: onSubmit,
   });
-
+console.log(formik);
   useMessage(data?.message, error, "/admin/dashboard");
   return {
     formik,

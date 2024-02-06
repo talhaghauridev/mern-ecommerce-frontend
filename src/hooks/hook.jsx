@@ -40,6 +40,7 @@ const useUpload = (multiple = false) => {
   const handleFileChange = useCallback(
     (e) => {
       if (multiple) {
+        setImages([]);
         const files = Array.from(e.target.files);
         files.forEach((image) => {
           const reader = new FileReader();
@@ -51,7 +52,7 @@ const useUpload = (multiple = false) => {
           reader.readAsDataURL(image);
         });
       } else {
-        const files = e.target.files[0]
+        const files = e.target.files[0];
         const reader = new FileReader();
         reader.onload = () => {
           if (reader.readyState === 2) {

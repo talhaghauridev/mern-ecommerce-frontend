@@ -54,8 +54,6 @@ const useUpdateProfile = () => {
           avatar: displayAvatar,
           ...{ name, email },
         });
-        const user = useAuth();
-        console.log(user);
       } else {
         toast.error(onlineError);
       }

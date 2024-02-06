@@ -5,7 +5,6 @@ import { Image } from "@components/ui";
 
 const ProductCard = (product) => {
   const { _id, name, images, price, ratings, numOfReviews } = product;
-
   return (
     <Link
       to={`/product/${_id}`}
@@ -16,7 +15,7 @@ const ProductCard = (product) => {
     >
       <div className="relative overflow-hidden h-full w-full">
         <Image
-          src={images[0]}
+          src={images[0]?.url}
           alt={name}
           className="transition-all duration-200 ease-in w-full h-full max-w-[300px] object-cover"
         />

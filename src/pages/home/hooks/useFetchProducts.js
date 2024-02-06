@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 const useFetchProducts = () => {
   const { data, isLoading, error, isError } = useGetProductQuery({});
 
+
+  console.log(data);
   const isProducts = useMemo(() => {
     if (
       (!isLoading && !data?.products?.length) ||

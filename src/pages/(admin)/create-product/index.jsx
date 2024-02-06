@@ -97,25 +97,20 @@ const CreateProduct = () => {
             {/* Input InputUpload */}
             <div className="flex gap-1 w-full flex-col-reverse">
               <div className="flex items-center justify-between">
-                {images?.map((image) => (
+                {images?.map((image, index) => (
                   <Image
                     className="w-full max-w-[50px]"
                     src={image}
-                    alt="avatar"
+                    alt={`Image ${index}`}
                   />
                 ))}
               </div>
               <InputUpload
-                name={"avatar"}
+                name={"Images"}
                 label={"Upload Images"}
                 multiple
-                onChange={(event) => {
-                  handleFileChange(event);
-                  formik.setFieldValue("avatar", images && images);
-                }}
+                onChange={handleFileChange}
               />
-
-              <div>{inputError(formik, "avatar")}</div>
             </div>
             <Button type="submit" className="max-w-full mt-2">
               Create

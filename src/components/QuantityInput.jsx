@@ -21,7 +21,7 @@ const QuantityInput = ({ className = "", value = 0, increment, decrement }) => {
   );
 };
 
-const QuantityButton = ({ onClick, icon: Icon }) => {
+const QuantityButton = memo(({ onClick, icon: Icon }) => {
   return (
     <button
       onClick={onClick}
@@ -30,6 +30,6 @@ const QuantityButton = ({ onClick, icon: Icon }) => {
       <Icon className={"text-[14px]"} />
     </button>
   );
-};
+});
 
-export default QuantityInput;
+export default memo(QuantityInput);

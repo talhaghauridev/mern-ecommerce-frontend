@@ -10,7 +10,8 @@ const ReviewModal = lazy(() => import("./ReviewModal"));
 const Reviews = ({ reviews }) => {
   const [openModal, setOpenModal] = useState(false);
   const isMobile = useMediaQuery("(max-width:640px)");
-  const user = useSelector((state) => state.user);
+  const {userInfo} = useSelector((state) => state.user);
+  console.log(userInfo==true);
   const responsiveButtonText = useMemo(
     () =>
       isMobile ? (
@@ -27,7 +28,7 @@ const Reviews = ({ reviews }) => {
           <h1 className="form_heading text-[25px] md:text-[34px] py-[20px]">
             Customer Reviews
           </h1>
-          {user && (
+          {userInfo && (
             <Tooltip title={"Comment"}>
               <Button
                 variants={"outline"}
@@ -47,7 +48,7 @@ const Reviews = ({ reviews }) => {
         </div>
       </div>
 
-      {user && openModal && (
+      {userInfo && openModal && (
         <Suspense fallback="Loading...">
           <ReviewModal openModal={openModal} setOpenModal={setOpenModal} />
         </Suspense>

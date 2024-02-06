@@ -60,6 +60,7 @@ export const userApi = createApi({
           body: userData,
         }
       ),
+      
       invalidatesTags: ["user"],
     }),
     me: builder.query({

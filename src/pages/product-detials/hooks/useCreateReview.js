@@ -56,6 +56,7 @@ const useCreateReview = () => {
     }
   }, [productDetailData?.product]);
 
+  // log
   useEffect(() => {
     if (!isLoading && isError && error) {
       toast.error(error?.data?.message);
