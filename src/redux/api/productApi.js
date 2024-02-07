@@ -1,6 +1,7 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { FILTER_PRICE } from "@constants/index";
 import { baseQuery } from "@utils/ApiUrl";
+
 export const productApi = createApi({
   reducerPath: "productApi",
   baseQuery: baseQuery,
@@ -22,7 +23,7 @@ export const productApi = createApi({
           ...(ratings && { "ratings[gte]": ratings.toString() }),
         });
 
-        return { url: `/products?${params.toString()}` };
+        return { url: `products?${params.toString()}` };
       },
       providesTags: (result, error, { keyword, page }) => [
         { type: "product", id: keyword || "all" },
@@ -33,30 +34,46 @@ export const productApi = createApi({
     getProductDetails: builder.query({
       query: (id) => `product/${id}`,
       providesTags: (result, error, id) => [{ type: "product", id }],
-      // options: { skip: true },
     }),
+
+    getAdminProducts: builder.query({
+      query: () => "admin/products", // Add a query function here
+      providesTags: (result, error) => [{ type: "adminProducts" }],
+    }),
+
     createProduct: builder.mutation({
       query: (newProduct) => ({
-        url: "/product/new",
+        url: "product/new",
         method: "POST",
         body: newProduct,
       }),
-      invalidatesTags: [{ type: "product", id: "all" }],
+      invalidatesTags: [
+        { type: "product", id: "all" },
+        { type: "adminProducts" },
+      ],
     }),
+
     updateProduct: builder.mutation({
       query: ({ id, updatedProduct }) => ({
         url: `product/${id}`,
         method: "PUT",
         body: updatedProduct,
       }),
-      invalidatesTags: (result, error, { id }) => [{ type: "product", id }],
+      invalidatesTags: (result, error, { id }) => [
+        { type: "product", id },
+        { type: "adminProducts" },
+      ],
     }),
+
     deleteProduct: builder.mutation({
       query: (id) => ({
         url: `product/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: (result, error, { id }) => [{ type: "product", id }],
+      invalidatesTags: (result, error, { id }) => [
+        { type: "product", id },
+        { type: "adminProducts" },
+      ],
     }),
   }),
 });
@@ -64,6 +81,7 @@ export const productApi = createApi({
 export const {
   useGetProductQuery,
   useGetProductDetailsQuery,
+  useGetAdminProductsQuery,
   useCreateProductMutation,
   useUpdateProductMutation,
   useDeleteProductMutation,

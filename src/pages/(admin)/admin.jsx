@@ -6,7 +6,7 @@ import AdminLoading from "./components/AdminLoading";
 const Admin = () => {
   return (
     <main id="admin">
-      <div className="container py-[90px]">
+      <div className="container pt-[30px] pb-[90px]">
         <AdminSidebar />
         <Suspense fallback={<AdminLoading />}>
           <Outlet />

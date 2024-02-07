@@ -1,5 +1,31 @@
 import React, { useEffect, useRef } from "react";
 import { Doughnut, Line } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+  ArcElement,
+  PointElement,
+  LineElement,
+  Filler,
+} from "chart.js";
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+  ArcElement,
+  PointElement,
+  LineElement,
+  Filler
+);
+
 const DashboardChart = () => {
   // Dummy data for Doughnut chart
   const doughnutData = {
@@ -34,14 +60,10 @@ const DashboardChart = () => {
 
   return (
     <div>
-      <div>
-        <h2>Doughnut Chart</h2>
-      </div>
+     
+     
+        <Line data={lineData}/>
       <Doughnut data={doughnutData} />
-      <div>
-        <h2>Line Chart</h2>
-        {/* <Line data={lineData}/> */}
-      </div>
     </div>
   );
 };

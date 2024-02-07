@@ -25,12 +25,12 @@ export default DashboardBar;
 
 const DashboardBarCard = ({ name, number, icon: Icon }) => {
   return (
-    <div className="rounded-[10px] bg-[white] w-full max-w-[230px] h-[150px] shadow-primary">
-      <div className="py-[16px] px-[16px] h-full flex flex-col gap-[8px]  items-center justify-center">
+    <div className="rounded-[10px] bg-[white] w-full max-w-[230px] h-[130px] sm:h-[150px] shadow-primary">
+      <div className="py-[16px] px-[16px] h-full flex flex-col gap-[6px] md:gap-[8px]  items-center justify-center">
         <p>
-          <Icon className="text-[26px] md:text-[33px] text-[#d23f57] " />
+          <Icon className="text-[26px] md:text-[33px] text-[#d23f57]"/>
         </p>
-        <h1 className="font-PoppinsBold text-[20px] ">{name}</h1>
+        <h1 className="font-PoppinsBold text-[16px] sm:text-[20px] ">{name}</h1>
         <span className="font-Poppins text-[18px]">{number}</span>
       </div>
     </div>
