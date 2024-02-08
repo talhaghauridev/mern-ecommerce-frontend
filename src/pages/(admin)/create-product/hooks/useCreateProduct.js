@@ -10,7 +10,7 @@ const useCreateProduct = () => {
   const { handleFileChange, images } = useUpload(true);
   const initialValues = {
     name: "",
-    descripton: "",
+    description: "",
     price: 0,
     category: "",
     stock: 1,
@@ -35,7 +35,7 @@ const useCreateProduct = () => {
   const onSubmit = useCallback(
     async (values) => {
       console.log(values);
-      if (images==false) return;
+      if (!images) return;
       await handleCreateProduct({ images, ...values });
     },
     [handleCreateProduct]

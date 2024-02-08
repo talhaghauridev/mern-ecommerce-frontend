@@ -13,7 +13,7 @@ const useFetchProducts = () => {
   }, [error, isError, isLoading]);
 
   return {
-    data,
+    products:data?.products ? data?.products:[],
     isSuccess,
     isLoading,
   };

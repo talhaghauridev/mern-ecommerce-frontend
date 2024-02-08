@@ -2,35 +2,28 @@ import React, { memo, useCallback, useMemo, useState } from "react";
 import { MetaData } from "@components/ui";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
-import useFetchProducts from "./hooks/useFetchProducts";
 import AdminLoading from "../components/AdminLoading";
 import { FaEdit, FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-import useDeleteProduct from "./hooks/useDeleteProduct";
+import useFetchReviews from "./hooks/useFetchReviews";
 
 const ActionButton = memo(({ id }) => {
   const editLink = `/admin/product/${id}`;
-  const { deleteProduct, isLoading } = useDeleteProduct();
-  const handelDeleteProduct = useCallback(
-    (productId) => {
-      deleteProduct(productId);
-    },
-    [deleteProduct]
-  );
+
   return (
     <div className="flex items-center justify-center gap-[10px] md:gap-[15px] text-[#222935] text-[22px]">
       <Link to={editLink}>
         <FaEdit />
       </Link>
-      <button onClick={() => handelDeleteProduct(id)} disabled={isLoading}>
+      <button>
         <MdDelete cursor={"pointer"} />
       </button>
     </div>
   );
 });
 
-const AdminProducts = () => {
-  const { products, isLoading } = useFetchProducts();
+const Reviews = () => {
+  const { reviews, isLoading } = useFetchReviews();
   const columns = [
     { field: "id", headerName: "Product Id", type: "number" },
     {
@@ -67,14 +60,14 @@ const AdminProducts = () => {
   ];
 
   const rows = useMemo(() => {
-    if (!products) return [];
-    return products?.map((item) => ({
+    if (!reviews) return [];
+    return reviews?.map((item) => ({
       id: item?._id,
       name: item?.name,
       stock: item?.stock,
       price: item?.price,
     }));
-  }, [products]);
+  }, [reviews]);
 
   if (isLoading) {
     return <AdminLoading />;
@@ -106,4 +99,4 @@ const AdminProducts = () => {
   );
 };
 
-export default AdminProducts;
+export default Reviews;

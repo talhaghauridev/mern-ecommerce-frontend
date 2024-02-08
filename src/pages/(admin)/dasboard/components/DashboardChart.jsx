@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
+import useFetchProducts from "../../products/hooks/useFetchProducts";
 import { Doughnut, Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -27,43 +28,60 @@ ChartJS.register(
 );
 
 const DashboardChart = () => {
-  // Dummy data for Doughnut chart
-  const doughnutData = {
-    labels: ["Label 1", "Label 2", "Label 3"],
-    datasets: [
-      {
-        data: [30, 40, 30],
-        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-        hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-      },
-    ],
-  };
+  const { products } = useFetchProducts();
+  const outOfStock = useMemo(() => {
+    let count = 0;
+    products.forEach((item) => {
+      if (item?.stock === 0) {
+        count += 1;
+      }
+    });
+    return count;
+  }, [products]);
+
+  const doughnutData = useMemo(() => {
+    return {
+      labels: ["Out of Stock", "InStock"],
+      datasets: [
+        {
+          backgroundColor: ["#FF6384", "#36A2EB"],
+          hoverBackgroundColor: ["#FF6384", "#36A2EB"],
+          data: [outOfStock, products?.length - outOfStock],
+        },
+      ],
+    };
+  }, [outOfStock, products]);
 
   // Dummy data for Line chart
-  const lineData = {
-    labels: ["January", "February", "March", "April", "May"],
-    datasets: [
-      {
-        label: "Dataset 1",
-        borderColor: "rgba(75,192,192,1)",
-        backgroundColor: "rgba(75,192,192,0.4)",
-        data: [65, 59, 80, 81, 56],
-      },
-      {
-        label: "Dataset 2",
-        borderColor: "rgba(255,99,132,1)",
-        backgroundColor: "rgba(255,99,132,0.4)",
-        data: [28, 48, 40, 19, 86],
-      },
-    ],
-  };
+  const lineData = useMemo(() => {
+    return {
+      labels: ["Inital Amount", "Amount Earned"],
+      datasets: [
+        {
+          label: "Dataset 1",
+          borderColor: "rgba(75,192,192,1)",
+          backgroundColor: "rgba(75,192,192,0.4)",
+          data: [65, 59, 80, 81, 56],
+        },
+        {
+          label: "Dataset 2",
+          borderColor: "rgba(255,99,132,1)",
+          backgroundColor: "rgba(255,99,132,0.4)",
+          data: [28, 48, 40, 19, 86],
+        },
+      ],
+    };
+  }, []);
 
   return (
-    <div>
-     
-     
-        <Line data={lineData}/>
-      <Doughnut data={doughnutData} />
+    <div className="flex flex-col gap-[20px] w-full h-full items-center justify-center">
+      <div className="w-full ">
+        <Line data={lineData} />
+      </div>
+
+      <div className="w-full  max-w-[500px] md:max-w-[600px]">
+        <Doughnut data={doughnutData} />
+      </div>
     </div>
   );
 };

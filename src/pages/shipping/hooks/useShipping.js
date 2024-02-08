@@ -5,6 +5,7 @@ import { SHIPPING_INFO } from "@constants/index";
 import LocalStorage from "@utils/LocalStorage";
 import { shippingSchema } from "../validation";
 import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 
 const getShippingInfo = () => {
   const info = LocalStorage.get(SHIPPING_INFO);
@@ -14,6 +15,8 @@ const getShippingInfo = () => {
 };
 
 const useShipping = () => {
+  const navigate = useNavigate();
+
   const initialValues = {
     address: "",
     city: "",
@@ -31,13 +34,18 @@ const useShipping = () => {
     [dispatch]
   );
 
+  const onSubmit = useCallback(
+    (values) => {
+      handleSaveShippingInfo(values);
+      navigate("/order/confirm");
+    },
+    [handleSaveShippingInfo, navigate]
+  );
+
   const formik = useFormik({
     initialValues: getShippingInfo() ? getShippingInfo() : initialValues,
     validationSchema: shippingSchema,
-    onSubmit: async (values) => {
-      console.log(values);
-      handleSaveShippingInfo(values);
-    },
+    onSubmit: onSubmit,
   });
 
   return {

@@ -11,7 +11,7 @@ const FooterList = ({ name, list }) => {
           {name}
         </div>
 
-        <ul class="flex flex-col gap-4 font-Sans">
+        <ul class="flex flex-col md:gap-1 gap-[0.5rem]  font-Sans">
           {list.map((item, index) => (
             <div key={index}>
               <a

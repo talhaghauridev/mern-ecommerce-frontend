@@ -18,14 +18,14 @@ const useUpdateQuantity = (productId) => {
 
   const handleUpdateQuantity = useCallback(
     (id, quantity) => {
-      const { name, descripton, price, images, category, _id, stock } =
+      const { name, description, price, images, category, _id, stock } =
         localStorageItem(id);
 
       console.log(quantity);
       dispatch(
         addToCart({
           name,
-          descripton,
+          description,
           price,
           images,
           category,

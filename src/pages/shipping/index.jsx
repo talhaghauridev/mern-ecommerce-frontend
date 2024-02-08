@@ -13,7 +13,6 @@ import Stepper from "@components/Stepper";
 import inputError from "@utils/inputError";
 
 const Shipping = () => {
-  const navigate = useNavigate();
   const { formik } = useShipping();
   const { handleSubmit, getFieldProps } = formik;
   return (
@@ -106,7 +105,6 @@ const Shipping = () => {
             <Button
               type="submit"
               className="max-w-full mt-[18px]"
-              onClick={() => navigate("/order/confirm")}
             >
               Continue
             </Button>

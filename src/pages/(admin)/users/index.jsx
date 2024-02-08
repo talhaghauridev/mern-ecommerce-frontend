@@ -1,36 +1,24 @@
-import React, { memo, useCallback, useMemo, useState } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import { MetaData } from "@components/ui";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
-import useFetchProducts from "./hooks/useFetchProducts";
 import AdminLoading from "../components/AdminLoading";
-import { FaEdit, FaRegEdit } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
-import useDeleteProduct from "./hooks/useDeleteProduct";
+import { FaEdit } from "react-icons/fa";
 
 const ActionButton = memo(({ id }) => {
   const editLink = `/admin/product/${id}`;
-  const { deleteProduct, isLoading } = useDeleteProduct();
-  const handelDeleteProduct = useCallback(
-    (productId) => {
-      deleteProduct(productId);
-    },
-    [deleteProduct]
-  );
+
   return (
     <div className="flex items-center justify-center gap-[10px] md:gap-[15px] text-[#222935] text-[22px]">
       <Link to={editLink}>
         <FaEdit />
       </Link>
-      <button onClick={() => handelDeleteProduct(id)} disabled={isLoading}>
-        <MdDelete cursor={"pointer"} />
-      </button>
     </div>
   );
 });
 
-const AdminProducts = () => {
-  const { products, isLoading } = useFetchProducts();
+const Users = () => {
+  const products = [];
   const columns = [
     { field: "id", headerName: "Product Id", type: "number" },
     {
@@ -75,6 +63,7 @@ const AdminProducts = () => {
       price: item?.price,
     }));
   }, [products]);
+  const isLoading = false;
 
   if (isLoading) {
     return <AdminLoading />;
@@ -84,7 +73,7 @@ const AdminProducts = () => {
       <MetaData title={`Products - Admin`} />
       <section id="adminProducts">
         <div className="adminProducts_container">
-          <h1 className="admin_heading">Products</h1>
+          <h1 className="admin_heading">Users</h1>
           <div className="adminProducts_box">
             <DataGrid
               rows={rows}
@@ -106,4 +95,4 @@ const AdminProducts = () => {
   );
 };
 
-export default AdminProducts;
+export default Users;

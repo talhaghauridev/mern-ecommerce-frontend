@@ -58,13 +58,9 @@ const UpdateProfile = () => {
               <InputUpload
                 name={"avatar"}
                 label={"Upload Avatar"}
-                onChange={(event) => {
-                  handleFileChange(event);
-                  formik.setFieldValue("avatar", image && image);
-                }}
+                onChange={handleFileChange}
               />
 
-              <div>{inputError(formik, "avatar")}</div>
             </div>
             <Button type="submit" className="max-w-full mt-2">
               Update

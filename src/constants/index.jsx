@@ -61,7 +61,7 @@ const USER_DROPDOWN_LINKS = [
   {
     name: "Orders",
     path: "/user/orders",
-    icon: <TbBorderAll />,
+    icon: <FaRegListAlt />,
   },
   {
     name: "Dashboard",
@@ -135,7 +135,7 @@ const USER_PROFILE_LINK = [
   {
     name: "Orders",
     path: "/user/orders",
-    icon: TbBorderAll,
+    icon: FaRegListAlt,
   },
   {
     name: "Update Profile",

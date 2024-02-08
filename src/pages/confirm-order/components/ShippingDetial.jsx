@@ -10,7 +10,7 @@ const ShippingDetial = () => {
       `${shippingInfo?.address}, ${shippingInfo?.city}, ${shippingInfo?.state}, ${shippingInfo?.phoneNumber}, ${shippingInfo?.pinCode}`,
     [shippingInfo]
   );
-  
+
   return (
     <div className="flex flex-col gap-[20px] pt-[50px] pb-[40px] md:pb-[80px]">
       <div className="confirm_heading">

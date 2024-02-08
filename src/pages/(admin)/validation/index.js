@@ -2,7 +2,7 @@ import * as Yup from "yup";
 
 const createProductSchema = Yup.object({
   name: Yup.string().trim().required("Name is Required"),
-  descripton: Yup.string().trim().required("Description is Required"),
+  description: Yup.string().trim().required("Description is Required"),
   price: Yup.number()
     .required("Price is Required")
     .max(99999999, "Price cannot exceed 8 characters"),

@@ -11,7 +11,7 @@ const Reviews = lazy(() => import("./Reviews/Reviews"));
 const Details = ({ product }) => {
   const {
     name,
-    descripton,
+    description,
     numOfReviews,
     price,
     ratings,
@@ -106,7 +106,7 @@ const Details = ({ product }) => {
                 display: "-webkit-box",
               }}
             >
-              {descripton}
+              {description}
             </p>
           </div>
 

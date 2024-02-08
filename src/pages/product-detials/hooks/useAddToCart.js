@@ -21,11 +21,11 @@ const useAddToCart = () => {
 
   const handleAddToCart = useCallback(
     (product, quantity) => {
-      const { name, descripton, price, images, category, _id, stock } = product;
+      const { name, description, price, images, category, _id, stock } = product;
       dispatch(
         addToCart({
           name,
-          descripton,
+          description,
           price,
           images,
           category,

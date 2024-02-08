@@ -50,11 +50,11 @@ const CreateProduct = () => {
             <Input
               label="Description"
               type="text"
-              placeholder="Enter your descripton"
-              name="descripton"
+              placeholder="Enter your description"
+              name="description"
               leftIcon={TbFileDescription}
-              {...getFieldProps("descripton")}
-              error={inputError(formik, "descripton")}
+              {...getFieldProps("description")}
+              error={inputError(formik, "description")}
             />
 
             <div className="flex gap-x-[10px]">
