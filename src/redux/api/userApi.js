@@ -20,6 +20,7 @@ export const userApi = createApi({
         body: user,
       }),
     }),
+
     logout: builder.query({
       query: () => ({
         url: "logout",
@@ -33,16 +34,15 @@ export const userApi = createApi({
         body: email,
       }),
     }),
+
     resetPassword: builder.mutation({
-      query: ({ token, ...passwords }) => (
-        console.log(token),
-        {
-          url: `password/reset/${token}`,
-          method: "PUT",
-          body: passwords,
-        }
-      ),
+      query: ({ token, ...passwords }) => ({
+        url: `password/reset/${token}`,
+        method: "PUT",
+        body: passwords,
+      }),
     }),
+
     updatePassword: builder.mutation({
       query: (passwords) => ({
         url: "password/update",
@@ -52,22 +52,49 @@ export const userApi = createApi({
     }),
 
     updateMe: builder.mutation({
-      query: (userData) => (
-        console.log(userData),
-        {
-          url: "me/update",
-          method: "PUT",
-          body: userData,
-        }
-      ),
-      
+      query: (userData) => ({
+        url: "me/update",
+        method: "PUT",
+        body: userData,
+      }),
       invalidatesTags: ["user"],
     }),
+
     me: builder.query({
       query: () => ({
         url: "me",
       }),
       providesTags: ["user"],
+    }),
+
+    getAllUsers: builder.query({
+      query: () => ({
+        url: "admin/users",
+      }),
+      providesTags: ["adminUsers"],
+    }),
+
+    getSingleUser: builder.query({
+      query: (id) => ({
+        url: `admin/user/${id}`,
+      }),
+       providesTags: (result, error, id) => [{ type: "adminUsers", id }],
+    }),
+
+    deleteUser: builder.mutation({
+      query: (id) => ({
+        url: `admin/user/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["adminUsers", "user"], // Invalidate user and adminUsers tags
+    }),
+
+    updateUserRole: builder.mutation({
+      query: (id) => ({
+        url: `admin/user/${id}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["user"], // Invalidate user tag
     }),
   }),
 });
@@ -81,4 +108,8 @@ export const {
   useUpdateMeMutation,
   useUpdatePasswordMutation,
   useLogoutQuery,
+  useGetAllUsersQuery,
+  useGetSingleUserQuery,
+  useDeleteUserMutation,
+  useUpdateUserRoleMutation,
 } = userApi;

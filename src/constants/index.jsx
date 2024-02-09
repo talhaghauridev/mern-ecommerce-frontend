@@ -99,7 +99,7 @@ const FOOTER = {
 };
 
 const FILTERS = {
-  Categories: ["Mobile", "Laptop", "Car", "Bag", "Clothes", "Machines"],
+  Categories: ["Mobile", "Laptop", "Car", "Bag","Shoes", "Clothes", "Machines"],
   Ratings: [5, 4, 3, 2, 1],
 };
 

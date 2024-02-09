@@ -106,7 +106,7 @@ const UpdateProduct = () => {
                   <Image
                     key={index}
                     className="w-[50px] h-[50px] max-w-[50px] object-contain"
-                    src={image?.url}
+                    src={image?.url || image}
                     alt={`Image ${image?.public_id || index}`}
                   />
                 ))}

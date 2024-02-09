@@ -81,10 +81,10 @@ const AdminProducts = () => {
   }
   return (
     <>
-      <MetaData title={`Products - Admin`} />
+      <MetaData title={`All Products - Admin`} />
       <section id="adminProducts">
         <div className="adminProducts_container">
-          <h1 className="admin_heading">Products</h1>
+          <h1 className="admin_heading">ALl Products</h1>
           <div className="adminProducts_box">
             <DataGrid
               rows={rows}

@@ -1,45 +1,51 @@
-import React, { memo, useCallback, useMemo } from "react";
+import React, { memo, useCallback, useMemo, useState } from "react";
 import { MetaData } from "@components/ui";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import AdminLoading from "../components/AdminLoading";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaRegEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import useFetchUsers from "./hooks/useFetchUsers";
+import useDeleteUser from "./hooks/useDeleteUser";
 
 const ActionButton = memo(({ id }) => {
   const editLink = `/admin/product/${id}`;
-
+  const { deleteUser, isLoading } = useDeleteUser();
+  const handelDeleteProduct = useCallback(
+    (userId) => {
+      deleteUser(userId);
+    },
+    [deleteUser]
+  );
   return (
     <div className="flex items-center justify-center gap-[10px] md:gap-[15px] text-[#222935] text-[22px]">
       <Link to={editLink}>
         <FaEdit />
       </Link>
+      <button onClick={() => handelDeleteProduct(id)} disabled={isLoading}>
+        <MdDelete cursor={"pointer"} />
+      </button>
     </div>
   );
 });
 
-const Users = () => {
-  const products = [];
+const AdminProducts = () => {
+  const { users, isLoading } = useFetchUsers();
   const columns = [
-    { field: "id", headerName: "Product Id", type: "number" },
+    { field: "id", headerName: "User Id", type: "number" },
     {
       field: "name",
       headerName: "Name",
       type: "number",
     },
     {
-      field: "stock",
-      headerName: "Stock",
+      field: "email",
+      headerName: "Email",
       type: "number",
-      cellClassName: (params) => {
-        console.log(params);
-        return params.id === 3
-          ? "order_status_pending"
-          : "order_status_delivered";
-      },
     },
     {
-      field: "price",
-      headerName: "Price",
+      field: "role",
+      headerName: "Role",
       type: "number",
     },
     {
@@ -55,26 +61,25 @@ const Users = () => {
   ];
 
   const rows = useMemo(() => {
-    if (!products) return [];
-    return products?.map((item) => ({
+    if (!users) return [];
+    return users?.map((item) => ({
       id: item?._id,
       name: item?.name,
-      stock: item?.stock,
-      price: item?.price,
+      email: item?.email,
+      role: item?.role,
     }));
-  }, [products]);
-  const isLoading = false;
+  }, [users]);
 
   if (isLoading) {
     return <AdminLoading />;
   }
   return (
     <>
-      <MetaData title={`Products - Admin`} />
-      <section id="adminProducts">
-        <div className="adminProducts_container">
-          <h1 className="admin_heading">Users</h1>
-          <div className="adminProducts_box">
+      <MetaData title={`All Users - Admin`} />
+      <section id="adminUsers">
+        <div className="adminUsers_container">
+          <h1 className="admin_heading">All Users</h1>
+          <div className="adminUsers_box">
             <DataGrid
               rows={rows}
               columns={columns}
@@ -95,4 +100,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default AdminProducts;

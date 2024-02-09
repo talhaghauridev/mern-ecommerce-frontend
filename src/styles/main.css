@@ -132,6 +132,25 @@
   grid-template-columns: 1fr 1fr 1fr 1.1fr 0.9fr;
 }
 
+
+
+
+/* Users List Grid  */
+#adminUsers
+  .MuiDataGrid-columnHeadersInner
+  .css-yrdy0g-MuiDataGrid-columnHeaderRow {
+  width: 100% !important;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 0.8fr 0.9fr;
+}
+
+/* Users Mui Row Grid  */
+#adminUsers .MuiDataGrid-virtualScroller .MuiDataGrid-row {
+  width: 100% !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr 0.8fr 0.8fr;
+}
+
 .MuiDataGrid-columnHeader
   .MuiDataGrid-columnHeadersInner
   .css-yrdy0g-MuiDataGrid-columnHeaderRow {
