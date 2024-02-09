@@ -24,7 +24,7 @@ const UpdateProduct = () => {
   if (detialLoading) {
     return <AdminLoading />;
   }
-  
+
   return (
     <>
       {updateLoading && <BackDrop isOpen={updateLoading} />}
@@ -106,8 +106,8 @@ const UpdateProduct = () => {
                   <Image
                     key={index}
                     className="w-[50px] h-[50px] max-w-[50px] object-contain"
-                    src={image}
-                    alt={`Image ${index}`}
+                    src={image?.url}
+                    alt={`Image ${image?.public_id || index}`}
                   />
                 ))}
               </div>
