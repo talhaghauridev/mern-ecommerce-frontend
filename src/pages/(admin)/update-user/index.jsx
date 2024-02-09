@@ -1,13 +1,12 @@
 import React from "react";
 import { BackDrop, Button, Input, MetaData, Select } from "@components/ui";
-import { TbFileDescription } from "react-icons/tb";
-import { BiCategoryAlt } from "react-icons/bi";
-import { SiProducthunt } from "react-icons/si";
 import inputError from "@utils/inputError";
 import { ROLES } from "@constants/index";
 import AdminLoading from "../components/AdminLoading";
 import { capitalize } from "@mui/material";
 import useUpdateUser from "./hooks/useUpdateUser";
+import { MdAlternateEmail, MdOutlineVerifiedUser } from "react-icons/md";
+import { FaRegUser } from "react-icons/fa6";
 const UpdateProduct = () => {
   const { formik, updateLoading, detialLoading } = useUpdateUser();
   const { handleSubmit, getFieldProps } = formik;
@@ -30,13 +29,13 @@ const UpdateProduct = () => {
             <div className="form_heading">
               <h1>Update User</h1>
             </div>
-            {/* Name Input  */}
-            <Input
+              {/* Name Input  */}
+              <Input
               label="Name"
               type="text"
               placeholder="Enter your name"
               name="name"
-              leftIcon={SiProducthunt}
+              leftIcon={FaRegUser}
               {...getFieldProps("name")}
               error={inputError(formik, "name")}
             />
@@ -46,17 +45,16 @@ const UpdateProduct = () => {
               label="Email"
               type="email"
               placeholder="Enter your email"
-              name="description"
-              leftIcon={TbFileDescription}
+              name="email"
+              leftIcon={MdAlternateEmail}
               {...getFieldProps("email")}
               error={inputError(formik, "email")}
             />
-
             {/* Select Roles  */}
             <Select
               {...getFieldProps("role")}
               error={inputError(formik, "role")}
-              leftIcon={BiCategoryAlt}
+              leftIcon={MdOutlineVerifiedUser}
             >
               <Select.Button>Select Role</Select.Button>
               {ROLES.map((role) => (
