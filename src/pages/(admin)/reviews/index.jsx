@@ -72,6 +72,7 @@ const Reviews = () => {
   if (isLoading) {
     return <AdminLoading />;
   }
+  
   return (
     <>
       <MetaData title={`Products - Admin`} />

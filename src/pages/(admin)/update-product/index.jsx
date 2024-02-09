@@ -16,12 +16,18 @@ import { SiProducthunt } from "react-icons/si";
 import inputError from "@utils/inputError";
 import { FILTERS } from "@constants/index";
 import useUpdateProduct from "./hooks/useUpdateProduct";
+import AdminLoading from "../components/AdminLoading";
 const UpdateProduct = () => {
-  const { formik, isLoading, handleFileChange, images } = useUpdateProduct();
+  const { formik, updateLoading, detialLoading, handleFileChange, images } =
+    useUpdateProduct();
   const { handleSubmit, getFieldProps } = formik;
+  if (detialLoading) {
+    return <AdminLoading />;
+  }
+  
   return (
     <>
-      {isLoading && <BackDrop isOpen={isLoading} />}
+      {updateLoading && <BackDrop isOpen={updateLoading} />}
 
       <MetaData title={"Update Product - Admin"} />
       <section id="createProduct">
@@ -98,7 +104,8 @@ const UpdateProduct = () => {
               <div className="flex items-center justify-between">
                 {images?.map((image, index) => (
                   <Image
-                    className="w-full max-w-[50px]"
+                    key={index}
+                    className="w-[50px] h-[50px] max-w-[50px] object-contain"
                     src={image}
                     alt={`Image ${index}`}
                   />

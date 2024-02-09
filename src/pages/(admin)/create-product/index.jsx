@@ -99,8 +99,8 @@ const CreateProduct = () => {
               <div className="flex items-center justify-between">
                 {images?.map((image, index) => (
                   <Image
-                    className="w-full max-w-[50px]"
-                    src={image}
+                  className="w-[50px] h-[50px] max-w-[50px] object-contain"
+                  src={image}
                     alt={`Image ${index}`}
                   />
                 ))}

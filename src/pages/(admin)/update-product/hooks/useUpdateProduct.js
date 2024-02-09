@@ -1,41 +1,41 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { useFormik } from "formik";
 import { useMessage, useUpload } from "@hooks/hook";
-import { createProductSchema } from "@pages/(admin)/validation";
+import { updateProductSchema } from "@pages/(admin)/validation";
 import {
   useGetProductDetailsQuery,
   useUpdateProductMutation,
 } from "@redux/api/productApi";
 import { useParams } from "react-router-dom";
+import { capitalize } from "@mui/material";
 
-const getDetials = () => {
-  const { id } = useParams();
-  const { isError, data } = useGetProductDetailsQuery(id);
-
-  const { product } = data;
+const getDetails = (data) => {
+  const product = data?.product;
   return {
     name: product?.name,
     price: product?.price,
     stock: product?.stock,
-    category: product?.category,
-    description: product?.description,
+    category: capitalize(String(product?.category)),
+    description: product?.descripton,
     images: product?.images ? product?.images : [],
   };
 };
 
 const useUpdateProduct = () => {
   const { handleFileChange, images } = useUpload(true);
-  const initialValues = {
-    name: "",
-    description: "", // Fixed typo in 'description'
-    price: 0,
-    category: "",
-    stock: 1,
-  };
+  const { id } = useParams();
+  const { data: productDetail, isLoading: detialLoading } =
+    useGetProductDetailsQuery(id);
 
-  const [updateProduct, { isError, isLoading, isSuccess, data, error }] =
+  const [updateProduct, { isLoading:updateLoading, isSuccess, data, error }] =
     useUpdateProductMutation();
 
+  const initialValues = useMemo(() => {
+    const { images, ...rest } = getDetails(productDetail);
+    return rest;
+  }, [id, productDetail]);
+
+  //Handle Update Product
   const handleUpdateProduct = useCallback(
     async (values) => {
       try {
@@ -47,34 +47,42 @@ const useUpdateProduct = () => {
     [updateProduct]
   );
 
+  //Handle Images
   const displayImages = useMemo(() => {
-    return images && images.length > 0 ? images : getDetials()?.images ?? [];
-  }, [images, getDetials()?.images]); // Include all dependencies here
+    return images == false ? getDetails(productDetail)?.images : images;
+  }, [images, productDetail]);
 
+console.log(displayImages);
+
+  //Handle Submit
   const onSubmit = useCallback(
-    async (values) => {
-      console.log(values);
+    async ({ images, ...rest }) => {
       if (!displayImages) return;
-      await handleUpdateProduct({ images: displayImages, ...values });
+      await handleUpdateProduct({
+        id,
+        updatedProduct: { images: displayImages, ...rest },
+      });
     },
-    [displayImages, handleUpdateProduct]
+    [displayImages, handleUpdateProduct, id]
   );
 
-  console.log(getDetials());
+  console.log(getDetails(productDetail));
 
   const formik = useFormik({
-    initialValues: getDetials() ? getDetials() : initialValues,
-    validationSchema: createProductSchema,
+    initialValues: initialValues,
+    validationSchema: updateProductSchema,
     onSubmit: onSubmit,
+    enableReinitialize: true,
   });
 
-  useMessage(data?.message, error, "/admin/dashboard");
-
+  useMessage(data?.message, error, "/admin/products");
+  console.log(formik.initialValues);
   return {
     formik,
     images: displayImages,
     handleFileChange,
-    isLoading,
+    detialLoading,
+    updateLoading,
     isSuccess,
     data,
   };
