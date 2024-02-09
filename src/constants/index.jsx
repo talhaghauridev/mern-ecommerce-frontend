@@ -99,9 +99,19 @@ const FOOTER = {
 };
 
 const FILTERS = {
-  Categories: ["Mobile", "Laptop", "Car", "Bag","Shoes", "Clothes", "Machines"],
+  Categories: [
+    "Mobile",
+    "Laptop",
+    "Car",
+    "Bag",
+    "Shoes",
+    "Clothes",
+    "Machines",
+  ],
   Ratings: [5, 4, 3, 2, 1],
 };
+
+const ROLES = ["admin", "user"];
 
 const FILTER_PRICE = [0, 25000];
 
@@ -200,4 +210,5 @@ export {
   TOKEN,
   USER_PROFILE_LINK,
   ADMIN_LINKS,
+  ROLES
 };

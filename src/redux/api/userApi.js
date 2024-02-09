@@ -89,10 +89,11 @@ export const userApi = createApi({
       invalidatesTags: ["adminUsers", "user"], // Invalidate user and adminUsers tags
     }),
 
-    updateUserRole: builder.mutation({
-      query: (id) => ({
+    updateUser: builder.mutation({
+      query: ({id,userData}) => ({
         url: `admin/user/${id}`,
         method: "PATCH",
+        body:userData
       }),
       invalidatesTags: ["user"], // Invalidate user tag
     }),
@@ -111,5 +112,5 @@ export const {
   useGetAllUsersQuery,
   useGetSingleUserQuery,
   useDeleteUserMutation,
-  useUpdateUserRoleMutation,
+  useUpdateUserMutation,
 } = userApi;

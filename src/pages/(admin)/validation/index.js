@@ -14,8 +14,7 @@ const createProductSchema = Yup.object({
     .default(1),
 });
 
-
-const updateProductSchema  = Yup.object({
+const updateProductSchema = Yup.object({
   name: Yup.string().trim().required("Name is Required"),
   description: Yup.string().trim().required("Description is Required"),
   price: Yup.number()
@@ -29,5 +28,12 @@ const updateProductSchema  = Yup.object({
     .default(1),
 });
 
+const updateUserSchema = Yup.object({
+  name: Yup.string().trim().required("Name is Required"),
+  email: Yup.string()
+    .email("Invalid email format")
+    .required("Email is Required"),
+  role: Yup.string().trim().required("Role is Required"),
+});
 
-export { createProductSchema, updateProductSchema};
+export { createProductSchema, updateProductSchema,updateUserSchema };

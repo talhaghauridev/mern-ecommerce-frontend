@@ -9,7 +9,7 @@ import useFetchUsers from "./hooks/useFetchUsers";
 import useDeleteUser from "./hooks/useDeleteUser";
 
 const ActionButton = memo(({ id }) => {
-  const editLink = `/admin/product/${id}`;
+  const editLink = `/admin/user/${id}`;
   const { deleteUser, isLoading } = useDeleteUser();
   const handelDeleteProduct = useCallback(
     (userId) => {

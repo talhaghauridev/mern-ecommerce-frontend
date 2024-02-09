@@ -4,9 +4,11 @@ import { Fa42Group, FaPlaneCircleExclamation, FaUsers } from "react-icons/fa6";
 import { MdOutlinePriceChange } from "react-icons/md";
 import { SiProducthunt } from "react-icons/si";
 import useFetchProducts from "../../products/hooks/useFetchProducts";
+import useFetchUsers from "./../../users/hooks/useFetchUsers";
 
 const DashboardBar = () => {
   const { products } = useFetchProducts();
+  const { users } = useFetchUsers();
   return (
     <section id="dashboard">
       <div class="dashboard_container flex  w-full justify-between gap-[15px]">
@@ -15,7 +17,11 @@ const DashboardBar = () => {
           name={"Products"}
           number={products?.length || 0}
         />
-        <DashboardBarCard icon={FaUsers} name={"User"} number={20} />
+        <DashboardBarCard
+          icon={FaUsers}
+          name={"User"}
+          number={users?.length || 0}
+        />
         <DashboardBarCard icon={FaRegListAlt} name={"Orders"} number={20} />
         <DashboardBarCard
           icon={MdOutlinePriceChange}

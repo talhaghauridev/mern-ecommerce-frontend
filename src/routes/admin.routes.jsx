@@ -6,7 +6,9 @@ const CreateProduct = lazy(() => import("@pages/(admin)/create-product"));
 const UpdateProduct = lazy(() => import("@pages/(admin)/update-product"));
 const AdminProducts = lazy(() => import("@pages/(admin)/products"));
 const Users = lazy(() => import("@pages/(admin)/users"));
+const UpdateUser = lazy(() => import("@pages/(admin)/update-user"));
 const Reviews = lazy(() => import("@pages/(admin)/reviews"));
+
 const AdminRoutes = () => {
   return (
     <Routes>
@@ -18,6 +20,7 @@ const AdminRoutes = () => {
         <Route path="products" element={<AdminProducts />} />
         <Route path="reviews" element={<Reviews />} />
         <Route path="users" element={<Users />} />
+        <Route path="user/:userId" element={<UpdateUser />} />
       </Route>
     </Routes>
   );

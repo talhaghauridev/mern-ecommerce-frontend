@@ -30,7 +30,7 @@ const UpdateProduct = () => {
       {updateLoading && <BackDrop isOpen={updateLoading} />}
 
       <MetaData title={"Update Product - Admin"} />
-      <section id="createProduct">
+      <section id="updateProduct">
         <div className="form_container pt-0 px-[0px] ">
           <form
             className="form "
