@@ -34,6 +34,6 @@
     @apply font-Sans
   }
   .admin_heading {
-    @apply md:mb-[10px] text-[30px]  md:text-[35px]  font-Sans font-bold text-[#222935] w-full
+    @apply  py-[15px] sm:py-[20px]  text-[30px]  md:text-[35px]  font-Sans font-bold text-[#222935] w-full
   }
 }

@@ -151,6 +151,26 @@
   grid-template-columns: 1fr 1fr 1fr 0.8fr 0.8fr;
 }
 
+
+/* Reviews List Grid  */
+#adminReviews
+  .MuiDataGrid-columnHeadersInner
+  .css-yrdy0g-MuiDataGrid-columnHeaderRow {
+  width: 100% !important;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+/* Reviews Mui Row Grid  */
+#adminReviews .MuiDataGrid-virtualScroller .MuiDataGrid-row {
+  width: 100% !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr 1fr 0.9fr;
+}
+
+
+
+
 .MuiDataGrid-columnHeader
   .MuiDataGrid-columnHeadersInner
   .css-yrdy0g-MuiDataGrid-columnHeaderRow {

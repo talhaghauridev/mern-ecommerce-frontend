@@ -30,7 +30,7 @@ const useUpdateUser = () => {
     [useId, detialData]
   );
 
-  //Handle Update Product
+  //Handle Update User
   const handleUpdateUser = useCallback(
     async (values) => {
       try {
@@ -45,11 +45,10 @@ const useUpdateUser = () => {
   //Handle Submit
   const onSubmit = useCallback(
     async (values) => {
-      await handleUpdateUser({ id: userId, values });
+      await handleUpdateUser({ id: userId, userData: values });
     },
     [handleUpdateUser, userId]
   );
-
 
   const formik = useFormik({
     initialValues: initialValues,

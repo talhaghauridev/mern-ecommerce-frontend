@@ -14,22 +14,25 @@ export const reviewApi = createApi({
           method: "PUT",
         }
       ),
-      invalidatesTags: (result, error, {productId}) => [{ type: "product", id:productId }],
+      invalidatesTags: (result, error, { productId }) => [
+        { type: "product", id: productId },
+      ],
     }),
     getReviews: builder.query({
-      query: () => ({
-        url: "review",
-        method: "GET",
+      query: (productId) => ({
+        url: `reviews?productId=${productId}`,
       }),
-      providesTags:["Reviews"]
+      providesTags: ["reviews"],
     }),
 
     deleteReview: builder.mutation({
-      query: () => ({
-        url: "review",
+      query: ({ productId, id }) => ({
+        url: `reviews?productId=${productId}&id=${id}`,
         method: "PATCH",
       }),
-      invalidatesTags: (result, error, { reviewId }) => [{ type: "Reviews", id: reviewId }],
+      invalidatesTags: (result, error, { reviewId }) => [
+        { type: "reviews", id: reviewId },
+      ],
     }),
   }),
 });
