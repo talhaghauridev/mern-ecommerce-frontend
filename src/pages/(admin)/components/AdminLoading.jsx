@@ -5,7 +5,7 @@ const AdminLoading = () => {
   return (
     <section
       id="adminLoading"
-      className="flex items-center justify-center w-full h-full"
+      className="flex items-center justify-center w-full h-[60vh]"
     >
       <CircularProgress />
     </section>

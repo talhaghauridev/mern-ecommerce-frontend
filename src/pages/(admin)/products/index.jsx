@@ -1,12 +1,12 @@
-import React, { memo, useCallback, useMemo, useState } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import { MetaData } from "@components/ui";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import useFetchProducts from "./hooks/useFetchProducts";
-import AdminLoading from "../components/AdminLoading";
-import { FaEdit, FaRegEdit } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import useDeleteProduct from "./hooks/useDeleteProduct";
+import TableLoading from "../components/TableLoading";
 
 const ActionButton = memo(({ id }) => {
   const editLink = `/admin/product/${id}`;
@@ -76,30 +76,31 @@ const AdminProducts = () => {
     }));
   }, [products]);
 
-  if (isLoading) {
-    return <AdminLoading />;
-  }
   return (
     <>
       <MetaData title={`All Products - Admin`} />
       <section id="adminProducts">
         <div className="adminProducts_container">
           <h1 className="admin_heading">ALl Products</h1>
-          <div className="adminProducts_box">
-            <DataGrid
-              rows={rows}
-              columns={columns}
-              initialState={{
-                pagination: {
-                  paginationModel: {
-                    pageSize: 8,
+          {isLoading ? (
+            <TableLoading />
+          ) : (
+            <div className="adminProducts_box">
+              <DataGrid
+                rows={rows}
+                columns={columns}
+                initialState={{
+                  pagination: {
+                    paginationModel: {
+                      pageSize: 8,
+                    },
                   },
-                },
-              }}
-              pageSizeOptions={[8]}
-              disableRowSelectionOnClick
-            />
-          </div>
+                }}
+                pageSizeOptions={[8]}
+                disableRowSelectionOnClick
+              />
+            </div>
+          )}
         </div>
       </section>
     </>

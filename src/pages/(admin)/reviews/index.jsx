@@ -1,25 +1,32 @@
 import React, { memo, useCallback, useMemo, useState } from "react";
 import { Input, MetaData } from "@components/ui";
 import { DataGrid } from "@mui/x-data-grid";
-import AdminLoading from "../components/AdminLoading";
 import { MdDelete } from "react-icons/md";
 import useFetchReviews from "./hooks/useFetchReviews";
 import { SiProducthunt } from "react-icons/si";
 import NotFound from "../components/NotFound";
 import { Rating } from "@mui/material";
+import TableLoading from "../components/TableLoading";
+import useDeleteReview from "./hooks/useDeleteReview";
 
-const ActionButton = memo(({ id }) => {
-  const editLink = `/admin/reviews/${id}`;
-
+const ActionButton = memo(({ id, productId }) => {
+  const { deleteReview, isLoading } = useDeleteReview();
+  console.log(id);
+  console.log("productId", productId);
+  const handelDeleteReview = useCallback(
+    (reviewId) => {
+      deleteReview({ productId, id: reviewId });
+    },
+    [deleteReview]
+  );
   return (
     <div className="flex items-center justify-center gap-[10px] md:gap-[15px] text-[#222935] text-[22px]">
-      <button>
+      <button onClick={() => handelDeleteReview(id)} disabled={isLoading}>
         <MdDelete cursor={"pointer"} />
       </button>
     </div>
   );
 });
-
 const UseRating = memo((params) => {
   return (
     <div className="flex items-center justify-center gap-[2px]">
@@ -45,7 +52,7 @@ const Reviews = () => {
     // }
   };
   const columns = [
-    { field: "id", headerName: "User Id", type: "number" },
+    { field: "userId", headerName: "User Id", type: "number" },
     {
       field: "name",
       headerName: "Name",
@@ -67,23 +74,22 @@ const Reviews = () => {
       field: "action",
       headerName: "Action",
       type: "number",
-      renderCell: (params) => <ActionButton {...params} />,
+      renderCell: (params) => (
+        <ActionButton {...params} productId={productId} />
+      ),
     },
   ];
-
+  console.log(productId);
   const rows = useMemo(() => {
     if (!reviews) return [];
     return reviews?.map((review) => ({
-      id: review?.user,
+      id: review?._id,
+      userId: review?.user,
       name: review?.name,
       rating: review?.rating,
       comment: review?.comment,
     }));
   }, [reviews]);
-
-  if (isLoading) {
-    return <AdminLoading />;
-  }
 
   return (
     <>
@@ -104,7 +110,9 @@ const Reviews = () => {
             />
           </div>
         </div>
-        {reviews && reviews?.length > 0 ? (
+        {isLoading ? (
+          <TableLoading />
+        ) : reviews && reviews?.length > 0 ? (
           <div className="adminReviews_box mt-[15px]">
             <DataGrid
               rows={rows}

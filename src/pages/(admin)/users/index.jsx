@@ -7,6 +7,7 @@ import { FaEdit, FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import useFetchUsers from "./hooks/useFetchUsers";
 import useDeleteUser from "./hooks/useDeleteUser";
+import TableLoading from "../components/TableLoading";
 
 const ActionButton = memo(({ id }) => {
   const editLink = `/admin/user/${id}`;
@@ -70,30 +71,32 @@ const AdminProducts = () => {
     }));
   }, [users]);
 
-  if (isLoading) {
-    return <AdminLoading />;
-  }
   return (
     <>
       <MetaData title={`All Users - Admin`} />
       <section id="adminUsers">
         <div className="adminUsers_container">
           <h1 className="admin_heading">All Users</h1>
-          <div className="adminUsers_box">
-            <DataGrid
-              rows={rows}
-              columns={columns}
-              initialState={{
-                pagination: {
-                  paginationModel: {
-                    pageSize: 8,
+
+          {isLoading ? (
+            <TableLoading />
+          ) : (
+            <div className="adminUsers_box">
+              <DataGrid
+                rows={rows}
+                columns={columns}
+                initialState={{
+                  pagination: {
+                    paginationModel: {
+                      pageSize: 8,
+                    },
                   },
-                },
-              }}
-              pageSizeOptions={[8]}
-              disableRowSelectionOnClick
-            />
-          </div>
+                }}
+                pageSizeOptions={[8]}
+                disableRowSelectionOnClick
+              />
+            </div>
+          )}
         </div>
       </section>
     </>

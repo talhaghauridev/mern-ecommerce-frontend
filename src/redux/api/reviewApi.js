@@ -26,10 +26,13 @@ export const reviewApi = createApi({
     }),
 
     deleteReview: builder.mutation({
-      query: ({ productId, id }) => ({
-        url: `reviews?productId=${productId}&id=${id}`,
-        method: "PATCH",
-      }),
+      query: ({ productId, id }) => (
+        console.log(productId, id),
+        {
+          url: `reviews?productId=${productId}&_id=${id}`,
+          method: "PATCH",
+        }
+      ),
       invalidatesTags: (result, error, { reviewId }) => [
         { type: "reviews", id: reviewId },
       ],
