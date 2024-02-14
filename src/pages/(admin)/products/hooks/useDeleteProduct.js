@@ -5,7 +5,7 @@ const useDeleteProduct = () => {
   const [deleteProduct, { isLoading, isError, error, data }] =
     useDeleteProductMutation();
 
-  useMessage(data?.message, error, "/admin/dashboard");
+  useMessage(data?.message, error);
 
   return {
     isLoading,

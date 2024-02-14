@@ -42,7 +42,9 @@ export const productApi = createApi({
     }),
 
     createProduct: builder.mutation({
-      query: (newProduct) => ({
+      query: (newProduct) => (
+        console.log(newProduct),
+        {
         url: "product/new",
         method: "POST",
         body: newProduct,

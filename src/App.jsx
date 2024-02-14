@@ -4,7 +4,6 @@ import Routes from "@routes/routes";
 import Error from "@layout/Error/Error";
 import ErrorBoundary from "@lib/ErrorBoundary";
 import useAuth from "@hooks/useAuth";
-import ReviewModal from "@pages/product-detials/components/Reviews/ReviewModal";
 function App() {
   const { error, isLoading, user } = useAuth();
   return (
@@ -14,7 +13,6 @@ function App() {
           <Routes />
         </Suspense>
       </ErrorBoundary>
-      <ReviewModal />
     </main>
   );
 }
