@@ -50,7 +50,7 @@ const Details = ({ product }) => {
           <Image
             src={hero}
             alt={name}
-            className={"w-full max-w-[300px] md:max-w-[500px]"}
+            className={" w-full max-w-[300px] md:max-w-[500px] h-[300px] sm:h-[330px!important] object-contain  "}
           />
         </div>
         <div className=" flex flex-col gap-[10px] md:gap-[15px] mt-[20px] ">

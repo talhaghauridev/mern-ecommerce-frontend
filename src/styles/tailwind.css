@@ -36,4 +36,15 @@
   .admin_heading {
     @apply  py-[15px] sm:py-[20px]  text-[30px]  md:text-[35px]  font-Sans font-bold text-[#222935] w-full
   }
+  .order_heading{
+    @apply  py-[15px] sm:py-[18px] pt-0  text-[30px]  md:text-[35px]  font-Sans font-bold text-[#222935] w-full
+
+  }
+  .order_li{
+    @apply text-[15px] md:text-[16px] font-PoppinsBold text-[#2b3445] w-full flex items-center gap-[6px]
+
+  }
+  .order_li span {
+    @apply font-Sans
+  }
 }

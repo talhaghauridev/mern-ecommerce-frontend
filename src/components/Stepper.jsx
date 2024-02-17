@@ -9,7 +9,7 @@ const Stepper = ({ activeStep }) => {
         {STEPPER_STEPS?.map((step, index) => {
           const { icon: Icon, label } = step;
           return (
-            <>
+            <React.Fragment key={index}>
               <div
                 className={cn(
                   " step w-full max-w-fit flex items-center justify-center gap-[6px]",
@@ -41,7 +41,7 @@ const Stepper = ({ activeStep }) => {
                   }}
                 ></span>
               </div>
-            </>
+            </React.Fragment>
           );
         })}
       </div>

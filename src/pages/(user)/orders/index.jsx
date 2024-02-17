@@ -1,17 +1,24 @@
-import React, { useMemo, useState } from "react";
+import React, { memo, useMemo } from "react";
 import { MetaData } from "@components/ui";
 import { DataGrid } from "@mui/x-data-grid";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Fa42Group } from "react-icons/fa6";
 import useFetchOrders from "../hooks/useFetchOrders";
 import TableLoading from "@components/TableLoading";
+import { LuEye } from "react-icons/lu";
+
+const ActionButton = memo(({ id }) => {
+  return (
+    <Link to={`/user/order/${id}`}>
+      <LuEye className="text-[20px]" />
+    </Link>
+  );
+});
 
 const MyOrder = () => {
   const { userInfo } = useSelector((state) => state.user);
   const { isLoading, orders } = useFetchOrders();
 
-  console.log(orders);
   const columns = [
     { field: "id", headerName: "Order Id", type: "number" },
     {
@@ -42,14 +49,7 @@ const MyOrder = () => {
       disableReorder: true,
       disableColumnMenu: true,
       sortable: false,
-      renderCell: (params) => {
-        console.log(params);
-        return (
-          <Link to={`/order/${params?.id}`}>
-            <Fa42Group />
-          </Link>
-        );
-      },
+      renderCell: (params) => <ActionButton {...params} />,
     },
   ];
 
@@ -65,10 +65,10 @@ const MyOrder = () => {
 
   return (
     <>
-      <MetaData title={`${userInfo?.name} - Orders`} />
+      <MetaData title={`My Orders`} />
       <section id="myOrder">
         <div className="myOrder_container">
-          <h1 className="admin_heading">All Orders</h1>
+          <h1 className="order_heading">All Orders</h1>
           {isLoading ? (
             <TableLoading />
           ) : (
