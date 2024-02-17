@@ -1,7 +1,6 @@
 import React, { memo, useMemo } from "react";
 import { MetaData } from "@components/ui";
 import { DataGrid } from "@mui/x-data-grid";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import useFetchOrders from "../hooks/useFetchOrders";
 import TableLoading from "@components/TableLoading";
@@ -16,7 +15,6 @@ const ActionButton = memo(({ id }) => {
 });
 
 const MyOrder = () => {
-  const { userInfo } = useSelector((state) => state.user);
   const { isLoading, orders } = useFetchOrders();
 
   const columns = [

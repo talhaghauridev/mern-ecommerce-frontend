@@ -45,7 +45,7 @@ const OrderDetials = () => {
             <ul className="flex flex-col gap-[15px] items-start justify-center]">
               <li className="order_li">
                 <h2> Payment Status:</h2>
-                <span>{order.paymentInfo.status}</span>
+                <span className="text-[green]">{order.paymentInfo.status}</span>
               </li>
               <li className="order_li">
                 <h2> Amount:</h2>

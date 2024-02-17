@@ -1,10 +1,10 @@
-import { useGetAdminProductsQuery } from "@redux/api/productApi";
-import React, { useEffect } from "react";
+import React, { useEffect } from "react"; 
 import { toast } from "react-toastify";
+import { useGetAdminOrdersQuery } from "@redux/api/orderApi";
 
-const useFetchProducts = () => {
+const useFetchOrders = () => {
   const { isError, error, isLoading, isSuccess, data } =
-    useGetAdminProductsQuery();
+    useGetAdminOrdersQuery();
 
   useEffect(() => {
     if (!isLoading && isError && error) {
@@ -13,10 +13,10 @@ const useFetchProducts = () => {
   }, [error, isError, isLoading]);
 
   return {
-    products:data?.products ? data?.products:[],
+    orders:data?.orders ? data?.orders:[],
     isSuccess,
     isLoading,
   };
 };
 
-export default useFetchProducts;
+export default useFetchOrders;

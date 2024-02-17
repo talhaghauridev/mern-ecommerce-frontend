@@ -47,7 +47,6 @@
   max-width: 100%;
 }
 
-
 .upload_avatar {
   border-radius: 50%;
   max-width: 100%;
@@ -132,9 +131,6 @@
   grid-template-columns: 1fr 1fr 1fr 1.1fr 0.9fr;
 }
 
-
-
-
 /* Users List Grid  */
 #adminUsers
   .MuiDataGrid-columnHeadersInner
@@ -151,7 +147,6 @@
   grid-template-columns: 1fr 1fr 1fr 0.8fr 0.8fr;
 }
 
-
 /* Reviews List Grid  */
 #adminReviews
   .MuiDataGrid-columnHeadersInner
@@ -167,9 +162,6 @@
   display: grid !important;
   grid-template-columns: 1fr 1fr 1fr 1fr 0.9fr;
 }
-
-
-
 
 .MuiDataGrid-columnHeader
   .MuiDataGrid-columnHeadersInner
@@ -225,19 +217,17 @@
 }
 
 .order_status_pending .MuiDataGrid-cellContent {
-  color: rgb(78, 151, 253);
+  color: red;
   font-size: 12px;
   font-weight: 600;
-  background-color: rgb(219, 240, 254);
   border-radius: 8px;
   padding: 3px 12px;
   display: inline-flex;
 }
 .order_status_delivered .MuiDataGrid-cellContent {
-  color: rgb(51, 208, 103);
+  color: green;
   font-size: 12px;
   font-weight: 600;
-  background-color: rgb(231, 249, 237);
   border-radius: 8px;
   padding: 3px 12px;
   display: inline-flex;

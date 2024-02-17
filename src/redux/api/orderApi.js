@@ -22,7 +22,7 @@ export const orderApi = createApi({
 
     updateOrder: builder.mutation({
       query: ({ id, updatedOrder }) => ({
-        url: `order/${id}`,
+        url: `admin/order/${id}`,
         method: "PUT",
         body: updatedOrder,
       }),
@@ -34,7 +34,7 @@ export const orderApi = createApi({
 
     deleteOrder: builder.mutation({
       query: (id) => ({
-        url: `order/${id}`,
+        url: `admin/order/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: (result, error, { id }) => [

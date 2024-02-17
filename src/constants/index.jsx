@@ -192,7 +192,7 @@ const ADMIN_LINKS = [
   },
   {
     name: "Orders",
-    path: "/admin/dashboard",
+    path: "/admin/orders",
     icon: FaRegListAlt,
   },
 ];

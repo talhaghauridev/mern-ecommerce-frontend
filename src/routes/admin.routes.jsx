@@ -8,7 +8,8 @@ const AdminProducts = lazy(() => import("@pages/(admin)/products"));
 const Users = lazy(() => import("@pages/(admin)/users"));
 const UpdateUser = lazy(() => import("@pages/(admin)/update-user"));
 const Reviews = lazy(() => import("@pages/(admin)/reviews"));
-
+const AdminOrders = lazy(() => import("@pages/(admin)/orders"));
+const UpdateOrder = lazy(() => import("@pages/(admin)/update-order"));
 const AdminRoutes = () => {
   return (
     <Routes>
@@ -21,6 +22,8 @@ const AdminRoutes = () => {
         <Route path="reviews" element={<Reviews />} />
         <Route path="users" element={<Users />} />
         <Route path="user/:userId" element={<UpdateUser />} />
+        <Route path="orders" element={<AdminOrders />} />
+        <Route path="order/:orderId" element={<UpdateOrder />} />
       </Route>
     </Routes>
   );
