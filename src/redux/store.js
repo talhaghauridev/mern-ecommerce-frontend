@@ -4,6 +4,7 @@ import reducers from "./reducers";
 import { productApi } from "./api/productApi";
 import { reviewApi } from "./api/reviewApi";
 import { paymentApi } from "./api/paymentApi";
+import { orderApi } from "./api/orderApi";
 
 export const store = configureStore({
   reducer: reducers,
@@ -13,5 +14,6 @@ export const store = configureStore({
     productApi.middleware,
     reviewApi.middleware,
     paymentApi.middleware,
+    orderApi.middleware,
   ],
 });

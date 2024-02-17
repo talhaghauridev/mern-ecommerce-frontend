@@ -6,6 +6,7 @@ import DefaultSkeleton from "../images/Skeleton.jpg";
 import ErrorImage from "../images/error.png";
 import ProductNotFound from "../images/Product_Not_Found.png";
 import Filter from "../images/Filter.png";
+import Success from "../images/Success.png";
 export {
   Logo,
   avatar,
@@ -15,4 +16,5 @@ export {
   ErrorImage,
   ProductNotFound,
   Filter,
+  Success,
 };

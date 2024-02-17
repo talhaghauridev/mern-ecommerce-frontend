@@ -6,7 +6,7 @@ import useFetchProducts from "./hooks/useFetchProducts";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import useDeleteProduct from "./hooks/useDeleteProduct";
-import TableLoading from "../components/TableLoading";
+import TableLoading from "../../../components/TableLoading";
 
 const ActionButton = memo(({ id }) => {
   const editLink = `/admin/product/${id}`;

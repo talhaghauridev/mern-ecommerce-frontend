@@ -3,15 +3,16 @@ import { useSendPaymentMutation } from "@redux/api/paymentApi";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import SessionStorage from "@utils/SessionStorage";
-import { ORDER_INFO_KEY } from "@constants/index";
+import { ORDER_INFO_KEY, USER_INFO_KEY } from "@constants/index";
 import useConfirmPrice from "./useConfirmPrice";
 import LocalStorage from "@utils/LocalStorage";
 
 const useSendPayment = () => {
-  const { cartItems } = useSelector((state) => state.cart);
+  const { cartItems, shippingInfo } = useSelector((state) => state.cart);
   const { online, error } = useSelector((state) => state.onlineStatus);
   const { address, shippingCharges, subTotal, tax, totalPrice, totalProducts } =
     useConfirmPrice();
+  const userInfo = LocalStorage.get(USER_INFO_KEY);
   const [sendPayment, { data, status, isLoading }] = useSendPaymentMutation();
   console.log(data, status, isLoading);
 
@@ -28,7 +29,11 @@ const useSendPayment = () => {
   //Handle Send Payment
   const handleSendPayment = useCallback(async () => {
     if (online) {
-      await sendPayment(cartItems);
+      await sendPayment({
+        items: cartItems,
+        userId: userInfo?._id,
+        shippingInfo:shippingInfo,
+      });
       SessionStorage.set(ORDER_INFO_KEY, orderInfo);
     } else {
       toast.error(error);

@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { MetaData } from "@components/ui";
 import { DataGrid } from "@mui/x-data-grid";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Fa42Group } from "react-icons/fa6";
+import useFetchOrders from "../hooks/useFetchOrders";
+import TableLoading from "@components/TableLoading";
 
 const MyOrder = () => {
   const { userInfo } = useSelector((state) => state.user);
+  const { isLoading, orders } = useFetchOrders();
+
+  console.log(orders);
   const columns = [
     { field: "id", headerName: "Order Id", type: "number" },
     {
@@ -19,7 +24,6 @@ const MyOrder = () => {
       headerName: "Status",
       type: "number",
       cellClassName: (params) => {
-        console.log(params);
         return params.id === 3
           ? "order_status_pending"
           : "order_status_delivered";
@@ -49,53 +53,41 @@ const MyOrder = () => {
     },
   ];
 
-  const rows = [
-    {
-      id: 30,
-      ItemsQty: "orderItems",
-      status: "orderStatus",
-      amount: "totalPrice",
-    },
-    {
-      id: 3,
-      ItemsQty: "2orderItems",
-      status: "orderStatus",
-      amount: "totalPrice",
-    },
-    {
-      id: 20,
-      ItemsQty: "orderItems",
-      status: "orderStatus",
-      amount: "totalPrice",
-    },
-    {
-      id: 33,
-      ItemsQty: "2orderItems",
-      status: "orderStatus",
-      amount: "totalPrice",
-    },
-  ];
+  const rows = useMemo(() => {
+    if (!orders) return [];
+    return orders?.map((item) => ({
+      id: item?._id,
+      ItemsQty: item?.orderItems?.length,
+      status: item?.orderStatus,
+      amount: item?.totalPrice,
+    }));
+  }, [orders]);
 
   return (
     <>
       <MetaData title={`${userInfo?.name} - Orders`} />
       <section id="myOrder">
         <div className="myOrder_container">
-          <div className="myOrder_box">
-            <DataGrid
-              rows={rows}
-              columns={columns}
-              initialState={{
-                pagination: {
-                  paginationModel: {
-                    pageSize: 5,
+          <h1 className="admin_heading">All Orders</h1>
+          {isLoading ? (
+            <TableLoading />
+          ) : (
+            <div className="myOrder_box">
+              <DataGrid
+                rows={rows}
+                columns={columns}
+                initialState={{
+                  pagination: {
+                    paginationModel: {
+                      pageSize: 5,
+                    },
                   },
-                },
-              }}
-              pageSizeOptions={[5]}
-              disableRowSelectionOnClick
-            />
-          </div>
+                }}
+                pageSizeOptions={[5]}
+                disableRowSelectionOnClick
+              />
+            </div>
+          )}
         </div>
       </section>
     </>

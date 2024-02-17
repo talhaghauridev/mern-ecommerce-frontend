@@ -7,7 +7,7 @@ import { FaEdit, FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import useFetchUsers from "./hooks/useFetchUsers";
 import useDeleteUser from "./hooks/useDeleteUser";
-import TableLoading from "../components/TableLoading";
+import TableLoading from "../../../components/TableLoading";
 
 const ActionButton = memo(({ id }) => {
   const editLink = `/admin/user/${id}`;

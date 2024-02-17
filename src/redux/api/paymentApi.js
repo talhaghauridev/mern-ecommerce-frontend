@@ -6,9 +6,9 @@ export const paymentApi = createApi({
   baseQuery: baseQuery,
   endpoints: (builder) => ({
     sendPayment: builder.mutation({
-      query: (items) => ({
+      query: (paymentData) => ({
         url: "/checkout",
-        body: {items},
+        body: paymentData,
         method: "POST",
       }),
     }),

@@ -6,7 +6,7 @@ import useFetchReviews from "./hooks/useFetchReviews";
 import { SiProducthunt } from "react-icons/si";
 import NotFound from "../components/NotFound";
 import { Rating } from "@mui/material";
-import TableLoading from "../components/TableLoading";
+import TableLoading from "../../../components/TableLoading";
 import useDeleteReview from "./hooks/useDeleteReview";
 
 const ActionButton = memo(({ id, productId }) => {
