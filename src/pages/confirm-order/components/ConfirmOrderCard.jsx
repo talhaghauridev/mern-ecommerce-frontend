@@ -1,10 +1,9 @@
-import { lazy, memo } from "react";
+import { memo } from "react";
 import { Link } from "react-router-dom";
 import { capitalize } from "@mui/material";
 import { Image } from "@components/ui";
-import { hero } from "@assets/images";
 
-const CartCard = ({ name, price, _id, images, stock, quantity }) => {
+const CartCard = ({ name, price, _id, images, quantity, image }) => {
   return (
     <div
       className="w-full rounded-[10px] relative overflow-hidden flex  sm:flex-row flex-col max-w-[270px] sm:max-w-full"
@@ -14,7 +13,7 @@ const CartCard = ({ name, price, _id, images, stock, quantity }) => {
     >
       <div className="flex items-center justify-center">
         <Image
-          src={images[0]?.url}
+          src={image ? image : images[0]?.url}
           alt={"hero"}
           className={"w-full max-w-[150px] sm:max-w-[160px]"}
         />
