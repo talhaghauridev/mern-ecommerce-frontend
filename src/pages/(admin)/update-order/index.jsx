@@ -27,7 +27,6 @@ const UpdateOrder = () => {
             <ConfirmOrderBox />
           </div>
 
-          <OrderList orderItems={order?.orderItems} />
         </div>
       </section>
     </>

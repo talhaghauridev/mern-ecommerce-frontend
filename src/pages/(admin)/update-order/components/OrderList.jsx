@@ -1,6 +1,6 @@
+import ConfirmOrderCard from "@pages/confirm-order/components/ConfirmOrderCard";
 import React, { memo } from "react";
 import { useSelector } from "react-redux";
-import ConfirmOrderCard from "./ConfirmOrderCard";
 
 const ConfirmOrderList = (orderItems) => {
   return (
