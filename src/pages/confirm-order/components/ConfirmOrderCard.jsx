@@ -14,7 +14,7 @@ const CartCard = ({ name, price, _id, images, stock, quantity }) => {
     >
       <div className="flex items-center justify-center">
         <Image
-          src={hero}
+          src={images[0]?.url}
           alt={"hero"}
           className={"w-full max-w-[150px] sm:max-w-[160px]"}
         />

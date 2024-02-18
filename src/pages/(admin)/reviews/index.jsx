@@ -11,8 +11,7 @@ import useDeleteReview from "./hooks/useDeleteReview";
 
 const ActionButton = memo(({ id, productId }) => {
   const { deleteReview, isLoading } = useDeleteReview();
-  console.log(id);
-  console.log("productId", productId);
+
   const handelDeleteReview = useCallback(
     (reviewId) => {
       deleteReview({ productId, id: reviewId });
@@ -79,7 +78,6 @@ const Reviews = () => {
       ),
     },
   ];
-  console.log(productId);
   const rows = useMemo(() => {
     if (!reviews) return [];
     return reviews?.map((review) => ({

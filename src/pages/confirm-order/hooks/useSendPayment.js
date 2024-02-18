@@ -29,12 +29,14 @@ const useSendPayment = () => {
   //Handle Send Payment
   const handleSendPayment = useCallback(async () => {
     if (online) {
+      
       await sendPayment({
         items: cartItems,
         userId: userInfo?._id,
-        shippingInfo:shippingInfo,
+        shippingInfo: shippingInfo,
       });
       SessionStorage.set(ORDER_INFO_KEY, orderInfo);
+      console.log(cartItems);
     } else {
       toast.error(error);
     }

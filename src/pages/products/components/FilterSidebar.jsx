@@ -76,7 +76,6 @@ const FilterSidebar = () => {
           >
             <img src={Filter} alt="Filter_Image" className="w-[24px]" />
             <span className="font-SansBold text-[20px]">Fiters</span>
-            {/* <IoFilter className="text-[19px]"/> */}
           </Button>
         )}
       </>

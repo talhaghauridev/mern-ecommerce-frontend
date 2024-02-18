@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 const useFetchOrders = () => {
   const { isError, isLoading, data,error } = useGetOrdersQuery();
 
-  console.log(data);
 useEffect(()=>{
 if(isError && error){
     toast.error(error?.data?.message)

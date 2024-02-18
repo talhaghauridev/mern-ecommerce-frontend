@@ -10,7 +10,6 @@ const SearchBox = ({ setSearch, searchModel, setSearchModel, ...props }) => {
   useEffect(() => {
     setSearchModel(false);
     document.body.style.overflow = "auto";
-    console.log("setSearchModel");
   }, [param?.search]);
   return (
     <div
@@ -25,7 +24,6 @@ const SearchBox = ({ setSearch, searchModel, setSearchModel, ...props }) => {
         onClick={() => {
           setSearchModel(false);
           document.body.style.overflow = "auto";
-          console.log("Model");
         }}
       >
         <FaArrowLeft />

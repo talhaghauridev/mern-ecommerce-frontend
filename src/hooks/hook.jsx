@@ -147,7 +147,6 @@ const useMessage = (message, error, redirect = "") => {
 const useClickOutside = (callback) => {
   const ref = useRef();
   const handleClick = (event) => {
-    console.log("handleClick");
     if (ref.current && !ref.current.contains(event.target)) {
       callback();
     }

@@ -32,7 +32,6 @@ const ActionButton = memo(({ id }) => {
 const AdminOrders = () => {
   const { orders, isLoading } = useFetchOrders();
 
-  console.log(orders);
   const columns = [
     { field: "id", headerName: "Order Id", type: "number" },
     {
@@ -45,7 +44,7 @@ const AdminOrders = () => {
       headerName: "Status",
       type: "number",
       cellClassName: (params) => {
-        console.log(params);
+      
         return params.value === "Processing"
           ? "order_status_pending"
           : "order_status_delivered";

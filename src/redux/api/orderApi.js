@@ -21,10 +21,10 @@ export const orderApi = createApi({
     }),
 
     updateOrder: builder.mutation({
-      query: ({ id, updatedOrder }) => ({
+      query: ({ id, status }) => ({
         url: `admin/order/${id}`,
         method: "PUT",
-        body: updatedOrder,
+        body: {status},
       }),
       invalidatesTags: (result, error, { id }) => [
         { type: "order", id },

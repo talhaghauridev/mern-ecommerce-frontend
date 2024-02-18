@@ -3,7 +3,7 @@ import { Skeleton } from "@mui/material";
 
 const ProductDetialSkelton = () => {
   return (
-    <div className="container py-[50px] grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-[30px]">
+    <div className="container py-[50px] md:py-[80px] grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-[30px]">
       <div className="flex items-center justify-start  md:justify-center w-full h-full">
         <Skeleton
           variant="rectangular"

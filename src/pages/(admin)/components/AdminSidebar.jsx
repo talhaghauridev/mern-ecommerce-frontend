@@ -1,15 +1,10 @@
-import React, { memo, useCallback, useMemo } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import React, { memo, useMemo } from "react";
 import { BackDrop, Button } from "@components/ui";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { useMediaQuery, useToggle } from "@hooks/hook";
-import { ADMIN_LINKS, USER_PROFILE_LINK } from "@constants/index";
+import { ADMIN_LINKS } from "@constants/index";
 import cn from "@utils/cn";
 import AdminSidebarItem from "./AdminSIdebarItem";
-
-const shortValue = (value, length) =>
-  value?.trim()?.length > length ? value.slice(0, length) + "...." : value;
 
 const MobileSidebar = ({ isMobile, toggle, handleToggle, setToggle }) => (
   <>
@@ -27,8 +22,6 @@ const MobileSidebar = ({ isMobile, toggle, handleToggle, setToggle }) => (
 );
 
 const AdminSidebar = () => {
-  const { userInfo } = useSelector((state) => state.user);
-  const { pathname } = useLocation();
   const isMobile = useMediaQuery("(max-width:768px)");
   const { handleToggle, setToggle, toggle } = useToggle(false);
 
@@ -66,7 +59,11 @@ const AdminSidebar = () => {
 
           <ul className="py-[40px] flex flex-col">
             {ADMIN_LINKS.map((item) => (
-              <AdminSidebarItem key={item.name} {...item} onClick={()=>setToggle(false)} />
+              <AdminSidebarItem
+                key={item.name}
+                {...item}
+                onClick={() => setToggle(false)}
+              />
             ))}
           </ul>
         </div>

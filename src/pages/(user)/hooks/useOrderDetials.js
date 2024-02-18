@@ -9,7 +9,6 @@ const useOrderDetials = () => {
   const { isError, isLoading, data, error } = useGetOrderDetailsQuery(orderId);
   const { userInfo } = useSelector((state) => state.user);
   const order = useMemo(() => (data?.order ? data.order : {}), [data]);
-  console.log(order);
 
   const address = useMemo(
     () =>

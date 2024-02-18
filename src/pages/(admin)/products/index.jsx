@@ -43,7 +43,6 @@ const AdminProducts = () => {
       headerName: "Stock",
       type: "number",
       cellClassName: (params) => {
-        console.log(params);
         return params.id === 3
           ? "order_status_pending"
           : "order_status_delivered";

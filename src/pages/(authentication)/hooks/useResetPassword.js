@@ -14,7 +14,6 @@ const useResetPassword = () => {
 
   const [resetPassword, { isLoading, isError, isSuccess, error, data }] =
     useResetPasswordMutation();
-  console.log(token);
   // Handle Reset
   const handleReset = useCallback(
     async (values) => {

@@ -52,7 +52,6 @@ const useUpdateProduct = () => {
     return images == false ? getDetails(productDetail)?.images : images;
   }, [images, productDetail]);
 
-console.log(displayImages);
 
   //Handle Submit
   const onSubmit = useCallback(
@@ -66,7 +65,6 @@ console.log(displayImages);
     [displayImages, handleUpdateProduct, id]
   );
 
-  console.log(getDetails(productDetail));
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -76,7 +74,6 @@ console.log(displayImages);
   });
 
   useMessage(data?.message, error, "/admin/products");
-  console.log(formik.initialValues);
   return {
     formik,
     images: displayImages,

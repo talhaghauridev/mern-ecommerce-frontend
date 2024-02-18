@@ -1,5 +1,5 @@
 import { Success } from "@assets/images";
-import { Button, Image, MetaData, buttonVariants } from "@components/ui";
+import { Image, MetaData, buttonVariants } from "@components/ui";
 import React from "react";
 import { Link } from "react-router-dom";
 

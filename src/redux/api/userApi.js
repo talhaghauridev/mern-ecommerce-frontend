@@ -86,18 +86,16 @@ export const userApi = createApi({
         url: `admin/user/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["adminUsers", "user"], // Invalidate user and adminUsers tags
+      invalidatesTags: ["adminUsers", "user"], 
     }),
 
     updateUser: builder.mutation({
-      query: ({ id, userData }) => (
-        console.log(userData),
-        {
+      query: ({ id, userData }) => ({
         url: `admin/user/${id}`,
         method: "PATCH",
         body: userData,
       }),
-      invalidatesTags: ["adminUsers"], // Invalidate user tag
+      invalidatesTags: ["adminUsers"], 
     }),
   }),
 });

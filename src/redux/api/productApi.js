@@ -43,7 +43,6 @@ export const productApi = createApi({
 
     createProduct: builder.mutation({
       query: (newProduct) => (
-        console.log(newProduct),
         {
         url: "product/new",
         method: "POST",
@@ -57,7 +56,6 @@ export const productApi = createApi({
 
     updateProduct: builder.mutation({
       query: ({ id, updatedProduct }) => (
-        console.log(updatedProduct),
         {
         url: `product/${id}`,
         method: "PUT",

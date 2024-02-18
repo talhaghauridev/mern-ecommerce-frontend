@@ -7,7 +7,6 @@ const baseUrl = `${import.meta.env.VITE_SERVER_URL}/api/v1/`;
 const baseQuery = fetchBaseQuery({
   baseUrl: baseUrl,
   prepareHeaders: (headers, {}) => {
-    console.log(headers);
     const token = LocalStorage.get(TOKEN);
     if (token) {
       headers.set("Authorization", `Bearer ${token}`);

@@ -4,6 +4,7 @@ import ProfileLoading from "../components/ProfileLoading";
 import { MetaData } from "@components/ui";
 import ConfirmOrderCard from "@pages/confirm-order/components/ConfirmOrderCard";
 import OrderDetialList from "../components/OrderDetialList";
+import cn from "@utils/cn";
 
 const OrderDetials = () => {
   const { isLoading, order, userInfo, address } = useOrderDetials();
@@ -45,15 +46,23 @@ const OrderDetials = () => {
             <ul className="flex flex-col gap-[15px] items-start justify-center]">
               <li className="order_li">
                 <h2> Payment Status:</h2>
-                <span className="text-[green]">{order.paymentInfo.status}</span>
+                <span className="text-[green]">{order?.paymentInfo?.status}</span>
               </li>
               <li className="order_li">
                 <h2> Amount:</h2>
                 <span>{order.totalPrice}</span>
               </li>
-              <li className="order_li">
-                <h2> Order Status:</h2>
-                <span> {order.orderStatus}</span>
+              <li className={cn(`order_li`)}>
+                <h2>Order Status:</h2>
+                <span
+                  className={cn(
+                    order?.orderStatus === "Processing"
+                      ? "processing"
+                      : "success"
+                  )}
+                >
+                  {order?.orderStatus}
+                </span>
               </li>
             </ul>
           </div>

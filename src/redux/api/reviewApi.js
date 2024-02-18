@@ -7,7 +7,6 @@ export const reviewApi = createApi({
   endpoints: (builder) => ({
     createReview: builder.mutation({
       query: (review) => (
-        console.log(review),
         {
           url: "review",
           body: review,
@@ -27,7 +26,6 @@ export const reviewApi = createApi({
 
     deleteReview: builder.mutation({
       query: ({ productId, id }) => (
-        console.log(productId, id),
         {
           url: `reviews?productId=${productId}&_id=${id}`,
           method: "PATCH",

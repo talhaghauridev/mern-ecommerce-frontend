@@ -1,5 +1,5 @@
 @import "./font.css";
-@import url("./tailwind.css");
+@import "./tailwind.css";
 
 .form {
   box-shadow: 0 0 20px 1px rgb(0 0 0 / 13%);
@@ -70,14 +70,14 @@
 
 #confirmOrder .confirm_container {
   display: grid;
-  grid-template-columns: 1fr 0.4fr;
+  grid-template-columns: 1fr 0.6fr;
   grid-gap: 20px 35px;
 }
 
-#cart .cart_grid {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+#orderDetials .orderDetials_container {
+  display: grid;
+  grid-template-columns: 1fr 0.6fr;
+  grid-gap: 20px 35px;
 }
 
 #user .container {
@@ -233,6 +233,16 @@
   display: inline-flex;
 }
 
+.processing {
+  color: red;
+  font-weight: 400;
+}
+
+.success {
+  color: green;
+  font-weight: 400;
+
+}
 .shadow_black {
   box-shadow: rgba(43, 52, 69, 0.1) 0px 4px 16px;
 }
@@ -285,6 +295,12 @@
   #confirmOrder .confirm_container {
     display: flex;
     flex-direction: column;
+    gap: 30px;
+  }
+
+  #orderDetials .orderDetials_container {
+    display: flex;
+    flex-direction: column-reverse;
     gap: 30px;
   }
 }

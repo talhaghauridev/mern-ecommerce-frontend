@@ -1,7 +1,7 @@
-import cn from "@utils/cn";
+import { memo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { RxDotFilled } from "react-icons/rx";
-import { memo } from "react";
+import cn from "@utils/cn";
 
 const AdminSidebarItem = ({ icon: Icon, name, path, links, onClick }) => {
   const { pathname } = useLocation();

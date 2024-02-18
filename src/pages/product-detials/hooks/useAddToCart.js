@@ -42,7 +42,6 @@ const useAddToCart = () => {
   useEffect(() => {
     const cartItems = localStorageItem(productId);
     cartItems?._id ? setIsAddCart(true) : setIsAddCart(false);
-    console.log(cartItems === null, isAddCart, cartItems?._id);
   }, [localStorageItem, productId]);
 
   return {

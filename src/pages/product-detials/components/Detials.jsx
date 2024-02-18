@@ -6,6 +6,7 @@ import QuantityInput from "@components/QuantityInput";
 import { localStorageItem, useAddToCart } from "../hooks/useAddToCart";
 import { useCounter } from "@hooks/hook";
 import cn from "@utils/cn";
+import { useNavigate } from "react-router-dom";
 const Reviews = lazy(() => import("./Reviews/Reviews"));
 
 const Details = ({ product }) => {
@@ -29,6 +30,8 @@ const Details = ({ product }) => {
     stock
   );
 
+  const navigate = useNavigate();
+
   //Handle Quantity Change
   const handleQuantityChange = (operation) => {
     if (operation === "increment") {
@@ -42,15 +45,24 @@ const Details = ({ product }) => {
     }
   };
 
-  console.log(reviews);
   return (
     <>
-      <div className="container py-[50px] grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-[20px]">
+      <div className="container py-[50px] md:py-[80px] grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-[20px] relative">
+        <Button
+          className={"absolute top-[30px] left-[15px] max-w-[100px]"}
+          size="sm"
+          variants={"danger"}
+          onClick={() => navigate(-1)}
+        >
+          Go back
+        </Button>
         <div className="flex items-center justify-start  md:justify-center w-full">
           <Image
             src={hero}
             alt={name}
-            className={" w-full max-w-[300px] md:max-w-[500px] h-[300px] sm:h-[330px!important] object-contain  "}
+            className={
+              " w-full max-w-[300px] md:max-w-[500px] h-[300px] sm:h-[330px!important] object-contain  "
+            }
           />
         </div>
         <div className=" flex flex-col gap-[10px] md:gap-[15px] mt-[20px] ">
@@ -127,6 +139,7 @@ const Details = ({ product }) => {
           </div>
         </div>
       </div>
+
 
       {reviews ? (
         <Suspense fallback={"Loading...."}>

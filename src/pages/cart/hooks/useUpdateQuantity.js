@@ -21,7 +21,6 @@ const useUpdateQuantity = (productId) => {
       const { name, description, price, images, category, _id, stock } =
         localStorageItem(id);
 
-      console.log(quantity);
       dispatch(
         addToCart({
           name,
@@ -42,7 +41,6 @@ const useUpdateQuantity = (productId) => {
   useEffect(() => {
     const cartItems = localStorageItem(productId);
     cartItems?.quantity ? setIsAddCart(true) : setIsAddCart(false);
-    console.log(cartItems);
   }, [localStorageItem, productId, handleUpdateQuantity]);
 
   return {

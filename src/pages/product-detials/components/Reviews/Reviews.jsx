@@ -1,6 +1,6 @@
 import React, { Suspense, lazy, memo, useMemo, useState } from "react";
 import ReviewCard from "./ReviewCard";
-import { Button } from "@components/ui";
+import { BackDrop, Button } from "@components/ui";
 import { FaRegCommentDots } from "react-icons/fa6";
 import { useMediaQuery } from "@hooks/hook";
 import { Tooltip } from "@mui/material";
@@ -10,8 +10,7 @@ const ReviewModal = lazy(() => import("./ReviewModal"));
 const Reviews = ({ reviews }) => {
   const [openModal, setOpenModal] = useState(false);
   const isMobile = useMediaQuery("(max-width:640px)");
-  const {userInfo} = useSelector((state) => state.user);
-  console.log(userInfo==true);
+  const { userInfo } = useSelector((state) => state.user);
   const responsiveButtonText = useMemo(
     () =>
       isMobile ? (
@@ -49,7 +48,7 @@ const Reviews = ({ reviews }) => {
       </div>
 
       {userInfo && openModal && (
-        <Suspense fallback="Loading...">
+        <Suspense fallback={<BackDrop isOpen />}>
           <ReviewModal openModal={openModal} setOpenModal={setOpenModal} />
         </Suspense>
       )}

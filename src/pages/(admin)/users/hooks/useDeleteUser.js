@@ -2,7 +2,7 @@ import { useDeleteUserMutation } from "@redux/api/userApi";
 import { useMessage } from "@hooks/hook";
 
 const useDeleteUser = () => {
-  const [deleteUser, { isLoading, isError, error, data }] =
+  const [deleteUser, { isLoading, error, data }] =
     useDeleteUserMutation();
 
   useMessage(data?.message, error, "/admin/users");

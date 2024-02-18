@@ -14,7 +14,6 @@ const ReviewModal = ({ openModal = false, setOpenModal }) => {
     isSuccess,
   } = useCreateReview();
 
-  console.log(review, isLoading, data, isSuccess);
   const handleClose = useCallback(() => {
     setOpenModal(false);
   }, [setOpenModal]);
@@ -77,6 +76,7 @@ const ReviewModal = ({ openModal = false, setOpenModal }) => {
               size="sm"
               className="text-[#D23F57] bg-white"
               onClick={handleClose}
+              disabled={isLoading}
             >
               Cancel
             </Button>

@@ -5,7 +5,7 @@ import Error from "@layout/Error/Error";
 import ErrorBoundary from "@lib/ErrorBoundary";
 import useAuth from "@hooks/useAuth";
 function App() {
-  const { error, isLoading, user } = useAuth();
+  const { user } = useAuth();
   return (
     <main id="App">
       <ErrorBoundary fallback={<Error />}>

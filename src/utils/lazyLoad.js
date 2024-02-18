@@ -1,4 +1,3 @@
-// lazyLoad.js
 import { lazy } from "react";
 
 const lazyLoad = (path, pathName) => {

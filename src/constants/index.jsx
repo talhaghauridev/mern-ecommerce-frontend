@@ -2,8 +2,6 @@ import { FaRegHeart } from "react-icons/fa";
 import { BsCart3 } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { FiHome } from "react-icons/fi";
-import { MdOutlineDashboard } from "react-icons/md";
-import { TbBorderAll } from "react-icons/tb";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
 import {
   FaGithub,
@@ -196,6 +194,8 @@ const ADMIN_LINKS = [
     icon: FaRegListAlt,
   },
 ];
+
+const ORDER_PROCESS = ["Shipped", "Delivered"];
 export {
   NAV,
   USER_DROPDOWN_LINKS,
@@ -210,5 +210,6 @@ export {
   TOKEN,
   USER_PROFILE_LINK,
   ADMIN_LINKS,
-  ROLES
+  ROLES,
+  ORDER_PROCESS,
 };

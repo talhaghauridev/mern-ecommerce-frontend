@@ -29,7 +29,7 @@ const MyOrder = () => {
       headerName: "Status",
       type: "number",
       cellClassName: (params) => {
-        return params.id === 3
+        return params.value === "Processing"
           ? "order_status_pending"
           : "order_status_delivered";
       },

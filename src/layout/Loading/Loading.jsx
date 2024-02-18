@@ -8,7 +8,6 @@ const Loading = () => {
         waitingTime={50}
         transitionTime={1000}
         shadow
-        onLoaderFinished={console.log("Finsihed")}
       />
       <AnimationWarpper key={window.location.hostname}>
         <div className="fixed  w-full bg-white h-[100vh]"></div>

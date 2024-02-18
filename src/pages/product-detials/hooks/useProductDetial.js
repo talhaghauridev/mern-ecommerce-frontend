@@ -10,10 +10,8 @@ const useProductDetail = () => {
   const { isError, isLoading, data, error, status, refetch } =
     useGetProductDetailsQuery(productId);
 
-  console.log(data);
   useEffect(() => {
     if (isError) {
-      console.log(error?.data?.message, status);
       toast.error(error?.data?.message);
     }
   }, [isError, error, review]);
