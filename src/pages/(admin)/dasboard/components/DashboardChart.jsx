@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { memo, useEffect, useMemo, useRef } from "react";
 import useFetchProducts from "../../products/hooks/useFetchProducts";
 import { Doughnut, Line } from "react-chartjs-2";
 import {
@@ -86,4 +86,4 @@ const DashboardChart = () => {
   );
 };
 
-export default DashboardChart;
+export default memo(DashboardChart);

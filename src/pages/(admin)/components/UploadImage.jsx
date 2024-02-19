@@ -1,5 +1,5 @@
 import { Image } from "@components/ui";
-import React, { useCallback } from "react";
+import React, { memo, useCallback } from "react";
 import { RxCross2 } from "react-icons/rx";
 
 const UploadImage = ({ images, setImages }) => {
@@ -30,4 +30,4 @@ const UploadImage = ({ images, setImages }) => {
   );
 };
 
-export default UploadImage;
+export default memo(UploadImage);
