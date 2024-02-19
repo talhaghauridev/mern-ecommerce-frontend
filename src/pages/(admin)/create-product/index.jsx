@@ -9,7 +9,6 @@ import {
   Select,
 } from "@components/ui";
 import { MdOutlinePriceChange } from "react-icons/md";
-import { RxAvatar } from "react-icons/rx";
 import { TbFileDescription } from "react-icons/tb";
 import { FaBarsProgress } from "react-icons/fa6";
 import { BiCategoryAlt } from "react-icons/bi";
@@ -17,8 +16,10 @@ import { SiProducthunt } from "react-icons/si";
 import inputError from "@utils/inputError";
 import useCreateProduct from "./hooks/useCreateProduct";
 import { FILTERS } from "@constants/index";
+import UploadImage from "../components/UploadImage";
 const CreateProduct = () => {
-  const { formik, isLoading, handleFileChange, images } = useCreateProduct();
+  const { formik, isLoading, handleFileChange, images, setImages } =
+    useCreateProduct();
   const { handleSubmit, getFieldProps } = formik;
   return (
     <>
@@ -96,15 +97,7 @@ const CreateProduct = () => {
 
             {/* Input InputUpload */}
             <div className="flex gap-1 w-full flex-col-reverse">
-              <div className="flex items-center justify-between">
-                {images?.map((image, index) => (
-                  <Image
-                  className="w-[50px] h-[50px] max-w-[50px] object-contain"
-                  src={image}
-                    alt={`Image ${index}`}
-                  />
-                ))}
-              </div>
+              <UploadImage images={images} setImages={setImages} />
               <InputUpload
                 name={"Images"}
                 label={"Upload Images"}

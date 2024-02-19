@@ -1,12 +1,15 @@
-import React, { memo, useState } from "react";
+import React, { memo, useMemo, useState } from "react";
 import { Button, Select } from "@components/ui";
 import { ORDER_PROCESS } from "@constants/index";
 
 const OrderSummary = ({ handelUpdateOrder, order }) => {
-  const [status, setStatus] = useState(
-    order?.orderStatus === "Shipped" ? order?.orderStatus : ""
+  const shippiedOrder = useMemo(
+    () => (order?.orderStatus === "Shipped" ? "Shipped" : ""),
+    [order]
   );
+  const [status, setStatus] = useState(shippiedOrder);
 
+  console.log(status===order.orderStatus);
   return (
     <div className="bg-white shadow-primary rounded-[8px] relative md:max-w-[350px] overflow-hidden h-fit max-w-full mt-[28px] ">
       <div className="py-[40px] px-[30px] flex flex-col gap-y-[25px] md:gap-y-[40px]">
@@ -31,6 +34,7 @@ const OrderSummary = ({ handelUpdateOrder, order }) => {
           onClick={() =>
             status && status !== order?.orderStatus && handelUpdateOrder(status)
           }
+          disabled={!status || status === order?.orderStatus}
         >
           Process
         </Button>

@@ -7,7 +7,7 @@ import { createProductSchema } from "@pages/(admin)/validation";
 import { useCreateProductMutation } from "@redux/api/productApi";
 
 const useCreateProduct = () => {
-  const { handleFileChange, images } = useUpload(true);
+  const { handleFileChange, images,setImages } = useUpload(true);
   const initialValues = {
     name: "",
     description: "",
@@ -36,7 +36,7 @@ const useCreateProduct = () => {
       if (!images) return;
       await handleCreateProduct({ images, ...values });
     },
-    [handleCreateProduct]
+    [handleCreateProduct,images]
   );
 
   const formik = useFormik({
@@ -53,6 +53,7 @@ const useCreateProduct = () => {
     isLoading,
     isSuccess,
     isError,
+    setImages,
     data,
   };
 };

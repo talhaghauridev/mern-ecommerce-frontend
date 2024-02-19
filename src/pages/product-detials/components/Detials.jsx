@@ -132,14 +132,17 @@ const Details = ({ product }) => {
                 className="justify-between"
               />
             ) : (
-              <Button onClick={() => handleQuantityChange("increment")}>
+              <Button
+                onClick={() => handleQuantityChange("increment")}
+                disabled={count >= stock}
+                className={cn(count>= stock && "opacity-[0.8]")}
+              >
                 Add to cart
               </Button>
             )}
           </div>
         </div>
       </div>
-
 
       {reviews ? (
         <Suspense fallback={"Loading...."}>

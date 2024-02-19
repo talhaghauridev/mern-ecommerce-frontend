@@ -1,4 +1,4 @@
-import React, { Suspense, useMemo } from "react";
+import React from "react";
 import { MetaData } from "@components/ui";
 import useUpdateOrder from "./hooks/useUpdateOrder";
 import OrderSummary from "./components/OrderSummary";
@@ -6,16 +6,11 @@ import AdminLoading from "../components/AdminLoading";
 import OrderList from "./components/OrderList";
 import OrderDetials from "./components/OrderDetials";
 const UpdateOrder = () => {
-  const { isLoading, order, handelUpdateOrder } = useUpdateOrder();
+  const { isLoading, order, handelUpdateOrder, orderStatus } = useUpdateOrder();
 
   if (isLoading) {
     return <AdminLoading />;
   }
-
-  const orderStatus = useMemo(
-    () => order?.orderStatus === "Delivered" && true,
-    [order]
-  );
 
   return (
     <>

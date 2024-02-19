@@ -17,8 +17,11 @@ import inputError from "@utils/inputError";
 import { FILTERS } from "@constants/index";
 import useUpdateProduct from "./hooks/useUpdateProduct";
 import AdminLoading from "../components/AdminLoading";
+import { FaCarCrash } from "react-icons/fa";
+import { RxCross2 } from "react-icons/rx";
+import UploadImage from "../components/UploadImage";
 const UpdateProduct = () => {
-  const { formik, updateLoading, detialLoading, handleFileChange, images } =
+  const { formik, updateLoading, detialLoading, handleFileChange, images,setImages } =
     useUpdateProduct();
   const { handleSubmit, getFieldProps } = formik;
   if (detialLoading) {
@@ -101,16 +104,20 @@ const UpdateProduct = () => {
 
             {/* Input InputUpload */}
             <div className="flex gap-1 w-full flex-col-reverse">
-              <div className="flex items-center justify-between">
+              {/* <div className="flex items-center justify-between">
                 {images?.map((image, index) => (
-                  <Image
-                    key={index}
-                    className="w-[50px] h-[50px] max-w-[50px] object-contain"
-                    src={image?.url || image}
-                    alt={`Image ${image?.public_id || index}`}
-                  />
+                  <div className="relative overflow-hidden">
+                    <RxCross2 />
+                    <Image
+                      key={index}
+                      className="w-[50px] h-[50px] max-w-[50px] object-contain"
+                      src={image?.url || image}
+                      alt={`Image ${image?.public_id || index}`}
+                    />
+                  </div>
                 ))}
-              </div>
+              </div> */}
+              <UploadImage images={images} setImages={setImages} />
               <InputUpload
                 name={"Images"}
                 label={"Upload Images"}

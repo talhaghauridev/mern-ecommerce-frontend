@@ -21,8 +21,12 @@ const useUpdateOrder = () => {
     (status) => {
       updateOrder({ id: orderId, status });
     },
-    [updateOrder]
+    [updateOrder, orderId]
   );
+
+  const orderStatus = useMemo(
+    () => order?.orderStatus === "Delivered" ? true:false,
+    [order])
 
   useMessage(updateOrderData?.message, error, "/admin/orders");
   return {
@@ -30,6 +34,7 @@ const useUpdateOrder = () => {
     userInfo,
     order,
     handelUpdateOrder,
+    orderStatus,
   };
 };
 

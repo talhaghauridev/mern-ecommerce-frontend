@@ -16,13 +16,13 @@ const getDetails = (data) => {
     price: product?.price,
     stock: product?.stock,
     category: capitalize(String(product?.category)),
-    description: product?.descripton,
+    description: product?.description,
     images: product?.images ? product?.images : [],
   };
 };
 
 const useUpdateProduct = () => {
-  const { handleFileChange, images } = useUpload(true);
+  const { handleFileChange, images,setImages } = useUpload(true);
   const { id } = useParams();
   const { data: productDetail, isLoading: detialLoading } =
     useGetProductDetailsQuery(id);
@@ -39,6 +39,7 @@ const useUpdateProduct = () => {
   const handleUpdateProduct = useCallback(
     async (values) => {
       try {
+        console.log(values);
         await updateProduct(values);
       } catch (err) {
         console.log(err);
@@ -82,6 +83,7 @@ const useUpdateProduct = () => {
     updateLoading,
     isSuccess,
     data,
+    setImages
   };
 };
 

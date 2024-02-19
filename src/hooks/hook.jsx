@@ -40,7 +40,6 @@ const useUpload = (multiple = false) => {
   const handleFileChange = useCallback(
     (e) => {
       if (multiple) {
-        setImages([]);
         const files = Array.from(e.target.files);
         files.forEach((image) => {
           const reader = new FileReader();
@@ -67,6 +66,7 @@ const useUpload = (multiple = false) => {
   return {
     images,
     handleFileChange,
+    setImages
   };
 };
 const useMediaQuery = (query) => {

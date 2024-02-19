@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { memo, useMemo } from "react";
 import { useSelector } from "react-redux";
 import cn from "@utils/cn";
 
@@ -63,4 +63,4 @@ const ShippingDetial = (order) => {
   );
 };
 
-export default ShippingDetial;
+export default memo(ShippingDetial);
