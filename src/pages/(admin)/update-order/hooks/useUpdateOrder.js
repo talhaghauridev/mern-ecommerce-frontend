@@ -25,12 +25,14 @@ const useUpdateOrder = () => {
   );
 
   const orderStatus = useMemo(
-    () => order?.orderStatus === "Delivered" ? true:false,
-    [order])
+    () => (order?.orderStatus === "Delivered" ? true : false),
+    [order]
+  );
 
   useMessage(updateOrderData?.message, error, "/admin/orders");
   return {
-    isLoading,
+    isLoading: orderDetialLoading,
+    updateLoading: isLoading,
     userInfo,
     order,
     handelUpdateOrder,

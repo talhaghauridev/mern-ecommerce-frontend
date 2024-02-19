@@ -8,10 +8,11 @@ import useFetchUsers from "./../../users/hooks/useFetchUsers";
 import useFetchOrders from "../../orders/hooks/useFetchOrders";
 import { Skeleton } from "@mui/material";
 const DashboardBar = () => {
-  const { products, totalProductsPrice } = useFetchProducts();
+  const { products } = useFetchProducts();
   const { users } = useFetchUsers();
-  const { orders } = useFetchOrders();
+  const { orders, totalAmount } = useFetchOrders();
 
+  console.log(totalAmount);
   return (
     <section id="dashboard">
       <div class="dashboard_container flex  w-full justify-between gap-[15px]">
@@ -28,8 +29,8 @@ const DashboardBar = () => {
         />
         <DashboardBarCard
           icon={MdOutlinePriceChange}
-          name={"Total Amount"}
-          number={totalProductsPrice}
+          name={"Earn Amount"}
+          number={totalAmount && `$${totalAmount}`}
         />
       </div>
     </section>

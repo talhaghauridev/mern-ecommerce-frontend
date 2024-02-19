@@ -74,12 +74,12 @@ const DashboardChart = () => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-[20px] w-full h-full items-center justify-center">
-      <div className="w-full ">
+    <div className="flex flex-col gap-[20px] w-full h-full items-center justify-center py-[20px]">
+      <div className="w-full max-w-full flex items-center justify-center">
         <Line data={lineData} />
       </div>
 
-      <div className="w-full  max-w-[500px] md:max-w-[600px]">
+      <div className="w-full  max-w-[450px] md:max-w-[520px]">
         <Doughnut data={doughnutData} />
       </div>
     </div>

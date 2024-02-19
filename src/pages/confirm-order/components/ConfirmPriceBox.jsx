@@ -13,7 +13,7 @@ const ConfirmOrderBox = () => {
   } = useSendPayment();
   return (
     <div
-      className="bg-white rounded-[8px] relative md:max-w-[350px] overflow-hidden h-fit max-w-full "
+      className="bg-white rounded-[8px] relative md:max-w-[350px] overflow-hidden h-fit max-w-full  ml-0 md:ml-auto w-full md:w-[340px]"
       style={{
         boxShadow: "#03004717 0px 0px 4px 2px",
       }}
