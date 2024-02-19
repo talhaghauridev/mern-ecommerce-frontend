@@ -29,7 +29,6 @@ const useSendPayment = () => {
   //Handle Send Payment
   const handleSendPayment = useCallback(async () => {
     if (online) {
-      
       await sendPayment({
         items: cartItems,
         userId: userInfo?._id,
@@ -43,12 +42,11 @@ const useSendPayment = () => {
   }, [sendPayment, online]);
 
   const handleRedirect = useCallback(() => {
-    if (data) {
+    if (data && data?.url) {
       window.location.href = data?.url;
     }
   }, [data]);
 
-  // useWebhook();
   useEffect(() => {
     handleRedirect();
   }, [handleRedirect]);
