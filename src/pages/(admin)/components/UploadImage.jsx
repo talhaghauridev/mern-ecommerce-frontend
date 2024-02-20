@@ -7,7 +7,7 @@ const UploadImage = ({ images, setImages }) => {
     (img) => {
       setImages((pve) => [...pve.filter((i) => i !== img)]);
     },
-    [images]
+    [images, setImages]
   );
   console.log(images);
   return (
@@ -16,13 +16,13 @@ const UploadImage = ({ images, setImages }) => {
         <div className="relative overflow-hidden">
           <RxCross2
             className="absolute text-[20px] cursor-pointer right-0"
-            onClick={() => handleRemove(image)}
+            onClick={() => handleRemove(image?.url || image)}
           />
           <Image
             key={index}
             className="w-[50px] h-[50px] max-w-[50px] object-contain"
             src={image?.url || image}
-            alt={`Image ${image?.public_id || index}`}
+            alt={`Image ${index}`}
           />
         </div>
       ))}

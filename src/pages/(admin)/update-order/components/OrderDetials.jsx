@@ -1,6 +1,7 @@
 import React, { memo, useMemo } from "react";
 import { useSelector } from "react-redux";
 import cn from "@utils/cn";
+import formatDate from "@utils/formatDate";
 
 const ShippingDetial = (order) => {
   const { userInfo } = useSelector((state) => state.user);
@@ -13,7 +14,7 @@ const ShippingDetial = (order) => {
   );
 
   return (
-    <div className="flex flex-col gap-[20px] pt-[50px] pb-[40px] md:pb-[40px]">
+    <div className="flex flex-col gap-[0px] pt-[50px] pb-[40px] md:pb-[40px]">
       <div className="flex flex-col gap-[20px] py-[20px] ">
         <div className="confirm_heading">
           <h1>Shipping Info</h1>
@@ -59,6 +60,17 @@ const ShippingDetial = (order) => {
           </li>
         </ul>
       </div>
+
+      <div className="flex flex-col gap-[20px] py-[20px] ">
+            <div className="confirm_heading flex gap-[8px] ">
+              <h1 className="font-Poppins text-[20px]">CreatedAt</h1>
+              <li className="order_li ">
+                <b className="items-center justify-start font-Poppins mt-[2px] text-[15px] ">
+                  {formatDate(order?.createdAt)}
+                </b>
+              </li>
+            </div>
+          </div>
     </div>
   );
 };

@@ -17,17 +17,19 @@ const getDetails = (data) => {
     stock: product?.stock,
     category: capitalize(String(product?.category)),
     description: product?.description,
-    images: product?.images ? product?.images : [],
+    images:product?.images
+    ? product?.images?.map((image) => image.url).filter((url) => url)
+    : [],
   };
 };
 
 const useUpdateProduct = () => {
-  const { handleFileChange, images,setImages } = useUpload(true);
+  const { handleFileChange, images, setImages } = useUpload(true);
   const { id } = useParams();
   const { data: productDetail, isLoading: detialLoading } =
     useGetProductDetailsQuery(id);
 
-  const [updateProduct, { isLoading:updateLoading, isSuccess, data, error }] =
+  const [updateProduct, { isLoading: updateLoading, isSuccess, data, error }] =
     useUpdateProductMutation();
 
   const initialValues = useMemo(() => {
@@ -54,6 +56,7 @@ const useUpdateProduct = () => {
   }, [images, productDetail]);
 
 
+  console.log(displayImages);
   //Handle Submit
   const onSubmit = useCallback(
     async ({ images, ...rest }) => {
@@ -65,7 +68,6 @@ const useUpdateProduct = () => {
     },
     [displayImages, handleUpdateProduct, id]
   );
-
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -83,7 +85,7 @@ const useUpdateProduct = () => {
     updateLoading,
     isSuccess,
     data,
-    setImages
+    setImages,
   };
 };
 

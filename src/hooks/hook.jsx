@@ -49,7 +49,8 @@ const useUpload = (multiple = false) => {
             }
           };
           reader.readAsDataURL(image);
-        });
+        },
+        );
       } else {
         const files = e.target.files[0];
         const reader = new FileReader();

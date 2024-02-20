@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { capitalize } from "@mui/material";
 import { Image } from "@components/ui";
 import { RxCross2 } from "react-icons/rx";
-import { hero } from "@assets/images";
 import { useCounter } from "@hooks/hook";
 import useRemoveFromCart from "../hooks/useRemoveFromCart";
 import {
@@ -42,9 +41,9 @@ const CartCard = ({ name, price, _id, images, stock }) => {
     >
       <div className="flex items-center justify-center">
         <Image
-          src={hero}
-          alt={"hero"}
-          className={"w-full max-w-[150px] sm:max-w-[160px]"}
+          src={images[0]?.url}
+          alt={name}
+          className={" max-w-full h-[120px] w-[200px] object-contain"}
         />
       </div>
       {/* Cart Item Detials */}

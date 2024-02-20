@@ -58,10 +58,10 @@ const Details = ({ product }) => {
         </Button>
         <div className="flex items-center justify-start  md:justify-center w-full">
           <Image
-            src={hero}
+            src={images[0]?.url}
             alt={name}
             className={
-              " w-full max-w-[300px] md:max-w-[500px] h-[300px] sm:h-[330px!important] object-contain  "
+              " w-full max-w-[300px] md:max-w-[500px] h-[300px] sm:h-[330px!important] mt-[20px] sm:mt-[0px] object-contain  "
             }
           />
         </div>

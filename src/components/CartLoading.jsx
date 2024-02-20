@@ -6,11 +6,11 @@ const CartLoading = ({ length = 2 }) => {
 
   const MemoizedProductSkeleton = useCallback(() => <CartSkeleton />, []);
   return (
-    <>
+    <div className="flex items-center justify-center flex-col gap-[10px]">
       {loadingArr?.map((item, index) => (
         <MemoizedProductSkeleton key={index} />
       ))}
-    </>
+    </div>
   );
 };
 
