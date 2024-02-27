@@ -13,11 +13,10 @@ const CartCard = ({ name, price, _id, images, quantity, image }) => {
     >
       <div className="flex items-center justify-center">
         <Image
-          src={image ? image : images[0]?.url}
+          src={image ? image : images && images[0]?.url}
           alt={name}
           className={" max-w-full h-[120px] w-[200px] object-contain"}
         />
-      
       </div>
       {/* Cart Item Detials */}
       <div className="flex items-center justify-evenly sm:gap-y-[16px] gap-y-[10px]  p-[16px] w-full sm:flex-row flex-col">

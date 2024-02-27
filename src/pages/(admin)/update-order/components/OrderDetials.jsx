@@ -9,7 +9,7 @@ const ShippingDetial = (order) => {
   const { shippingInfo } = order;
   const address = useMemo(
     () =>
-      `${shippingInfo?.address}, ${shippingInfo?.city}, ${shippingInfo?.state}, ${shippingInfo?.phoneNumber}, ${shippingInfo?.pinCode}`,
+      `${shippingInfo?.address}, ${shippingInfo?.city}, ${shippingInfo?.state}, ${shippingInfo?.phoneNo}, ${shippingInfo?.pinCode}`,
     [shippingInfo]
   );
 
