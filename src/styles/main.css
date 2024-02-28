@@ -124,6 +124,9 @@
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
+#adminProducts .css-k008qs {
+  width: 100% !important;
+}
 /* Products Mui Row Grid  */
 #adminProducts .MuiDataGrid-virtualScroller .MuiDataGrid-row {
   width: 100% !important;
@@ -241,7 +244,6 @@
 .success {
   color: green;
   font-weight: 400;
-
 }
 .shadow_black {
   box-shadow: rgba(43, 52, 69, 0.1) 0px 4px 16px;
