@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import useFetchOrders from "../hooks/useFetchOrders";
 import TableLoading from "@components/TableLoading";
 import { LuEye } from "react-icons/lu";
+import formatDate from "@utils/formatDate";
 
 const ActionButton = memo(({ id }) => {
   return (
@@ -34,6 +35,13 @@ const MyOrder = () => {
           : "order_status_delivered";
       },
     },
+
+    {
+      field: "createdAt",
+      headerName: "CreatedAt",
+      type: "number",
+    },
+    ,
     {
       field: "amount",
       headerName: "Amount",
@@ -57,6 +65,7 @@ const MyOrder = () => {
       id: item?._id,
       ItemsQty: item?.orderItems?.length,
       status: item?.orderStatus,
+      createdAt: formatDate(item?.createdAt),
       amount: item?.totalPrice,
     }));
   }, [orders]);

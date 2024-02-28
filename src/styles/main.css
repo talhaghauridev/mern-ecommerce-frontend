@@ -105,14 +105,14 @@
   .css-yrdy0g-MuiDataGrid-columnHeaderRow {
   width: 100% !important;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 /* Orders Mui Row Grid  */
 #myOrder .MuiDataGrid-virtualScroller .MuiDataGrid-row {
   width: 100% !important;
   display: grid !important;
-  grid-template-columns: 1fr 1fr 1fr 1.1fr 0.9fr;
+  grid-template-columns: 1fr 1fr 1fr 0.9fr 1.2fr 0.8fr;
 }
 
 /* Products List Grid  */
@@ -121,14 +121,14 @@
   .css-yrdy0g-MuiDataGrid-columnHeaderRow {
   width: 100% !important;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 /* Products Mui Row Grid  */
 #adminProducts .MuiDataGrid-virtualScroller .MuiDataGrid-row {
   width: 100% !important;
   display: grid !important;
-  grid-template-columns: 1fr 1fr 1fr 1.1fr 0.9fr;
+  grid-template-columns: 1fr 1fr 1fr 0.9fr 1.2fr 0.8fr;
 }
 
 /* Users List Grid  */

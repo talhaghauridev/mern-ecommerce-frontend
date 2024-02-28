@@ -7,6 +7,7 @@ import { MdDelete } from "react-icons/md";
 import TableLoading from "../../../components/TableLoading";
 import useFetchOrders from "./hooks/useFetchOrders";
 import useDeleteOrder from "./hooks/useDeleteOrder";
+import formatDate from "@utils/formatDate";
 
 const ActionButton = memo(({ id }) => {
   const editLink = `/admin/order/${id}`;
@@ -39,16 +40,22 @@ const AdminOrders = () => {
       headerName: "Items Qty",
       type: "number",
     },
+
+  
     {
       field: "status",
       headerName: "Status",
       type: "number",
       cellClassName: (params) => {
-      
         return params.value === "Processing"
           ? "order_status_pending"
           : "order_status_delivered";
       },
+    },
+    {
+      field: "createdAt",
+      headerName: "CreatedAt",
+      type: "number",
     },
     {
       field: "amount",
@@ -73,6 +80,7 @@ const AdminOrders = () => {
       id: item?._id,
       ItemsQty: item?.orderItems?.length,
       status: item?.orderStatus,
+      createdAt: formatDate(item?.createdAt),
       amount: item?.totalPrice,
     }));
   }, [orders]);

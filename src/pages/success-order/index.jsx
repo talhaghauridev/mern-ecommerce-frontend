@@ -1,9 +1,15 @@
 import { Success } from "@assets/images";
 import { Image, MetaData, buttonVariants } from "@components/ui";
-import React from "react";
+import { CART_ITEMS } from "@constants/index";
+import LocalStorage from "@utils/LocalStorage";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const SuccessOrder = () => {
+  useEffect(() => {
+    LocalStorage.remove(CART_ITEMS);
+  }, []);
+
   return (
     <>
       <MetaData title="Success Order" />
@@ -20,8 +26,8 @@ const SuccessOrder = () => {
             Success Order
           </h1>
 
-          <Link to="/user/orders"  className={buttonVariants()}>
-          View Orders
+          <Link to="/user/orders" className={buttonVariants()}>
+            View Orders
           </Link>
         </div>
       </section>
