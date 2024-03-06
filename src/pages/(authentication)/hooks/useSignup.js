@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import { useSignupMutation } from "@redux/api/userApi";
 import { useMessage, useUpload } from "@hooks/hook";
 import { signUpSchema } from "../validation";
+import { setCredentials } from "@redux/reducers/userReducer";
 
 const useSignup = () => {
   const { handleFileChange, images: avatar } = useUpload();
