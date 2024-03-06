@@ -33,9 +33,9 @@ const useSignup = () => {
   const onSubmit = useCallback(
     async (values) => {
       if (!avatar) return;
-      await handleSignUp({ avatar, ...values });
+      await handleSignUp({ avatar:avatar, ...values });
     },
-    [handleSignUp]
+    [handleSignUp,avatar]
   );
 
   const formik = useFormik({

@@ -9,19 +9,17 @@ const AnimationWrapper = ({
   animate = { opacity: 1 },
   transition = { duration: 1 },
   className = "",
-  key = 1,
-  style = {},
+  props,
 }) => {
   return (
     <>
       <AnimatePresence>
         <motion.div
-          key={key}
           initial={initial}
           animate={animate}
           transition={transition}
           className={cn(`max-w-fit `, className)}
-          style={style}
+          {...props}
         >
           {children}
         </motion.div>

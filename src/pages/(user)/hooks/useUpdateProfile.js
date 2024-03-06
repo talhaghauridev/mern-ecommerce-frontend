@@ -1,9 +1,8 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useFormik } from "formik";
 import { useUpdateMeMutation } from "@redux/api/userApi";
 import { USER_INFO_KEY } from "@constants/index";
-import useAuth from "@hooks/useAuth";
 import { useMessage, useUpload } from "@hooks/hook";
 import LocalStorage from "@utils/LocalStorage";
 import { updateProfileSchema } from "../validation";
@@ -11,7 +10,6 @@ import { toast } from "react-toastify";
 
 export const getProfileData = () => {
   const { name, email, avatar } = LocalStorage.get(USER_INFO_KEY);
-
   return {
     name,
     email,
@@ -32,7 +30,7 @@ const useUpdateProfile = () => {
     useUpdateMeMutation();
 
   const displayAvatar = useMemo(() => {
-    return avatar == false ? getProfileData()?.avatar : avatar;
+    return avatar ? avatar : getProfileData()?.avatar;
   }, [avatar]);
 
   const handleUpdateProfile = useCallback(
@@ -65,6 +63,7 @@ const useUpdateProfile = () => {
     initialValues: useMemo(() => getProfileData() || initialValues, []),
     validationSchema: updateProfileSchema,
     onSubmit: onSubmit,
+    enableReinitialize: true,
   });
 
   useMessage(data?.message, error, "/user/profile");

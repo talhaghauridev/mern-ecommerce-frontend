@@ -33,43 +33,49 @@ const useOnlineStatus = () => {
 
   return status;
 };
-
 const useUpload = (multiple = false) => {
   const [images, setImages] = useState([]);
 
   const handleFileChange = useCallback(
     (e) => {
-      if (multiple) {
-        const files = Array.from(e.target.files);
-        files.forEach((image) => {
-          const reader = new FileReader();
-          reader.onload = () => {
-            if (reader.readyState === 2) {
-              setImages((prev) => [...prev, reader.result]);
-            }
-          };
-          reader.readAsDataURL(image);
-        },
-        );
-      } else {
-        const files = e.target.files[0];
+      const files = e.target.files;
+
+      if (!files) {
+        return;
+      }
+
+      const processImage = (image) => {
         const reader = new FileReader();
         reader.onload = () => {
           if (reader.readyState === 2) {
-            setImages(reader.result);
+            if (multiple) {
+              setImages((prev) => [...prev, reader.result]);
+            } else {
+              setImages([reader.result ]);
+            }
           }
         };
-        reader.readAsDataURL(files);
+        reader.readAsDataURL(image);
+      };
+
+      if (multiple) {
+        Array.from(files).forEach(processImage);
+      } else {
+        processImage(files[0]);
       }
     },
-    [multiple, images]
+    [multiple]
   );
+
   return {
-    images,
+    images: multiple ? images : images[0],
     handleFileChange,
-    setImages
+    setImages,
   };
 };
+
+
+
 const useMediaQuery = (query) => {
   const [matches, setMatches] = useState();
 

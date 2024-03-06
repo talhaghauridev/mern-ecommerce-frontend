@@ -110,13 +110,8 @@ const Details = ({ product }) => {
             <div className="">Description</div>
 
             <p
-              className="text-gray-500 font-Sans text-[15px]"
-              style={{
-                WebkitLineClamp: 2,
-                WebkitBoxOrient: "vertical",
-                overflow: "hidden",
-                display: "-webkit-box",
-              }}
+              className="text-gray-500 font-Sans text-[15px] line-clamp-3"
+          
             >
               {description}
             </p>
@@ -144,7 +139,7 @@ const Details = ({ product }) => {
         </div>
       </div>
 
-      {reviews ? (
+      {reviews && reviews?.length ? (
         <Suspense fallback={"Loading...."}>
           <Reviews reviews={reviews} />
         </Suspense>
