@@ -41,7 +41,6 @@ const AdminOrders = () => {
       type: "number",
     },
 
-  
     {
       field: "status",
       headerName: "Status",
@@ -88,7 +87,7 @@ const AdminOrders = () => {
   return (
     <>
       <MetaData title={`All Orders - Admin`} />
-      <section id="adminProducts">
+      <section id="adminOrders">
         <div className="adminProducts_container">
           <h1 className="admin_heading">All Orders</h1>
           {isLoading ? (

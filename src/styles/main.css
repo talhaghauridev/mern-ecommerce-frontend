@@ -131,6 +131,25 @@
 #adminProducts .MuiDataGrid-virtualScroller .MuiDataGrid-row {
   width: 100% !important;
   display: grid !important;
+  grid-template-columns: 1fr 1fr 0.9fr 1.2fr 0.8fr;
+}
+
+/* Admin Orders List Grid  */
+#adminOrders
+  .MuiDataGrid-columnHeadersInner
+  .css-yrdy0g-MuiDataGrid-columnHeaderRow {
+  width: 100% !important;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+#adminOrders .css-k008qs {
+  width: 100% !important;
+}
+/* Admin Order Mui Row Grid  */
+#adminOrders .MuiDataGrid-virtualScroller .MuiDataGrid-row {
+  width: 100% !important;
+  display: grid !important;
   grid-template-columns: 1fr 1fr 1fr 0.9fr 1.2fr 0.8fr;
 }
 
@@ -143,6 +162,9 @@
   grid-template-columns: 1fr 1fr 1fr 0.8fr 0.9fr;
 }
 
+#adminUsers .MuiDataGrid-columnHeadersInner .css-k008qs:first-of-type {
+  width: 100%;
+}
 /* Users Mui Row Grid  */
 #adminUsers .MuiDataGrid-virtualScroller .MuiDataGrid-row {
   width: 100% !important;
