@@ -1,16 +1,30 @@
+// utils/lazy-progress.js
 import React from "react";
 import NProgress from "nprogress";
 
+let isInitialPageLoad = true;
+
 function lazyWithProgress(factory) {
   return React.lazy(() => {
-    NProgress.start();
+    const shouldShowProgress = !isInitialPageLoad;
+
+    if (shouldShowProgress) {
+      NProgress.start();
+    }
+
+    isInitialPageLoad = false;
+
     return factory()
       .then((module) => {
-        NProgress.done();
+        if (shouldShowProgress) {
+          NProgress.done();
+        }
         return module;
       })
       .catch((err) => {
-        NProgress.done();
+        if (shouldShowProgress) {
+          NProgress.done();
+        }
         throw err;
       });
   });

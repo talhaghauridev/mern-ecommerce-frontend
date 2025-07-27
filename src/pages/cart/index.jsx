@@ -19,7 +19,20 @@ const Cart = () => {
       <MetaData title="Cart" />
       <section id="cart">
         {!isCartItems && (
-          <Suspense fallback={<h1>Loading...</h1>}>
+          <Suspense
+            fallback={
+              <section id="emptyCart" className="w-full  py-[30px] px-[20px]">
+                <div
+                  className=" h-[485px] max-w-[900px] px-[15px] py-[90px] m-auto bg-white  flex items-center justify-center flex-col gap-[15px] "
+                  style={{
+                    boxShadow: "#2b34451a 0px 0px 16px",
+                  }}
+                >
+                  <h1>Loading...</h1>
+                </div>
+              </section>
+            }
+          >
             <EmptyCart />
           </Suspense>
         )}
