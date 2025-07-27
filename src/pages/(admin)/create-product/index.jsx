@@ -1,22 +1,15 @@
-import React from "react";
-import {
-  BackDrop,
-  Button,
-  Image,
-  Input,
-  InputUpload,
-  MetaData,
-  Select,
-} from "@/components/ui";
-import { MdOutlinePriceChange } from "react-icons/md";
-import { TbFileDescription } from "react-icons/tb";
-import { FaBarsProgress } from "react-icons/fa6";
-import { BiCategoryAlt } from "react-icons/bi";
-import { SiProducthunt } from "react-icons/si";
-import inputError from "@/utils/inputError";
-import useCreateProduct from "./hooks/useCreateProduct";
+import { BackDrop, Button, Input, MetaData, Select } from "@/components/ui";
+import InputUpload from "@/components/ui/InputUpload";
 import { FILTERS } from "@/constants/index";
+import inputError from "@/utils/inputError";
+import { BiCategoryAlt } from "react-icons/bi";
+import { FaBarsProgress } from "react-icons/fa6";
+import { MdOutlinePriceChange } from "react-icons/md";
+import { SiProducthunt } from "react-icons/si";
+import { TbFileDescription } from "react-icons/tb";
 import UploadImage from "../components/UploadImage";
+import useCreateProduct from "./hooks/useCreateProduct";
+
 const CreateProduct = () => {
   const { formik, isLoading, handleFileChange, images, setImages } =
     useCreateProduct();

@@ -1,4 +1,3 @@
-// routes.jsx
 import React, { lazy, Suspense } from "react";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import AuthRoutes from "@/routes/user.routes";
@@ -30,32 +29,30 @@ const SuccessOrder = lazyWithProgress(() => import("@/pages/success-order"));
 const AppRoutes = () => {
   return (
     <Router>
-      <Suspense fallback={null}>
-        <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/password/forgot" element={<ForgotPassword />} />
-            <Route path="/password/reset/:token" element={<ResetPassword />} />
-            <Route path="/products/:search" element={<Products />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/product/:productId" element={<ProductDetails />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/shipping" element={<Shipping />} />
-            <Route element={<ProtectRoute />}>
-              <Route path="/user/*" element={<AuthRoutes />} />
-              <Route path="/order/confirm" element={<ConfirmOrder />} />
-              <Route path="/order/success" element={<SuccessOrder />} />
-            </Route>
-
-            <Route element={<ProtectRoute isAdmin={true} />}>
-              <Route path="/admin/*" element={<AdminRoutes />} />
-            </Route>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/password/forgot" element={<ForgotPassword />} />
+          <Route path="/password/reset/:token" element={<ResetPassword />} />
+          <Route path="/products/:search" element={<Products />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/product/:productId" element={<ProductDetails />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/shipping" element={<Shipping />} />
+          <Route element={<ProtectRoute />}>
+            <Route path="/user/*" element={<AuthRoutes />} />
+            <Route path="/order/confirm" element={<ConfirmOrder />} />
+            <Route path="/order/success" element={<SuccessOrder />} />
           </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Suspense>
+
+          <Route element={<ProtectRoute isAdmin={true} />}>
+            <Route path="/admin/*" element={<AdminRoutes />} />
+          </Route>
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </Router>
   );
 };

@@ -7,7 +7,7 @@ import "./styles/main.css";
 import "nprogress/nprogress.css";
 import NProgress from "nprogress";
 
-NProgress.configure({ showSpinner: false, trickleSpeed: 200 });
+NProgress.configure({ showSpinner: false, trickleSpeed: 200, minimum: 0.1 });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

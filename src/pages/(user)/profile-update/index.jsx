@@ -1,16 +1,11 @@
 import React from "react";
-import {
-  BackDrop,
-  Button,
-  Image,
-  Input,
-  InputUpload,
-  MetaData,
-} from "@/components/ui";
+import { BackDrop, Button, Image, Input, MetaData } from "@/components/ui";
 import { MdAlternateEmail } from "react-icons/md";
 import { RxAvatar } from "react-icons/rx";
 import inputError from "@/utils/inputError";
 import useUpdateProfile from "../hooks/useUpdateProfile";
+import InputUpload from "@/components/ui/InputUpload";
+
 const UpdateProfile = () => {
   const { formik, isLoading, handleFileChange, avatar } = useUpdateProfile();
   const { handleSubmit, getFieldProps } = formik;

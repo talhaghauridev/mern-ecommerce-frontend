@@ -1,17 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  BackDrop,
-  Button,
-  Image,
-  Input,
-  InputUpload,
-  MetaData,
-} from "@/components/ui";
+import { BackDrop, Button, Image, Input, MetaData } from "@/components/ui";
 import { MdAlternateEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import useSignup from "../hooks/useSignup";
 import inputError from "@/utils/inputError";
+import InputUpload from "@/components/ui/InputUpload";
+
 const SignUp = () => {
   const { formik, isLoading, handleFileChange, avatar } = useSignup();
   const { handleSubmit, getFieldProps } = formik;
