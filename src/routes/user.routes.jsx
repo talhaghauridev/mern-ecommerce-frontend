@@ -9,20 +9,43 @@ const Orders = lazy(() => import("@/pages/(user)/orders"));
 const OrderDetials = lazy(() => import("@/pages/(user)/order-detials"));
 
 const AuthRoutes = () => {
-  return (
-    <Routes>
-      <Route element={<ProtectRoute />}>
-        <Route element={<User />}>
-          <Route path="" element={<Navigate to={"profile"} replace />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="profile/update" element={<UpdateProfile />} />
-          <Route path="password/update" element={<UpdatePassword />} />
-          <Route path="orders" element={<Orders />} />
-          <Route path="order/:orderId" element={<OrderDetials />} />
-        </Route>
-      </Route>
-    </Routes>
-  );
+   return (
+      <Routes>
+         <Route element={<ProtectRoute />}>
+            <Route element={<User />}>
+               <Route
+                  path=""
+                  element={
+                     <Navigate
+                        to={"profile"}
+                        replace
+                     />
+                  }
+               />
+               <Route
+                  path="profile"
+                  element={<Profile />}
+               />
+               <Route
+                  path="profile/update"
+                  element={<UpdateProfile />}
+               />
+               <Route
+                  path="password/update"
+                  element={<UpdatePassword />}
+               />
+               <Route
+                  path="orders"
+                  element={<Orders />}
+               />
+               <Route
+                  path="order/:orderId"
+                  element={<OrderDetials />}
+               />
+            </Route>
+         </Route>
+      </Routes>
+   );
 };
 
 export default AuthRoutes;

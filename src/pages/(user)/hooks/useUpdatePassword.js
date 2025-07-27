@@ -7,55 +7,52 @@ import { updatePasswordSchema } from "../validation";
 import { toast } from "react-toastify";
 
 const useUpdatePassword = () => {
-  const { online, error: onlineError } = useSelector(
-    (state) => state.onlineStatus
-  );
-  const initialValues = {
-    oldPassword: "",
-    newPassword: "",
-    confirmPassword: "",
-  };
+   const { online, error: onlineError } = useSelector((state) => state.onlineStatus);
+   const initialValues = {
+      oldPassword: "",
+      newPassword: "",
+      confirmPassword: ""
+   };
 
-  const [updatePassword, { isError, isLoading, data, error }] =
-    useUpdatePasswordMutation();
+   const [updatePassword, { isError, isLoading, data, error }] = useUpdatePasswordMutation();
 
-  const handleUpdatePassword = useCallback(
-    async (values) => {
-      try {
-        await updatePassword(values);
-      } catch (err) {
-        console.log(err);
-      }
-    },
-    [updatePassword]
-  );
+   const handleUpdatePassword = useCallback(
+      async (values) => {
+         try {
+            await updatePassword(values);
+         } catch (err) {
+            console.log(err);
+         }
+      },
+      [updatePassword]
+   );
 
-  //Handle onSubmit
-  const onSubmit = useCallback(
-    async (values) => {
-      if (online) {
-        await handleUpdatePassword(values);
-      } else {
-        toast.error(onlineError);
-      }
-    },
-    [handleUpdatePassword, online]
-  );
+   //Handle onSubmit
+   const onSubmit = useCallback(
+      async (values) => {
+         if (online) {
+            await handleUpdatePassword(values);
+         } else {
+            toast.error(onlineError);
+         }
+      },
+      [handleUpdatePassword, online]
+   );
 
-  const formik = useFormik({
-    initialValues: initialValues,
-    validationSchema: updatePasswordSchema,
-    onSubmit: onSubmit,
-  });
+   const formik = useFormik({
+      initialValues: initialValues,
+      validationSchema: updatePasswordSchema,
+      onSubmit: onSubmit
+   });
 
-  useMessage(data?.message, error, "/user/profile");
+   useMessage(data?.message, error, "/user/profile");
 
-  return {
-    formik,
-    isLoading: online ? isLoading : false,
-    isError,
-    data,
-  };
+   return {
+      formik,
+      isLoading: online ? isLoading : false,
+      isError,
+      data
+   };
 };
 
 export default useUpdatePassword;

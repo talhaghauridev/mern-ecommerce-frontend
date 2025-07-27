@@ -8,97 +8,95 @@ import { LuEye } from "react-icons/lu";
 import formatDate from "@/utils/formatDate";
 
 const ActionButton = memo(({ id }) => {
-  return (
-    <Link to={`/user/order/${id}`}>
-      <LuEye className="text-[20px]" />
-    </Link>
-  );
+   return (
+      <Link to={`/user/order/${id}`}>
+         <LuEye className="text-[20px]" />
+      </Link>
+   );
 });
 
 const MyOrder = () => {
-  const { isLoading, orders } = useFetchOrders();
+   const { isLoading, orders } = useFetchOrders();
 
-  const columns = [
-    { field: "id", headerName: "Order Id", type: "number" },
-    {
-      field: "ItemsQty",
-      headerName: "Items Qty",
-      type: "number",
-    },
-    {
-      field: "status",
-      headerName: "Status",
-      type: "number",
-      cellClassName: (params) => {
-        return params.value === "Processing"
-          ? "order_status_pending"
-          : "order_status_delivered";
+   const columns = [
+      { field: "id", headerName: "Order Id", type: "number" },
+      {
+         field: "ItemsQty",
+         headerName: "Items Qty",
+         type: "number"
       },
-    },
+      {
+         field: "status",
+         headerName: "Status",
+         type: "number",
+         cellClassName: (params) => {
+            return params.value === "Processing" ? "order_status_pending" : "order_status_delivered";
+         }
+      },
 
-    {
-      field: "createdAt",
-      headerName: "CreatedAt",
-      type: "number",
-    },
-    ,
-    {
-      field: "amount",
-      headerName: "Amount",
-      type: "number",
-    },
-    {
-      field: "action",
-      headerName: "Action",
-      type: "number",
-      disableRowSelectionOnClick: true,
-      disableReorder: true,
-      disableColumnMenu: true,
-      sortable: false,
-      renderCell: (params) => <ActionButton {...params} />,
-    },
-  ];
+      {
+         field: "createdAt",
+         headerName: "CreatedAt",
+         type: "number"
+      },
+      ,
+      {
+         field: "amount",
+         headerName: "Amount",
+         type: "number"
+      },
+      {
+         field: "action",
+         headerName: "Action",
+         type: "number",
+         disableRowSelectionOnClick: true,
+         disableReorder: true,
+         disableColumnMenu: true,
+         sortable: false,
+         renderCell: (params) => <ActionButton {...params} />
+      }
+   ];
 
-  const rows = useMemo(() => {
-    if (!orders) return [];
-    return orders?.map((item) => ({
-      id: item?._id,
-      ItemsQty: item?.orderItems?.length,
-      status: item?.orderStatus,
-      createdAt: formatDate(item?.createdAt),
-      amount: item?.totalPrice,
-    }));
-  }, [orders]);
+   const rows = useMemo(() => {
+      if (!orders) return [];
+      return orders?.map((item) => ({
+         id: item?._id,
+         ItemsQty: item?.orderItems?.length,
+         status: item?.orderStatus,
+         createdAt: formatDate(item?.createdAt),
+         amount: item?.totalPrice
+      }));
+   }, [orders]);
 
-  return (
-    <>
-      <MetaData title={`My Orders`} />
-      <section id="myOrder">
-        <div className="myOrder_container">
-          <h1 className="order_heading">All Orders</h1>
-          {isLoading ? (
-            <TableLoading />
-          ) : (
-            <div className="myOrder_box">
-              <DataGrid
-                rows={rows}
-                columns={columns}
-                initialState={{
-                  pagination: {
-                    paginationModel: {
-                      pageSize: 5,
-                    },
-                  },
-                }}
-                pageSizeOptions={[5]}
-                disableRowSelectionOnClick
-              />
+   return (
+      <>
+         <MetaData title={`My Orders`} />
+         <section id="myOrder">
+            <div className="myOrder_container">
+               <h1 className="order_heading">All Orders</h1>
+               {isLoading ? (
+                  <TableLoading />
+               ) : (
+                  <div className="myOrder_box">
+                     <DataGrid
+                        rows={rows}
+                        columns={columns}
+                        initialState={{
+                           pagination: {
+                              paginationModel: {
+                                 pageSize: 5
+                              }
+                           }
+                        }}
+                        pageSizeOptions={[5]}
+                        disableRowSelectionOnClick
+                     />
+                  </div>
+               )}
             </div>
-          )}
-        </div>
-      </section>
-    </>
-  );
+         </section>
+      </>
+   );
 };
 
 export default MyOrder;

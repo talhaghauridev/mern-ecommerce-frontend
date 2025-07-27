@@ -8,29 +8,29 @@ import ShippingDetial from "./components/ShippingDetial";
 const ConfirmOrderList = lazy(() => import("./components/ConfirmOrderList"));
 
 const ConfirmOrder = () => {
-  const { cartItems } = useSelector((state) => state.cart);
+   const { cartItems } = useSelector((state) => state.cart);
 
-  return (
-    <>
-      <MetaData title={"Confirm Order"} />
-      <section id="confirmOrder">
-        <Stepper activeStep={1} />
-        <div className="container">
-          {cartItems && (
-            <div className="confirm_container py-[80px]">
-              <div className="flex flex-col gap-[15px]">
-                <ShippingDetial />
-                <Suspense fallback={<CartLoading />}>
-                  <ConfirmOrderList />
-                </Suspense>
-              </div>
-              <ConfirmOrderBox />
+   return (
+      <>
+         <MetaData title={"Confirm Order"} />
+         <section id="confirmOrder">
+            <Stepper activeStep={1} />
+            <div className="container">
+               {cartItems && (
+                  <div className="confirm_container py-[80px]">
+                     <div className="flex flex-col gap-[15px]">
+                        <ShippingDetial />
+                        <Suspense fallback={<CartLoading />}>
+                           <ConfirmOrderList />
+                        </Suspense>
+                     </div>
+                     <ConfirmOrderBox />
+                  </div>
+               )}
             </div>
-          )}
-        </div>
-      </section>
-    </>
-  );
+         </section>
+      </>
+   );
 };
 
 export default ConfirmOrder;

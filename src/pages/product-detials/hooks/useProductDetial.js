@@ -5,24 +5,23 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const useProductDetail = () => {
-  const { productId } = useParams();
-  const review = useSelector((state) => state.reviewApi);
-  const { isError, isLoading, data, error, status, refetch } =
-    useGetProductDetailsQuery(productId);
+   const { productId } = useParams();
+   const review = useSelector((state) => state.reviewApi);
+   const { isError, isLoading, data, error, status, refetch } = useGetProductDetailsQuery(productId);
 
-  useEffect(() => {
-    if (isError) {
-      toast.error(error?.data?.message);
-    }
-  }, [isError, error, review]);
+   useEffect(() => {
+      if (isError) {
+         toast.error(error?.data?.message);
+      }
+   }, [isError, error, review]);
 
-  return {
-    product: data?.product,
-    error,
-    isLoading,
-    isError,
-    refetch,
-  };
+   return {
+      product: data?.product,
+      error,
+      isLoading,
+      isError,
+      refetch
+   };
 };
 
 export { useProductDetail };

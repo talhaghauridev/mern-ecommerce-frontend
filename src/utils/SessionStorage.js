@@ -1,20 +1,20 @@
 class SessionStorageInstance {
-  constructor() {}
+   constructor() {}
 
-  set(key, value) {
-    const val = JSON.stringify(value);
-    if (val !== undefined && val !== null) {
-      sessionStorage.setItem(key, val);
-    }
-  }
+   set(key, value) {
+      const val = JSON.stringify(value);
+      if (val !== undefined && val !== null) {
+         sessionStorage.setItem(key, val);
+      }
+   }
 
-  get(key) {
-    return key ? JSON.parse(sessionStorage.getItem(key)) : null;
-  }
+   get(key) {
+      return key ? JSON.parse(sessionStorage.getItem(key)) : null;
+   }
 
-  remove(key) {
-    sessionStorage.removeItem(key);
-  }
+   remove(key) {
+      sessionStorage.removeItem(key);
+   }
 }
 
 const SessionStorage = new SessionStorageInstance();

@@ -7,63 +7,62 @@ import { useMessage } from "@/hooks/hook";
 import { loginSchema } from "../validation";
 
 const useLogin = () => {
-  //Initial Values
-  const initialValues = {
-    email: "",
-    password: "",
-  };
+   //Initial Values
+   const initialValues = {
+      email: "",
+      password: ""
+   };
 
-  const [login, { isError, isLoading, isSuccess, error, data }] =
-    useLoginMutation();
-  const dispatch = useDispatch();
+   const [login, { isError, isLoading, isSuccess, error, data }] = useLoginMutation();
+   const dispatch = useDispatch();
 
-  //Handle Login
+   //Handle Login
 
-  const handleLogin = useCallback(
-    async (userData) => {
-      try {
-        await login(userData);
-      } catch (err) {
-        console.log(err);
+   const handleLogin = useCallback(
+      async (userData) => {
+         try {
+            await login(userData);
+         } catch (err) {
+            console.log(err);
+         }
+      },
+      [login]
+   );
+
+   //Handle onSubmit
+   const onSubmit = useCallback(
+      async (values) => {
+         await handleLogin(values);
+      },
+      [handleLogin]
+   );
+   const formik = useFormik({
+      initialValues: initialValues,
+      validationSchema: loginSchema,
+      onSubmit: onSubmit
+   });
+
+   //Handle Set Credentials
+   const handleSetCredentials = useCallback(() => {
+      if (isSuccess) {
+         dispatch(setCredentials(data));
       }
-    },
-    [login]
-  );
+   }, [dispatch, isSuccess, data]);
 
-  //Handle onSubmit
-  const onSubmit = useCallback(
-    async (values) => {
-      await handleLogin(values);
-    },
-    [handleLogin]
-  );
-  const formik = useFormik({
-    initialValues: initialValues,
-    validationSchema: loginSchema,
-    onSubmit: onSubmit,
-  });
+   useEffect(() => {
+      handleSetCredentials();
+   }, [handleSetCredentials]);
 
-  //Handle Set Credentials
-  const handleSetCredentials = useCallback(() => {
-    if (isSuccess) {
-      dispatch(setCredentials(data));
-    }
-  }, [dispatch, isSuccess, data]);
+   useMessage(isSuccess && "User login successfully", error, "/user/profile");
 
-  useEffect(() => {
-    handleSetCredentials();
-  }, [handleSetCredentials]);
-
-  useMessage(isSuccess && "User login successfully", error, "/user/profile");
-
-  return {
-    formik,
-    isLoading,
-    isSuccess,
-    isError,
-    error,
-    data,
-  };
+   return {
+      formik,
+      isLoading,
+      isSuccess,
+      isError,
+      error,
+      data
+   };
 };
 
 export default useLogin;

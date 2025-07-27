@@ -2,15 +2,14 @@ import { useMessage } from "@/hooks/hook";
 import { useDeleteProductMutation } from "@/redux/api/productApi";
 
 const useDeleteProduct = () => {
-  const [deleteProduct, { isLoading, isError, error, data }] =
-    useDeleteProductMutation();
+   const [deleteProduct, { isLoading, isError, error, data }] = useDeleteProductMutation();
 
-  useMessage(data?.message, error);
+   useMessage(data?.message, error);
 
-  return {
-    isLoading,
-    deleteProduct,
-  };
+   return {
+      isLoading,
+      deleteProduct
+   };
 };
 
 export default useDeleteProduct;

@@ -8,59 +8,58 @@ import useConfirmPrice from "./useConfirmPrice";
 import LocalStorage from "@/utils/LocalStorage";
 
 const useSendPayment = () => {
-  const { cartItems, shippingInfo } = useSelector((state) => state.cart);
-  const { online, error } = useSelector((state) => state.onlineStatus);
-  const { address, shippingCharges, subTotal, tax, totalPrice, totalProducts } =
-    useConfirmPrice();
-  const userInfo = LocalStorage.get(USER_INFO_KEY);
-  const [sendPayment, { data, status, isLoading }] = useSendPaymentMutation();
-  console.log(data, status, isLoading);
+   const { cartItems, shippingInfo } = useSelector((state) => state.cart);
+   const { online, error } = useSelector((state) => state.onlineStatus);
+   const { address, shippingCharges, subTotal, tax, totalPrice, totalProducts } = useConfirmPrice();
+   const userInfo = LocalStorage.get(USER_INFO_KEY);
+   const [sendPayment, { data, status, isLoading }] = useSendPaymentMutation();
+   console.log(data, status, isLoading);
 
-  if (data) {
-    LocalStorage.set("Payment", { data, status });
-  }
-  const orderInfo = {
-    subTotal,
-    shippingCharges,
-    tax,
-    totalPrice,
-  };
+   if (data) {
+      LocalStorage.set("Payment", { data, status });
+   }
+   const orderInfo = {
+      subTotal,
+      shippingCharges,
+      tax,
+      totalPrice
+   };
 
-  //Handle Send Payment
-  const handleSendPayment = useCallback(async () => {
-    if (online) {
-      await sendPayment({
-        items: cartItems,
-        userId: userInfo?._id,
-        shippingInfo: shippingInfo,
-      });
-      SessionStorage.set(ORDER_INFO_KEY, orderInfo);
-      console.log(cartItems);
-    } else {
-      toast.error(error);
-    }
-  }, [sendPayment, online]);
+   //Handle Send Payment
+   const handleSendPayment = useCallback(async () => {
+      if (online) {
+         await sendPayment({
+            items: cartItems,
+            userId: userInfo?._id,
+            shippingInfo: shippingInfo
+         });
+         SessionStorage.set(ORDER_INFO_KEY, orderInfo);
+         console.log(cartItems);
+      } else {
+         toast.error(error);
+      }
+   }, [sendPayment, online]);
 
-  const handleRedirect = useCallback(() => {
-    if (data && data?.url) {
-      window.location.href = data?.url;
-    }
-  }, [data]);
+   const handleRedirect = useCallback(() => {
+      if (data && data?.url) {
+         window.location.href = data?.url;
+      }
+   }, [data]);
 
-  useEffect(() => {
-    handleRedirect();
-  }, [handleRedirect]);
+   useEffect(() => {
+      handleRedirect();
+   }, [handleRedirect]);
 
-  return {
-    handleSendPayment,
-    isLoading,
-    address,
-    shippingCharges,
-    subTotal,
-    tax,
-    totalPrice,
-    totalProducts,
-  };
+   return {
+      handleSendPayment,
+      isLoading,
+      address,
+      shippingCharges,
+      subTotal,
+      tax,
+      totalPrice,
+      totalProducts
+   };
 };
 
 export default useSendPayment;

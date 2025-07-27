@@ -7,14 +7,4 @@ import ErrorImage from "../images/error.png";
 import ProductNotFound from "../images/Product_Not_Found.png";
 import Filter from "../images/Filter.png";
 import Success from "../images/Success.png";
-export {
-  Logo,
-  avatar,
-  hero,
-  emptyCart,
-  DefaultSkeleton,
-  ErrorImage,
-  ProductNotFound,
-  Filter,
-  Success,
-};
+export { Logo, avatar, hero, emptyCart, DefaultSkeleton, ErrorImage, ProductNotFound, Filter, Success };

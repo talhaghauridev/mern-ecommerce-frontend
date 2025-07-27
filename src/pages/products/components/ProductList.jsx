@@ -6,25 +6,23 @@ import ProductPagination from "./ProductPagination";
 import ProductsNotFound from "@/components/ProductsNotFound";
 
 const ProductList = () => {
-  const { products, isLoading, resultPerPage, isProducts, productCount } =
-    useProductContext();
-  return (
-    <section id="productList">
-      <div
-        className={
-          isProducts || isLoading ? "product_grid" : "product_not_found"
-        }
-      >
-        {isLoading && <ProductLoading length={8} />}
-        {products?.map((product) => (
-          <ProductCard {...product} key={product?._id} />
-        ))}
-        {!isProducts && <ProductsNotFound />}
-      </div>
+   const { products, isLoading, resultPerPage, isProducts, productCount } = useProductContext();
+   return (
+      <section id="productList">
+         <div className={isProducts || isLoading ? "product_grid" : "product_not_found"}>
+            {isLoading && <ProductLoading length={8} />}
+            {products?.map((product) => (
+               <ProductCard
+                  {...product}
+                  key={product?._id}
+               />
+            ))}
+            {!isProducts && <ProductsNotFound />}
+         </div>
 
-      {isProducts && productCount >= resultPerPage && <ProductPagination />}
-    </section>
-  );
+         {isProducts && productCount >= resultPerPage && <ProductPagination />}
+      </section>
+   );
 };
 
 export default memo(ProductList);

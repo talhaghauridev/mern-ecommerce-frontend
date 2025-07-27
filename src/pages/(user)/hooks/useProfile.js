@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
 
 const useProfile = () => {
-  const { userInfo } = useSelector((state) => state.user);
+   const { userInfo } = useSelector((state) => state.user);
 
-  return {
-    userInfo,
-  };
+   return {
+      userInfo
+   };
 };
 
 export default useProfile;

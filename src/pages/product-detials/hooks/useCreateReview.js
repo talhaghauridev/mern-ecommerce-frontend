@@ -7,70 +7,68 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const checkReview = (product) => {
-  const user = LocalStorage.get(USER_INFO_KEY);
-  const userReview = product?.reviews?.find((r) => r?.user === user?._id);
-  return userReview;
+   const user = LocalStorage.get(USER_INFO_KEY);
+   const userReview = product?.reviews?.find((r) => r?.user === user?._id);
+   return userReview;
 };
 
 const useCreateReview = () => {
-  const { productId } = useParams();
+   const { productId } = useParams();
 
-  const [review, setReview] = useState({
-    rating: null,
-    comment: "",
-  });
+   const [review, setReview] = useState({
+      rating: null,
+      comment: ""
+   });
 
-  const { refetch: refetchProductDetails, data: productDetailData } =
-    useGetProductDetailsQuery(productId);
+   const { refetch: refetchProductDetails, data: productDetailData } = useGetProductDetailsQuery(productId);
 
-  const [createReview, { isLoading, isError, error, isSuccess, data }] =
-    useCreateReviewMutation();
+   const [createReview, { isLoading, isError, error, isSuccess, data }] = useCreateReviewMutation();
 
-  // Memoized functions
-  const handelChange = useCallback(
-    (e) => {
-      const { name, value } = e.target;
-      const newValue = name === "comment" ? String(value) : Number(value);
-      setReview((prev) => ({ ...prev, [name]: newValue }));
-    },
-    [setReview]
-  );
+   // Memoized functions
+   const handelChange = useCallback(
+      (e) => {
+         const { name, value } = e.target;
+         const newValue = name === "comment" ? String(value) : Number(value);
+         setReview((prev) => ({ ...prev, [name]: newValue }));
+      },
+      [setReview]
+   );
 
-  const handleSubmitReview = useCallback(async () => {
-    try {
-      if (!review.rating || !review.comment) return;
-      await createReview({ productId, ...review });
-      await refetchProductDetails();
-    } catch (err) {
-      console.log(err);
-    }
-  }, [createReview, review, productId, refetchProductDetails]);
+   const handleSubmitReview = useCallback(async () => {
+      try {
+         if (!review.rating || !review.comment) return;
+         await createReview({ productId, ...review });
+         await refetchProductDetails();
+      } catch (err) {
+         console.log(err);
+      }
+   }, [createReview, review, productId, refetchProductDetails]);
 
-  useEffect(() => {
-    const userReview = checkReview(productDetailData?.product);
-    if (userReview) {
-      const { rating, comment } = userReview;
-      setReview({ rating, comment });
-    } else {
-      setReview({ rating: null, comment: "" });
-    }
-  }, [productDetailData?.product]);
+   useEffect(() => {
+      const userReview = checkReview(productDetailData?.product);
+      if (userReview) {
+         const { rating, comment } = userReview;
+         setReview({ rating, comment });
+      } else {
+         setReview({ rating: null, comment: "" });
+      }
+   }, [productDetailData?.product]);
 
-  // log
-  useEffect(() => {
-    if (!isLoading && isError && error) {
-      toast.error(error?.data?.message);
-    }
-  }, [isError, error, isLoading]);
+   // log
+   useEffect(() => {
+      if (!isLoading && isError && error) {
+         toast.error(error?.data?.message);
+      }
+   }, [isError, error, isLoading]);
 
-  return {
-    handelChange,
-    review,
-    handleSubmitReview,
-    isLoading,
-    isSuccess,
-    data,
-  };
+   return {
+      handelChange,
+      review,
+      handleSubmitReview,
+      isLoading,
+      isSuccess,
+      data
+   };
 };
 
 export default useCreateReview;

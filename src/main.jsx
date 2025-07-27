@@ -10,9 +10,9 @@ import NProgress from "nprogress";
 NProgress.configure({ showSpinner: false, trickleSpeed: 200, minimum: 0.1 });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <AppProvider>
-      <App />
-    </AppProvider>
-  </React.StrictMode>
+   <React.StrictMode>
+      <AppProvider>
+         <App />
+      </AppProvider>
+   </React.StrictMode>
 );

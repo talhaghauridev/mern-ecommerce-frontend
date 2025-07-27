@@ -1,19 +1,19 @@
 class LocalStorageInstance {
-  constructor() {}
+   constructor() {}
 
-  set(key, value) {
-    const val = JSON.stringify(value);
+   set(key, value) {
+      const val = JSON.stringify(value);
 
-    val && localStorage.setItem(key, val);
-  }
+      val && localStorage.setItem(key, val);
+   }
 
-  get(key) {
-    return key ? JSON.parse(localStorage.getItem(key)) : null;
-  }
+   get(key) {
+      return key ? JSON.parse(localStorage.getItem(key)) : null;
+   }
 
-  remove(key) {
-    localStorage.removeItem(key);
-  }
+   remove(key) {
+      localStorage.removeItem(key);
+   }
 }
 
 const LocalStorage = new LocalStorageInstance();

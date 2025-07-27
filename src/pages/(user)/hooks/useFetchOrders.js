@@ -3,18 +3,18 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 
 const useFetchOrders = () => {
-  const { isError, isLoading, data, error } = useGetOrdersQuery();
+   const { isError, isLoading, data, error } = useGetOrdersQuery();
 
-  useEffect(() => {
-    if (isError && error) {
-      toast.error(error?.data?.message);
-    }
-  }, [isError]);
+   useEffect(() => {
+      if (isError && error) {
+         toast.error(error?.data?.message);
+      }
+   }, [isError]);
 
-  return {
-    isLoading,
-    orders: data?.orders ? data.orders : [],
-  };
+   return {
+      isLoading,
+      orders: data?.orders ? data.orders : []
+   };
 };
 
 export default useFetchOrders;

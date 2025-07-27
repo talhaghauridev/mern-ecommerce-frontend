@@ -6,46 +6,45 @@ import { resetSchema } from "../validation";
 import { useCallback } from "react";
 
 const useResetPassword = () => {
-  const { token } = useParams();
-  const initialValues = {
-    password: "",
-    confirmPassword: "",
-  };
+   const { token } = useParams();
+   const initialValues = {
+      password: "",
+      confirmPassword: ""
+   };
 
-  const [resetPassword, { isLoading, isError, isSuccess, error, data }] =
-    useResetPasswordMutation();
-  // Handle Reset
-  const handleReset = useCallback(
-    async (values) => {
-      try {
-        await resetPassword({ token, ...values });
-      } catch (err) {
-        console.error(err);
-      }
-    },
-    [resetPassword, token]
-  );
+   const [resetPassword, { isLoading, isError, isSuccess, error, data }] = useResetPasswordMutation();
+   // Handle Reset
+   const handleReset = useCallback(
+      async (values) => {
+         try {
+            await resetPassword({ token, ...values });
+         } catch (err) {
+            console.error(err);
+         }
+      },
+      [resetPassword, token]
+   );
 
-  //Handle onSubmit
-  const onSubmit = useCallback(
-    async (values) => {
-      await handleReset(values);
-    },
-    [handleReset]
-  );
-  const formik = useFormik({
-    initialValues: initialValues,
-    validationSchema: resetSchema,
-    onSubmit: onSubmit,
-  });
+   //Handle onSubmit
+   const onSubmit = useCallback(
+      async (values) => {
+         await handleReset(values);
+      },
+      [handleReset]
+   );
+   const formik = useFormik({
+      initialValues: initialValues,
+      validationSchema: resetSchema,
+      onSubmit: onSubmit
+   });
 
-  useMessage(data?.message, error, "/login");
+   useMessage(data?.message, error, "/login");
 
-  return {
-    formik,
-    isLoading,
-    isSuccess,
-  };
+   return {
+      formik,
+      isLoading,
+      isSuccess
+   };
 };
 
 export default useResetPassword;
