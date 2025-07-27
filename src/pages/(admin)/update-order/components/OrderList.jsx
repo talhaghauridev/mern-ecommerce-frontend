@@ -1,4 +1,4 @@
-import ConfirmOrderCard from "@pages/confirm-order/components/ConfirmOrderCard";
+import ConfirmOrderCard from "@/pages/confirm-order/components/ConfirmOrderCard";
 import React, { memo } from "react";
 
 const OrderList = ({ orderItems }) => {

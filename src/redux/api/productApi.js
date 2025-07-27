@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { FILTER_PRICE } from "@constants/index";
-import { baseQuery } from "@utils/ApiUrl";
+import { FILTER_PRICE } from "@/constants/index";
+import { baseQuery } from "@/utils/ApiUrl";
 
 export const productApi = createApi({
   reducerPath: "productApi",
@@ -42,8 +42,7 @@ export const productApi = createApi({
     }),
 
     createProduct: builder.mutation({
-      query: (newProduct) => (
-        {
+      query: (newProduct) => ({
         url: "product/new",
         method: "POST",
         body: newProduct,
@@ -55,8 +54,7 @@ export const productApi = createApi({
     }),
 
     updateProduct: builder.mutation({
-      query: ({ id, updatedProduct }) => (
-        {
+      query: ({ id, updatedProduct }) => ({
         url: `product/${id}`,
         method: "PUT",
         body: updatedProduct,

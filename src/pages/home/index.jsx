@@ -1,6 +1,6 @@
 import React, { lazy } from "react";
-import { MetaData } from "@components/ui";
-import Hero from "@layout/Hero/Hero";
+import { MetaData } from "@/components/ui";
+import Hero from "@/layout/Hero/Hero";
 const ProductList = lazy(() => import("./components/PrductList"));
 const Home = () => {
   return (

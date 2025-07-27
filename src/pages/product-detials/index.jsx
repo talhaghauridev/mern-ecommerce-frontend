@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import ProductDetialSkelton from "./components/ProductDetialSkelton";
-import { MetaData } from "@components/ui";
+import { MetaData } from "@/components/ui";
 import { capitalize } from "@mui/material";
 import { useProductDetail } from "./hooks/useProductDetial";
 const Detials = lazy(() => import("./components/Detials"));

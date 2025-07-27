@@ -1,4 +1,4 @@
-import { useGetAdminProductsQuery } from "@redux/api/productApi";
+import { useGetAdminProductsQuery } from "@/redux/api/productApi";
 import React, { useEffect } from "react";
 import { toast } from "react-toastify";
 

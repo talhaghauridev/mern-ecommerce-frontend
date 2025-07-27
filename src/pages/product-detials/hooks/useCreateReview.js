@@ -1,7 +1,7 @@
-import { USER_INFO_KEY } from "@constants/index";
-import { useGetProductDetailsQuery } from "@redux/api/productApi";
-import { useCreateReviewMutation } from "@redux/api/reviewApi";
-import LocalStorage from "@utils/LocalStorage";
+import { USER_INFO_KEY } from "@/constants/index";
+import { useGetProductDetailsQuery } from "@/redux/api/productApi";
+import { useCreateReviewMutation } from "@/redux/api/reviewApi";
+import LocalStorage from "@/utils/LocalStorage";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";

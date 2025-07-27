@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, MetaData } from "@components/ui";
+import { Image, MetaData } from "@/components/ui";
 import useProfile from "../hooks/useProfile";
 
 const Profile = () => {

@@ -1,6 +1,6 @@
 import React, { memo } from "react";
-import { STEPPER_STEPS } from "@constants/index";
-import cn from "@utils/cn";
+import { STEPPER_STEPS } from "@/constants/index";
+import cn from "@/utils/cn";
 
 const Stepper = ({ activeStep }) => {
   return (

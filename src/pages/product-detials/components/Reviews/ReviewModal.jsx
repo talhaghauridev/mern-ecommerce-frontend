@@ -1,8 +1,8 @@
 import React, { memo, useCallback, useEffect, useMemo } from "react";
-import { BackDrop, Button } from "@components/ui";
+import { BackDrop, Button } from "@/components/ui";
 import { Rating } from "@mui/material";
 import useCreateReview from "./../../hooks/useCreateReview";
-import cn from "@utils/cn";
+import cn from "@/utils/cn";
 
 const ReviewModal = ({ openModal = false, setOpenModal }) => {
   const {

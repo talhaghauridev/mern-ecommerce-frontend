@@ -7,14 +7,14 @@ import {
   InputUpload,
   MetaData,
   Select,
-} from "@components/ui";
+} from "@/components/ui";
 import { MdOutlinePriceChange } from "react-icons/md";
 import { TbFileDescription } from "react-icons/tb";
 import { FaBarsProgress } from "react-icons/fa6";
 import { BiCategoryAlt } from "react-icons/bi";
 import { SiProducthunt } from "react-icons/si";
-import inputError from "@utils/inputError";
-import { FILTERS } from "@constants/index";
+import inputError from "@/utils/inputError";
+import { FILTERS } from "@/constants/index";
 import useUpdateProduct from "./hooks/useUpdateProduct";
 import AdminLoading from "../components/AdminLoading";
 import { FaCarCrash } from "react-icons/fa";

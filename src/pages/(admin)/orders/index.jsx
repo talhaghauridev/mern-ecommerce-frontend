@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useMemo } from "react";
-import { MetaData } from "@components/ui";
+import { MetaData } from "@/components/ui";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
@@ -7,7 +7,7 @@ import { MdDelete } from "react-icons/md";
 import TableLoading from "../../../components/TableLoading";
 import useFetchOrders from "./hooks/useFetchOrders";
 import useDeleteOrder from "./hooks/useDeleteOrder";
-import formatDate from "@utils/formatDate";
+import formatDate from "@/utils/formatDate";
 
 const ActionButton = memo(({ id }) => {
   const editLink = `/admin/order/${id}`;

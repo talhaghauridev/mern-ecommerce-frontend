@@ -1,8 +1,8 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { logout } from "@redux/reducers/userReducer";
+import { logout } from "@/redux/reducers/userReducer";
 import { toast } from "react-toastify";
-import { baseUrl } from "@utils/ApiUrl";
+import { baseUrl } from "@/utils/ApiUrl";
 
 const useLogout = () => {
   const dispatch = useDispatch();

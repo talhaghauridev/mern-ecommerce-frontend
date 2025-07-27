@@ -1,8 +1,8 @@
 import React, { Suspense, lazy, memo, useMemo, useState } from "react";
 import ReviewCard from "./ReviewCard";
-import { BackDrop, Button } from "@components/ui";
+import { BackDrop, Button } from "@/components/ui";
 import { FaRegCommentDots } from "react-icons/fa6";
-import { useMediaQuery } from "@hooks/hook";
+import { useMediaQuery } from "@/hooks/hook";
 import { Tooltip } from "@mui/material";
 import { useSelector } from "react-redux";
 const ReviewModal = lazy(() => import("./ReviewModal"));

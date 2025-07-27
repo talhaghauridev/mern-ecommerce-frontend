@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import LocalStorage from "@utils/LocalStorage";
-import { addToCart } from "@redux/reducers/cartReducer";
-import { CART_ITEMS } from "@constants/index";
+import LocalStorage from "@/utils/LocalStorage";
+import { addToCart } from "@/redux/reducers/cartReducer";
+import { CART_ITEMS } from "@/constants/index";
 
 const localStorageItem = (productId) => {
   const cartItems = LocalStorage.get(CART_ITEMS) || [];
@@ -21,7 +21,8 @@ const useAddToCart = () => {
 
   const handleAddToCart = useCallback(
     (product, quantity) => {
-      const { name, description, price, images, category, _id, stock } = product;
+      const { name, description, price, images, category, _id, stock } =
+        product;
       dispatch(
         addToCart({
           name,

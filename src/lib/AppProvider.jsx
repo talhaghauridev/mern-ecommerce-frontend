@@ -1,4 +1,4 @@
-import { store } from "@redux/store";
+import { store } from "@/redux/store";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
 const AppProvider = ({ children }) => {

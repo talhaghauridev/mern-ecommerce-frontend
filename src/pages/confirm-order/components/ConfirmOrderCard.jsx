@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { Link } from "react-router-dom";
 import { capitalize } from "@mui/material";
-import { Image } from "@components/ui";
+import { Image } from "@/components/ui";
 
 const CartCard = ({ name, price, _id, images, quantity, image }) => {
   return (

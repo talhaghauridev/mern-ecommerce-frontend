@@ -1,11 +1,11 @@
 import React from "react";
 import useOrderDetials from "../hooks/useOrderDetials";
 import ProfileLoading from "../components/ProfileLoading";
-import { MetaData } from "@components/ui";
-import ConfirmOrderCard from "@pages/confirm-order/components/ConfirmOrderCard";
+import { MetaData } from "@/components/ui";
+import ConfirmOrderCard from "@/pages/confirm-order/components/ConfirmOrderCard";
 import OrderDetialList from "../components/OrderDetialList";
-import cn from "@utils/cn";
-import formatDate from "@utils/formatDate";
+import cn from "@/utils/cn";
+import formatDate from "@/utils/formatDate";
 
 const OrderDetials = () => {
   const { isLoading, order, userInfo, address } = useOrderDetials();

@@ -1,7 +1,7 @@
-import { Success } from "@assets/images";
-import { Image, MetaData, buttonVariants } from "@components/ui";
-import { CART_ITEMS } from "@constants/index";
-import LocalStorage from "@utils/LocalStorage";
+import { Success } from "@/assets/images";
+import { Image, MetaData, buttonVariants } from "@/components/ui";
+import { CART_ITEMS } from "@/constants/index";
+import LocalStorage from "@/utils/LocalStorage";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 

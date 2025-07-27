@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { BackDrop, Button, Input, MetaData } from "@components/ui";
+import { BackDrop, Button, Input, MetaData } from "@/components/ui";
 import { MdAlternateEmail } from "react-icons/md";
 import useForgotPassword from "../hooks/useForgotPassword";
-import inputError from "@utils/inputError";
+import inputError from "@/utils/inputError";
 
 const ForgotPassword = () => {
   const { formik, isLoading } = useForgotPassword();

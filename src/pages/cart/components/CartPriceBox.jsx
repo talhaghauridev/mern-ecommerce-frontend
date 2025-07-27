@@ -1,11 +1,11 @@
 import React, { memo } from "react";
-import { buttonVariants } from "@components/ui";
+import { buttonVariants } from "@/components/ui";
 import { Link } from "react-router-dom";
-import cn from "@utils/cn";
+import cn from "@/utils/cn";
 import useCartPrice from "../hooks/useCartPrice";
 
 const CartPriceBox = () => {
-const {totalProducts,totalPrice,checkoutHandler} = useCartPrice()
+  const { totalProducts, totalPrice, checkoutHandler } = useCartPrice();
 
   return (
     <div

@@ -1,14 +1,14 @@
 import React, { useState, useMemo, useCallback, memo } from "react";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import Slider from "@mui/material/Slider";
-import { BackDrop, Button } from "@components/ui";
+import { BackDrop, Button } from "@/components/ui";
 import { IoFilter } from "react-icons/io5";
 import { AiFillStar } from "react-icons/ai";
-import { FILTERS, FILTER_PRICE } from "@constants/index";
-import { useMediaQuery, useToggle } from "@hooks/hook";
+import { FILTERS, FILTER_PRICE } from "@/constants/index";
+import { useMediaQuery, useToggle } from "@/hooks/hook";
 import { useProductContext } from "../context/ProductContext";
-import cn from "@utils/cn";
-import { Filter } from "@assets/images";
+import cn from "@/utils/cn";
+import { Filter } from "@/assets/images";
 
 const FilterSidebar = () => {
   const [showValue, setShowValue] = useState({ category: true, ratings: true });

@@ -1,9 +1,9 @@
 import React, { memo, useMemo } from "react";
-import { BackDrop, Button } from "@components/ui";
+import { BackDrop, Button } from "@/components/ui";
 import { FaBarsStaggered } from "react-icons/fa6";
-import { useMediaQuery, useToggle } from "@hooks/hook";
-import { ADMIN_LINKS } from "@constants/index";
-import cn from "@utils/cn";
+import { useMediaQuery, useToggle } from "@/hooks/hook";
+import { ADMIN_LINKS } from "@/constants/index";
+import cn from "@/utils/cn";
 import AdminSidebarItem from "./AdminSIdebarItem";
 
 const MobileSidebar = ({ isMobile, toggle, handleToggle, setToggle }) => (

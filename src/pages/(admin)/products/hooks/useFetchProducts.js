@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useGetAdminProductsQuery } from "@redux/api/productApi";
+import { useGetAdminProductsQuery } from "@/redux/api/productApi";
 import { toast } from "react-toastify";
 
 const useFetchProducts = () => {
@@ -13,7 +13,7 @@ const useFetchProducts = () => {
   }, [error, isError, isLoading]);
 
   return {
-    products:data?.products ? data?.products:[],
+    products: data?.products ? data?.products : [],
     isSuccess,
     isLoading,
   };

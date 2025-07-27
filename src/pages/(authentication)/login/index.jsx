@@ -1,15 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  Input,
-  Button,
-  MetaData,
-  BackDrop,
-} from "@components/ui";
+import { Input, Button, MetaData, BackDrop } from "@/components/ui";
 import { MdAlternateEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import useLogin from "../hooks/useLogin";
-import inputError from "@utils/inputError";
+import inputError from "@/utils/inputError";
 const Login = () => {
   const { formik, isLoading } = useLogin();
   const { handleSubmit, getFieldProps } = formik;
@@ -62,7 +57,7 @@ const Login = () => {
             <Button className="max-w-full font-Poppins gap-1" variants="danger">
               Forgot your password?
               <Link to={"/password/forgot"} className="underline">
-              Forgot it
+                Forgot it
               </Link>
             </Button>
           </form>

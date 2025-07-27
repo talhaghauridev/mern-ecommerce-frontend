@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useMemo } from "react";
-import { MetaData } from "@components/ui";
+import { MetaData } from "@/components/ui";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import useFetchProducts from "./hooks/useFetchProducts";

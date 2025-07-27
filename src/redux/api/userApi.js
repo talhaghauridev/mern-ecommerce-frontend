@@ -1,5 +1,5 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { baseQuery } from "@utils/ApiUrl";
+import { baseQuery } from "@/utils/ApiUrl";
 
 export const userApi = createApi({
   reducerPath: "userApi",
@@ -86,7 +86,7 @@ export const userApi = createApi({
         url: `admin/user/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["adminUsers", "user"], 
+      invalidatesTags: ["adminUsers", "user"],
     }),
 
     updateUser: builder.mutation({
@@ -95,7 +95,7 @@ export const userApi = createApi({
         method: "PATCH",
         body: userData,
       }),
-      invalidatesTags: ["adminUsers"], 
+      invalidatesTags: ["adminUsers"],
     }),
   }),
 });

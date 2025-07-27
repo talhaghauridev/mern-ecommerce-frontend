@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Input, Button, MetaData, Select } from "@components/ui";
+import { Input, Button, MetaData, Select } from "@/components/ui";
 import { MdPinDrop } from "react-icons/md";
 import { FaPhone } from "react-icons/fa6";
 import { BiWorld } from "react-icons/bi";
@@ -9,8 +9,8 @@ import { TbBuildingEstate } from "react-icons/tb";
 import { MdOutlineLocationCity } from "react-icons/md";
 import { Country, State } from "country-state-city";
 import { useShipping } from "./hooks/useShipping";
-import Stepper from "@components/Stepper";
-import inputError from "@utils/inputError";
+import Stepper from "@/components/Stepper";
+import inputError from "@/utils/inputError";
 
 const Shipping = () => {
   const { formik } = useShipping();
@@ -102,10 +102,7 @@ const Shipping = () => {
               )}
             </Select>
 
-            <Button
-              type="submit"
-              className="max-w-full mt-[18px]"
-            >
+            <Button type="submit" className="max-w-full mt-[18px]">
               Continue
             </Button>
           </form>

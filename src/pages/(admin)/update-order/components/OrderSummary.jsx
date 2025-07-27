@@ -1,6 +1,6 @@
 import React, { memo, useMemo, useState } from "react";
-import { Button, Select } from "@components/ui";
-import { ORDER_PROCESS } from "@constants/index";
+import { Button, Select } from "@/components/ui";
+import { ORDER_PROCESS } from "@/constants/index";
 
 const OrderSummary = ({ handelUpdateOrder, order }) => {
   const shippiedOrder = useMemo(
@@ -9,7 +9,7 @@ const OrderSummary = ({ handelUpdateOrder, order }) => {
   );
   const [status, setStatus] = useState(shippiedOrder);
 
-  console.log(status===order.orderStatus);
+  console.log(status === order.orderStatus);
   return (
     <div className="bg-white shadow-primary rounded-[8px] relative md:max-w-[350px] overflow-hidden h-fit max-w-full mt-[28px] ">
       <div className="py-[40px] px-[30px] flex flex-col gap-y-[25px] md:gap-y-[40px]">

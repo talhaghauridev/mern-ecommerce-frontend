@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { CircularProgress } from "@mui/material";
-import { useMediaQuery } from "@hooks/hook";
-import cn from "@utils/cn";
+import { useMediaQuery } from "@/hooks/hook";
+import cn from "@/utils/cn";
 
 const SidebarLoading = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");

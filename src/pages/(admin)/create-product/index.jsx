@@ -7,15 +7,15 @@ import {
   InputUpload,
   MetaData,
   Select,
-} from "@components/ui";
+} from "@/components/ui";
 import { MdOutlinePriceChange } from "react-icons/md";
 import { TbFileDescription } from "react-icons/tb";
 import { FaBarsProgress } from "react-icons/fa6";
 import { BiCategoryAlt } from "react-icons/bi";
 import { SiProducthunt } from "react-icons/si";
-import inputError from "@utils/inputError";
+import inputError from "@/utils/inputError";
 import useCreateProduct from "./hooks/useCreateProduct";
-import { FILTERS } from "@constants/index";
+import { FILTERS } from "@/constants/index";
 import UploadImage from "../components/UploadImage";
 const CreateProduct = () => {
   const { formik, isLoading, handleFileChange, images, setImages } =

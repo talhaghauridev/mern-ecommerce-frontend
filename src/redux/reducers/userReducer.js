@@ -1,6 +1,6 @@
-import { USER_INFO_KEY,TOKEN } from "@constants/index";
+import { USER_INFO_KEY, TOKEN } from "@/constants/index";
 import { createSlice } from "@reduxjs/toolkit";
-import LocalStorage from "@utils/LocalStorage";
+import LocalStorage from "@/utils/LocalStorage";
 
 const initialState = {
   userInfo: LocalStorage.get(USER_INFO_KEY) || null,
@@ -19,7 +19,6 @@ export const userReducer = createSlice({
       state.userInfo = null;
       LocalStorage.remove(USER_INFO_KEY);
       LocalStorage.remove(TOKEN);
-
     },
   },
 });

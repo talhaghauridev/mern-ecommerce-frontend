@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from "react";
-import { useGetProductQuery } from "@redux/api/productApi";
+import { useGetProductQuery } from "@/redux/api/productApi";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 const useFetchProducts = () => {
@@ -17,7 +17,6 @@ const useFetchProducts = () => {
   }, [isLoading, data?.products]);
 
   useEffect(() => {
-  
     if (isError) {
       toast.error(error?.data?.message);
     }

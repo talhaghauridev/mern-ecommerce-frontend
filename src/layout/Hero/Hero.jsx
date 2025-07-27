@@ -1,6 +1,6 @@
 import React from "react";
-import { Button, Image } from "@components/ui";
-import { hero } from "@assets/images";
+import { Button, Image } from "@/components/ui";
+import { hero } from "@/assets/images";
 import { useNavigate } from "react-router-dom";
 
 export const Hero = () => {

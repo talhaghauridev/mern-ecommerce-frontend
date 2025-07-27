@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect } from "react";
-import { useSendPaymentMutation } from "@redux/api/paymentApi";
+import { useSendPaymentMutation } from "@/redux/api/paymentApi";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import SessionStorage from "@utils/SessionStorage";
-import { ORDER_INFO_KEY, USER_INFO_KEY } from "@constants/index";
+import SessionStorage from "@/utils/SessionStorage";
+import { ORDER_INFO_KEY, USER_INFO_KEY } from "@/constants/index";
 import useConfirmPrice from "./useConfirmPrice";
-import LocalStorage from "@utils/LocalStorage";
+import LocalStorage from "@/utils/LocalStorage";
 
 const useSendPayment = () => {
   const { cartItems, shippingInfo } = useSelector((state) => state.cart);

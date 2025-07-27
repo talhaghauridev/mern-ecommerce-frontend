@@ -1,11 +1,11 @@
-import { reviewApi } from "@redux/api/reviewApi";
+import { reviewApi } from "@/redux/api/reviewApi";
 import { productApi } from "../api/productApi";
 import { userApi } from "../api/userApi";
 import { cartReducer } from "./cartReducer";
 import { userReducer } from "./userReducer";
-import { paymentApi } from "@redux/api/paymentApi";
+import { paymentApi } from "@/redux/api/paymentApi";
 import { onlineStatusReducer } from "./onlineStatus";
-import { orderApi } from "@redux/api/orderApi";
+import { orderApi } from "@/redux/api/orderApi";
 
 const reducers = {
   [userApi.reducerPath]: userApi.reducer,

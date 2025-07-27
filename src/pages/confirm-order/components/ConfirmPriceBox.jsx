@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import useSendPayment from "../hooks/useSendPayment";
-import { Button } from "@components/ui";
+import { Button } from "@/components/ui";
 
 const ConfirmOrderBox = () => {
   const {

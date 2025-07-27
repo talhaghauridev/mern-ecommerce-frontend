@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
-import { useForgotPasswordMutation } from "@redux/api/userApi";
-import { useMessage } from "@hooks/hook";
+import { useForgotPasswordMutation } from "@/redux/api/userApi";
+import { useMessage } from "@/hooks/hook";
 import { forgotSchema } from "../validation";
 import { useCallback } from "react";
 

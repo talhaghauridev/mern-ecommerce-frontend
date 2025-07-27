@@ -1,9 +1,9 @@
 import { memo } from "react";
-import ProductCard from "@components/ProductCard";
-import ProductLoading from "@components/ProductLoading";
+import ProductCard from "@/components/ProductCard";
+import ProductLoading from "@/components/ProductLoading";
 import { useProductContext } from "../context/ProductContext";
 import ProductPagination from "./ProductPagination";
-import ProductsNotFound from "@components/ProductsNotFound";
+import ProductsNotFound from "@/components/ProductsNotFound";
 
 const ProductList = () => {
   const { products, isLoading, resultPerPage, isProducts, productCount } =

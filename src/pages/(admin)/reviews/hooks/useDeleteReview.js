@@ -1,5 +1,5 @@
-import { useMessage } from "@hooks/hook";
-import { useDeleteReviewMutation } from "@redux/api/reviewApi";
+import { useMessage } from "@/hooks/hook";
+import { useDeleteReviewMutation } from "@/redux/api/reviewApi";
 
 const useDeleteReview = () => {
   const [deleteReview, { isLoading, error, data }] = useDeleteReviewMutation();

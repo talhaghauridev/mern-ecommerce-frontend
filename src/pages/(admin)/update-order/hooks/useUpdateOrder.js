@@ -1,8 +1,8 @@
-import { useMessage } from "@hooks/hook";
+import { useMessage } from "@/hooks/hook";
 import {
   useGetOrderDetailsQuery,
   useUpdateOrderMutation,
-} from "@redux/api/orderApi";
+} from "@/redux/api/orderApi";
 import { useCallback, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";

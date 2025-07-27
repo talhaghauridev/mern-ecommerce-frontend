@@ -1,7 +1,7 @@
 import React from "react";
-import { Image } from "@components/ui";
-import { Logo } from "@assets/images";
-import { FOOTER } from "@constants";
+import { Image } from "@/components/ui";
+import { Logo } from "@/assets/images";
+import { FOOTER } from "@/constants";
 
 const FooterList = ({ name, list }) => {
   return (
@@ -68,7 +68,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t py-[22px] text-center text-sm text-gray-400 font-Poppins">
-          © {new Date().getFullYear()}  - Present cyber. All rights reserved.
+          © {new Date().getFullYear()} - Present cyber. All rights reserved.
         </div>
       </div>
     </footer>

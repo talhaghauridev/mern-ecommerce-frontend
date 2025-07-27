@@ -1,5 +1,5 @@
 import React from "react";
-import { BackDrop, MetaData } from "@components/ui";
+import { BackDrop, MetaData } from "@/components/ui";
 import useUpdateOrder from "./hooks/useUpdateOrder";
 import OrderSummary from "./components/OrderSummary";
 import AdminLoading from "../components/AdminLoading";

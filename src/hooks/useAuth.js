@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCredentials } from "@redux/reducers/userReducer";
-import { useMeQuery } from "@redux/api/userApi";
-import LocalStorage from "@utils/LocalStorage";
+import { setCredentials } from "@/redux/reducers/userReducer";
+import { useMeQuery } from "@/redux/api/userApi";
+import LocalStorage from "@/utils/LocalStorage";
 
 const useAuth = () => {
   const dispatch = useDispatch();

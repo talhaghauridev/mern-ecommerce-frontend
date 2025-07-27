@@ -1,7 +1,7 @@
 import React from "react";
-import { BackDrop, Button, Input, MetaData, Select } from "@components/ui";
-import inputError from "@utils/inputError";
-import { ROLES } from "@constants/index";
+import { BackDrop, Button, Input, MetaData, Select } from "@/components/ui";
+import inputError from "@/utils/inputError";
+import { ROLES } from "@/constants/index";
 import AdminLoading from "../components/AdminLoading";
 import { capitalize } from "@mui/material";
 import useUpdateUser from "./hooks/useUpdateUser";
@@ -29,8 +29,8 @@ const UpdateProduct = () => {
             <div className="form_heading">
               <h1>Update User</h1>
             </div>
-              {/* Name Input  */}
-              <Input
+            {/* Name Input  */}
+            <Input
               label="Name"
               type="text"
               placeholder="Enter your name"

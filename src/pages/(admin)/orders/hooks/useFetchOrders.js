@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useCallback } from "react";
 import { toast } from "react-toastify";
-import { useGetAdminOrdersQuery } from "@redux/api/orderApi";
+import { useGetAdminOrdersQuery } from "@/redux/api/orderApi";
 
 const useFetchOrders = () => {
   const { isError, error, isLoading, isSuccess, data } =

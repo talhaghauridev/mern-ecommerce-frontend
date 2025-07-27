@@ -1,11 +1,11 @@
 import React, { Suspense, lazy, memo, useEffect } from "react";
-import { hero } from "@assets/images";
-import { Button, Image } from "@components/ui";
+import { hero } from "@/assets/images";
+import { Button, Image } from "@/components/ui";
 import { Rating, capitalize } from "@mui/material";
-import QuantityInput from "@components/QuantityInput";
+import QuantityInput from "@/components/QuantityInput";
 import { localStorageItem, useAddToCart } from "../hooks/useAddToCart";
-import { useCounter } from "@hooks/hook";
-import cn from "@utils/cn";
+import { useCounter } from "@/hooks/hook";
+import cn from "@/utils/cn";
 import { useNavigate } from "react-router-dom";
 const Reviews = lazy(() => import("./Reviews/Reviews"));
 
@@ -109,10 +109,7 @@ const Details = ({ product }) => {
           <div className="flex items-center justify-start gap-[6px] text-[17px] font-PoppinsBold ">
             <div className="">Description</div>
 
-            <p
-              className="text-gray-500 font-Sans text-[15px] line-clamp-3"
-          
-            >
+            <p className="text-gray-500 font-Sans text-[15px] line-clamp-3">
               {description}
             </p>
           </div>
@@ -130,7 +127,7 @@ const Details = ({ product }) => {
               <Button
                 onClick={() => handleQuantityChange("increment")}
                 disabled={count >= stock}
-                className={cn(count>= stock && "opacity-[0.8]")}
+                className={cn(count >= stock && "opacity-[0.8]")}
               >
                 Add to cart
               </Button>

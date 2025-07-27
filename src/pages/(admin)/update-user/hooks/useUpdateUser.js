@@ -1,12 +1,12 @@
 import { useCallback, useId, useMemo } from "react";
 import { useFormik } from "formik";
-import { useMessage } from "@hooks/hook";
-import { updateUserSchema } from "@pages/(admin)/validation";
+import { useMessage } from "@/hooks/hook";
+import { updateUserSchema } from "@/pages/(admin)/validation";
 import { useParams } from "react-router-dom";
 import {
   useGetSingleUserQuery,
   useUpdateUserMutation,
-} from "@redux/api/userApi";
+} from "@/redux/api/userApi";
 
 const getDetails = (data) => {
   const user = data?.user;

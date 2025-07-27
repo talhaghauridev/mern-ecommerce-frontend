@@ -1,10 +1,10 @@
 import React, { memo, useMemo } from "react";
-import { USER_DROPDOWN_LINKS } from "@constants/index";
-import { Dropdown, Image } from "@components/ui";
+import { USER_DROPDOWN_LINKS } from "@/constants/index";
+import { Dropdown, Image } from "@/components/ui";
 import { TbLogout } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import useLogout from "@hooks/useLogout";
+import useLogout from "@/hooks/useLogout";
 
 const DropdownUserItem = memo((item) => (
   <Link to={item.path} key={item.path}>

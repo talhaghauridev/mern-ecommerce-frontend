@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from "react";
-import cn from "@utils/cn";
+import cn from "@/utils/cn";
 
 const BackDrop = ({ className = "", children, isOpen = false, ...props }) => {
   const backdropClasses = useMemo(() => {

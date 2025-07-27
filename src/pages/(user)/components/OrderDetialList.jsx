@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import ConfirmOrderCard from "@pages/confirm-order/components/ConfirmOrderCard";
+import ConfirmOrderCard from "@/pages/confirm-order/components/ConfirmOrderCard";
 
 const OrderDetialList = ({ orderItems }) => {
   return (
@@ -9,7 +9,7 @@ const OrderDetialList = ({ orderItems }) => {
           <h1>Order Items</h1>
         </div>
         {orderItems &&
-         orderItems.map((item, index) => (
+          orderItems.map((item, index) => (
             <ConfirmOrderCard {...item} key={index} />
           ))}
       </div>

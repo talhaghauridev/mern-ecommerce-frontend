@@ -1,4 +1,4 @@
-import { store } from "@redux/store";
+import { store } from "@/redux/store";
 import { createSlice } from "@reduxjs/toolkit";
 
 export const onlineStatusReducer = createSlice({

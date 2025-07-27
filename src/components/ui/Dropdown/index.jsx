@@ -1,6 +1,6 @@
 import React, { createContext, memo, useContext, useMemo } from "react";
-import { useClickOutside, useToggle } from "@hooks/hook";
-import cn from "@utils/cn";
+import { useClickOutside, useToggle } from "@/hooks/hook";
+import cn from "@/utils/cn";
 
 const DropdownContext = createContext();
 

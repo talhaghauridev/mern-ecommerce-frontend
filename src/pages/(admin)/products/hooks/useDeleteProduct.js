@@ -1,5 +1,5 @@
-import { useMessage } from "@hooks/hook";
-import { useDeleteProductMutation } from "@redux/api/productApi";
+import { useMessage } from "@/hooks/hook";
+import { useDeleteProductMutation } from "@/redux/api/productApi";
 
 const useDeleteProduct = () => {
   const [deleteProduct, { isLoading, isError, error, data }] =

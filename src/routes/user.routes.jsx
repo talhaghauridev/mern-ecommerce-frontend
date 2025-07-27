@@ -1,12 +1,12 @@
 import React, { lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import ProtectRoute from "@lib/ProtectRoute";
-const User = lazy(() => import("@pages/(user)/user"));
-const UpdateProfile = lazy(() => import("@pages/(user)/profile-update"));
-const UpdatePassword = lazy(() => import("@pages/(user)/password-update"));
-const Profile = lazy(() => import("@pages/(user)/profile"));
-const Orders = lazy(() => import("@pages/(user)/orders"));
-const OrderDetials = lazy(() => import("@pages/(user)/order-detials"));
+import ProtectRoute from "@/lib/ProtectRoute";
+const User = lazy(() => import("@/pages/(user)/user"));
+const UpdateProfile = lazy(() => import("@/pages/(user)/profile-update"));
+const UpdatePassword = lazy(() => import("@/pages/(user)/password-update"));
+const Profile = lazy(() => import("@/pages/(user)/profile"));
+const Orders = lazy(() => import("@/pages/(user)/orders"));
+const OrderDetials = lazy(() => import("@/pages/(user)/order-detials"));
 
 const AuthRoutes = () => {
   return (

@@ -6,10 +6,10 @@ import {
   Input,
   InputUpload,
   MetaData,
-} from "@components/ui";
+} from "@/components/ui";
 import { MdAlternateEmail } from "react-icons/md";
 import { RxAvatar } from "react-icons/rx";
-import inputError from "@utils/inputError";
+import inputError from "@/utils/inputError";
 import useUpdateProfile from "../hooks/useUpdateProfile";
 const UpdateProfile = () => {
   const { formik, isLoading, handleFileChange, avatar } = useUpdateProfile();
@@ -60,7 +60,6 @@ const UpdateProfile = () => {
                 label={"Upload Avatar"}
                 onChange={handleFileChange}
               />
-
             </div>
             <Button type="submit" className="max-w-full mt-2">
               Update

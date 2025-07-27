@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
-import { saveShippingInfo } from "@redux/reducers/cartReducer";
-import { SHIPPING_INFO } from "@constants/index";
-import LocalStorage from "@utils/LocalStorage";
+import { saveShippingInfo } from "@/redux/reducers/cartReducer";
+import { SHIPPING_INFO } from "@/constants/index";
+import LocalStorage from "@/utils/LocalStorage";
 import { shippingSchema } from "../validation";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";

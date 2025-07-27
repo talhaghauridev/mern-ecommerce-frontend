@@ -1,10 +1,10 @@
 import { useCallback, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useFormik } from "formik";
-import { useUpdateMeMutation } from "@redux/api/userApi";
-import { USER_INFO_KEY } from "@constants/index";
-import { useMessage, useUpload } from "@hooks/hook";
-import LocalStorage from "@utils/LocalStorage";
+import { useUpdateMeMutation } from "@/redux/api/userApi";
+import { USER_INFO_KEY } from "@/constants/index";
+import { useMessage, useUpload } from "@/hooks/hook";
+import LocalStorage from "@/utils/LocalStorage";
 import { updateProfileSchema } from "../validation";
 import { toast } from "react-toastify";
 

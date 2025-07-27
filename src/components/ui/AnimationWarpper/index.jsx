@@ -1,7 +1,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { memo } from "react";
-import cn from "@utils/cn";
+import cn from "@/utils/cn";
 
 const AnimationWrapper = ({
   children,

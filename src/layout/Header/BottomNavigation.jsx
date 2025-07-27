@@ -2,8 +2,8 @@ import React, { memo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { BsCart3 } from "react-icons/bs";
 import { IoMdSearch } from "react-icons/io";
-import { NAV } from "@constants";
-import cn from "@utils/cn";
+import { NAV } from "@/constants";
+import cn from "@/utils/cn";
 
 const BottomNavigation = ({ setSearchModel }) => {
   return (

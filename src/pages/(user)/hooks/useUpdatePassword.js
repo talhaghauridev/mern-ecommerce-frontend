@@ -1,8 +1,8 @@
 import { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useFormik } from "formik";
-import { useMessage } from "@hooks/hook";
-import { useUpdatePasswordMutation } from "@redux/api/userApi";
+import { useMessage } from "@/hooks/hook";
+import { useUpdatePasswordMutation } from "@/redux/api/userApi";
 import { updatePasswordSchema } from "../validation";
 import { toast } from "react-toastify";
 
@@ -39,7 +39,7 @@ const useUpdatePassword = () => {
         toast.error(onlineError);
       }
     },
-    [handleUpdatePassword,online]
+    [handleUpdatePassword, online]
   );
 
   const formik = useFormik({

@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { Rating, capitalize } from "@mui/material";
 import { Link } from "react-router-dom";
-import { Image } from "@components/ui";
+import { Image } from "@/components/ui";
 
 const ProductCard = (product) => {
   const { _id, name, images, price, ratings, numOfReviews } = product;

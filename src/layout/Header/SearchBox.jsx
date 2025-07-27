@@ -2,7 +2,7 @@ import React, { memo, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { IoMdSearch } from "react-icons/io";
-import cn from "@utils/cn";
+import cn from "@/utils/cn";
 
 const SearchBox = ({ setSearch, searchModel, setSearchModel, ...props }) => {
   const param = useParams();

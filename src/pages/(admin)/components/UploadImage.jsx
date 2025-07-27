@@ -1,4 +1,4 @@
-import { Image } from "@components/ui";
+import { Image } from "@/components/ui";
 import React, { memo, useCallback } from "react";
 import { RxCross2 } from "react-icons/rx";
 

@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useMemo, useState } from "react";
-import { Input, MetaData } from "@components/ui";
+import { Input, MetaData } from "@/components/ui";
 import { DataGrid } from "@mui/x-data-grid";
 import { MdDelete } from "react-icons/md";
 import useFetchReviews from "./hooks/useFetchReviews";

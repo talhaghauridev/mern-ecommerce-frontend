@@ -1,5 +1,5 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { baseQuery } from "@utils/ApiUrl";
+import { baseQuery } from "@/utils/ApiUrl";
 
 export const orderApi = createApi({
   reducerPath: "orderApi",
@@ -24,7 +24,7 @@ export const orderApi = createApi({
       query: ({ id, status }) => ({
         url: `admin/order/${id}`,
         method: "PUT",
-        body: {status},
+        body: { status },
       }),
       invalidatesTags: (result, error, { id }) => [
         { type: "order", id },

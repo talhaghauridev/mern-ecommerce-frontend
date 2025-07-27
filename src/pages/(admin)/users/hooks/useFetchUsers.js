@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useGetAllUsersQuery } from "@redux/api/userApi";
+import { useGetAllUsersQuery } from "@/redux/api/userApi";
 import { toast } from "react-toastify";
 
 const useFetchUsers = () => {

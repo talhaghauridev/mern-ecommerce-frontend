@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useFormik } from "formik";
-import { useResetPasswordMutation } from "@redux/api/userApi";
-import { useMessage } from "@hooks/hook";
+import { useResetPasswordMutation } from "@/redux/api/userApi";
+import { useMessage } from "@/hooks/hook";
 import { resetSchema } from "../validation";
 import { useCallback } from "react";
 

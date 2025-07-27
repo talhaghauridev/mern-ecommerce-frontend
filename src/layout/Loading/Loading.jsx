@@ -1,4 +1,4 @@
-import AnimationWarpper from "@components/ui/AnimationWarpper";
+import AnimationWarpper from "@/components/ui/AnimationWarpper";
 import TopNavgationBar from "react-top-loading-bar";
 const Loading = () => {
   return (

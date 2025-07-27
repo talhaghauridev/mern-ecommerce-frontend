@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useMemo } from "react";
 import { useFormik } from "formik";
-import { useMessage, useUpload } from "@hooks/hook";
-import { updateProductSchema } from "@pages/(admin)/validation";
+import { useMessage, useUpload } from "@/hooks/hook";
+import { updateProductSchema } from "@/pages/(admin)/validation";
 import {
   useGetProductDetailsQuery,
   useUpdateProductMutation,
-} from "@redux/api/productApi";
+} from "@/redux/api/productApi";
 import { useParams } from "react-router-dom";
 import { capitalize } from "@mui/material";
 
@@ -17,9 +17,9 @@ const getDetails = (data) => {
     stock: product?.stock,
     category: capitalize(String(product?.category)),
     description: product?.description,
-    images:product?.images
-    ? product?.images?.map((image) => image.url).filter((url) => url)
-    : [],
+    images: product?.images
+      ? product?.images?.map((image) => image.url).filter((url) => url)
+      : [],
   };
 };
 
@@ -54,7 +54,6 @@ const useUpdateProduct = () => {
   const displayImages = useMemo(() => {
     return images == false ? getDetails(productDetail)?.images : images;
   }, [images, productDetail]);
-
 
   console.log(displayImages);
   //Handle Submit

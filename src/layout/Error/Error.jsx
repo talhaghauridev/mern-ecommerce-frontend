@@ -1,5 +1,5 @@
-import { ErrorImage } from "@assets/images";
-import { Image } from "@components/ui";
+import { ErrorImage } from "@/assets/images";
+import { Image } from "@/components/ui";
 
 const Error = ({ message = "Application Error" }) => {
   return (

@@ -1,13 +1,13 @@
 import React, { memo, useCallback, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { BackDrop, Button, Image } from "@components/ui";
+import { BackDrop, Button, Image } from "@/components/ui";
 import { TbLogout } from "react-icons/tb";
 import { FaBarsStaggered } from "react-icons/fa6";
-import { useMediaQuery, useToggle } from "@hooks/hook";
-import { USER_PROFILE_LINK } from "@constants/index";
-import cn from "@utils/cn";
-import { avatar } from "@assets/images";
+import { useMediaQuery, useToggle } from "@/hooks/hook";
+import { USER_PROFILE_LINK } from "@/constants/index";
+import cn from "@/utils/cn";
+import { avatar } from "@/assets/images";
 
 const shortValue = (value, length) => {
   const newValue =

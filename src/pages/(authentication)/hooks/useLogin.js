@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
-import { useLoginMutation } from "@redux/api/userApi";
-import { setCredentials } from "@redux/reducers/userReducer";
-import { useMessage } from "@hooks/hook";
+import { useLoginMutation } from "@/redux/api/userApi";
+import { setCredentials } from "@/redux/reducers/userReducer";
+import { useMessage } from "@/hooks/hook";
 import { loginSchema } from "../validation";
 
 const useLogin = () => {
@@ -49,7 +49,7 @@ const useLogin = () => {
       dispatch(setCredentials(data));
     }
   }, [dispatch, isSuccess, data]);
-  
+
   useEffect(() => {
     handleSetCredentials();
   }, [handleSetCredentials]);

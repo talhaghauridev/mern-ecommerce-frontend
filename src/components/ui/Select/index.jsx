@@ -1,6 +1,6 @@
 import React, { createContext, memo } from "react";
 import { FaChevronUp } from "react-icons/fa6";
-import cn from "@utils/cn";
+import cn from "@/utils/cn";
 const SelectContext = createContext();
 const Select = memo(
   ({

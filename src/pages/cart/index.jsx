@@ -1,7 +1,7 @@
 import React, { Suspense, lazy, useMemo } from "react";
 import { useSelector } from "react-redux";
-import { MetaData } from "@components/ui";
-import CartLoading from "@components/CartLoading";
+import { MetaData } from "@/components/ui";
+import CartLoading from "@/components/CartLoading";
 const EmptyCart = lazy(() => import("./components/EmptyCart"));
 const CartList = lazy(() => import("./components/CartList"));
 const CartPriceBox = lazy(() => import("./components/CartPriceBox"));

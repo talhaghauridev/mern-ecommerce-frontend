@@ -1,15 +1,15 @@
 import { lazy, memo } from "react";
 import { Link } from "react-router-dom";
 import { capitalize } from "@mui/material";
-import { Image } from "@components/ui";
+import { Image } from "@/components/ui";
 import { RxCross2 } from "react-icons/rx";
-import { useCounter } from "@hooks/hook";
+import { useCounter } from "@/hooks/hook";
 import useRemoveFromCart from "../hooks/useRemoveFromCart";
 import {
   localStorageItem,
   useUpdateQuantity,
 } from "../hooks/useUpdateQuantity";
-const QuantityInput = lazy(() => import("@components/QuantityInput"));
+const QuantityInput = lazy(() => import("@/components/QuantityInput"));
 const CartCard = ({ name, price, _id, images, stock }) => {
   const { handleRemoveItem } = useRemoveFromCart(_id);
   const { handleUpdateQuantity } = useUpdateQuantity();

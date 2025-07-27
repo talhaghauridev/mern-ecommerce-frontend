@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { Link } from "react-router-dom";
-import { Image, buttonVariants } from "@components/ui";
-import { emptyCart } from "@assets/images";
+import { Image, buttonVariants } from "@/components/ui";
+import { emptyCart } from "@/assets/images";
 
 const EmptyCart = () => {
   return (

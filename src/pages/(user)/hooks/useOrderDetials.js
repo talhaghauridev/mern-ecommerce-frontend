@@ -1,4 +1,4 @@
-import { useGetOrderDetailsQuery } from "@redux/api/orderApi";
+import { useGetOrderDetailsQuery } from "@/redux/api/orderApi";
 import { useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";

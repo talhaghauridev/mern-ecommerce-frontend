@@ -7,11 +7,11 @@ import {
   Input,
   InputUpload,
   MetaData,
-} from "@components/ui";
+} from "@/components/ui";
 import { MdAlternateEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import useSignup from "../hooks/useSignup";
-import inputError from "@utils/inputError";
+import inputError from "@/utils/inputError";
 const SignUp = () => {
   const { formik, isLoading, handleFileChange, avatar } = useSignup();
   const { handleSubmit, getFieldProps } = formik;

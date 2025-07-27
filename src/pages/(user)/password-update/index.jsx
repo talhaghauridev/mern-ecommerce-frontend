@@ -1,8 +1,8 @@
 import React from "react";
-import { BackDrop, Button, Input, MetaData } from "@components/ui";
+import { BackDrop, Button, Input, MetaData } from "@/components/ui";
 import { RiBankFill, RiLockPasswordLine } from "react-icons/ri";
 import useUpdatePassword from "../hooks/useUpdatePassword";
-import inputError from "@utils/inputError";
+import inputError from "@/utils/inputError";
 const updatePassword = () => {
   const { formik, isLoading } = useUpdatePassword();
   const { handleSubmit, getFieldProps } = formik;

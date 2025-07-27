@@ -1,7 +1,7 @@
-import React, { useState, memo } from "react";
-import { useInView } from "@hooks/hook";
-import { DefaultSkeleton } from "@assets/images";
-import cn from "@utils/cn";
+import React, { useState, memo, useCallback, useMemo } from "react";
+import { useInView } from "@/hooks/hook";
+import { DefaultSkeleton } from "@/assets/images";
+import cn from "@/utils/cn";
 
 const Image = ({
   src,
@@ -14,28 +14,49 @@ const Image = ({
   const [isLoading, setIsLoading] = useState(true);
   const { isVisible, ref } = useInView();
 
+  const handleLoad = useCallback(() => {
+    setIsLoading(false);
+  }, []);
+
+  const shouldShowActualImage = useMemo(() => {
+    return isVisible && src && src.trim() !== "";
+  }, [isVisible, src]);
+
+  const placeholderStyle = useMemo(() => style, [style]);
+  const placeholderClassName = useMemo(
+    () => cn(`rounded-[3px] ${className}`),
+    [className]
+  );
+  const actualImageStyle = useMemo(
+    () => ({
+      display: isLoading ? "none" : "flex",
+      ...style,
+    }),
+    [isLoading, style]
+  );
+
   return (
     <>
       {isLoading && (
         <img
           src={placeholder}
-          style={style}
+          style={placeholderStyle}
           alt="Loading.."
-          className={cn(`rounded-[3px] ${className}`)}
+          className={placeholderClassName}
           ref={ref}
           {...props}
         />
       )}
-      <img
-        src={isVisible ? src : ""}
-        alt={alt}
-        onLoad={() => {
-          setIsLoading(false);
-        }}
-        className={className}
-        style={{ display: isLoading ? "none" : "flex", ...style }}
-        {...props}
-      />
+      {shouldShowActualImage && (
+        <img
+          src={src}
+          alt={alt}
+          onLoad={handleLoad}
+          className={className}
+          style={actualImageStyle}
+          {...props}
+        />
+      )}
     </>
   );
 };

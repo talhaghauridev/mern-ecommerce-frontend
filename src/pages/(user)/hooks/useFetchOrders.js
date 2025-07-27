@@ -1,15 +1,15 @@
-import { useGetOrdersQuery } from "@redux/api/orderApi";
+import { useGetOrdersQuery } from "@/redux/api/orderApi";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 
 const useFetchOrders = () => {
-  const { isError, isLoading, data,error } = useGetOrdersQuery();
+  const { isError, isLoading, data, error } = useGetOrdersQuery();
 
-useEffect(()=>{
-if(isError && error){
-    toast.error(error?.data?.message)
-}
-},[isError])
+  useEffect(() => {
+    if (isError && error) {
+      toast.error(error?.data?.message);
+    }
+  }, [isError]);
 
   return {
     isLoading,
