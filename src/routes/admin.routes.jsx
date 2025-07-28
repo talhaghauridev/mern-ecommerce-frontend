@@ -1,20 +1,19 @@
-import lazyWithProgress from "@/utils/lazy-progress";
+import AdminLayout from "@/pages/(admin)/admin";
+import { lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-
-const Admin = lazyWithProgress(() => import("@/pages/(admin)/admin"));
-const Dashboard = lazyWithProgress(() => import("@/pages/(admin)/dasboard"));
-const CreateProduct = lazyWithProgress(() => import("@/pages/(admin)/create-product"));
-const UpdateProduct = lazyWithProgress(() => import("@/pages/(admin)/update-product"));
-const AdminProducts = lazyWithProgress(() => import("@/pages/(admin)/products"));
-const Users = lazyWithProgress(() => import("@/pages/(admin)/users"));
-const UpdateUser = lazyWithProgress(() => import("@/pages/(admin)/update-user"));
-const Reviews = lazyWithProgress(() => import("@/pages/(admin)/reviews"));
-const AdminOrders = lazyWithProgress(() => import("@/pages/(admin)/orders"));
-const UpdateOrder = lazyWithProgress(() => import("@/pages/(admin)/update-order"));
+const Dashboard = lazy(() => import("@/pages/(admin)/dasboard"));
+const CreateProduct = lazy(() => import("@/pages/(admin)/create-product"));
+const UpdateProduct = lazy(() => import("@/pages/(admin)/update-product"));
+const AdminProducts = lazy(() => import("@/pages/(admin)/products"));
+const Users = lazy(() => import("@/pages/(admin)/users"));
+const UpdateUser = lazy(() => import("@/pages/(admin)/update-user"));
+const Reviews = lazy(() => import("@/pages/(admin)/reviews"));
+const AdminOrders = lazy(() => import("@/pages/(admin)/orders"));
+const UpdateOrder = lazy(() => import("@/pages/(admin)/update-order"));
 const AdminRoutes = () => {
    return (
       <Routes>
-         <Route element={<Admin />}>
+         <Route element={<AdminLayout />}>
             <Route
                path=""
                element={

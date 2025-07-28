@@ -1,9 +1,9 @@
 import Layout from "@/layout/layout";
-import ProtectRoute from "@/lib/ProtectRoute";
-import AuthRoutes from "@/routes/user.routes";
 import lazyWithProgress from "@/utils/lazy-progress";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import AdminRoutes from "./admin.routes";
+import ProtectRoute from "@/lib/ProtectRoute";
+const AuthRoutes = lazyWithProgress(() => import("@/routes/user.routes"));
+const AdminRoutes = lazyWithProgress(() => import("./admin.routes"));
 const NotFound = lazyWithProgress(() => import("@/layout/NotFound/NotFound"));
 const Products = lazyWithProgress(() => import("@/pages/products"));
 const ProductDetails = lazyWithProgress(() => import("@/pages/product-detials"));

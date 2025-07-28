@@ -1,10 +1,9 @@
-import React, { Suspense, lazy, useMemo } from "react";
-import { useSelector } from "react-redux";
 import { MetaData } from "@/components/ui";
-import CartLoading from "@/components/CartLoading";
-const EmptyCart = lazy(() => import("./components/EmptyCart"));
-const CartList = lazy(() => import("./components/CartList"));
-const CartPriceBox = lazy(() => import("./components/CartPriceBox"));
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
+import CartList from "./components/CartList";
+import CartPriceBox from "./components/CartPriceBox";
+import EmptyCart from "./components/EmptyCart";
 
 const Cart = () => {
    const { cartItems } = useSelector((state) => state.cart);
@@ -15,29 +14,10 @@ const Cart = () => {
       <>
          <MetaData title="Cart" />
          <section id="cart">
-            {!isCartItems && (
-               <Suspense
-                  fallback={
-                     <section
-                        id="emptyCart"
-                        className="w-full  py-[30px] px-[20px]">
-                        <div
-                           className=" h-[485px] max-w-[900px] px-[15px] py-[90px] m-auto bg-white  flex items-center justify-center flex-col gap-[15px] "
-                           style={{
-                              boxShadow: "#2b34451a 0px 0px 16px"
-                           }}>
-                           <h1>Loading...</h1>
-                        </div>
-                     </section>
-                  }>
-                  <EmptyCart />
-               </Suspense>
-            )}
+            {!isCartItems && <EmptyCart />}
             {isCartItems && (
                <div className="container py-[90px]">
-                  <Suspense fallback={<CartLoading />}>
-                     <CartList />
-                  </Suspense>
+                  <CartList />
                   <CartPriceBox />
                </div>
             )}
