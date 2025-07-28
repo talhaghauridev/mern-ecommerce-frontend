@@ -1,14 +1,13 @@
-import React, { useState, useMemo, useCallback, memo } from "react";
-import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
-import Slider from "@mui/material/Slider";
+import { Filter } from "@/assets/images";
 import { BackDrop, Button } from "@/components/ui";
-import { IoFilter } from "react-icons/io5";
-import { AiFillStar } from "react-icons/ai";
 import { FILTERS, FILTER_PRICE } from "@/constants/index";
 import { useMediaQuery, useToggle } from "@/hooks/hook";
-import { useProductContext } from "../context/ProductContext";
 import cn from "@/utils/cn";
-import { Filter } from "@/assets/images";
+import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import Slider from "@mui/material/Slider";
+import { memo, useCallback, useMemo, useState } from "react";
+import { AiFillStar } from "react-icons/ai";
+import { useProductContext } from "../context/ProductContext";
 
 const FilterSidebar = () => {
    const [showValue, setShowValue] = useState({ category: true, ratings: true });
@@ -20,7 +19,15 @@ const FilterSidebar = () => {
    const handleFiltersChange = useCallback(
       (e, value) => {
          const { name } = e.target;
-         const newValue = typeof value === "string" ? value.toLowerCase() : value;
+         let newValue;
+
+         if (name === "price") {
+            // For price slider, value is already an array [min, max]
+            newValue = value;
+         } else {
+            // For other filters (category, ratings)
+            newValue = typeof value === "string" ? value.toLowerCase() : value;
+         }
 
          setFilters((prev) => ({
             ...prev,
@@ -31,7 +38,7 @@ const FilterSidebar = () => {
             setShowValue((prev) => ({ ...prev, [name]: true }));
          }
       },
-      [filters]
+      [setFilters]
    );
 
    //Handle Filters Reset
@@ -48,7 +55,17 @@ const FilterSidebar = () => {
       () => (
          <Slider
             value={filters.price}
-            onChange={handleFiltersChange}
+            onChange={(_, value) => {
+               // Use temporary local state for continuous updates
+               setFilters((prev) => ({
+                  ...prev,
+                  price: value
+               }));
+            }}
+            onChangeCommitted={(_, value) => {
+               // Only trigger the actual filter when user stops sliding
+               handleFiltersChange({ target: { name: "price" } }, value);
+            }}
             valueLabelDisplay="auto"
             getAriaLabel={() => "Price range slider"}
             name="price"

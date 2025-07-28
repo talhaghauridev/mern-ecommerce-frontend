@@ -80,7 +80,7 @@ const FOOTER = {
       },
       {
          name: "Legal",
-         list: ["Terms of Service", "               Privacy Policy", "Cookie settings "]
+         list: ["Terms of Service", "Privacy Policy", "Cookie settings "]
       }
    ],
 
@@ -88,7 +88,7 @@ const FOOTER = {
 };
 
 const FILTERS = {
-   Categories: ["Mobile", "Laptop", "Car", "Bag", "Shoes", "Clothes", "Machines"],
+   Categories: ["Electronics", "Bags", "Accessories", "Sports"],
    Ratings: [5, 4, 3, 2, 1]
 };
 
