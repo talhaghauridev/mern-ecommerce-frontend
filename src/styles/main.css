@@ -2,7 +2,7 @@
 @import "./tailwind.css";
 
 #nprogress .bar {
-   background: #d23f57 !important; /* Change to your desired color */
+   background: #d23f57 !important;
    height: 3px !important;
 }
 
@@ -104,168 +104,240 @@
    justify-content: center;
    grid-column-gap: 20px;
 }
-/* Mui Edits  */
 
-.MuiDataGrid-columnHeadersInner {
-   width: 100% !important;
-}
+/* ========================================
+   🔥 FIXED MUI DATAGRID STYLES
+   ======================================== */
 
-/* Order Mui Grid  */
-#myOrder .MuiDataGrid-columnHeadersInner .css-yrdy0g-MuiDataGrid-columnHeaderRow {
-   width: 100% !important;
-   display: grid;
-   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+/* Base DataGrid Styling */
+.MuiDataGrid-root {
+   border: none;
+   font-family: "Poppins" !important;
 }
 
-/* Orders Mui Row Grid  */
-#myOrder .MuiDataGrid-virtualScroller .MuiDataGrid-row {
-   width: 100% !important;
-   display: grid !important;
-   grid-template-columns: 1fr 1fr 1fr 0.9fr 1.2fr 0.8fr;
+.MuiDataGrid-main {
+   border-radius: 8px;
+   overflow: hidden;
 }
 
-/* Products List Grid  */
-#adminProducts .MuiDataGrid-columnHeadersInner .css-yrdy0g-MuiDataGrid-columnHeaderRow {
-   width: 100% !important;
-   display: grid;
-   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-}
-
-#adminProducts .css-k008qs {
-   width: 100% !important;
-}
-/* Products Mui Row Grid  */
-#adminProducts .MuiDataGrid-virtualScroller .MuiDataGrid-row {
-   width: 100% !important;
-   display: grid !important;
-   grid-template-columns: 1fr 1fr 0.9fr 1.2fr 0.8fr;
-}
-
-/* Admin Orders List Grid  */
-#adminOrders .MuiDataGrid-columnHeadersInner .css-yrdy0g-MuiDataGrid-columnHeaderRow {
-   width: 100% !important;
-   display: grid;
-   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-}
-
-#adminOrders .css-k008qs {
-   width: 100% !important;
-}
-/* Admin Order Mui Row Grid  */
-#adminOrders .MuiDataGrid-virtualScroller .MuiDataGrid-row {
-   width: 100% !important;
-   display: grid !important;
-   grid-template-columns: 1fr 1fr 1fr 0.9fr 1.2fr 0.8fr;
-}
-
-/* Users List Grid  */
-#adminUsers .MuiDataGrid-columnHeadersInner .css-yrdy0g-MuiDataGrid-columnHeaderRow {
-   width: 100% !important;
-   display: grid;
-   grid-template-columns: 1fr 1fr 1fr 0.8fr 0.9fr;
-}
-
-#adminUsers .MuiDataGrid-columnHeadersInner .css-k008qs:first-of-type {
-   width: 100%;
-}
-/* Users Mui Row Grid  */
-#adminUsers .MuiDataGrid-virtualScroller .MuiDataGrid-row {
-   width: 100% !important;
-   display: grid !important;
-   grid-template-columns: 1fr 1fr 1fr 0.8fr 0.8fr;
-}
-
-/* Reviews List Grid  */
-#adminReviews .MuiDataGrid-columnHeadersInner .css-yrdy0g-MuiDataGrid-columnHeaderRow {
-   width: 100% !important;
-   display: grid;
-   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-}
-
-/* Reviews Mui Row Grid  */
-#adminReviews .MuiDataGrid-virtualScroller .MuiDataGrid-row {
-   width: 100% !important;
-   display: grid !important;
-   grid-template-columns: 1fr 1fr 1fr 1fr 0.9fr;
-}
-
-.MuiDataGrid-columnHeader .MuiDataGrid-columnHeadersInner .css-yrdy0g-MuiDataGrid-columnHeaderRow {
-   width: 100% !important;
-   max-width: 100% !important;
-}
-
+/* Column Headers */
 .MuiDataGrid-columnHeader {
-   max-width: 100% !important;
-   line-height: 56px;
-   width: 100% !important;
-   /* background: #d23f57c9; */
-   /* color: white; */
-   font-family: "PoppinsBold";
+   background-color: #f8f9fa;
+   font-family: "PoppinsBold" !important;
+   font-weight: 600;
+   color: #2b3445;
+   border-bottom: 2px solid #e9ecef;
 }
 
-.MuiDataGrid-columnHeadersInner .MuiDataGrid-columnHeader--sortable {
-   width: 100% !important;
-   max-width: 100% !important;
-   min-width: 130px !important;
+.MuiDataGrid-columnHeaderTitle {
+   font-weight: 600;
+   color: #2b3445;
 }
-.MuiDataGrid-columnHeader .MuiDataGrid-columnHeadersInner .css-yrdy0g-MuiDataGrid-columnHeaderRow .MuiDataGrid-columnHeaderTitleContainer {
+
+.MuiDataGrid-columnSeparator {
+   display: none;
+}
+
+/* Cells */
+.MuiDataGrid-cell {
+   border-bottom: 1px solid #f1f3f4;
+   font-family: "Poppins" !important;
+   color: #495057;
+   display: flex;
+   align-items: center;
    justify-content: center;
 }
 
-.MuiDataGrid-columnHeaderTitleContainer {
-   justify-content: center !important;
+.MuiDataGrid-cell:focus,
+.MuiDataGrid-cell:focus-within {
+   outline: none;
 }
 
-.MuiDataGrid-virtualScroller .MuiDataGrid-virtualScrollerRenderZone {
-   width: 100% !important;
-   font-family: "Poppins" !important;
-}
-.MuiDataGrid-virtualScroller .MuiDataGrid-cell {
-   width: 100% !important;
-   justify-content: center !important;
-   max-width: 100% !important;
-   border: 0px;
-   min-width: 130px !important;
+/* Rows */
+.MuiDataGrid-row {
+   border: none;
 }
 
-.MuiDataGrid-cell--textRight {
-   border-radius: 2px !important;
+.MuiDataGrid-row:hover {
+   background-color: #f8f9fa;
 }
 
-.css-levciy-MuiTablePagination-displayedRows {
-   font-family: "PoppinsBold" !important;
-   font-size: 15px !important;
+.MuiDataGrid-row.Mui-selected {
+   background-color: rgba(210, 63, 87, 0.08);
 }
 
+.MuiDataGrid-row.Mui-selected:hover {
+   background-color: rgba(210, 63, 87, 0.12);
+}
+
+/* Actions Column Specific Styling */
+.MuiDataGrid-actionsCell {
+   gap: 8px;
+   justify-content: center;
+}
+
+.MuiDataGrid-actionsCell .MuiButtonBase-root {
+   border-radius: 6px;
+   transition: all 0.2s ease;
+   padding: 6px;
+}
+
+.MuiDataGrid-actionsCell .MuiButtonBase-root:hover {
+   transform: scale(1.1);
+   background-color: rgba(0, 0, 0, 0.04);
+}
+
+/* Status Classes */
 .order_status_pending .MuiDataGrid-cellContent {
-   color: red;
+   color: #dc3545;
    font-size: 12px;
    font-weight: 600;
-   border-radius: 8px;
-   padding: 3px 12px;
+   background-color: rgba(220, 53, 69, 0.1);
+   border-radius: 12px;
+   padding: 4px 12px;
    display: inline-flex;
+   align-items: center;
+   justify-content: center;
 }
+
 .order_status_delivered .MuiDataGrid-cellContent {
-   color: green;
+   color: #28a745;
    font-size: 12px;
    font-weight: 600;
-   border-radius: 8px;
-   padding: 3px 12px;
+   background-color: rgba(40, 167, 69, 0.1);
+   border-radius: 12px;
+   padding: 4px 12px;
    display: inline-flex;
+   align-items: center;
+   justify-content: center;
 }
+
+/* Pagination */
+.MuiDataGrid-footerContainer {
+   border-top: 2px solid #e9ecef;
+   background-color: #f8f9fa;
+}
+
+.MuiTablePagination-displayedRows {
+   font-family: "PoppinsBold" !important;
+   font-size: 14px !important;
+   color: #495057;
+}
+
+.MuiTablePagination-selectLabel,
+.MuiTablePagination-input {
+   font-family: "Poppins" !important;
+   color: #495057;
+}
+
+/* Loading Overlay */
+.MuiDataGrid-overlayWrapper {
+   background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Scrollbars */
+.MuiDataGrid-virtualScroller::-webkit-scrollbar {
+   width: 8px;
+   height: 8px;
+}
+
+.MuiDataGrid-virtualScroller::-webkit-scrollbar-track {
+   background: #f1f1f1;
+   border-radius: 4px;
+}
+
+.MuiDataGrid-virtualScroller::-webkit-scrollbar-thumb {
+   background: #c1c1c1;
+   border-radius: 4px;
+}
+
+.MuiDataGrid-virtualScroller::-webkit-scrollbar-thumb:hover {
+   background: #a8a8a8;
+}
+
+/* ========================================
+   🎯 SPECIFIC SECTION STYLING
+   ======================================== */
+
+/* Admin Products DataGrid */
+#adminProducts .MuiDataGrid-root {
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+   border-radius: 12px;
+}
+
+#adminProducts .MuiDataGrid-columnHeader:first-of-type {
+   min-width: 100px; /* Product ID */
+}
+
+#adminProducts .MuiDataGrid-columnHeader:nth-of-type(2) {
+   min-width: 200px; /* Product Name */
+}
+
+#adminProducts .MuiDataGrid-columnHeader:nth-of-type(3) {
+   min-width: 100px; /* Stock */
+}
+
+#adminProducts .MuiDataGrid-columnHeader:nth-of-type(4) {
+   min-width: 120px; /* Price */
+}
+
+#adminProducts .MuiDataGrid-columnHeader:nth-of-type(5) {
+   min-width: 120px; /* Actions */
+}
+
+/* Admin Orders DataGrid */
+#adminOrders .MuiDataGrid-root {
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+   border-radius: 12px;
+}
+
+/* Admin Users DataGrid */
+#adminUsers .MuiDataGrid-root {
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+   border-radius: 12px;
+}
+
+/* My Orders DataGrid */
+#myOrder .MuiDataGrid-root {
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+   border-radius: 12px;
+}
+
+/* Admin Reviews DataGrid */
+#adminReviews .MuiDataGrid-root {
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+   border-radius: 12px;
+}
+
+/* ========================================
+   🔧 UTILITY CLASSES
+   ======================================== */
 
 .processing {
-   color: red;
-   font-weight: 400;
+   color: #ffc107;
+   font-weight: 500;
+   background-color: rgba(255, 193, 7, 0.1);
+   padding: 4px 8px;
+   border-radius: 8px;
+   font-size: 12px;
 }
 
 .success {
-   color: green;
-   font-weight: 400;
+   color: #28a745;
+   font-weight: 500;
+   background-color: rgba(40, 167, 69, 0.1);
+   padding: 4px 8px;
+   border-radius: 8px;
+   font-size: 12px;
 }
+
 .shadow_black {
    box-shadow: rgba(43, 52, 69, 0.1) 0px 4px 16px;
 }
+
+/* ========================================
+   📱 RESPONSIVE DESIGN
+   ======================================== */
 
 @media (max-width: 950px) {
    .home_product_grid {
@@ -323,6 +395,22 @@
       flex-direction: column-reverse;
       gap: 30px;
    }
+
+   /* Mobile DataGrid Adjustments */
+   .MuiDataGrid-columnHeader {
+      min-width: 80px !important;
+      font-size: 12px;
+   }
+
+   .MuiDataGrid-cell {
+      min-width: 80px !important;
+      font-size: 12px;
+   }
+
+   .MuiDataGrid-actionsCell .MuiButtonBase-root {
+      padding: 4px;
+      min-width: 32px;
+   }
 }
 
 @media (max-width: 560px) {
@@ -335,13 +423,31 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
    }
+
+   /* Extra small screens */
+   .MuiDataGrid-columnHeader {
+      min-width: 60px !important;
+      font-size: 11px;
+      padding: 4px;
+   }
+
+   .MuiDataGrid-cell {
+      min-width: 60px !important;
+      font-size: 11px;
+      padding: 4px;
+   }
 }
+
+/* ========================================
+   🎨 HEADER ANIMATION
+   ======================================== */
+
 .header_animation {
    background-color: white;
    z-index: 1;
    position: sticky;
    top: 0px;
-   transition: all 0.4 ease-in-out;
+   transition: all 0.4s ease-in-out;
    box-shadow: rgba(43, 52, 69, 0.1) 0px 4px 16px;
    border-bottom: none !important;
    animation: stickyHeader 0.3s ease forwards;
