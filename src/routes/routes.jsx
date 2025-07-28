@@ -1,10 +1,9 @@
-import React, { lazy, Suspense } from "react";
-import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
-import AuthRoutes from "@/routes/user.routes";
 import Layout from "@/layout/layout";
 import ProtectRoute from "@/lib/ProtectRoute";
-import AdminRoutes from "./admin.routes";
+import AuthRoutes from "@/routes/user.routes";
 import lazyWithProgress from "@/utils/lazy-progress";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import AdminRoutes from "./admin.routes";
 const NotFound = lazyWithProgress(() => import("@/layout/NotFound/NotFound"));
 const Products = lazyWithProgress(() => import("@/pages/products"));
 const ProductDetails = lazyWithProgress(() => import("@/pages/product-detials"));
