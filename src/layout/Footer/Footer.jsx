@@ -42,7 +42,7 @@ const Footer = () => {
                   </div>
 
                   <p className="mb-6 text-gray-500 sm:pr-8 font-Sans ">
-                     Filler text is dummy text which has no meaning however looks very similar to real text
+                     Discover the best products handpicked just for you. Unmatched quality and lightning-fast delivery.
                   </p>
 
                   <div className="flex gap-4">
