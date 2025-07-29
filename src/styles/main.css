@@ -122,7 +122,6 @@
 
 /* Column Headers */
 .MuiDataGrid-columnHeader {
-   background-color: #f8f9fa;
    font-family: "PoppinsBold" !important;
    font-weight: 600;
    color: #2b3445;
@@ -213,10 +212,6 @@
 }
 
 /* Pagination */
-.MuiDataGrid-footerContainer {
-   border-top: 2px solid #e9ecef;
-   background-color: #f8f9fa;
-}
 
 .MuiTablePagination-displayedRows {
    font-family: "PoppinsBold" !important;

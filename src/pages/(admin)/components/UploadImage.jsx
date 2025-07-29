@@ -4,22 +4,23 @@ import { RxCross2 } from "react-icons/rx";
 
 const UploadImage = ({ images, setImages }) => {
    const handleRemove = useCallback(
-      (img) => {
-         setImages((pve) => [...pve.filter((i) => i !== img)]);
+      (indexToRemove) => {
+         setImages(prevImages => prevImages.filter((_, index) => index !== indexToRemove));
       },
-      [images, setImages]
+      []
    );
+
    console.log(images);
+
    return (
       <div className="flex items-center justify-between">
          {images?.map((image, index) => (
-            <div className="relative overflow-hidden">
+            <div key={index} className="relative overflow-hidden">
                <RxCross2
                   className="absolute text-[20px] cursor-pointer right-0"
-                  onClick={() => handleRemove(image?.url || image)}
+                  onClick={() => handleRemove(index)}
                />
                <Image
-                  key={index}
                   className="w-[50px] h-[50px] max-w-[50px] object-contain"
                   src={image?.url || image}
                   alt={`Image ${index}`}

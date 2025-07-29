@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useFormik } from "formik";
 import { useMessage, useUpload } from "@/hooks/hook";
 import { updateProductSchema } from "@/pages/(admin)/validation";
@@ -19,9 +19,12 @@ const getDetails = (data) => {
 };
 
 const useUpdateProduct = () => {
-   const { handleFileChange, images, setImages } = useUpload(true);
+   const { handleFileChange, images: uploadedImages, setImages: setUploadedImages } = useUpload(true);
    const { id } = useParams();
    const { data: productDetail, isLoading: detialLoading } = useGetProductDetailsQuery(id);
+   
+   // Combined images state - holds both existing and newly uploaded images
+   const [allImages, setAllImages] = useState([]);
 
    const [updateProduct, { isLoading: updateLoading, isSuccess, data, error }] = useUpdateProductMutation();
 
@@ -29,6 +32,28 @@ const useUpdateProduct = () => {
       const { images, ...rest } = getDetails(productDetail);
       return rest;
    }, [id, productDetail]);
+
+   // Initialize allImages with existing product images when productDetail loads
+   useEffect(() => {
+      if (productDetail && !allImages.length) {
+         const existingImages = getDetails(productDetail)?.images || [];
+         setAllImages(existingImages);
+      }
+   }, [productDetail, allImages.length]);
+
+   // Add newly uploaded images to the beginning of allImages
+   useEffect(() => {
+      if (uploadedImages && uploadedImages !== false && uploadedImages.length > 0) {
+         setAllImages(prev => {
+            // Only add images that aren't already in the array
+            const newImages = uploadedImages.filter(img => !prev.includes(img));
+            // Put new images first, then existing images
+            return [...newImages, ...prev];
+         });
+         // Reset uploaded images after adding them
+         setUploadedImages([]);
+      }
+   }, [uploadedImages, setUploadedImages]);
 
    //Handle Update Product
    const handleUpdateProduct = useCallback(
@@ -43,22 +68,27 @@ const useUpdateProduct = () => {
       [updateProduct]
    );
 
-   //Handle Images
-   const displayImages = useMemo(() => {
-      return images == false ? getDetails(productDetail)?.images : images;
-   }, [images, productDetail]);
+   // Custom setImages function for removing images
+   const setImages = useCallback((updaterOrValue) => {
+      if (typeof updaterOrValue === 'function') {
+         setAllImages(updaterOrValue);
+      } else {
+         setAllImages(updaterOrValue);
+      }
+   }, []);
 
-   console.log(displayImages);
+   console.log(allImages);
+
    //Handle Submit
    const onSubmit = useCallback(
       async ({ images, ...rest }) => {
-         if (!displayImages) return;
+         if (!allImages || allImages.length === 0) return;
          await handleUpdateProduct({
             id,
-            updatedProduct: { images: displayImages, ...rest }
+            updatedProduct: { images: allImages, ...rest }
          });
       },
-      [displayImages, handleUpdateProduct, id]
+      [allImages, handleUpdateProduct, id]
    );
 
    const formik = useFormik({
@@ -69,9 +99,10 @@ const useUpdateProduct = () => {
    });
 
    useMessage(data?.message, error, "/admin/products");
+
    return {
       formik,
-      images: displayImages,
+      images: allImages,
       handleFileChange,
       detialLoading,
       updateLoading,
