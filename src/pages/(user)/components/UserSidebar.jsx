@@ -1,13 +1,13 @@
-import React, { memo, useCallback, useMemo } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { BackDrop, Button, Image } from "@/components/ui";
-import { TbLogout } from "react-icons/tb";
-import { FaBarsStaggered } from "react-icons/fa6";
-import { useMediaQuery, useToggle } from "@/hooks/hook";
 import { USER_PROFILE_LINK } from "@/constants/index";
+import { useMediaQuery, useToggle } from "@/hooks/hook";
+import useLogout from "@/hooks/useLogout";
 import cn from "@/utils/cn";
-import { avatar } from "@/assets/images";
+import { memo, useCallback, useMemo } from "react";
+import { FaBarsStaggered } from "react-icons/fa6";
+import { TbLogout } from "react-icons/tb";
+import { useSelector } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
 
 const shortValue = (value, length) => {
    const newValue = value?.trim()?.length > length ? value.slice(0, length) + "...." : value;
@@ -19,6 +19,7 @@ const UserSidebar = () => {
    const { pathname } = useLocation();
    const isMobile = useMediaQuery("(max-width:768px)");
    const { handleToggle, setToggle, toggle } = useToggle(false);
+   const { handleLogout } = useLogout();
 
    const MobileSidebar = useCallback(
       () => (
@@ -89,10 +90,12 @@ const UserSidebar = () => {
                         </li>
                      </Link>
                   ))}
-                  <div className="cursor-pointer sm:text-[15px] text-[14px] text-[#2b3445] font-Sans sm:w-[100%] md:w-[100%] py-[12px] px-[16px] border-solid border-b border-[#e5e7eb] flex items-center justify-start gap-[5px] transition-all hover:bg-[#2b34450f] w-full ">
+                  <button
+                     className="cursor-pointer sm:text-[15px] text-[14px] text-[#2b3445] font-Sans sm:w-[100%] md:w-[100%] py-[12px] px-[16px] border-solid border-b border-[#e5e7eb] flex items-center justify-start gap-[5px] transition-all hover:bg-[#2b34450f] w-full "
+                     onClick={handleLogout}>
                      <TbLogout className="text-[15px] md:text-[18px]" />
                      <h1 className="text-[15px]">Logout</h1>
-                  </div>
+                  </button>
                </ul>
             </div>
          </aside>
