@@ -7,6 +7,7 @@ import ProductsNotFound from "@/components/ProductsNotFound";
 
 const ProductList = () => {
    const { products, isLoading, resultPerPage, isProducts, productCount } = useProductContext();
+   console.log(JSON.stringify(products,null,2))
    return (
       <section id="productList">
          <div className={isProducts || isLoading ? "product_grid" : "product_not_found"}>

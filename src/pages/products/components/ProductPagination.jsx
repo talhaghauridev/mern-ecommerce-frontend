@@ -9,7 +9,7 @@ const ProductPagination = () => {
          id="pagination"
          className="w-[100%] flex items-center justify-center py-[25px] max-w-full">
          <Pagination
-            count={Number(((filteredProductCount + 4) / resultPerPage).toFixed())}
+            count={Math.ceil(filteredProductCount / resultPerPage)}
             page={page}
             onChange={(e, newValue) => setPage(newValue)}
             variant="outlined"

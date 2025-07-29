@@ -13,10 +13,10 @@ export const Hero = () => {
             {/* Banner Info  */}
             <div className=" h-[100%] flex items-start justify-center flex-col gap-[10px]">
                <h1 className=" text-[40px] md:text-[50px] font-PoppinsBold font-bold text-[#222935] leading-[1.2] max-w-[400px]">
-                  50% Off For Your First Shopping
+                  Shop Smart, Live Better Every Day
                </h1>
                <p className="text-[15px] text-[#0F3460] font-Sans mt-[12px]">
-                  Explore innovation at your fingertips. Find cutting-edge tech gadgets that blend seamlessly into your lifestyle.
+                  Discover the best products handpicked just for you. Unmatched quality and lightning-fast delivery.
                </p>
                <Button
                   className="mt-[10px]"
