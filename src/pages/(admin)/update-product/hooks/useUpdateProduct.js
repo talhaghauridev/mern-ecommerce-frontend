@@ -22,7 +22,7 @@ const useUpdateProduct = () => {
    const { handleFileChange, images: uploadedImages, setImages: setUploadedImages } = useUpload(true);
    const { id } = useParams();
    const { data: productDetail, isLoading: detialLoading } = useGetProductDetailsQuery(id);
-   
+
    // Combined images state - holds both existing and newly uploaded images
    const [allImages, setAllImages] = useState([]);
 
@@ -44,9 +44,9 @@ const useUpdateProduct = () => {
    // Add newly uploaded images to the beginning of allImages
    useEffect(() => {
       if (uploadedImages && uploadedImages !== false && uploadedImages.length > 0) {
-         setAllImages(prev => {
+         setAllImages((prev) => {
             // Only add images that aren't already in the array
-            const newImages = uploadedImages.filter(img => !prev.includes(img));
+            const newImages = uploadedImages.filter((img) => !prev.includes(img));
             // Put new images first, then existing images
             return [...newImages, ...prev];
          });
@@ -70,7 +70,7 @@ const useUpdateProduct = () => {
 
    // Custom setImages function for removing images
    const setImages = useCallback((updaterOrValue) => {
-      if (typeof updaterOrValue === 'function') {
+      if (typeof updaterOrValue === "function") {
          setAllImages(updaterOrValue);
       } else {
          setAllImages(updaterOrValue);

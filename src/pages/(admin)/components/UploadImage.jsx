@@ -3,19 +3,18 @@ import React, { memo, useCallback } from "react";
 import { RxCross2 } from "react-icons/rx";
 
 const UploadImage = ({ images, setImages }) => {
-   const handleRemove = useCallback(
-      (indexToRemove) => {
-         setImages(prevImages => prevImages.filter((_, index) => index !== indexToRemove));
-      },
-      []
-   );
+   const handleRemove = useCallback((indexToRemove) => {
+      setImages((prevImages) => prevImages.filter((_, index) => index !== indexToRemove));
+   }, []);
 
    console.log(images);
 
    return (
       <div className="flex items-center justify-between">
          {images?.map((image, index) => (
-            <div key={index} className="relative overflow-hidden">
+            <div
+               key={index}
+               className="relative overflow-hidden">
                <RxCross2
                   className="absolute text-[20px] cursor-pointer right-0"
                   onClick={() => handleRemove(index)}
