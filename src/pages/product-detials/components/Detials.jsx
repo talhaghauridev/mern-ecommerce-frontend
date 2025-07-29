@@ -106,13 +106,9 @@ const Details = ({ product }) => {
             </div>
          </div>
 
-         {reviews && reviews?.length ? (
-            <Suspense fallback={"Loading...."}>
-               <Reviews reviews={reviews} />
-            </Suspense>
-         ) : (
-            <h1>Not Raings</h1>
-         )}
+         <Suspense fallback={<div className="text-center py-4">Loading...</div>}>
+             <Reviews reviews={reviews || []} />
+          </Suspense>
       </>
    );
 };

@@ -26,7 +26,7 @@ const CartCard = ({ name, price, _id, images, quantity, image }) => {
             </Link>
             <div>
                <span className="text-[#d23f57] text-[15px] md:text-[18px] font-Sans  ">
-                  {quantity} X ${price} = <b className="font-Poppins">${price * quantity}</b>
+                  {quantity} X ${price} = <b className="font-Poppins">${(price * quantity).toFixed(2)}</b>
                </span>
             </div>
          </div>
