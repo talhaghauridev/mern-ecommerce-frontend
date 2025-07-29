@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useMemo, useRef } from "react";
 import useFetchProducts from "../../products/hooks/useFetchProducts";
+import useFetchOrders from "../../orders/hooks/useFetchOrders";
 import { Doughnut, Line } from "react-chartjs-2";
 import {
    Chart as ChartJS,
@@ -41,26 +42,22 @@ const DashboardChart = () => {
       };
    }, [outOfStock, products]);
 
-   // Dummy data for Line chart
+   // Revenue Progress Chart
+   const { totalAmount } = useFetchOrders();
    const lineData = useMemo(() => {
+      const revenue = Number(totalAmount.replace(/,/g, "")) || 0;
       return {
-         labels: ["Inital Amount", "Amount Earned"],
+         labels: ["Initial Amount", "Total Revenue"],
          datasets: [
             {
-               label: "Dataset 1",
+               label: "Revenue",
                borderColor: "rgba(75,192,192,1)",
                backgroundColor: "rgba(75,192,192,0.4)",
-               data: [65, 59, 80, 81, 56]
-            },
-            {
-               label: "Dataset 2",
-               borderColor: "rgba(255,99,132,1)",
-               backgroundColor: "rgba(255,99,132,0.4)",
-               data: [28, 48, 40, 19, 86]
+               data: [0, revenue]
             }
          ]
       };
-   }, []);
+   }, [totalAmount]);
 
    return (
       <div className="flex flex-col gap-[20px] w-full h-full items-center justify-center py-[20px]">

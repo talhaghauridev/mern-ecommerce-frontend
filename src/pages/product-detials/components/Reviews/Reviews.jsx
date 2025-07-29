@@ -29,17 +29,18 @@ const Reviews = ({ reviews }) => {
                )}
             </div>
             <div className="flex flex-col gap-[10px] w-full">
-               {reviews?.length > 0 ?
+               {reviews?.length > 0 ? (
                   reviews?.map((review, index) => (
                      <ReviewCard
                         {...review}
                         key={index}
                      />
-                  )) : (
-                     <div className="text-center py-8 w-full">
-                        <p className="text-gray-500 text-lg font-Sans">No reviews yet. Be the first to review!</p>
-                     </div>
-                   )}
+                  ))
+               ) : (
+                  <div className="text-center py-8 w-full">
+                     <p className="text-gray-500 text-lg font-Sans">No reviews yet. Be the first to review!</p>
+                  </div>
+               )}
             </div>
          </div>
 

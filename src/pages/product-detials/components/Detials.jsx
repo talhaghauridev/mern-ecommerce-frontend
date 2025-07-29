@@ -107,8 +107,8 @@ const Details = ({ product }) => {
          </div>
 
          <Suspense fallback={<div className="text-center py-4">Loading...</div>}>
-             <Reviews reviews={reviews || []} />
-          </Suspense>
+            <Reviews reviews={reviews || []} />
+         </Suspense>
       </>
    );
 };
